@@ -1,0 +1,53 @@
+﻿@model Group_6_Final_Project.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+<style>
+    .signup-side {
+        background-color: #C32435; /* Your desired color code */
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 45%; 
+    }
+
+    .login-side {
+        flex-direction: column;
+        justify-content: center;
+        height: 100vh;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <!-- Left column for "Log In" -->
+        <div class="col-md-6 login-side d-flex">
+            <a asp-controller="Home" asp-action="Index">Mainstreet Movies</a>
+            <h1>Login</h1>
+            <hr />
+            <form asp-action="Login" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group mb-3">
+                    <input asp-for="Email" class="form-control" placeholder="Email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <input asp-for="Password" class="form-control" placeholder="Password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Login" class="btn btn-primary rounded-pill" style="background-color: #C32435; color: white; border: none; padding: 15px 30px;" />
+                </div>
+            </form>
+        </div>
+            <!-- Right column for "Are you new here" -->
+            <div class="col-md-6 signup-side d-flex mr-0">
+                <h2>Are you new here?</h2>
+                <p>Sign up to earn exclusive rewards and offers!</p>
+                <a asp-controller="Account" asp-action="Register" class="btn btn-secondary rounded-pill" style="background-color: white; color: #C32435; border: none; padding: 15px 30px;">Sign Up</a>
+            </div>
+        </div>
+    </div>

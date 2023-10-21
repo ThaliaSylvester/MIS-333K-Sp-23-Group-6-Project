@@ -2,7 +2,7 @@
 
 ## Terminal Commands
 
-### Pulling from the Git Repo
+#### Pulling from the Git Repo
 git pull
 
 ### Viewing Current Live Branches 

@@ -1,6 +1,6 @@
 # Group-6
 
-Terminal Commands
+## Terminal Commands
 
 Pulling from the Git Repo
 git pull

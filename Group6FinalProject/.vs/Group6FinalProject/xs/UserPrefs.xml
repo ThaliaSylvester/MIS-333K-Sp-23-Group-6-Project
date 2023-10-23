@@ -1,13 +1,12 @@
 ﻿<Properties StartupConfiguration="{F9141F5C-27CF-4264-9DFA-C01C0F0F15B3}|https">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.Group6FinalProject PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Group6FinalProject/Views/Account/Login.cshtml">
     <Files>
       <File FileName="Group6FinalProject/DAL/AppDbContext.cs" />
       <File FileName="Group6FinalProject/Controllers/HomeController.cs" />
       <File FileName="Group6FinalProject/Controllers/SeedController.cs" />
-      <File FileName="Group6FinalProject/Models/ViewModels/AccountViewModels.cs" Line="85" Column="40" />
-      <File FileName="Group6FinalProject/Models/ViewModels/RoleViewModels.cs" Line="1" Column="1" />
+      <File FileName="Group6FinalProject/Models/ViewModels/AccountViewModels.cs" />
+      <File FileName="Group6FinalProject/Models/ViewModels/RoleViewModels.cs" />
       <File FileName="Group6FinalProject/Properties/launchSettings.json" />
       <File FileName="Group6FinalProject/Seeding/SeedRoles.cs" />
       <File FileName="Group6FinalProject/Seeding/SeedUsers.cs" />
@@ -15,14 +14,14 @@
       <File FileName="Group6FinalProject/Views/Account/ChangePassword.cshtml" />
       <File FileName="Group6FinalProject/Views/Account/Index.cshtml" />
       <File FileName="Group6FinalProject/Views/Account/Login.cshtml" Line="19" Column="32" />
-      <File FileName="Group6FinalProject/Views/Account/Register.cshtml" Line="20" Column="32" />
+      <File FileName="Group6FinalProject/Views/Account/Register.cshtml" />
       <File FileName="Group6FinalProject/Views/Home/Index.cshtml" />
       <File FileName="Group6FinalProject/Views/RoleAdmin/Create.cshtml" />
       <File FileName="Group6FinalProject/Views/RoleAdmin/Edit.cshtml" />
       <File FileName="Group6FinalProject/Views/RoleAdmin/Index.cshtml" />
       <File FileName="Group6FinalProject/Views/Seed/Confirm.cshtml" />
       <File FileName="Group6FinalProject/Views/Seed/Index.cshtml" />
-      <File FileName="Group6FinalProject/Models/AppUser.cs" Line="12" Column="1" />
+      <File FileName="Group6FinalProject/Models/AppUser.cs" />
       <File FileName="Group6FinalProject/Views/Shared/_Layout.cshtml" />
       <File FileName="Group6FinalProject/Views/Shared/_LoginPartial.cshtml" />
       <File FileName="Group6FinalProject/Views/Shared/Error.cshtml" />
@@ -39,26 +38,18 @@
             <Node name="Group6FinalProject">
               <Node name="DAL" expanded="True" />
               <Node name="Views" expanded="True">
-                <Node name="Account" expanded="True">
-                  <Node name="Login.cshtml" selected="True" />
-                </Node>
+                <Node name="Account" expanded="True" />
               </Node>
             </Node>
           </Node>
         </State>
       </Pad>
-      <Pad Id="ClassPad">
-        <State name="__root__">
-          <Node name="Group6FinalProject" expanded="True" selected="True">
-            <Node name="Group6FinalProject" expanded="True" />
-          </Node>
-        </State>
-      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

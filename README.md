@@ -14,11 +14,11 @@ git checkout -b <branch-name>(e.g. git branch ethan-navbar)
 #### Going from Branch to Branch 
 git checkout <branch-name> (e.g. git checkout ethan-navbar) 
 
-#### Merging a Branch to Main 
-git checkout main <BR>
+#### Merging a Branch to Master 
+git checkout master <BR>
 git pull <BR>
 git checkout <BRANCH> <BR>
-git merge main <BR>
+git merge master <BR>
 git push 
 
 :wq
@@ -26,7 +26,7 @@ git push
 (If merge conflicts arise, contact Ethan if you can’t resolve them on your own) 
 
 #### Deleting Branches Not Found on the Repo 
-git checkout main
+git checkout master
 git pull
 git remote prune origin 
 git fetch --all -p; git branch -vv | grep “:gone]“ awk ‘{ print $1 }‘  | xargs -n 1 git branch -D

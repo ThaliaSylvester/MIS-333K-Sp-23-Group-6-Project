@@ -26,9 +26,9 @@ git push
 (If merge conflicts arise, contact Ethan if you can’t resolve them on your own) 
 
 #### Deleting Branches Not Found on the Repo 
-git checkout master
-git pull
-git remote prune origin 
+git checkout master <BR>
+git pull <BR>
+git remote prune origin <BR>
 git fetch --all -p; git branch -vv | grep “:gone]“ awk ‘{ print $1 }‘  | xargs -n 1 git branch -D
 
 #### Reset the Last Commit (Use for Merge Conflicts) 

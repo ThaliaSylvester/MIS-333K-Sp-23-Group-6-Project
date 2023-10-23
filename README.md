@@ -15,10 +15,10 @@ git checkout -b <branch-name>(e.g. git branch ethan-navbar)
 git checkout <branch-name> (e.g. git checkout ethan-navbar) 
 
 #### Merging a Branch to Main 
-git checkout main 
-git pull 
-git checkout <BRANCH> 
-git merge main 
+git checkout main <BR>
+git pull <BR>
+git checkout <BRANCH> <BR>
+git merge main <BR>
 git push 
 
 :wq

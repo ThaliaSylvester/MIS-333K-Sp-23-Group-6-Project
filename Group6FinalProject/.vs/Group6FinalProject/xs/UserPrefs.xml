@@ -1,44 +1,35 @@
 ﻿<Properties StartupConfiguration="{F9141F5C-27CF-4264-9DFA-C01C0F0F15B3}|https">
-  <MonoDevelop.Ide.ItemProperties.Group6FinalProject PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Group6FinalProject/Views/Account/Login.cshtml">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Group6FinalProject/Views/RoleAdmin/Index.cshtml">
     <Files>
-      <File FileName="Group6FinalProject/DAL/AppDbContext.cs" />
-      <File FileName="Group6FinalProject/Controllers/HomeController.cs" />
-      <File FileName="Group6FinalProject/Controllers/SeedController.cs" />
-      <File FileName="Group6FinalProject/Models/ViewModels/AccountViewModels.cs" />
-      <File FileName="Group6FinalProject/Models/ViewModels/RoleViewModels.cs" />
-      <File FileName="Group6FinalProject/Properties/launchSettings.json" />
-      <File FileName="Group6FinalProject/Seeding/SeedRoles.cs" />
-      <File FileName="Group6FinalProject/Seeding/SeedUsers.cs" />
-      <File FileName="Group6FinalProject/Utilities/AddUser.cs" />
-      <File FileName="Group6FinalProject/Views/Account/ChangePassword.cshtml" />
-      <File FileName="Group6FinalProject/Views/Account/Index.cshtml" />
-      <File FileName="Group6FinalProject/Views/Account/Login.cshtml" Line="19" Column="32" />
-      <File FileName="Group6FinalProject/Views/Account/Register.cshtml" />
-      <File FileName="Group6FinalProject/Views/Home/Index.cshtml" />
-      <File FileName="Group6FinalProject/Views/RoleAdmin/Create.cshtml" />
-      <File FileName="Group6FinalProject/Views/RoleAdmin/Edit.cshtml" />
-      <File FileName="Group6FinalProject/Views/RoleAdmin/Index.cshtml" />
-      <File FileName="Group6FinalProject/Views/Seed/Confirm.cshtml" />
-      <File FileName="Group6FinalProject/Views/Seed/Index.cshtml" />
+      <File FileName="Group6FinalProject/Views/Shared/_Layout.cshtml" Line="18" Column="45" IsPinned="True" />
+      <File FileName="Group6FinalProject/wwwroot/lib/twitter-bootstrap/css/bootstrap.css" Line="8092" Column="3" IsPinned="True" />
       <File FileName="Group6FinalProject/Models/AppUser.cs" />
-      <File FileName="Group6FinalProject/Views/Shared/_Layout.cshtml" />
+      <File FileName="Group6FinalProject/Migrations/20231020040640_Setup.cs" />
+      <File FileName="Group6FinalProject/wwwroot/lib/jquery/jquery.js" />
+      <File FileName="Group6FinalProject/Migrations/AppDbContextModelSnapshot.cs" />
+      <File FileName="Group6FinalProject/Migrations/20231026195156_ImplementRoles.cs" />
+      <File FileName="Group6FinalProject/Migrations/20231026070145_AddIdentityRoles.cs" />
       <File FileName="Group6FinalProject/Views/Shared/_LoginPartial.cshtml" />
-      <File FileName="Group6FinalProject/Views/Shared/Error.cshtml" />
-      <File FileName="Group6FinalProject/Views/_ViewStart.cshtml" />
-      <File FileName="Group6FinalProject/appsettings.json" />
-      <File FileName="Group6FinalProject/Program.cs" />
       <File FileName="Group6FinalProject/Controllers/AccountController.cs" />
+      <File FileName="Group6FinalProject/Models/ViewModels/AccountViewModels.cs" />
+      <File FileName="Group6FinalProject/Views/Account/Index.cshtml" />
+      <File FileName="Group6FinalProject/Views/RoleAdmin/Index.cshtml" Line="51" Column="62" />
       <File FileName="Group6FinalProject/Controllers/RoleAdminController.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="Group6FinalProject" expanded="True">
-            <Node name="Group6FinalProject">
+          <Node name="Group6FinalProject">
+            <Node name="Group6FinalProject" expanded="True">
+              <Node name="Controllers" expanded="True" />
               <Node name="DAL" expanded="True" />
               <Node name="Views" expanded="True">
-                <Node name="Account" expanded="True" />
+                <Node name="RoleAdmin" expanded="True">
+                  <Node name="Index.cshtml" selected="True" />
+                </Node>
+                <Node name="Shared" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -46,10 +37,9 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Group6FinalProject PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>

@@ -1,0 +1,41 @@
+﻿<Properties StartupConfiguration="{F9141F5C-27CF-4264-9DFA-C01C0F0F15B3}|https">
+  <MonoDevelop.Ide.ItemProperties.Group6FinalProject PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Group6FinalProject/Views/Shared/_Layout.cshtml">
+    <Files>
+      <File FileName="Group6FinalProject/Views/Shared/_Layout.cshtml" Line="129" Column="8" IsPinned="True" />
+      <File FileName="Group6FinalProject/wwwroot/lib/twitter-bootstrap/css/bootstrap.css" Line="8092" Column="3" IsPinned="True" />
+      <File FileName="Group6FinalProject/Models/AppUser.cs" />
+      <File FileName="Group6FinalProject/Migrations/20231020040640_Setup.cs" />
+      <File FileName="Group6FinalProject/wwwroot/lib/jquery/jquery.js" />
+      <File FileName="Group6FinalProject/Migrations/AppDbContextModelSnapshot.cs" />
+      <File FileName="Group6FinalProject/Views/Shared/_LoginPartial.cshtml" />
+      <File FileName="Group6FinalProject/Controllers/AccountController.cs" />
+      <File FileName="Group6FinalProject/Models/ViewModels/AccountViewModels.cs" />
+      <File FileName="Group6FinalProject/Views/Account/Index.cshtml" />
+      <File FileName="Group6FinalProject/Views/RoleAdmin/Index.cshtml" />
+      <File FileName="Group6FinalProject/Controllers/RoleAdminController.cs" />
+      <File FileName="../../../../../../../../../usr/local/share/dotnet/sdk/7.0.309/Sdks/Microsoft.NET.Sdk.Razor/targets/Microsoft.NET.Sdk.Razor.StaticWebAssets.targets" />
+      <File FileName="Group6FinalProject/Views/_ViewStart.cshtml" />
+      <File FileName="Group6FinalProject/Views/Shared/Error.cshtml" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Group6FinalProject">
+            <Node name="Group6FinalProject" expanded="True">
+              <Node name="Views" expanded="True">
+                <Node name="Shared" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+</Properties>

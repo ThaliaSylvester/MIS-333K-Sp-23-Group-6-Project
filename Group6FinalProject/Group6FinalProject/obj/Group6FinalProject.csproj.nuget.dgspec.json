@@ -1,26 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "/Users/ethanmikel/Documents/Education/College/Junior Year/MIS 333k/Group-6/Group6FinalProject/Group6FinalProject/Group6FinalProject.csproj": {}
+    "/Users/jenny/Desktop/Fall 2023/MIS 333K/Group-6/Group6FinalProject/Group6FinalProject/Group6FinalProject.csproj": {}
   },
   "projects": {
-    "/Users/ethanmikel/Documents/Education/College/Junior Year/MIS 333k/Group-6/Group6FinalProject/Group6FinalProject/Group6FinalProject.csproj": {
+    "/Users/jenny/Desktop/Fall 2023/MIS 333K/Group-6/Group6FinalProject/Group6FinalProject/Group6FinalProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ethanmikel/Documents/Education/College/Junior Year/MIS 333k/Group-6/Group6FinalProject/Group6FinalProject/Group6FinalProject.csproj",
+        "projectUniqueName": "/Users/jenny/Desktop/Fall 2023/MIS 333K/Group-6/Group6FinalProject/Group6FinalProject/Group6FinalProject.csproj",
         "projectName": "Group6FinalProject",
-        "projectPath": "/Users/ethanmikel/Documents/Education/College/Junior Year/MIS 333k/Group-6/Group6FinalProject/Group6FinalProject/Group6FinalProject.csproj",
-        "packagesPath": "/Users/ethanmikel/.nuget/packages/",
-        "outputPath": "/Users/ethanmikel/Documents/Education/College/Junior Year/MIS 333k/Group-6/Group6FinalProject/Group6FinalProject/obj/",
+        "projectPath": "/Users/jenny/Desktop/Fall 2023/MIS 333K/Group-6/Group6FinalProject/Group6FinalProject/Group6FinalProject.csproj",
+        "packagesPath": "/Users/jenny/.nuget/packages/",
+        "outputPath": "/Users/jenny/Desktop/Fall 2023/MIS 333K/Group-6/Group6FinalProject/Group6FinalProject/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/ethanmikel/.nuget/NuGet/NuGet.Config"
+          "/Users/jenny/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/sdk/7.0.309/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -85,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.309/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
         }
       }
     }

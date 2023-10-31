@@ -28,6 +28,7 @@ namespace Group_6_Final_Project.Models
 
         [Display(Name = "Zip")]
         public string Zip { get; set; }
+
     }
 
 }

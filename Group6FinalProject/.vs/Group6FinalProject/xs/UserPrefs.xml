@@ -1,13 +1,9 @@
 ﻿<Properties StartupConfiguration="{F9141F5C-27CF-4264-9DFA-C01C0F0F15B3}|https">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.ItemProperties.Group6FinalProject PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Group6FinalProject/Views/Shared/_Layout.cshtml">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Group6FinalProject/Models/AppUser.cs">
     <Files>
-      <File FileName="Group6FinalProject/Views/Shared/_Layout.cshtml" Line="128" Column="1" IsPinned="True" />
+      <File FileName="Group6FinalProject/Views/Shared/_Layout.cshtml" Line="130" Column="8" IsPinned="True" />
       <File FileName="Group6FinalProject/wwwroot/lib/twitter-bootstrap/css/bootstrap.css" Line="8938" Column="2" IsPinned="True" />
       <File FileName="Group6FinalProject/Migrations/20231020040640_Setup.cs" />
       <File FileName="Group6FinalProject/Migrations/20231020040640_Setup.Designer.cs" />
@@ -23,27 +19,22 @@
       <File FileName="Group6FinalProject/Views/Account/Register.cshtml" />
       <File FileName="Group6FinalProject/Views/RoleAdmin/Edit.cshtml" />
       <File FileName="Group6FinalProject/Views/RoleAdmin/Create.cshtml" />
+      <File FileName="Group6FinalProject/Controllers/RoleAdminController.cs" />
+      <File FileName="Group6FinalProject/Models/ViewModels/RoleViewModels.cs" />
+      <File FileName="Group6FinalProject/Models/ViewModels/AccountViewModels.cs" />
+      <File FileName="Group6FinalProject/Models/AppUser.cs" Line="17" Column="18" />
+      <File FileName="Group6FinalProject/Properties/launchSettings.json" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Group6FinalProject" expanded="True">
             <Node name="Group6FinalProject" expanded="True">
-              <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True">
-                <Node name="ViewModels" expanded="True" />
+                <Node name="AppUser.cs" selected="True" />
               </Node>
               <Node name="Views" expanded="True">
-                <Node name="Account" expanded="True" />
-                <Node name="RoleAdmin" expanded="True" />
-                <Node name="Shared" expanded="True">
-                  <Node name="_Layout.cshtml" selected="True" />
-                </Node>
-              </Node>
-              <Node name="wwwroot" expanded="True">
-                <Node name="lib" expanded="True">
-                  <Node name="jquery" expanded="True" />
-                </Node>
+                <Node name="Shared" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -51,5 +42,9 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

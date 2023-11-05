@@ -3,53 +3,32 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.Group6FinalProject PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Group6FinalProject/Models/MovieModels/Review.cs">
-    <Files>
-      <File FileName="Group6FinalProject/Views/Shared/_Layout.cshtml" Line="129" Column="1" IsPinned="True" />
-      <File FileName="Group6FinalProject/wwwroot/lib/twitter-bootstrap/css/bootstrap.css" Line="8938" Column="2" IsPinned="True" />
-      <File FileName="Group6FinalProject/Migrations/20231020040640_Setup.cs" />
-      <File FileName="Group6FinalProject/Migrations/20231020040640_Setup.Designer.cs" />
-      <File FileName="Group6FinalProject/Migrations/20231026195156_ImplementRoles.Designer.cs" />
-      <File FileName="Group6FinalProject/Controllers/AccountController.cs" />
-      <File FileName="Group6FinalProject/Views/Shared/_LoginPartial.cshtml" />
-      <File FileName="Group6FinalProject/Views/Shared/Error.cshtml" />
-      <File FileName="Group6FinalProject/Views/RoleAdmin/Index.cshtml" />
-      <File FileName="Group6FinalProject/Views/Home/Index.cshtml" />
-      <File FileName="Group6FinalProject/Views/Account/Index.cshtml" />
-      <File FileName="Group6FinalProject/Views/Account/ChangePassword.cshtml" />
-      <File FileName="Group6FinalProject/Views/Account/Login.cshtml" />
-      <File FileName="Group6FinalProject/Views/Account/Register.cshtml" />
-      <File FileName="Group6FinalProject/Views/RoleAdmin/Edit.cshtml" />
-      <File FileName="Group6FinalProject/Views/RoleAdmin/Create.cshtml" />
-      <File FileName="Group6FinalProject/Models/MovieModels/Genre.cs" Line="19" Column="2" />
-      <File FileName="Group6FinalProject/Models/MovieModels/Movie.cs" Line="13" Column="39" />
-      <File FileName="Group6FinalProject/Models/ViewModels/AccountViewModels.cs" />
-      <File FileName="Group6FinalProject/Models/ViewModels/RoleViewModels.cs" />
-      <File FileName="Group6FinalProject/Models/AppUser.cs" />
-      <File FileName="Group6FinalProject/Models/MovieModels/Review.cs" Line="21" Column="47" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="Group6FinalProject" expanded="True">
-            <Node name="Group6FinalProject" expanded="True">
+          <Node name="Group6FinalProject">
+            <Node name="Group6FinalProject">
               <Node name="Controllers" expanded="True" />
+              <Node name="Migrations" expanded="True">
+                <Node name="20231020040640_Setup.cs" expanded="True" />
+              </Node>
               <Node name="Models" expanded="True">
-                <Node name="MovieModels" expanded="True">
-                  <Node name="Review.cs" selected="True" />
-                </Node>
+                <Node name="MovieModels" expanded="True" />
                 <Node name="ViewModels" expanded="True" />
               </Node>
               <Node name="Views" expanded="True">
                 <Node name="Account" expanded="True" />
-                <Node name="RoleAdmin" expanded="True" />
                 <Node name="Shared" expanded="True" />
               </Node>
               <Node name="wwwroot" expanded="True">
                 <Node name="lib" expanded="True">
                   <Node name="jquery" expanded="True" />
+                  <Node name="twitter-bootstrap" expanded="True">
+                    <Node name="css" expanded="True">
+                      <Node name="bootstrap.css" selected="True" />
+                    </Node>
+                  </Node>
                 </Node>
               </Node>
             </Node>
@@ -58,5 +37,7 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Group6FinalProject PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
 </Properties>

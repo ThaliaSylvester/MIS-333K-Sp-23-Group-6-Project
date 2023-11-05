@@ -3260,19 +3260,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/ethanmikel/.nuget/packages/": {}
+    "/Users/macman/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/ethanmikel/Documents/Education/College/Junior Year/MIS 333k/Group-6/Group6FinalProject/Group6FinalProject/Group6FinalProject.csproj",
+      "projectUniqueName": "/Users/macman/Desktop/Killer K/Group-6/Group6FinalProject/Group6FinalProject/Group6FinalProject.csproj",
       "projectName": "Group6FinalProject",
-      "projectPath": "/Users/ethanmikel/Documents/Education/College/Junior Year/MIS 333k/Group-6/Group6FinalProject/Group6FinalProject/Group6FinalProject.csproj",
-      "packagesPath": "/Users/ethanmikel/.nuget/packages/",
-      "outputPath": "/Users/ethanmikel/Documents/Education/College/Junior Year/MIS 333k/Group-6/Group6FinalProject/Group6FinalProject/obj/",
+      "projectPath": "/Users/macman/Desktop/Killer K/Group-6/Group6FinalProject/Group6FinalProject/Group6FinalProject.csproj",
+      "packagesPath": "/Users/macman/.nuget/packages/",
+      "outputPath": "/Users/macman/Desktop/Killer K/Group-6/Group6FinalProject/Group6FinalProject/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/ethanmikel/.nuget/NuGet/NuGet.Config"
+        "/Users/macman/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"

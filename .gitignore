@@ -8,3 +8,5 @@
 *.cache
 *.editorconfig
 *.props
+.DS_Store
+Group6FinalProject/.vs

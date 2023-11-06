@@ -21,12 +21,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Migrations\" />
-    <None Remove="Models\MovieModels\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Migrations\" />
     <Folder Include="wwwroot\Img\" />
-    <Folder Include="Models\MovieModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\Img\Logo.png" />

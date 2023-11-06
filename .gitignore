@@ -1,0 +1,13 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> b08d7d96ac48e256492573f2b43e872a8b211ffc
+*.dll
+*.pdb
+*.dll
+*.pdb
+*.xml
+*.json
+*.cache
+*.editorconfig
+*.props

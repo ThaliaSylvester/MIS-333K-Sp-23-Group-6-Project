@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Group_6_Final_Project.Models
 {
@@ -8,6 +9,7 @@ namespace Group_6_Final_Project.Models
     public class TransactionDetail
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public String TransactionDetailID { get; set; }
 
         public SeatSelection SeatSelection { get; set; }

@@ -636,24 +636,29 @@ namespace Group_6_Final_Project.Seeding
                 RoleName = "Customer"
             });
 
-            //create flag to help with errors
             String errorFlag = "Start";
-
-            //create an identity result
             IdentityResult result = new IdentityResult();
-            //call the method to seed the user
+
             try
             {
                 foreach (AddUserModel aum in AllUsers)
                 {
                     errorFlag = aum.User.Email;
                     result = await Utilities.AddUser.AddUserWithRoleAsync(aum, userManager, context);
+
+                    if (!result.Succeeded)
+                    {
+                        // User creation failed, print out the errors
+                        foreach (var error in result.Errors)
+                        {
+                            Console.WriteLine($"Error: {error.Description}");
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("There was a problem adding the user with email: "
-                    + errorFlag, ex);
+                throw new Exception("There was a problem adding the user with email: " + errorFlag, ex);
             }
 
             return result;

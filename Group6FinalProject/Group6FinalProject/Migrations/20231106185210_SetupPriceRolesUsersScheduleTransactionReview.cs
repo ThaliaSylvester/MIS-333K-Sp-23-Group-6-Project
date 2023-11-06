@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Group6FinalProject.Migrations
 {
     /// <inheritdoc />
-    public partial class SetupPriceRolesUsersScheduleTransaction : Migration
+    public partial class SetupPriceRolesUsersScheduleTransactionReview : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -38,6 +38,7 @@ namespace Group6FinalProject.Migrations
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
                     AddressLine1 = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AddressLine2 = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     State = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Zip = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -58,6 +59,32 @@ namespace Group6FinalProject.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Genre",
+                columns: table => new
+                {
+                    GenreID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Genres = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Genre", x => x.GenreID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Reviews",
+                columns: table => new
+                {
+                    ReviewID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Rating = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reviews", x => x.ReviewID);
                 });
 
             migrationBuilder.CreateTable(
@@ -205,6 +232,30 @@ namespace Group6FinalProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Movies",
+                columns: table => new
+                {
+                    MovieID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    MPAARating = table.Column<int>(type: "int", nullable: false),
+                    PublishedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Tagline = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Actors = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Runtime = table.Column<int>(type: "int", nullable: false),
+                    GenreID = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Movies", x => x.MovieID);
+                    table.ForeignKey(
+                        name: "FK_Movies_Genre_GenreID",
+                        column: x => x.GenreID,
+                        principalTable: "Genre",
+                        principalColumn: "GenreID");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Prices",
                 columns: table => new
                 {
@@ -224,7 +275,7 @@ namespace Group6FinalProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TransactionDetail",
+                name: "transactionDetails",
                 columns: table => new
                 {
                     TransactionDetailID = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -238,21 +289,21 @@ namespace Group6FinalProject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TransactionDetail", x => x.TransactionDetailID);
+                    table.PrimaryKey("PK_transactionDetails", x => x.TransactionDetailID);
                     table.ForeignKey(
-                        name: "FK_TransactionDetail_Prices_PriceID",
+                        name: "FK_transactionDetails_Prices_PriceID",
                         column: x => x.PriceID,
                         principalTable: "Prices",
                         principalColumn: "PriceID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TransactionDetail_Schedules_ScheduleID",
+                        name: "FK_transactionDetails_Schedules_ScheduleID",
                         column: x => x.ScheduleID,
                         principalTable: "Schedules",
                         principalColumn: "ScheduleID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TransactionDetail_Transactions_TransactionID",
+                        name: "FK_transactionDetails_Transactions_TransactionID",
                         column: x => x.TransactionID,
                         principalTable: "Transactions",
                         principalColumn: "TransactionID",
@@ -299,23 +350,28 @@ namespace Group6FinalProject.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Movies_GenreID",
+                table: "Movies",
+                column: "GenreID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Prices_ScheduleID",
                 table: "Prices",
                 column: "ScheduleID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TransactionDetail_PriceID",
-                table: "TransactionDetail",
+                name: "IX_transactionDetails_PriceID",
+                table: "transactionDetails",
                 column: "PriceID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TransactionDetail_ScheduleID",
-                table: "TransactionDetail",
+                name: "IX_transactionDetails_ScheduleID",
+                table: "transactionDetails",
                 column: "ScheduleID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TransactionDetail_TransactionID",
-                table: "TransactionDetail",
+                name: "IX_transactionDetails_TransactionID",
+                table: "transactionDetails",
                 column: "TransactionID");
 
             migrationBuilder.CreateIndex(
@@ -343,10 +399,19 @@ namespace Group6FinalProject.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "TransactionDetail");
+                name: "Movies");
+
+            migrationBuilder.DropTable(
+                name: "Reviews");
+
+            migrationBuilder.DropTable(
+                name: "transactionDetails");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Genre");
 
             migrationBuilder.DropTable(
                 name: "Prices");

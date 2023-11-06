@@ -23,7 +23,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "1",
                 TransactionDate = new DateTime(2023, 11, 1),
                 NumberofTickets = 10,
-                //PopcorncornPoints = 50,
+                //PopcornPoints = 50,
                 Status = "Purchased"
             });
 
@@ -32,7 +32,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "2",
                 TransactionDate = new DateTime(2023, 11, 5),
                 NumberofTickets = 10,
-                //PopcorncornPoints = 116,
+                //PopcornPoints = 116,
                 Status = "Purchased"
             });
 
@@ -41,7 +41,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "3",
                 TransactionDate = new DateTime(2023, 11, 20),
                 NumberofTickets = 2,
-                //PopcorncornPoints = 10,
+                //PopcornPoints = 10,
                 Status = "Purchased"
             });
 
@@ -50,7 +50,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "4",
                 TransactionDate = new DateTime(2023, 11, 14),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 12,
+                //PopcornPoints = 12,
                 Status = "Purchased"
             });
 
@@ -59,7 +59,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "5",
                 TransactionDate = new DateTime(2023, 11, 5),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 12,
+                //PopcornPoints = 12,
                 Status = "Purchased"
             });
 
@@ -68,7 +68,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "6",
                 TransactionDate = new DateTime(2023, 11, 20),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 10,
+                //PopcornPoints = 10,
                 Status = "Purchased"
             });
 
@@ -77,7 +77,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "7",
                 TransactionDate = new DateTime(2023, 11, 14),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 12,
+                //PopcornPoints = 12,
                 Status = "Purchased"
             });
 
@@ -86,7 +86,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "8",
                 TransactionDate = new DateTime(2023, 11, 20),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 12,
+                //PopcornPoints = 12,
                 Status = "Purchased"
             });
 
@@ -95,7 +95,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "9",
                 TransactionDate = new DateTime(2023, 11, 5),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 12,
+                //PopcornPoints = 12,
                 Status = "Purchased"
             });
 
@@ -104,7 +104,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "10",
                 TransactionDate = new DateTime(2023, 11, 20),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 12,
+                //PopcornPoints = 12,
                 Status = "Purchased"
             });
 
@@ -113,7 +113,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "11",
                 TransactionDate = new DateTime(2023, 11, 14),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 12,
+                //PopcornPoints = 12,
                 Status = "Purchased"
             });
 
@@ -122,7 +122,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "12",
                 TransactionDate = new DateTime(2023, 11, 20),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 12,
+                //PopcornPoints = 12,
                 Status = "Purchased"
             });
 
@@ -131,7 +131,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "13",
                 TransactionDate = new DateTime(2023, 11, 5),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 12,
+                //PopcornPoints = 12,
                 Status = "Purchased"
             });
 
@@ -140,7 +140,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "14",
                 TransactionDate = new DateTime(2023, 11, 20),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 12,
+                //PopcornPoints = 12,
                 Status = "Cancelled"
             });
 
@@ -149,7 +149,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "15",
                 TransactionDate = new DateTime(2023, 11, 14),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 12,
+                //PopcornPoints = 12,
                 Status = "Purchased"
             });
 
@@ -158,7 +158,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "16",
                 TransactionDate = new DateTime(2023, 11, 20),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 12,
+                //PopcornPoints = 12,
                 Status = "Purchased"
             });
 
@@ -167,7 +167,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "17",
                 TransactionDate = new DateTime(2023, 11, 20),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 12,
+                //PopcornPoints = 12,
                 Status = "Purchased"
             });
 
@@ -176,7 +176,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "18",
                 TransactionDate = new DateTime(2023, 11, 20),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 12,
+                //PopcornPoints = 12,
                 Status = "Purchased"
             });
 
@@ -185,7 +185,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "19",
                 TransactionDate = new DateTime(2023, 11, 20),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 12,
+                //PopcornPoints = 12,
                 Status = "Purchased"
             });
 
@@ -194,7 +194,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "20",
                 TransactionDate = new DateTime(2023, 11, 20),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 12,
+                //PopcornPoints = 12,
                 Status = "Purchased"
             });
 
@@ -203,7 +203,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "21",
                 TransactionDate = new DateTime(2023, 11, 20),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 12,
+                //PopcornPoints = 12,
                 Status = "Purchased"
             });
 
@@ -212,7 +212,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "22",
                 TransactionDate = new DateTime(2023, 11, 24),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 15,
+                //PopcornPoints = 15,
                 Status = "Purchased"
             });
 
@@ -221,7 +221,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "23",
                 TransactionDate = new DateTime(2023, 11, 24),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 15,
+                //PopcornPoints = 15,
                 Status = "Purchased"
             });
 
@@ -230,7 +230,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "24",
                 TransactionDate = new DateTime(2023, 11, 24),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 15,
+                //PopcornPoints = 15,
                 Status = "Purchased"
             });
 
@@ -239,7 +239,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "25",
                 TransactionDate = new DateTime(2023, 11, 24),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 15,
+                //PopcornPoints = 15,
                 Status = "Purchased"
             });
 
@@ -248,7 +248,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "26",
                 TransactionDate = new DateTime(2023, 11, 24),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 15,
+                //PopcornPoints = 15,
                 Status = "Purchased"
             });
 
@@ -257,7 +257,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "27",
                 TransactionDate = new DateTime(2023, 11, 24),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 15,
+                //PopcornPoints = 15,
                 Status = "Purchased"
             });
 
@@ -266,7 +266,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "28",
                 TransactionDate = new DateTime(2023, 11, 24),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 15,
+                //PopcornPoints = 15,
                 Status = "Purchased"
             });
 
@@ -275,7 +275,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "29",
                 TransactionDate = new DateTime(2023, 11, 24),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 15,
+                //PopcornPoints = 15,
                 Status = "Cancelled"
             });
 
@@ -284,7 +284,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "30",
                 TransactionDate = new DateTime(2023, 11, 24),
                 NumberofTickets = 9,
-                //PopcorncornPoints = 45,
+                //PopcornPoints = 45,
                 Status = "Purchased"
             });
 
@@ -293,7 +293,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "31",
                 TransactionDate = new DateTime(2023, 11, 26),
                 NumberofTickets = 2,
-                //PopcorncornPoints = -200,
+                //PopcornPoints = -200,
                 Status = "Purchased"
             });
 
@@ -302,7 +302,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "32",
                 TransactionDate = new DateTime(2023, 11, 24),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 15,
+                //PopcornPoints = 15,
                 Status = "Purchased"
             });
 
@@ -311,7 +311,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "33",
                 TransactionDate = new DateTime(2023, 11, 24),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 15,
+                //PopcornPoints = 15,
                 Status = "Cancelled"
             });
 
@@ -320,7 +320,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "34",
                 TransactionDate = new DateTime(2023, 11, 24),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 15,
+                //PopcornPoints = 15,
                 Status = "Purchased"
             });
 
@@ -329,7 +329,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "35",
                 TransactionDate = new DateTime(2023, 11, 24),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 15,
+                //PopcornPoints = 15,
                 Status = "Purchased"
             });
 
@@ -338,7 +338,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "36",
                 TransactionDate = new DateTime(2023, 11, 24),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 15,
+                //PopcornPoints = 15,
                 Status = "Purchased"
             });
 
@@ -347,7 +347,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "37",
                 TransactionDate = new DateTime(2023, 11, 24),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 15,
+                //PopcornPoints = 15,
                 Status = "Purchased"
             });
 
@@ -356,7 +356,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "38",
                 TransactionDate = new DateTime(2023, 11, 24),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 15,
+                //PopcornPoints = 15,
                 Status = "Purchased"
             });
 
@@ -365,7 +365,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "39",
                 TransactionDate = new DateTime(2023, 11, 24),
                 NumberofTickets = 2,
-                //PopcorncornPoints = 30,
+                //PopcornPoints = 30,
                 Status = "Purchased"
             });
 
@@ -374,7 +374,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "40",
                 TransactionDate = new DateTime(2023, 11, 1),
                 NumberofTickets = 6,
-                //PopcorncornPoints = 90,
+                //PopcornPoints = 90,
                 Status = "Purchased"
             });
 
@@ -383,7 +383,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "41",
                 TransactionDate = new DateTime(2023, 11, 1),
                 NumberofTickets = 2,
-                //PopcorncornPoints = 30,
+                //PopcornPoints = 30,
                 Status = "Cancelled"
             });
 
@@ -392,7 +392,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "42",
                 TransactionDate = new DateTime(2023, 11, 1),
                 NumberofTickets = 2,
-                //PopcorncornPoints = 30,
+                //PopcornPoints = 30,
                 Status = "Purchased"
             });
 
@@ -401,7 +401,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "43",
                 TransactionDate = new DateTime(2023, 11, 1),
                 NumberofTickets = 4,
-                //PopcorncornPoints = 60,
+                //PopcornPoints = 60,
                 Status = "Purchased"
             });
 
@@ -410,7 +410,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "44",
                 TransactionDate = new DateTime(2023, 11, 1),
                 NumberofTickets = 3,
-                //PopcorncornPoints = 36,
+                //PopcornPoints = 36,
                 Status = "Purchased"
             });
 
@@ -419,7 +419,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "45",
                 TransactionDate = new DateTime(2023, 11, 1),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 12,
+                //PopcornPoints = 12,
                 Status = "Purchased"
             });
 
@@ -428,7 +428,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "46",
                 TransactionDate = new DateTime(2023, 11, 1),
                 NumberofTickets = 2,
-                //PopcorncornPoints = 24,
+                //PopcornPoints = 24,
                 Status = "Purchased"
             });
 
@@ -437,7 +437,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "47",
                 TransactionDate = new DateTime(2023, 11, 1),
                 NumberofTickets = 2,
-                //PopcorncornPoints = 20,
+                //PopcornPoints = 20,
                 Status = "Purchased"
             });
 
@@ -446,7 +446,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "48",
                 TransactionDate = new DateTime(2023, 11, 1),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 10,
+                //PopcornPoints = 10,
                 Status = "Purchased"
             });
 
@@ -455,7 +455,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "49",
                 TransactionDate = new DateTime(2023, 11, 15),
                 NumberofTickets = 1,
-                //PopcorncornPoints = 12,
+                //PopcornPoints = 12,
                 Status = "Purchased"
             });
 
@@ -464,7 +464,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "50",
                 TransactionDate = new DateTime(2023, 11, 24),
                 NumberofTickets = 9,
-                //PopcorncornPoints = 45,
+                //PopcornPoints = 45,
                 Status = "Cancelled"
             });
 
@@ -473,7 +473,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionID = "51",
                 TransactionDate = new DateTime(2023, 11, 26),
                 NumberofTickets = 2,
-                //PopcorncornPoints = -200,
+                //PopcornPoints = -200,
                 Status = "Purchased"
             });
 
@@ -506,7 +506,7 @@ namespace Group_6_Final_Project.Seeding
                         // Update all of the Transactions's properties
                         dbTransactions.TransactionDate = TransactionsToAdd.TransactionDate;
                         dbTransactions.NumberofTickets = TransactionsToAdd.NumberofTickets;
-                        //dbTransactions.//PopcorncornPoints = TransactionsToAdd.//PopcorncornPoints;
+                        //dbTransactions.//PopcornPoints = TransactionsToAdd.//PopcornPoints;
                         dbTransactions.Status = TransactionsToAdd.Status;
 
                         // Update the database and save the changes

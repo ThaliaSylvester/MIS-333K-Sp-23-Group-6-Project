@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Group6FinalProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231105194451_SetupPriceRolesUsersScheduleTransaction")]
-    partial class SetupPriceRolesUsersScheduleTransaction
+    [Migration("20231106185210_SetupPriceRolesUsersScheduleTransactionReview")]
+    partial class SetupPriceRolesUsersScheduleTransactionReview
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,6 +36,10 @@ namespace Group6FinalProject.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("AddressLine1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AddressLine2")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -120,6 +124,61 @@ namespace Group6FinalProject.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("Group_6_Final_Project.Models.Genre", b =>
+                {
+                    b.Property<string>("GenreID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Genres")
+                        .HasColumnType("int");
+
+                    b.HasKey("GenreID");
+
+                    b.ToTable("Genre");
+                });
+
+            modelBuilder.Entity("Group_6_Final_Project.Models.Movie", b =>
+                {
+                    b.Property<string>("MovieID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Actors")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GenreID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("MPAARating")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("PublishedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Runtime")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Tagline")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MovieID");
+
+                    b.HasIndex("GenreID");
+
+                    b.ToTable("Movies");
+                });
+
             modelBuilder.Entity("Group_6_Final_Project.Models.Price", b =>
                 {
                     b.Property<string>("PriceID")
@@ -142,9 +201,32 @@ namespace Group6FinalProject.Migrations
                     b.ToTable("Prices");
                 });
 
+            modelBuilder.Entity("Group_6_Final_Project.Models.Review", b =>
+                {
+                    b.Property<string>("ReviewID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ReviewID");
+
+                    b.ToTable("Reviews");
+                });
+
             modelBuilder.Entity("Group_6_Final_Project.Models.Schedule", b =>
                 {
                     b.Property<string>("ScheduleID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("DateTime")
@@ -167,6 +249,7 @@ namespace Group6FinalProject.Migrations
             modelBuilder.Entity("Group_6_Final_Project.Models.Transaction", b =>
                 {
                     b.Property<string>("TransactionID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("AppUserId")
@@ -200,6 +283,7 @@ namespace Group6FinalProject.Migrations
             modelBuilder.Entity("Group_6_Final_Project.Models.TransactionDetail", b =>
                 {
                     b.Property<string>("TransactionDetailID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("CashCard")
@@ -234,7 +318,7 @@ namespace Group6FinalProject.Migrations
 
                     b.HasIndex("TransactionID");
 
-                    b.ToTable("TransactionDetail");
+                    b.ToTable("transactionDetails");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -372,6 +456,15 @@ namespace Group6FinalProject.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("Group_6_Final_Project.Models.Movie", b =>
+                {
+                    b.HasOne("Group_6_Final_Project.Models.Genre", "Genre")
+                        .WithMany()
+                        .HasForeignKey("GenreID");
+
+                    b.Navigation("Genre");
                 });
 
             modelBuilder.Entity("Group_6_Final_Project.Models.Price", b =>

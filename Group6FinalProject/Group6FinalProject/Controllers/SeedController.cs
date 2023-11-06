@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Group_6_Final_Project.Models;
 using Group_6_Final_Project.DAL;
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Group_6_Final_Project.Controllers
 {
@@ -57,34 +59,31 @@ namespace Group_6_Final_Project.Controllers
         {
             try
             {
-                //call the method to seed the users
+                // Call the method to seed the users
                 await Seeding.SeedUsers.SeedAllUsers(_userManager, _context);
             }
             catch (Exception ex)
             {
-                //add the error messages to a list of strings
-                List<String> errorList = new List<String>();
-
-                //Add the outer message
-                errorList.Add(ex.Message);
+                // Handle errors and return an error view
+                List<string> errorList = new List<string>
+                {
+                    ex.Message
+                };
 
                 if (ex.InnerException != null)
                 {
-                    //Add the message from the inner exception
                     errorList.Add(ex.InnerException.Message);
 
-                    //Add additional inner exception messages, if there are any
                     if (ex.InnerException.InnerException != null)
                     {
                         errorList.Add(ex.InnerException.InnerException.Message);
                     }
-
                 }
 
                 return View("Error", errorList);
             }
 
-            //this is the happy path - seeding worked!
+            // Seeding was successful
             return View("Confirm");
         }
 
@@ -94,6 +93,27 @@ namespace Group_6_Final_Project.Controllers
             {
                 // Call the method to seed the prices
                 Seeding.SeedPrices.Prices(_context);
+            }
+            catch (Exception ex)
+            {
+                List<string> errorList = new List<string>
+        {
+            ex.Message
+        };
+
+                return View("Error", errorList);
+            }
+
+            // This is the happy path - seeding worked!
+            return View("Confirm");
+        }
+
+        public async Task<IActionResult> SeedMovie()
+        {
+            try
+            {
+                // Call the method to seed the schedule
+                Seeding.SeedMovies.Movie(_context);
             }
             catch (Exception ex)
             {
@@ -136,6 +156,49 @@ namespace Group_6_Final_Project.Controllers
             {
                 // Call the method to seed the schedule
                 Seeding.SeedTransactions.Transaction(_context);
+            }
+            catch (Exception ex)
+            {
+                List<string> errorList = new List<string>
+        {
+            ex.Message
+        };
+
+                return View("Error", errorList);
+            }
+
+            // This is the happy path - seeding worked!
+            return View("Confirm");
+        }
+
+        public async Task<IActionResult> SeedTransactionDetails()
+        {
+            try
+            {
+                // Call the method to seed the schedule
+                Seeding.SeedTransactionDetails.TransactionDetails(_context);
+            }
+            catch (Exception ex)
+            {
+                List<string> errorList = new List<string>
+        {
+            ex.Message
+        };
+
+                return View("Error", errorList);
+            }
+
+            // This is the happy path - seeding worked!
+            return View("Confirm");
+        }
+
+
+        public async Task<IActionResult> SeedReviews()
+        {
+            try
+            {
+                // Call the method to seed the schedule
+                Seeding.SeedReviews.Reviews(_context);
             }
             catch (Exception ex)
             {

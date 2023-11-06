@@ -21,7 +21,7 @@ namespace Group_6_Final_Project.Models
         public string AddressLine1 { get; set; }
 
         [Display(Name = "Address Line 2")]
-        public string AddressLine2 { get; set; }
+        public string ?AddressLine2 { get; set; }
 
         [Display(Name = "City")]
         public string City { get; set; }

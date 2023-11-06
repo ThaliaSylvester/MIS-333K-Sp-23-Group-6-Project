@@ -1,19 +1,18 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
-using static Group6FinalProject.Models.Movie.Movie;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Group6FinalProject.Models.Genre
+namespace Group_6_Final_Project.Models
 {
+    public enum Genres { Horror, Drama, Action, Comedy, ChildrenFamily, Romance, Musical, SciFi }
+
     public class Genre
     {
-        public enum Genres { Horror, Drama, Action, Comedy }
-        public class GenreModel
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public string GenreID { get; set; }
 
-        {
-            public required string GenreID { get; set; }
-            public Genres Genres { get; set; }
-
-        }
+        public Genres Genres { get; set; }
     }
 }

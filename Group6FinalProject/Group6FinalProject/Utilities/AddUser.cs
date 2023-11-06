@@ -63,7 +63,6 @@ namespace Group_6_Final_Project.Utilities
                 dbUser.LastName = aum.User.LastName;
                 dbUser.DateOfBirth = aum.User.DateOfBirth;
                 dbUser.AddressLine1 = aum.User.AddressLine1;
-                dbUser.AddressLine2 = aum.User.AddressLine2;
                 dbUser.City = aum.User.City;
                 dbUser.State = aum.User.State;
                 dbUser.Zip = aum.User.Zip;

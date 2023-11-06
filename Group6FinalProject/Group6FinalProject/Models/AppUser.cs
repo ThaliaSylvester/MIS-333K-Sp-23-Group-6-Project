@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
 namespace Group_6_Final_Project.Models
@@ -11,6 +11,9 @@ namespace Group_6_Final_Project.Models
         [Display(Name ="Last Name: ")]
         public string LastName { get; set; }
 
+        [Display(Name = "Email: ")]
+        public string Email { get; set; }
+
         [Display(Name ="Date of Birth: ")]
         public DateTime DateOfBirth { get; set; }
 
@@ -18,7 +21,7 @@ namespace Group_6_Final_Project.Models
         public string AddressLine1 { get; set; }
 
         [Display(Name = "Address Line 2")]
-        public string? AddressLine2 { get; set; }
+        public string AddressLine2 { get; set; }
 
         [Display(Name = "City")]
         public string City { get; set; }
@@ -26,8 +29,8 @@ namespace Group_6_Final_Project.Models
         [Display(Name = "State")]
         public string State { get; set; }
 
-        [Display(Name = "Zip")]
+        [Display(Name =  "Zip")]
         public string Zip { get; set; }
-    }
 
+    }
 }

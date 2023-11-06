@@ -11,14 +11,14 @@ namespace Group_6_Final_Project.Models
         [Display(Name ="Last Name: ")]
         public string LastName { get; set; }
 
+        [Display(Name = "Email: ")]
+        public string Email { get; set; }
+
         [Display(Name ="Date of Birth: ")]
         public DateTime DateOfBirth { get; set; }
 
         [Display(Name = "Address Line 1")]
         public string AddressLine1 { get; set; }
-
-        [Display(Name = "Address Line 2")]
-        public string? AddressLine2 { get; set; }
 
         [Display(Name = "City")]
         public string City { get; set; }
@@ -30,5 +30,4 @@ namespace Group_6_Final_Project.Models
         public string Zip { get; set; }
 
     }
-
 }

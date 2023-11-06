@@ -23,11 +23,17 @@ namespace Group_6_Final_Project.DAL
         //TODO: Add Dbsets here.  Products is included as an example.
         public DbSet<AppUser> FirstName { get; set; }
         public DbSet<AppUser> LastName { get; set; }
+        public DbSet<AppUser> Email { get; set; }
         public DbSet<AppUser> DateOfBirth { get; set; }
         public DbSet<AppUser> AddressLine1 { get; set; }
         public DbSet<AppUser> AddressLine2 { get; set; }
         public DbSet<AppUser> City { get; set; }
         public DbSet<AppUser> State { get; set; }
         public DbSet<AppUser> Zip { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<Price> Prices { get; set; }
+        public DbSet<TransactionDetail> transactionDetails { get; set; }
+        //public DbSet<Review> Reviews { get; set; }
     }
 }

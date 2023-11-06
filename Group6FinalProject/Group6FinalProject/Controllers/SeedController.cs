@@ -81,11 +81,73 @@ namespace Group_6_Final_Project.Controllers
 
                 }
 
-
                 return View("Error", errorList);
             }
 
             //this is the happy path - seeding worked!
+            return View("Confirm");
+        }
+
+        public async Task<IActionResult> SeedPrices()
+        {
+            try
+            {
+                // Call the method to seed the prices
+                Seeding.SeedPrices.Prices(_context);
+            }
+            catch (Exception ex)
+            {
+                List<string> errorList = new List<string>
+        {
+            ex.Message
+        };
+
+                return View("Error", errorList);
+            }
+
+            // This is the happy path - seeding worked!
+            return View("Confirm");
+        }
+
+        public async Task<IActionResult> SeedSchedule()
+        {
+            try
+            {
+                // Call the method to seed the schedule
+                Seeding.SeedSchedules.Schedule(_context);
+            }
+            catch (Exception ex)
+            {
+                List<string> errorList = new List<string>
+        {
+            ex.Message
+        };
+
+                return View("Error", errorList);
+            }
+
+            // This is the happy path - seeding worked!
+            return View("Confirm");
+        }
+
+        public async Task<IActionResult> SeedTransaction()
+        {
+            try
+            {
+                // Call the method to seed the schedule
+                Seeding.SeedTransactions.Transaction(_context);
+            }
+            catch (Exception ex)
+            {
+                List<string> errorList = new List<string>
+        {
+            ex.Message
+        };
+
+                return View("Error", errorList);
+            }
+
+            // This is the happy path - seeding worked!
             return View("Confirm");
         }
     }

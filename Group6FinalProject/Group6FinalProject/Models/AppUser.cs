@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Group6FinalProject.Models.Review;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
 namespace Group_6_Final_Project.Models
@@ -28,6 +29,9 @@ namespace Group_6_Final_Project.Models
 
         [Display(Name = "Zip")]
         public string Zip { get; set; }
+
+        //navigation property for Reviews 
+        public Review Review { get; set; }
     }
 
 }

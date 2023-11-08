@@ -1,0 +1,65 @@
+@model IEnumerable<Group6FinalProject.Models.Movie>
+
+@{
+    Layout = "_Layout";
+}
+
+<h1>Movies</h1>
+
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-action="Create">Add New Movie</a>
+    </p>
+}
+<div>
+    <p>Displaying @ViewBag.SelectedMovies out of @ViewBag.AllMovies Movie</p>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MPAARating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PublishedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Runtime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MPAARating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublishedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Runtime)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.MovieID">Details</a> 
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <p>
+                            <a asp-action="Edit" asp-route-id="@item.MovieID">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@item.MovieID">Delete</a>
+                        </p>
+                    }           
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

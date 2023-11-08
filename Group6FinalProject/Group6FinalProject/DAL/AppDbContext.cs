@@ -2,6 +2,9 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Group_6_Final_Project.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Group6FinalProject.Models;
+using Group6FinalProject.Models.Genre;
+using Group6FinalProject.Models.Review;
 
 namespace Group_6_Final_Project.DAL
 {
@@ -29,5 +32,8 @@ namespace Group_6_Final_Project.DAL
         public DbSet<AppUser> City { get; set; }
         public DbSet<AppUser> State { get; set; }
         public DbSet<AppUser> Zip { get; set; }
+        public DbSet<Movie> Movies { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+        public DbSet<Review> Reviews { get; set; }
     }
 }

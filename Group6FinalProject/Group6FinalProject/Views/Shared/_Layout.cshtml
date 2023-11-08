@@ -27,9 +27,11 @@
                 @if (User.IsInRole("Customer"))
                 {
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                       
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Movies</a>
+                            <a class="nav-link" asp-controller="Movie" asp-action="Index">Movies</a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="#">PopcornPoints+</a>
                         </li>
@@ -88,14 +90,14 @@
                 else
                 {
                     <!--If the user is not signed in-->
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Movies</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">PopcornPoints+</a>
-                        </li>
-                    </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Movie" asp-action="Index">Movies</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">PopcornPoints+</a>
+                </li>
+            </ul>
                     <ul class="navbar-nav me-3 mb-2 mb-lg-0 justify-content-end">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -120,6 +122,7 @@
     <div class="container">
         @RenderBody()
     </div>
+
 
     <!--Scripts-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -1,4 +1,4 @@
-@model IEnumerable<Group6FinalProject.Models.Movie>
+@model IEnumerable<Group_6_Final_Project.Models.Movie>
 
 @{
     Layout = "_Layout";
@@ -22,6 +22,12 @@
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Genre.Genres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Schedule.DateTime)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.MPAARating)
             </th>
             <th>
@@ -41,6 +47,12 @@
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Genre.Genres)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Schedule.DateTime)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.MPAARating)
                 </td>
                 <td>
@@ -50,14 +62,14 @@
                     @Html.DisplayFor(modelItem => item.Runtime)
                 </td>
                 <td>
-                    <a asp-action="Details" asp-route-id="@item.MovieID">Details</a> 
+                    <a asp-action="Details" asp-route-id="@item.MovieID">Details</a>
                     @if (User.IsInRole("Admin"))
                     {
                         <p>
                             <a asp-action="Edit" asp-route-id="@item.MovieID">Edit</a> |
                             <a asp-action="Delete" asp-route-id="@item.MovieID">Delete</a>
                         </p>
-                    }           
+                    }
                 </td>
             </tr>
         }

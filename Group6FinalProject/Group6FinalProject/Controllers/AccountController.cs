@@ -57,7 +57,6 @@ namespace Group_6_Final_Project.Controllers
                 LastName = rvm.LastName,
                 DateOfBirth = rvm.DateOfBirth,
                 AddressLine1 = rvm.AddressLine1,
-                AddressLine2 = rvm.AddressLine2,
                 City = rvm.City,
                 State = rvm.State,
                 Zip = rvm.Zip

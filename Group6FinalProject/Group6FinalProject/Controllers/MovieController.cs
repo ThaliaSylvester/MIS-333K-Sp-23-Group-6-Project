@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Group6FinalProject.Models;
+using Group_6_Final_Project.Models;
 using Group_6_Final_Project.DAL;
 
-namespace Group6FinalProject.Controllers
+namespace Group_6_Final_Project.Controllers
 {
     public class MovieController : Controller
     {

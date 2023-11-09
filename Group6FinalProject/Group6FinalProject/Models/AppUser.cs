@@ -1,4 +1,4 @@
-﻿using Group6FinalProject.Models.Review;
+using Group_6_Final_Project.Models;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
@@ -6,13 +6,16 @@ namespace Group_6_Final_Project.Models
 {
     public class AppUser : IdentityUser
     {
-        [Display(Name ="First Name: ")]
+        [Display(Name = "First Name: ")]
         public string FirstName { get; set; }
 
-        [Display(Name ="Last Name: ")]
+        [Display(Name = "Last Name: ")]
         public string LastName { get; set; }
 
-        [Display(Name ="Date of Birth: ")]
+        [Display(Name = "Email: ")]
+        public string Email { get; set; }
+
+        [Display(Name = "Date of Birth: ")]
         public DateTime DateOfBirth { get; set; }
 
         [Display(Name = "Address Line 1")]
@@ -33,5 +36,6 @@ namespace Group_6_Final_Project.Models
         //navigation property for Reviews 
         public Review Review { get; set; }
     }
-
 }
+
+    

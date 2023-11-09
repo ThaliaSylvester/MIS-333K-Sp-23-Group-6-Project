@@ -3,23 +3,22 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using Group_6_Final_Project.Models;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
-
-namespace Group6FinalProject.Models.Genre
+namespace Group_6_Final_Project.Models
 {
-    public enum Genres { Horror, Drama, Action, Comedy }
+    public enum Genres { Horror, Drama, Action, Comedy, ChildrenFamily, Romance, Musical, SciFi }
 
     public class Genre
     {
-            [Key]
-            public string GenreID { get; set; }
-            public Genres Genres { get; set; }
-            public List<Movie> Movies { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public string GenreID { get; set; }
 
-        public Genre()
-        {
-            Movies ??= new List<Movie>();
-        }
+        public Genres Genres { get; set; }
+
+        //NAVIGATIONAL PROPERTIES
+        public List<Movie> Movie { get; set; }
 
     }
 }

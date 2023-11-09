@@ -1,15 +1,18 @@
 using System;
-using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Group_6_Final_Project.Models;
 
-
-namespace Group6FinalProject.Models
+namespace Group_6_Final_Project.Models
 {
     public enum MPAARating { G, PG, PG13, R }
 
     public class Movie
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string MovieID { get; set; }
         public MPAARating MPAARating { get; set; }
 
@@ -36,5 +39,13 @@ namespace Group6FinalProject.Models
         [Required(ErrorMessage = "Runtime is required")]
         [Display(Name = "Runtime: ")]
         public Int32 Runtime { get; set; }
+
+        //NAVIGATIONAL PROPERTIES
+        public List<Review> Review { get; set; }
+        public Genre Genre { get; set; }
+        public Schedule Schedule { get; set; }
+
+
+
     }
 }

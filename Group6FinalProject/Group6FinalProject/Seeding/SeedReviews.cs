@@ -21,7 +21,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 //Movie = "Jurassic Park",
-                Rating = 5,
+                Rating = CustomerRating.Five,
                 //Customer = "Michelle",
                 Description = "Best Movie I've ever seen.",
                 Status = "Approved"
@@ -30,7 +30,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 //Movie = "The Secret Life of Walter Mitty",
-                Rating = 4,
+                Rating = CustomerRating.Four,
                 //Customer = "Christopher",
                 Description = "Not bad.",
                 Status = "Approved"
@@ -39,7 +39,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 //Movie = "Jurassic Park",
-                Rating = 5,
+                Rating = CustomerRating.Five,
                 //Customer = "Brad",
                 Description = "Changed my life",
                 Status = "Approved"
@@ -48,7 +48,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 //Movie = "The Goonies",
-                Rating = 5,
+                Rating = CustomerRating.Five,
                 //Customer = "Franco",
                 Description = "Great family adventure Movie",
                 Status = "Approved"
@@ -57,7 +57,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 //Movie = "The Goonies",
-                Rating = 4,
+                Rating = CustomerRating.Four,
                 //Customer = "Wendy",
                 Description = "Good Movie",
                 Status = "Approved"
@@ -66,7 +66,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 //Movie = "The Goonies",
-                Rating = 1,
+                Rating = CustomerRating.One,
                 //Customer = "Lim",
                 Description = "Worst thing I've ever seen",
                 Status = "Approved"
@@ -75,7 +75,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 //Movie = "The Goonies",
-                Rating = 5,
+                Rating =CustomerRating.Five,
                 //Customer = "Brad",
                 Description = "Reminded me of my summers in the NW",
                 Status = "Approved"
@@ -84,7 +84,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 //Movie = "The Goonies",
-                Rating = 5,
+                Rating = CustomerRating.Five,
                 //Customer = "Shan",
                 Description = "I love a good treasure hunt!",
                 Status = "Needs Review"
@@ -93,7 +93,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 //Movie = "The Goonies",
-                Rating = 3,
+                Rating = CustomerRating.Three,
                 //Customer = "Jim Bob",
                 Description = "Meh",
                 Status = "Approved"
@@ -102,7 +102,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 //Movie = "The Hobbit: The Battle of Five Armies",
-                Rating = 4,
+                Rating = CustomerRating.Four,
                 //Customer = "Christopher",
                 Description = "",
                 Status = "Approved"
@@ -111,7 +111,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 //Movie = "The Hobbit: The Battle of Five Armies",
-                Rating = 4,
+                Rating = CustomerRating.Four,
                 //Customer = "Brad",
                 Description = "",
                 Status = "Approved"
@@ -120,7 +120,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 //Movie = "The Hobbit: The Battle of Five Armies",
-                Rating = 5,
+                Rating = CustomerRating.Five,
                 //Customer = "Michelle",
                 Description = "",
                 Status = "Approved"
@@ -129,7 +129,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 //Movie = "The Hobbit: The Battle of Five Armies",
-                Rating = 5,
+                Rating = CustomerRating.Five,
                 //Customer = "Franco",
                 Description = "",
                 Status = "Approved"
@@ -138,7 +138,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 //Movie = "The Hobbit: The Battle of Five Armies",
-                Rating = 1,
+                Rating = CustomerRating.One,
                 //Customer = "Wendy",
                 Description = "Too long",
                 Status = "Needs Review"
@@ -147,7 +147,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 //Movie = "The Hobbit: The Battle of Five Armies",
-                Rating = 2,
+                Rating = CustomerRating.Two,
                 //Customer = "Lim",
                 Description = "Did they really need to drag this out into its own Movie?",
                 Status = "Needs Review"

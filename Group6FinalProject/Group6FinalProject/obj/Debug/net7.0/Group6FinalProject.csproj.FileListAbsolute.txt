@@ -245,11 +245,6 @@
 /Users/ethanmikel/Documents/Education/College/Junior Year/MIS 333k/Group-6/Group6FinalProject/Group6FinalProject/obj/Debug/net7.0/Group6FinalProject.pdb
 /Users/ethanmikel/Documents/Education/College/Junior Year/MIS 333k/Group-6/Group6FinalProject/Group6FinalProject/obj/Debug/net7.0/Group6FinalProject.genruntimeconfig.cache
 /Users/ethanmikel/Documents/Education/College/Junior Year/MIS 333k/Group-6/Group6FinalProject/Group6FinalProject/obj/Debug/net7.0/ref/Group6FinalProject.dll
-/Users/macman/Desktop/Killer K/Group-6/Group6FinalProject/Group6FinalProject/bin/Debug/net7.0/appsettings.Development.json
-/Users/macman/Desktop/Killer K/Group-6/Group6FinalProject/Group6FinalProject/bin/Debug/net7.0/appsettings.json
-/Users/macman/Desktop/Killer K/Group-6/Group6FinalProject/Group6FinalProject/bin/Debug/net7.0/libman.json
-/Users/macman/Desktop/Killer K/Group-6/Group6FinalProject/Group6FinalProject/bin/Debug/net7.0/package-lock.json
-/Users/macman/Desktop/Killer K/Group-6/Group6FinalProject/Group6FinalProject/bin/Debug/net7.0/package.json
 /Users/macman/Desktop/Killer K/Group-6/Group6FinalProject/Group6FinalProject/bin/Debug/net7.0/Group6FinalProject.staticwebassets.runtime.json
 /Users/macman/Desktop/Killer K/Group-6/Group6FinalProject/Group6FinalProject/bin/Debug/net7.0/Group6FinalProject
 /Users/macman/Desktop/Killer K/Group-6/Group6FinalProject/Group6FinalProject/bin/Debug/net7.0/Group6FinalProject.deps.json

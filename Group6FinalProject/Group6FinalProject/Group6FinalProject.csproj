@@ -26,10 +26,6 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.11" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Migrations\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\Img\" />
   </ItemGroup>
   <ItemGroup>

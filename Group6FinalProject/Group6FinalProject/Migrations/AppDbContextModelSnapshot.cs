@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Group_6_Final_Project.Models;
 
 #nullable disable
 
@@ -25,75 +24,6 @@ namespace Group6FinalProject.Migrations
             SqlServerModelBuilderExtensions.HasServiceTierSql(modelBuilder, "'Basic'");
             SqlServerModelBuilderExtensions.HasPerformanceLevelSql(modelBuilder, "'Basic'");
 
-            modelBuilder.Entity("Group6FinalProject.Models.Genre.Genre", b =>
-                {
-                    b.Property<string>("GenreID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Genres")
-                        .HasColumnType("int");
-
-                    b.HasKey("GenreID");
-
-                    b.ToTable("Genres");
-                });
-
-            modelBuilder.Entity("Group6FinalProject.Models.Movie", b =>
-                {
-                    b.Property<string>("MovieID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Actors")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("MPAARating")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("PublishDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Runtime")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Tagline")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("MovieID");
-
-                    b.ToTable("Movies");
-                });
-
-            modelBuilder.Entity("Group6FinalProject.Models.Review.Review", b =>
-                {
-                    b.Property<string>("ReviewID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ReviewID");
-
-                    b.ToTable("Reviews");
-                });
-
             modelBuilder.Entity("Group_6_Final_Project.Models.AppUser", b =>
                 {
                     b.Property<string>("Id")
@@ -107,7 +37,6 @@ namespace Group6FinalProject.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AddressLine2")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("City")
@@ -207,7 +136,7 @@ namespace Group6FinalProject.Migrations
 
                     b.HasKey("GenreID");
 
-                    b.ToTable("Genre");
+                    b.ToTable("Genres");
                 });
 
             modelBuilder.Entity("Group_6_Final_Project.Models.Movie", b =>
@@ -225,6 +154,7 @@ namespace Group6FinalProject.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("GenreID")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("MPAARating")
@@ -235,6 +165,9 @@ namespace Group6FinalProject.Migrations
 
                     b.Property<int>("Runtime")
                         .HasColumnType("int");
+
+                    b.Property<string>("ScheduleID")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Tagline")
                         .IsRequired()
@@ -247,6 +180,8 @@ namespace Group6FinalProject.Migrations
                     b.HasKey("MovieID");
 
                     b.HasIndex("GenreID");
+
+                    b.HasIndex("ScheduleID");
 
                     b.ToTable("Movies");
                 });
@@ -283,6 +218,10 @@ namespace Group6FinalProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("MovieID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
@@ -291,6 +230,8 @@ namespace Group6FinalProject.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ReviewID");
+
+                    b.HasIndex("MovieID");
 
                     b.ToTable("Reviews");
                 });
@@ -532,132 +473,164 @@ namespace Group6FinalProject.Migrations
 
             modelBuilder.Entity("Group_6_Final_Project.Models.AppUser", b =>
                 {
-                    b.HasOne("Group6FinalProject.Models.Review.Review", "Review")
+                    b.HasOne("Group_6_Final_Project.Models.Review", "Review")
                         .WithMany("AppUser")
                         .HasForeignKey("ReviewID");
 
                     b.Navigation("Review");
-                    modelBuilder.Entity("Group_6_Final_Project.Models.Movie", b =>
-                        {
-                            b.HasOne("Group_6_Final_Project.Models.Genre", "Genre")
-                                .WithMany()
-                                .HasForeignKey("GenreID");
-
-                            b.Navigation("Genre");
-                        });
-
-                    modelBuilder.Entity("Group_6_Final_Project.Models.Price", b =>
-                        {
-                            b.HasOne("Group_6_Final_Project.Models.Schedule", "Schedule")
-                                .WithMany("Prices")
-                                .HasForeignKey("ScheduleID");
-
-                            b.Navigation("Schedule");
-                        });
-
-                    modelBuilder.Entity("Group_6_Final_Project.Models.Transaction", b =>
-                        {
-                            b.HasOne("Group_6_Final_Project.Models.AppUser", "AppUser")
-                                .WithMany()
-                                .HasForeignKey("AppUserId")
-                                .OnDelete(DeleteBehavior.Cascade)
-                                .IsRequired();
-
-                            b.Navigation("AppUser");
-                        });
-
-                    modelBuilder.Entity("Group_6_Final_Project.Models.TransactionDetail", b =>
-                        {
-                            b.HasOne("Group_6_Final_Project.Models.Price", "Price")
-                                .WithMany()
-                                .HasForeignKey("PriceID")
-                                .OnDelete(DeleteBehavior.Cascade)
-                                .IsRequired();
-
-                            b.HasOne("Group_6_Final_Project.Models.Schedule", "Schedule")
-                                .WithMany()
-                                .HasForeignKey("ScheduleID")
-                                .OnDelete(DeleteBehavior.Cascade)
-                                .IsRequired();
-
-                            b.HasOne("Group_6_Final_Project.Models.Transaction", null)
-                                .WithMany("TransactionDetails")
-                                .HasForeignKey("TransactionID")
-                                .OnDelete(DeleteBehavior.Cascade)
-                                .IsRequired();
-
-                            b.Navigation("Price");
-
-                            b.Navigation("Schedule");
-                        });
-
-                    modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
-                        {
-                            b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
-                                .WithMany()
-                                .HasForeignKey("RoleId")
-                                .OnDelete(DeleteBehavior.Cascade)
-                                .IsRequired();
-                        });
-
-                    modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
-                        {
-                            b.HasOne("Group_6_Final_Project.Models.AppUser", null)
-                                .WithMany()
-                                .HasForeignKey("UserId")
-                                .OnDelete(DeleteBehavior.Cascade)
-                                .IsRequired();
-                        });
-
-                    modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
-                        {
-                            b.HasOne("Group_6_Final_Project.Models.AppUser", null)
-                                .WithMany()
-                                .HasForeignKey("UserId")
-                                .OnDelete(DeleteBehavior.Cascade)
-                                .IsRequired();
-                        });
-
-                    modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
-                        {
-                            b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
-                                .WithMany()
-                                .HasForeignKey("RoleId")
-                                .OnDelete(DeleteBehavior.Cascade)
-                                .IsRequired();
-
-                            b.HasOne("Group_6_Final_Project.Models.AppUser", null)
-                                .WithMany()
-                                .HasForeignKey("UserId")
-                                .OnDelete(DeleteBehavior.Cascade)
-                                .IsRequired();
-                        });
-
-                    modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
-                        {
-                            b.HasOne("Group_6_Final_Project.Models.AppUser", null)
-                                .WithMany()
-                                .HasForeignKey("UserId")
-                                .OnDelete(DeleteBehavior.Cascade)
-                                .IsRequired();
-                        });
-
-                    modelBuilder.Entity<Group_6_Final_Project.Models.Review>(b =>
-                    {
-                        b.Navigation("AppUser");
-                    });
-
-                    modelBuilder.Entity<Group_6_Final_Project.Models.Schedule>(b =>
-                    {
-                        b.Navigation("Prices");
-                    });
-
-                    modelBuilder.Entity<Group_6_Final_Project.Models.Transaction>(b =>
-                    {
-                        b.Navigation("TransactionDetails");
-                    });
                 });
-        }
 
+            modelBuilder.Entity("Group_6_Final_Project.Models.Movie", b =>
+                {
+                    b.HasOne("Group_6_Final_Project.Models.Genre", "Genre")
+                        .WithMany("Movie")
+                        .HasForeignKey("GenreID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Group_6_Final_Project.Models.Schedule", "Schedule")
+                        .WithMany("Movie")
+                        .HasForeignKey("ScheduleID");
+
+                    b.Navigation("Genre");
+
+                    b.Navigation("Schedule");
+                });
+
+            modelBuilder.Entity("Group_6_Final_Project.Models.Price", b =>
+                {
+                    b.HasOne("Group_6_Final_Project.Models.Schedule", "Schedule")
+                        .WithMany("Prices")
+                        .HasForeignKey("ScheduleID");
+
+                    b.Navigation("Schedule");
+                });
+
+            modelBuilder.Entity("Group_6_Final_Project.Models.Review", b =>
+                {
+                    b.HasOne("Group_6_Final_Project.Models.Movie", "Movie")
+                        .WithMany("Review")
+                        .HasForeignKey("MovieID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Movie");
+                });
+
+            modelBuilder.Entity("Group_6_Final_Project.Models.Transaction", b =>
+                {
+                    b.HasOne("Group_6_Final_Project.Models.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("Group_6_Final_Project.Models.TransactionDetail", b =>
+                {
+                    b.HasOne("Group_6_Final_Project.Models.Price", "Price")
+                        .WithMany()
+                        .HasForeignKey("PriceID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Group_6_Final_Project.Models.Schedule", "Schedule")
+                        .WithMany()
+                        .HasForeignKey("ScheduleID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Group_6_Final_Project.Models.Transaction", null)
+                        .WithMany("TransactionDetails")
+                        .HasForeignKey("TransactionID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Price");
+
+                    b.Navigation("Schedule");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("Group_6_Final_Project.Models.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("Group_6_Final_Project.Models.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Group_6_Final_Project.Models.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("Group_6_Final_Project.Models.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Group_6_Final_Project.Models.Genre", b =>
+                {
+                    b.Navigation("Movie");
+                });
+
+            modelBuilder.Entity("Group_6_Final_Project.Models.Movie", b =>
+                {
+                    b.Navigation("Review");
+                });
+
+            modelBuilder.Entity("Group_6_Final_Project.Models.Review", b =>
+                {
+                    b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("Group_6_Final_Project.Models.Schedule", b =>
+                {
+                    b.Navigation("Movie");
+
+                    b.Navigation("Prices");
+                });
+
+            modelBuilder.Entity("Group_6_Final_Project.Models.Transaction", b =>
+                {
+                    b.Navigation("TransactionDetails");
+                });
+#pragma warning restore 612, 618
+        }
     }
 }

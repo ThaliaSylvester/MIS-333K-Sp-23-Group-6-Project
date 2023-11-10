@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Group6FinalProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231106185210_SetupPriceRolesUsersScheduleTransactionReview")]
-    partial class SetupPriceRolesUsersScheduleTransactionReview
+    [Migration("20231110220959_Setup")]
+    partial class Setup
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,7 +40,6 @@ namespace Group6FinalProject.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AddressLine2")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("City")
@@ -93,6 +92,9 @@ namespace Group6FinalProject.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("ReviewID")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -121,6 +123,8 @@ namespace Group6FinalProject.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
+                    b.HasIndex("ReviewID");
+
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
@@ -135,7 +139,7 @@ namespace Group6FinalProject.Migrations
 
                     b.HasKey("GenreID");
 
-                    b.ToTable("Genre");
+                    b.ToTable("Genres");
                 });
 
             modelBuilder.Entity("Group_6_Final_Project.Models.Movie", b =>
@@ -153,6 +157,7 @@ namespace Group6FinalProject.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("GenreID")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("MPAARating")
@@ -163,6 +168,9 @@ namespace Group6FinalProject.Migrations
 
                     b.Property<int>("Runtime")
                         .HasColumnType("int");
+
+                    b.Property<string>("ScheduleID")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Tagline")
                         .IsRequired()
@@ -175,6 +183,8 @@ namespace Group6FinalProject.Migrations
                     b.HasKey("MovieID");
 
                     b.HasIndex("GenreID");
+
+                    b.HasIndex("ScheduleID");
 
                     b.ToTable("Movies");
                 });
@@ -211,6 +221,10 @@ namespace Group6FinalProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("MovieID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
@@ -219,6 +233,8 @@ namespace Group6FinalProject.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ReviewID");
+
+                    b.HasIndex("MovieID");
 
                     b.ToTable("Reviews");
                 });
@@ -458,13 +474,30 @@ namespace Group6FinalProject.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Group_6_Final_Project.Models.AppUser", b =>
+                {
+                    b.HasOne("Group_6_Final_Project.Models.Review", "Review")
+                        .WithMany("AppUser")
+                        .HasForeignKey("ReviewID");
+
+                    b.Navigation("Review");
+                });
+
             modelBuilder.Entity("Group_6_Final_Project.Models.Movie", b =>
                 {
                     b.HasOne("Group_6_Final_Project.Models.Genre", "Genre")
-                        .WithMany()
-                        .HasForeignKey("GenreID");
+                        .WithMany("Movie")
+                        .HasForeignKey("GenreID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Group_6_Final_Project.Models.Schedule", "Schedule")
+                        .WithMany("Movie")
+                        .HasForeignKey("ScheduleID");
 
                     b.Navigation("Genre");
+
+                    b.Navigation("Schedule");
                 });
 
             modelBuilder.Entity("Group_6_Final_Project.Models.Price", b =>
@@ -474,6 +507,17 @@ namespace Group6FinalProject.Migrations
                         .HasForeignKey("ScheduleID");
 
                     b.Navigation("Schedule");
+                });
+
+            modelBuilder.Entity("Group_6_Final_Project.Models.Review", b =>
+                {
+                    b.HasOne("Group_6_Final_Project.Models.Movie", "Movie")
+                        .WithMany("Review")
+                        .HasForeignKey("MovieID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Movie");
                 });
 
             modelBuilder.Entity("Group_6_Final_Project.Models.Transaction", b =>
@@ -563,8 +607,25 @@ namespace Group6FinalProject.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Group_6_Final_Project.Models.Genre", b =>
+                {
+                    b.Navigation("Movie");
+                });
+
+            modelBuilder.Entity("Group_6_Final_Project.Models.Movie", b =>
+                {
+                    b.Navigation("Review");
+                });
+
+            modelBuilder.Entity("Group_6_Final_Project.Models.Review", b =>
+                {
+                    b.Navigation("AppUser");
+                });
+
             modelBuilder.Entity("Group_6_Final_Project.Models.Schedule", b =>
                 {
+                    b.Navigation("Movie");
+
                     b.Navigation("Prices");
                 });
 

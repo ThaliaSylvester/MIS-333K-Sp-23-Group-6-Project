@@ -13,7 +13,7 @@ namespace Group_6_Final_Project.Seeding
         {
             //Create a counter and a flag so we will know which record is causing problems
             Int32 intReviewsAdded = 0;
-            String strReviewsTitle = "Begin";
+            Int32 intReviewsTitle = 0;
 
             //Add the list of Reviews
             List<Review> Reviews = new List<Review>();
@@ -160,7 +160,7 @@ namespace Group_6_Final_Project.Seeding
                 foreach (Review ReviewsToAdd in Reviews)
                 {
                     //set the flag to the current title to help with debugging
-                    strReviewsTitle = ReviewsToAdd.ReviewID;
+                    intReviewsTitle = ReviewsToAdd.ReviewID;
 
                     //look to see if the Reviews is in the database - this assumes that no
                     //two Reviews have the same title
@@ -198,7 +198,7 @@ namespace Group_6_Final_Project.Seeding
             catch (Exception ex)//something went wrong with adding or updating
             {
                 //Build a messsage using the flags we created
-                String msg = "  Repositories added:" + intReviewsAdded + "; Error on " + strReviewsTitle;
+                String msg = "  Repositories added:" + intReviewsAdded + "; Error on " + intReviewsTitle;
 
                 //throw the exception with the new message
                 throw new InvalidOperationException(ex.Message + msg);

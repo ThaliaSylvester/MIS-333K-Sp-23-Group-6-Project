@@ -12,9 +12,6 @@ namespace Group_6_Final_Project.Models
         [Display(Name = "Last Name: ")]
         public string LastName { get; set; }
 
-        [Display(Name = "Email: ")]
-        public string Email { get; set; }
-
         [Display(Name = "Date of Birth: ")]
         public DateTime DateOfBirth { get; set; }
 
@@ -34,7 +31,8 @@ namespace Group_6_Final_Project.Models
         public string Zip { get; set; }
 
         //navigation property for Reviews 
-        public Review Review { get; set; }
+        public List<Review> Reviews { get; set; }
+        public List<Transaction> Transactions { get; set; }
     }
 }
 

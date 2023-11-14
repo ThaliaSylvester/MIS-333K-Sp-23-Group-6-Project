@@ -40,6 +40,7 @@ namespace Group_6_Final_Project.DAL
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<Price> Prices { get; set; }
-        public DbSet<TransactionDetail> transactionDetails { get; set; }
+        public DbSet<TransactionDetail> TransactionDetails { get; set; }
+
     }
 }

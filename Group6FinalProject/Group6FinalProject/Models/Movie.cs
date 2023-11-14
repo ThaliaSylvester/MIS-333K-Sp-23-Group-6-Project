@@ -14,6 +14,7 @@ namespace Group_6_Final_Project.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string MovieID { get; set; }
+
         public MPAARating MPAARating { get; set; }
 
         [Required(ErrorMessage = "Movie title is required")]
@@ -44,8 +45,5 @@ namespace Group_6_Final_Project.Models
         public List<Review> Review { get; set; }
         public Genre Genre { get; set; }
         public Schedule Schedule { get; set; }
-
-
-
     }
 }

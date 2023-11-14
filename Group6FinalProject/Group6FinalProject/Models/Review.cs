@@ -12,7 +12,7 @@ namespace Group_6_Final_Project.Models
         {
             [Key]
             [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-            public String ReviewID { get; set; }
+            public int ReviewID { get; set; }
 
             public CustomerRating Rating { get; set; }
 
@@ -23,7 +23,6 @@ namespace Group_6_Final_Project.Models
             public string Status { get; set; }
 
             public List<AppUser> AppUser { get; set; }
-            public Movie Movie { get; set; }
-
+            public List<Movie> Movies { get; set; }
     }
 }

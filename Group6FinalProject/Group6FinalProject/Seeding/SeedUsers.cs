@@ -20,8 +20,14 @@ namespace Group_6_Final_Project.Seeding
                     //IdentityUser base class
                     UserName = "ra@aoo.com",
                     Email = "ra@aoo.com",
+                    PhoneNumber = "555-555-5555",
                     FirstName = "Allen",
-                    LastName = "Rogers"
+                    LastName = "Rogers",
+                    DateOfBirth = new DateTime(1901, 1, 1),
+                    AddressLine1 = "1 Longhorn Road",
+                    City = "Austin",
+                    State = "TX",
+                    Zip = "78705"
 
                 },
                 Password = "3wCynC",
@@ -36,8 +42,14 @@ namespace Group_6_Final_Project.Seeding
                     //IdentityUser base class
                     UserName = "captain@enterprise.net",
                     Email = "captain@enterprise.net",
+                    PhoneNumber = "555-555-5555",
                     FirstName = "Jean Luc",
-                    LastName = "Picard"
+                    LastName = "Picard",
+                    DateOfBirth = new DateTime(1901, 1, 1),
+                    AddressLine1 = "1 Longhorn Road",
+                    City = "Austin",
+                    State = "TX",
+                    Zip = "78705"
 
                 },
                 Password = "Pbon0r",
@@ -52,8 +64,14 @@ namespace Group_6_Final_Project.Seeding
                     //IdentityUser base class
                     UserName = "slayer@onegirl.net",
                     Email = "slayer@onegirl.net",
+                    PhoneNumber = "555-555-5555",
                     FirstName = "Buffy",
-                    LastName = "Summers"
+                    LastName = "Summers",
+                    DateOfBirth = new DateTime(1901, 1, 1),
+                    AddressLine1 = "1 Longhorn Road",
+                    City = "Austin",
+                    State = "TX",
+                    Zip = "78705"
 
                 },
                 Password = "jW5fPP",
@@ -68,8 +86,14 @@ namespace Group_6_Final_Project.Seeding
                     //IdentityUser base class
                     UserName = "liz@ggmail.com",
                     Email = "liz@ggmail.com",
+                    PhoneNumber = "555-555-5555",
                     FirstName = "Elizabeth",
-                    LastName = "Markham"
+                    LastName = "Markham",
+                    DateOfBirth = new DateTime(1901, 1, 1),
+                    AddressLine1 = "1 Longhorn Road",
+                    City = "Austin",
+                    State = "TX",
+                    Zip = "78705"
 
                 },
                 Password = "0QyilL",
@@ -84,8 +108,14 @@ namespace Group_6_Final_Project.Seeding
                     //IdentityUser base class
                     UserName = "twin@deservedbetter.com",
                     Email = "twin@deservedbetter.com",
+                    PhoneNumber = "555-555-5555",
                     FirstName = "Fred",
-                    LastName = "Weasley"
+                    LastName = "Weasley",
+                    DateOfBirth = new DateTime(1901, 1, 1),
+                    AddressLine1 = "1 Longhorn Road",
+                    City = "Austin",
+                    State = "TX",
+                    Zip = "78705"
 
                 },
                 Password = "atLm6W",
@@ -98,8 +128,14 @@ namespace Group_6_Final_Project.Seeding
                 {
                     UserName = "michelle@example.com",
                     Email = "michelle@example.com",
+                    PhoneNumber = "555-555-5555",
                     FirstName = "Michelle",
-                    LastName = "Banks"
+                    LastName = "Banks",
+                    DateOfBirth = new DateTime(1901, 1, 1),
+                    AddressLine1 = "1 Longhorn Road",
+                    City = "Austin",
+                    State = "TX",
+                    Zip = "78705"
                 },
                 Password = "jVb0Z6",
                 RoleName = "Employee"
@@ -111,8 +147,14 @@ namespace Group_6_Final_Project.Seeding
                 {
                     UserName = "toddy@aool.com",
                     Email = "toddy@aool.com",
+                    PhoneNumber = "555-555-5555",
                     FirstName = "Todd",
-                    LastName = "Jacobs"
+                    LastName = "Jacobs",
+                    DateOfBirth = new DateTime(1901, 1, 1),
+                    AddressLine1 = "1 Longhorn Road",
+                    City = "Austin",
+                    State = "TX",
+                    Zip = "78705"
                 },
                 Password = "1PnrBV",
                 RoleName = "Employee"
@@ -124,8 +166,14 @@ namespace Group_6_Final_Project.Seeding
                 {
                     UserName = "elowe@netscrape.net",
                     Email = "elowe@netscrape.net",
+                    PhoneNumber = "555-555-5555",
                     FirstName = "Ernest",
-                    LastName = "Lowe"
+                    LastName = "Lowe",
+                    DateOfBirth = new DateTime(1901, 1, 1),
+                    AddressLine1 = "1 Longhorn Road",
+                    City = "Austin",
+                    State = "TX",
+                    Zip = "78705"
                 },
                 Password = "v3n5AV",
                 RoleName = "Employee"
@@ -137,8 +185,14 @@ namespace Group_6_Final_Project.Seeding
                 {
                     UserName = "mclarence@aool.com",
                     Email = "mclarence@aool.com",
+                    PhoneNumber = "555-555-5555",
                     FirstName = "Clarence",
-                    LastName = "Martin"
+                    LastName = "Martin",
+                    DateOfBirth = new DateTime(1901, 1, 1),
+                    AddressLine1 = "1 Longhorn Road",
+                    City = "Austin",
+                    State = "TX",
+                    Zip = "78705"
                 },
                 Password = "zBLq3S",
                 RoleName = "Employee"
@@ -150,8 +204,14 @@ namespace Group_6_Final_Project.Seeding
                 {
                     UserName = "nelson.Kelly@aool.com",
                     Email = "nelson.Kelly@aool.com",
+                    PhoneNumber = "555-555-5555",
                     FirstName = "Kelly",
-                    LastName = "Nelson"
+                    LastName = "Nelson",
+                    DateOfBirth = new DateTime(1901, 1, 1),
+                    AddressLine1 = "1 Longhorn Road",
+                    City = "Austin",
+                    State = "TX",
+                    Zip = "78705"
                 },
                 Password = "FSb8rA",
                 RoleName = "Employee"
@@ -163,8 +223,14 @@ namespace Group_6_Final_Project.Seeding
                 {
                     UserName = "megrhodes@freezing.co.uk",
                     Email = "megrhodes@freezing.co.uk",
+                    PhoneNumber = "555-555-5555",
                     FirstName = "Megan",
-                    LastName = "Rhodes"
+                    LastName = "Rhodes",
+                    DateOfBirth = new DateTime(1901, 1, 1),
+                    AddressLine1 = "1 Longhorn Road",
+                    City = "Austin",
+                    State = "TX",
+                    Zip = "78705"
                 },
                 Password = "1xVfHp",
                 RoleName = "Employee"
@@ -176,8 +242,14 @@ namespace Group_6_Final_Project.Seeding
                 {
                     UserName = "sheff44@ggmail.com",
                     Email = "sheff44@ggmail.com",
+                    PhoneNumber = "555-555-5555",
                     FirstName = "Martin",
-                    LastName = "Sheffield"
+                    LastName = "Sheffield",
+                    DateOfBirth = new DateTime(1901, 1, 1),
+                    AddressLine1 = "1 Longhorn Road",
+                    City = "Austin",
+                    State = "TX",
+                    Zip = "78705"
                 },
                 Password = "4XKLsd",
                 RoleName = "Employee"
@@ -189,8 +261,14 @@ namespace Group_6_Final_Project.Seeding
                 {
                     UserName = "peterstump@hootmail.com",
                     Email = "peterstump@hootmail.com",
+                    PhoneNumber = "555-555-5555",
                     FirstName = "Peter",
-                    LastName = "Stump"
+                    LastName = "Stump",
+                    DateOfBirth = new DateTime(1901, 1, 1),
+                    AddressLine1 = "1 Longhorn Road",
+                    City = "Austin",
+                    State = "TX",
+                    Zip = "78705"
                 },
                 Password = "1XdmSV",
                 RoleName = "Employee"
@@ -202,8 +280,14 @@ namespace Group_6_Final_Project.Seeding
                 {
                     UserName = "yhuik9.Taylor@aool.com",
                     Email = "yhuik9.Taylor@aool.com",
+                    PhoneNumber = "555-555-5555",
                     FirstName = "Rachel",
-                    LastName = "Taylor"
+                    LastName = "Taylor",
+                    DateOfBirth = new DateTime(1901, 1, 1),
+                    AddressLine1 = "1 Longhorn Road",
+                    City = "Austin",
+                    State = "TX",
+                    Zip = "78705"
                 },
                 Password = "9yhFS3",
                 RoleName = "Employee"
@@ -215,8 +299,14 @@ namespace Group_6_Final_Project.Seeding
                 {
                     UserName = "tuck33@ggmail.com",
                     Email = "tuck33@ggmail.com",
+                    PhoneNumber = "555-555-5555",
                     FirstName = "Clent",
-                    LastName = "Tucker"
+                    LastName = "Tucker",
+                    DateOfBirth = new DateTime(1901, 1, 1),
+                    AddressLine1 = "1 Longhorn Road",
+                    City = "Austin",
+                    State = "TX",
+                    Zip = "78705"
                 },
                 Password = "I6BgsS",
                 RoleName = "Employee"
@@ -228,8 +318,14 @@ namespace Group_6_Final_Project.Seeding
                 {
                     UserName = "taylordjay@aool.com",
                     Email = "taylordjay@aool.com",
+                    PhoneNumber = "555-555-5555",
                     FirstName = "Allison",
-                    LastName = "Taylor"
+                    LastName = "Taylor",
+                    DateOfBirth = new DateTime(1901, 1, 1),
+                    AddressLine1 = "1 Longhorn Road",
+                    City = "Austin",
+                    State = "TX",
+                    Zip = "78705"
                 },
                 Password = "Vjb1wI",
                 RoleName = "Employee"
@@ -241,8 +337,14 @@ namespace Group_6_Final_Project.Seeding
                 {
                     UserName = "jojoe@ggmail.com",
                     Email = "jojoe@ggmail.com",
+                    PhoneNumber = "555-555-5555",
                     FirstName = "Joe",
-                    LastName = "Nguyen"
+                    LastName = "Nguyen",
+                    DateOfBirth = new DateTime(1901, 1, 1),
+                    AddressLine1 = "1 Longhorn Road",
+                    City = "Austin",
+                    State = "TX",
+                    Zip = "78705"
                 },
                 Password = "xI8Brg",
                 RoleName = "Employee"
@@ -254,8 +356,14 @@ namespace Group_6_Final_Project.Seeding
                 {
                     UserName = "hicks43@ggmail.com",
                     Email = "hicks43@ggmail.com",
+                    PhoneNumber = "555-555-5555",
                     FirstName = "Anthony",
-                    LastName = "Hicks"
+                    LastName = "Hicks",
+                    DateOfBirth = new DateTime(1901, 1, 1),
+                    AddressLine1 = "1 Longhorn Road",
+                    City = "Austin",
+                    State = "TX",
+                    Zip = "78705"
                 },
                 Password = "s33WOz",
                 RoleName = "Employee"
@@ -267,8 +375,14 @@ namespace Group_6_Final_Project.Seeding
                 {
                     UserName = "orielly@foxnets.com",
                     Email = "orielly@foxnets.com",
+                    PhoneNumber = "555-555-5555",
                     FirstName = "Bill",
-                    LastName = "O'Reilly"
+                    LastName = "O'Reilly",
+                    DateOfBirth = new DateTime(1901, 1, 1),
+                    AddressLine1 = "1 Longhorn Road",
+                    City = "Austin",
+                    State = "TX",
+                    Zip = "78705"
                 },
                 Password = "pS2OJh",
                 RoleName = "Employee"

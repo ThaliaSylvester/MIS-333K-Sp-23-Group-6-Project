@@ -5,7 +5,6 @@ using Group_6_Final_Project.Models;
 using Microsoft.SqlServer.Server;
 using static System.Reflection.Metadata.BlobBuilder;
 
-
 namespace Group_6_Final_Project.Seeding
 {
     public static class SeedMovies

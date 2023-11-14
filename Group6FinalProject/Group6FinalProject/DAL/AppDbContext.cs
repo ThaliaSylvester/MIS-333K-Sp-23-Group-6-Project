@@ -2,7 +2,8 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Group_6_Final_Project.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-
+using Group_6_Final_Project.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Group_6_Final_Project.DAL
 {
@@ -31,11 +32,15 @@ namespace Group_6_Final_Project.DAL
         public DbSet<AppUser> City { get; set; }
         public DbSet<AppUser> State { get; set; }
         public DbSet<AppUser> Zip { get; set; }
+
+        public DbSet<Movie> Movies { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+        public DbSet<Review> Reviews { get; set; }
+
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<Price> Prices { get; set; }
-        public DbSet<TransactionDetail> transactionDetails { get; set; }
-        public DbSet<Review> Reviews { get; set; }
-        public DbSet<Movie> Movies { get; set; }
+        public DbSet<TransactionDetail> TransactionDetails { get; set; }
+
     }
 }

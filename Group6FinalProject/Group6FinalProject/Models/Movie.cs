@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Group_6_Final_Project.Models;
 
 namespace Group_6_Final_Project.Models
 {
@@ -13,32 +15,35 @@ namespace Group_6_Final_Project.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string MovieID { get; set; }
 
-        [Required(ErrorMessage = "Movie releases year is required")]
-        [Display(Name = "Releases Year: ")]
         public MPAARating MPAARating { get; set; }
-
-        [Required(ErrorMessage = "Published Date is required")]
-        [Display(Name = "Date: ")]
-        public DateTime PublishedDate { get; set; }
 
         [Required(ErrorMessage = "Movie title is required")]
         [Display(Name = "Title: ")]
         public string Title { get; set; }
 
-        [Required(ErrorMessage = "Movie description is required")]
+        [Required(ErrorMessage = "Description of movie is required")]
         [Display(Name = "Description: ")]
-        public string Description { get; set; } 
+        public string Description { get; set; }
 
         [Required(ErrorMessage = "Movie tagline is required")]
         [Display(Name = "Tagline ")]
         public string Tagline { get; set; }
 
+        [Required(ErrorMessage = "Published date is required")]
+        [Display(Name = "Published Date: ")]
+        public DateTime PublishedDate { get; set; }
+
+        [Required(ErrorMessage = "Featured actors is required")]
         [Display(Name = "Actors: ")]
         public string Actors { get; set; }
 
+        [Required(ErrorMessage = "Runtime is required")]
         [Display(Name = "Runtime: ")]
-        public int Runtime { get; set; }
+        public Int32 Runtime { get; set; }
 
-        public Genre Genre { get; internal set; }
+        //NAVIGATIONAL PROPERTIES
+        public List<Review> Review { get; set; }
+        public Genre Genre { get; set; }
+        public Schedule Schedule { get; set; }
     }
 }

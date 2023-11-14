@@ -21,10 +21,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Migrations\" />
+    <None Remove="Views\Manager\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Migrations\" />
     <Folder Include="wwwroot\Img\" />
+    <Folder Include="Views\Manager\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\Img\Logo.png" />
@@ -32,5 +34,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\Img\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Properties\launchSettings.json">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 </Project>

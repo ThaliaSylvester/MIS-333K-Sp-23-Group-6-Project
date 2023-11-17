@@ -26,5 +26,6 @@ namespace Group_6_Final_Project.Models
         //NAVIGATIONAL PROPERTY
         public List<Price> Prices { get; set; }
         public List<Movie> Movie { get; set; }
+        public List<TransactionDetail> transactionDetails { get; set; }
     }
 }

@@ -37,7 +37,7 @@ namespace Group_6_Final_Project.Models
         [Required(ErrorMessage = "Phone number is required")]
         [Phone]
         [Display(Name = "Phone Number")]
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
 
 
         //TODO: Add any fields that you need for creating a new user
@@ -73,7 +73,7 @@ namespace Group_6_Final_Project.Models
         public string AddressLine1 { get; set; }
 
         [Display(Name = "Address Line 2")]
-        public string ?AddressLine2 { get; set; }
+        public string? AddressLine2 { get; set; }
 
         [Required(ErrorMessage = "City is required.")]
         [Display(Name = "City")]
@@ -117,6 +117,46 @@ namespace Group_6_Final_Project.Models
         public String UserName { get; set; }
         public String Email { get; set; }
         public String UserID { get; set; }
+        public String FirstName { get; set; }
+        public String LastName { get; set; }
+        public String PhoneNumber { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public String AddressLine1 { get; set; }
+        public String AddressLine2 { get; set; }
+        public String City { get; set; }
+        public String State { get; set; }
+        public String Zip { get; set; }
     }
 
+    public class EditProfileViewModel
+    {
+        [Required(ErrorMessage = "Phone number is required")]
+        [Phone]
+        [Display(Name = "Phone Number")]
+        public string? PhoneNumber { get; set; }
+
+        [Required(ErrorMessage = "Date of Birth is required.")]
+        [Display(Name = "Date of Birth")]
+        [DataType(DataType.Date)]
+        public DateTime DateOfBirth { get; set; }
+
+        [Required(ErrorMessage = "Address Line 1 is required.")]
+        [Display(Name = "Address Line 1")]
+        public string AddressLine1 { get; set; }
+
+        [Display(Name = "Address Line 2")]
+        public string? AddressLine2 { get; set; }
+
+        [Required(ErrorMessage = "City is required.")]
+        [Display(Name = "City")]
+        public string City { get; set; }
+
+        [Required(ErrorMessage = "State is required.")]
+        [Display(Name = "State")]
+        public string State { get; set; }
+
+        [Required(ErrorMessage = "Zip is required.")]
+        [Display(Name = "Zip")]
+        public string Zip { get; set; }
+    }
 }

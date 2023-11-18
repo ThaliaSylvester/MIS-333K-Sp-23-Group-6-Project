@@ -4,6 +4,7 @@ using Group_6_Final_Project.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Group6FinalProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231118180709_Setup123456")]
+    partial class Setup123456
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -269,14 +272,14 @@ namespace Group6FinalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionID"));
 
-                    b.Property<int>("PopcornPoints")
-                        .HasColumnType("int");
+                    b.Property<decimal>("PopcornPoints")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("PurchaseStatus")
                         .HasColumnType("int");
 
-                    b.Property<int>("TotalNumberofSeats")
-                        .HasColumnType("int");
+                    b.Property<decimal>("TotalNumberofSeats")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("TransactionDate")
                         .HasColumnType("datetime2");

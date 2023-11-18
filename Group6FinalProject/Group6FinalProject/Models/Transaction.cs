@@ -32,9 +32,9 @@ namespace Group_6_Final_Project.Models
         }
 
         [Display(Name = "Popcorn Points")]
-        public decimal PopcornPoints
+        public int PopcornPoints
         {
-            get { return (decimal)TransactionSubtotal; }
+            get { return (int)TransactionSubtotal; }
             private set { /* Make the set accessor private to prevent external modification */ }
         }
 
@@ -51,6 +51,14 @@ namespace Group_6_Final_Project.Models
         public decimal TransactionTotal
         {
             get { return TransactionSubtotal + TransactionTax; }
+            private set { /* Make the set accessor private to prevent external modification */ }
+        }
+
+        [Display(Name = "Transaction Total")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
+        public int TotalNumberofSeats
+        {
+            get { return TransactionDetail.Sum(od => od.NumberofTickets); }
             private set { /* Make the set accessor private to prevent external modification */ }
         }
 

@@ -412,24 +412,6 @@ namespace Group_6_Final_Project.Seeding
             {
                 User = new AppUser
                 {
-                    UserName = "cbaker@example.com",
-                    Email = "cbaker@example.com",
-                    FirstName = "Christopher",
-                    LastName = "Baker",
-                    DateOfBirth = new DateTime(1945, 8, 2),
-                    AddressLine1 = "1 David Park",
-                    City = "Austin",
-                    State = "TX",
-                    Zip = "78705"
-                },
-                Password = "bookworm",
-                RoleName = "Customer"
-            });
-
-            AllUsers.Add(new AddUserModel
-            {
-                User = new AppUser
-                {
                     UserName = "banker@longhorn.net",
                     Email = "banker@longhorn.net",
                     FirstName = "Michelle",

@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Group_6_Final_Project.Models;
+using System.Linq;
 
 namespace Group_6_Final_Project.Models
 {
+    public enum PurchaseStatus { Pending, Purchased, Cancelled }
+
     public class Transaction
     {
         private const decimal TAX_RATE = 0.0825m;
@@ -19,20 +20,22 @@ namespace Group_6_Final_Project.Models
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime TransactionDate { get; set; }
 
-        [Display(Name = "Number of Tickets")]
-        public int NumberofTickets { get; set; }
+        [Display(Name = "Transaction Notes:")]
+        public string? TransactionNote { get; set; }
 
         [Display(Name = "Order Subtotal")]
         [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal TransactionSubtotal
         {
-            get { return TransactionDetail.Sum(od => od.ExtendedPrice); }
+            get { return TransactionDetail.Sum(od => od.MoviePrice); }
+            private set { /* Make the set accessor private to prevent external modification */ }
         }
 
         [Display(Name = "Popcorn Points")]
         public decimal PopcornPoints
         {
             get { return (decimal)TransactionSubtotal; }
+            private set { /* Make the set accessor private to prevent external modification */ }
         }
 
         [Display(Name = "Transaction Tax")]
@@ -40,6 +43,7 @@ namespace Group_6_Final_Project.Models
         public decimal TransactionTax
         {
             get { return TransactionSubtotal * TAX_RATE; }
+            private set { /* Make the set accessor private to prevent external modification */ }
         }
 
         [Display(Name = "Transaction Total")]
@@ -47,14 +51,14 @@ namespace Group_6_Final_Project.Models
         public decimal TransactionTotal
         {
             get { return TransactionSubtotal + TransactionTax; }
+            private set { /* Make the set accessor private to prevent external modification */ }
         }
 
         [Display(Name = "Status")]
-        public string Status { get; set; }
+        public PurchaseStatus PurchaseStatus { get; set; }
 
-        //NAVIGATIONAL PROPERTIES 
-        public List<TransactionDetail> TransactionDetail { get; set; }
-        public AppUser AppUser { get; set; }
+        // NAVIGATIONAL PROPERTIES
+        public List<TransactionDetail> TransactionDetail { get; set; }
 
         public Transaction()
         {
@@ -63,5 +67,7 @@ namespace Group_6_Final_Project.Models
                 TransactionDetail = new List<TransactionDetail>();
             }
         }
+
+        public string UserID { get; set; }  // Foreign key for the Product
     }
 }

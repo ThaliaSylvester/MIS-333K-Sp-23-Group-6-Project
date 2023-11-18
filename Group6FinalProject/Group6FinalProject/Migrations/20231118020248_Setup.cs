@@ -65,7 +65,8 @@ namespace Group6FinalProject.Migrations
                 name: "Genres",
                 columns: table => new
                 {
-                    GenreID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    GenreID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Genres = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -74,34 +75,33 @@ namespace Group6FinalProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Reviews",
+                name: "Prices",
                 columns: table => new
                 {
-                    ReviewID = table.Column<int>(type: "int", nullable: false)
+                    PriceID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Rating = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    TicketPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TicketType = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Reviews", x => x.ReviewID);
+                    table.PrimaryKey("PK_Prices", x => x.PriceID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "TransactionDetails",
+                name: "Transactions",
                 columns: table => new
                 {
-                    TransactionDetailID = table.Column<int>(type: "int", nullable: false)
+                    TransactionID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SeatSelection = table.Column<int>(type: "int", nullable: false),
-                    ExtendedPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    SeniorTicket = table.Column<bool>(type: "bit", nullable: false),
-                    CashCard = table.Column<bool>(type: "bit", nullable: false)
+                    TransactionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TransactionNote = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PurchaseStatus = table.Column<int>(type: "int", nullable: false),
+                    UserID = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TransactionDetails", x => x.TransactionDetailID);
+                    table.PrimaryKey("PK_Transactions", x => x.TransactionID);
                 });
 
             migrationBuilder.CreateTable(
@@ -211,97 +211,6 @@ namespace Group6FinalProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Transactions",
-                columns: table => new
-                {
-                    TransactionID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TransactionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    NumberofTickets = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Transactions", x => x.TransactionID);
-                    table.ForeignKey(
-                        name: "FK_Transactions_AspNetUsers_AppUserId",
-                        column: x => x.AppUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AppUserReview",
-                columns: table => new
-                {
-                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ReviewsReviewID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AppUserReview", x => new { x.AppUserId, x.ReviewsReviewID });
-                    table.ForeignKey(
-                        name: "FK_AppUserReview_AspNetUsers_AppUserId",
-                        column: x => x.AppUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_AppUserReview_Reviews_ReviewsReviewID",
-                        column: x => x.ReviewsReviewID,
-                        principalTable: "Reviews",
-                        principalColumn: "ReviewID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Schedules",
-                columns: table => new
-                {
-                    ScheduleID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Theatre = table.Column<int>(type: "int", nullable: false),
-                    SpecialEvent = table.Column<bool>(type: "bit", nullable: false),
-                    TransactionDetailID = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Schedules", x => x.ScheduleID);
-                    table.ForeignKey(
-                        name: "FK_Schedules_TransactionDetails_TransactionDetailID",
-                        column: x => x.TransactionDetailID,
-                        principalTable: "TransactionDetails",
-                        principalColumn: "TransactionDetailID");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TransactionTransactionDetail",
-                columns: table => new
-                {
-                    TransactionDetailID = table.Column<int>(type: "int", nullable: false),
-                    TransactionID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TransactionTransactionDetail", x => new { x.TransactionDetailID, x.TransactionID });
-                    table.ForeignKey(
-                        name: "FK_TransactionTransactionDetail_TransactionDetails_TransactionDetailID",
-                        column: x => x.TransactionDetailID,
-                        principalTable: "TransactionDetails",
-                        principalColumn: "TransactionDetailID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_TransactionTransactionDetail_Transactions_TransactionID",
-                        column: x => x.TransactionID,
-                        principalTable: "Transactions",
-                        principalColumn: "TransactionID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Movies",
                 columns: table => new
                 {
@@ -313,8 +222,7 @@ namespace Group6FinalProject.Migrations
                     PublishedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Actors = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Runtime = table.Column<int>(type: "int", nullable: false),
-                    GenreID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ScheduleID = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    GenreID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -325,60 +233,91 @@ namespace Group6FinalProject.Migrations
                         principalTable: "Genres",
                         principalColumn: "GenreID",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Movies_Schedules_ScheduleID",
-                        column: x => x.ScheduleID,
-                        principalTable: "Schedules",
-                        principalColumn: "ScheduleID");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Prices",
+                name: "Reviews",
                 columns: table => new
                 {
-                    PriceID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    TicketPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    TicketType = table.Column<int>(type: "int", nullable: false),
-                    ScheduleID = table.Column<string>(type: "nvarchar(450)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Prices", x => x.PriceID);
-                    table.ForeignKey(
-                        name: "FK_Prices_Schedules_ScheduleID",
-                        column: x => x.ScheduleID,
-                        principalTable: "Schedules",
-                        principalColumn: "ScheduleID");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MovieReview",
-                columns: table => new
-                {
-                    MoviesMovieID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ReviewID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Rating = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    UserID = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MovieID = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MovieReview", x => new { x.MoviesMovieID, x.ReviewID });
+                    table.PrimaryKey("PK_Reviews", x => x.ReviewID);
                     table.ForeignKey(
-                        name: "FK_MovieReview_Movies_MoviesMovieID",
-                        column: x => x.MoviesMovieID,
+                        name: "FK_Reviews_Movies_MovieID",
+                        column: x => x.MovieID,
+                        principalTable: "Movies",
+                        principalColumn: "MovieID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Schedules",
+                columns: table => new
+                {
+                    ScheduleID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Theatre = table.Column<int>(type: "int", nullable: false),
+                    PriceID = table.Column<int>(type: "int", nullable: false),
+                    MovieID = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Schedules", x => x.ScheduleID);
+                    table.ForeignKey(
+                        name: "FK_Schedules_Movies_MovieID",
+                        column: x => x.MovieID,
                         principalTable: "Movies",
                         principalColumn: "MovieID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MovieReview_Reviews_ReviewID",
-                        column: x => x.ReviewID,
-                        principalTable: "Reviews",
-                        principalColumn: "ReviewID",
+                        name: "FK_Schedules_Prices_PriceID",
+                        column: x => x.PriceID,
+                        principalTable: "Prices",
+                        principalColumn: "PriceID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_AppUserReview_ReviewsReviewID",
-                table: "AppUserReview",
-                column: "ReviewsReviewID");
+            migrationBuilder.CreateTable(
+                name: "TransactionDetails",
+                columns: table => new
+                {
+                    TransactionDetailID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NumberofTickets = table.Column<int>(type: "int", nullable: false),
+                    SeatSelection = table.Column<int>(type: "int", nullable: false),
+                    MoviePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SeniorTicket = table.Column<bool>(type: "bit", nullable: false),
+                    TuesdayTicket = table.Column<bool>(type: "bit", nullable: false),
+                    PaymentMethod = table.Column<int>(type: "int", nullable: false),
+                    TransactionID = table.Column<int>(type: "int", nullable: false),
+                    ScheduleID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TransactionDetails", x => x.TransactionDetailID);
+                    table.ForeignKey(
+                        name: "FK_TransactionDetails_Schedules_ScheduleID",
+                        column: x => x.ScheduleID,
+                        principalTable: "Schedules",
+                        principalColumn: "ScheduleID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TransactionDetails_Transactions_TransactionID",
+                        column: x => x.TransactionID,
+                        principalTable: "Transactions",
+                        principalColumn: "TransactionID",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -420,47 +359,39 @@ namespace Group6FinalProject.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MovieReview_ReviewID",
-                table: "MovieReview",
-                column: "ReviewID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Movies_GenreID",
                 table: "Movies",
                 column: "GenreID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Movies_ScheduleID",
-                table: "Movies",
-                column: "ScheduleID");
+                name: "IX_Reviews_MovieID",
+                table: "Reviews",
+                column: "MovieID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Prices_ScheduleID",
-                table: "Prices",
-                column: "ScheduleID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Schedules_TransactionDetailID",
+                name: "IX_Schedules_MovieID",
                 table: "Schedules",
-                column: "TransactionDetailID");
+                column: "MovieID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transactions_AppUserId",
-                table: "Transactions",
-                column: "AppUserId");
+                name: "IX_Schedules_PriceID",
+                table: "Schedules",
+                column: "PriceID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TransactionTransactionDetail_TransactionID",
-                table: "TransactionTransactionDetail",
+                name: "IX_TransactionDetails_ScheduleID",
+                table: "TransactionDetails",
+                column: "ScheduleID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TransactionDetails_TransactionID",
+                table: "TransactionDetails",
                 column: "TransactionID");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "AppUserReview");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -477,37 +408,31 @@ namespace Group6FinalProject.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "MovieReview");
+                name: "Reviews");
 
             migrationBuilder.DropTable(
-                name: "Prices");
-
-            migrationBuilder.DropTable(
-                name: "TransactionTransactionDetail");
+                name: "TransactionDetails");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Movies");
-
-            migrationBuilder.DropTable(
-                name: "Reviews");
-
-            migrationBuilder.DropTable(
-                name: "Transactions");
-
-            migrationBuilder.DropTable(
-                name: "Genres");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Schedules");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Transactions");
 
             migrationBuilder.DropTable(
-                name: "TransactionDetails");
+                name: "Movies");
+
+            migrationBuilder.DropTable(
+                name: "Prices");
+
+            migrationBuilder.DropTable(
+                name: "Genres");
         }
     }
 }

@@ -26,207 +26,219 @@ namespace Group_6_Final_Project.Seeding
             {
                 TransactionDetailID = 1,
                 //TransactionID = 1,
+                Schedule = new Schedule { Theatre = Theatre.Theatre2 },
                 SeatSelection = SeatSelection.A1,
-                SeniorTicket = false,
-                CashCard = true
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
             {
                 TransactionDetailID = 1,
                 //TransactionID = 2,
+                Schedule = new Schedule { Theatre = Theatre.Theatre2 },
                 SeatSelection = SeatSelection.A2,
-                SeniorTicket = false,
-                CashCard = true
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
             {
                 TransactionDetailID = 1,
                 //TransactionID = 3,
+                Schedule = new Schedule { Theatre = Theatre.Theatre2 },
                 SeatSelection = SeatSelection.A3,
-                SeniorTicket = false,
-                CashCard = true
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
             {
                 TransactionDetailID = 1,
                 //TransactionID = 4,
+                Schedule = new Schedule { Theatre = Theatre.Theatre2 },
                 SeatSelection = SeatSelection.A4,
-                SeniorTicket = false,
-                CashCard = true
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
             {
                 TransactionDetailID = 1,
                 //TransactionID = 5,
+                Schedule = new Schedule { Theatre = Theatre.Theatre2 },
                 SeatSelection = SeatSelection.A5,
-                SeniorTicket = false,
-                CashCard = true
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
             {
                 TransactionDetailID = 1,
                 //TransactionID = 6,
+                Schedule = new Schedule { Theatre = Theatre.Theatre2 },
                 SeatSelection = SeatSelection.B1,
-                SeniorTicket = false,
-                CashCard = true
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
             {
                 TransactionDetailID = 1,
                 //TransactionID = 7,
+                Schedule = new Schedule { Theatre = Theatre.Theatre2 },
                 SeatSelection = SeatSelection.B2,
-                SeniorTicket = false,
-                CashCard = true
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
             {
                 TransactionDetailID = 1,
                 //TransactionID = 8,
+                Schedule = new Schedule { Theatre = Theatre.Theatre2 },
                 SeatSelection = SeatSelection.B3,
-                SeniorTicket = false,
-                CashCard = true
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
             {
                 TransactionDetailID = 1,
                 //TransactionID = 9,
+                Schedule = new Schedule { Theatre = Theatre.Theatre2 },
                 SeatSelection = SeatSelection.B4,
-                SeniorTicket = false,
-                CashCard = true
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
             {
                 TransactionDetailID = 1,
                 //TransactionID = 10,
+                Schedule = new Schedule { Theatre = Theatre.Theatre2 },
                 SeatSelection = SeatSelection.B5,
-                SeniorTicket = false,
-                CashCard = true
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
             {
                 TransactionDetailID = 2,
                 //TransactionID = 1,
+                Schedule = new Schedule { Theatre = Theatre.Theatre1 },
                 SeatSelection = SeatSelection.A1,
-                SeniorTicket = true,
-                CashCard = true
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
             {
                 TransactionDetailID = 2,
                 //TransactionID = 2,
+                Schedule = new Schedule { Theatre = Theatre.Theatre1 }, 
                 SeatSelection = SeatSelection.A2,
-                SeniorTicket = true,
-                CashCard = true
+                //SeniorTicket = true,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
             {
                 TransactionDetailID = 2,
                 //TransactionID = 3,
+                Schedule = new Schedule { Theatre = Theatre.Theatre1 },
                 SeatSelection = SeatSelection.A3,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
             {
                 TransactionDetailID = 2,
                 //TransactionID = 4,
+                Schedule = new Schedule { Theatre = Theatre.Theatre1 },
                 SeatSelection = SeatSelection.A4,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
             {
                 TransactionDetailID = 2,
                 //TransactionID = 5,
+                Schedule = new Schedule { Theatre = Theatre.Theatre1 },
                 SeatSelection = SeatSelection.A5,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
             {
                 TransactionDetailID = 2,
                 //TransactionID = 6,
+                Schedule = new Schedule { Theatre = Theatre.Theatre1 },
                 SeatSelection = SeatSelection.B1,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
             {
                 TransactionDetailID = 2,
                 //TransactionID = 7,
+                Schedule = new Schedule { Theatre = Theatre.Theatre1 },
                 SeatSelection = SeatSelection.B2,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
             {
                 TransactionDetailID = 2,
                 //TransactionID = 8,
+                Schedule = new Schedule { Theatre = Theatre.Theatre1 },
                 SeatSelection = SeatSelection.B3,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
             {
                 TransactionDetailID = 2,
                 //TransactionID = 9,
+                Schedule = new Schedule { Theatre = Theatre.Theatre1 },
                 SeatSelection = SeatSelection.B4,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
             {
                 TransactionDetailID = 2,
                 //TransactionID = 10,
+                Schedule = new Schedule { Theatre = Theatre.Theatre1 },
                 SeatSelection = SeatSelection.B5,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
             {
                 TransactionDetailID = 3,
                 //TransactionID = 1,
+                Schedule = new Schedule { Theatre = Theatre.Theatre2 },
                 SeatSelection = SeatSelection.C2,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
             {
                 TransactionDetailID = 3,
                 //TransactionID = 2,
+                Schedule = new Schedule { Theatre = Theatre.Theatre2 },
                 SeatSelection = SeatSelection.C3,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
             {
                 TransactionDetailID = 4,
                 //TransactionID = 1,
+                Schedule = new Schedule { Theatre = Theatre.Theatre2 },
                 SeatSelection = SeatSelection.C4,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -234,8 +246,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 4,
                 //TransactionID = 2,
                 SeatSelection = SeatSelection.C5,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -243,8 +255,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 5,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.A1,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -252,8 +264,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 6,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.A2,
-                SeniorTicket = true,
-                CashCard = true
+                //SeniorTicket = true,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -261,8 +273,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 7,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.A3,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -270,8 +282,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 8,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.A4,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -279,8 +291,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 9,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.A5,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -288,8 +300,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 10,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.B1,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -297,8 +309,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 11,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.B2,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -306,8 +318,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 12,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.B3,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -315,8 +327,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 13,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.B4,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -324,8 +336,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 14,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.B5,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -333,8 +345,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 15,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.E1,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -342,8 +354,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 16,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.E2,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -351,8 +363,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 17,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.E3,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -360,8 +372,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 18,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.E4,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -369,8 +381,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 19,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.E5,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -378,8 +390,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 20,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.C4,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -387,8 +399,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 21,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.C5,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -396,8 +408,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 22,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.D1,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -405,8 +417,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 23,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.A2,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -414,8 +426,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 24,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.A3,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -423,8 +435,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 25,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.A4,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -432,8 +444,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 26,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.A5,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -441,8 +453,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 27,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.B1,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -450,8 +462,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 28,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.B2,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -459,8 +471,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 29,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.B3,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -468,8 +480,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 30,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.B4,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -477,8 +489,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 31,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.B5,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -486,8 +498,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 32,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.E1,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -495,8 +507,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 33,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.E2,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -504,8 +516,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 34,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.E3,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -513,8 +525,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 35,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.E4,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -522,8 +534,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 36,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.E5,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -531,8 +543,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 37,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.C4,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -540,8 +552,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 38,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.C5,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -549,8 +561,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 39,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.D1,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -558,8 +570,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 39,
                 //TransactionID = 2,
                 SeatSelection = SeatSelection.A2,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -567,8 +579,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 39,
                 //TransactionID = 3,
                 SeatSelection = SeatSelection.A3,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -576,8 +588,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 40,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.A4,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -585,8 +597,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 40,
                 //TransactionID = 2,
                 SeatSelection = SeatSelection.A5,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -594,8 +606,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 40,
                 //TransactionID = 3,
                 SeatSelection = SeatSelection.B1,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -603,8 +615,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 40,
                 //TransactionID = 4,
                 SeatSelection = SeatSelection.B2,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -612,8 +624,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 40,
                 //TransactionID = 5,
                 SeatSelection = SeatSelection.B3,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -621,8 +633,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 40,
                 //TransactionID = 6,
                 SeatSelection = SeatSelection.B4,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -630,8 +642,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 41,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.B5,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -639,8 +651,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 41,
                 //TransactionID = 2,
                 SeatSelection = SeatSelection.E1,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -648,8 +660,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 42,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.E2,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -657,8 +669,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 42,
                 //TransactionID = 2,
                 SeatSelection = SeatSelection.E3,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -666,8 +678,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 43,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.E4,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -675,8 +687,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 43,
                 //TransactionID = 2,
                 SeatSelection = SeatSelection.E5,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -684,8 +696,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 43,
                 //TransactionID = 3,
                 SeatSelection = SeatSelection.C4,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -693,8 +705,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 43,
                 //TransactionID = 4,
                 SeatSelection = SeatSelection.C5,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             // Continue adding more TransactionDetail objects for the new data sets
@@ -703,8 +715,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 44,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.B2,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -712,8 +724,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 44,
                 //TransactionID = 2,
                 SeatSelection = SeatSelection.B3,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -721,8 +733,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 44,
                 //TransactionID = 3,
                 SeatSelection = SeatSelection.B4,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -730,8 +742,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 45,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.B5,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -739,8 +751,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 46,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.E1,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -748,8 +760,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 46,
                 //TransactionID = 2,
                 SeatSelection = SeatSelection.E2,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -757,8 +769,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 47,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.E3,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -766,8 +778,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 47,
                 //TransactionID = 2,
                 SeatSelection = SeatSelection.E4,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -775,8 +787,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 48,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.E5,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -784,8 +796,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 49,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.E5,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -793,8 +805,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 50,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.A4,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -802,8 +814,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 50,
                 //TransactionID = 2,
                 SeatSelection = SeatSelection.E1,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -811,8 +823,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 50,
                 //TransactionID = 3,
                 SeatSelection = SeatSelection.E2,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -820,8 +832,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 50,
                 //TransactionID = 4,
                 SeatSelection = SeatSelection.E3,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -829,8 +841,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 50,
                 //TransactionID = 5,
                 SeatSelection = SeatSelection.E4,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -838,8 +850,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 50,
                 //TransactionID = 6,
                 SeatSelection = SeatSelection.E5,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -847,8 +859,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 50,
                 //TransactionID = 7,
                 SeatSelection = SeatSelection.B3,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -856,8 +868,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 50,
                 //TransactionID = 8,
                 SeatSelection = SeatSelection.B4,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -865,8 +877,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 50,
                 //TransactionID = 9,
                 SeatSelection = SeatSelection.B5,
-                SeniorTicket = false,
-                CashCard = true
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.CashCard
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -874,8 +886,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 51,
                 //TransactionID = 1,
                 SeatSelection = SeatSelection.C3,
-                SeniorTicket = false,
-                CashCard = false
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.Points
             });
 
             transactionDetails.Add(new TransactionDetail
@@ -883,8 +895,8 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDetailID = 51,
                 //TransactionID = 2,
                 SeatSelection = SeatSelection.C4,
-                SeniorTicket = false,
-                CashCard = false
+                //SeniorTicket = false,
+                PaymentMethod = PaymentMethod.Points
             });
 
             try
@@ -910,8 +922,8 @@ namespace Group_6_Final_Project.Seeding
                         dbTransactionDetails.TransactionDetailID = TransactionDetailsToAdd.TransactionDetailID;
                         //dbTransactionDetails.//TransactionID = TransactionDetailsToAdd.//TransactionID;
                         dbTransactionDetails.SeatSelection = TransactionDetailsToAdd.SeatSelection;
-                        dbTransactionDetails.SeniorTicket = TransactionDetailsToAdd.SeniorTicket;
-                        dbTransactionDetails.CashCard = TransactionDetailsToAdd.CashCard;
+                        //dbTransactionDetails.//SeniorTicket = TransactionDetailsToAdd.//SeniorTicket;
+                        //dbTransactionDetails.PaymentMethod = TransactionDetailsToAdd.PaymentMethod;
                     }
 
                     // Save changes to the database

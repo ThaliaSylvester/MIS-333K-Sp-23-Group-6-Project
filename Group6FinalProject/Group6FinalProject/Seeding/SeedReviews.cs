@@ -20,137 +20,137 @@ namespace Group_6_Final_Project.Seeding
 
             Reviews.Add(new Review
             {
-                //Movie = "Jurassic Park",
+                MovieID = db.Movies.FirstOrDefault(m => m.Title == "Jurassic Park")?.MovieID ?? string.Empty,
                 Rating = CustomerRating.Five,
-                //Customer = "Michelle",
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "banker@longhorn.net")?.Id ?? string.Empty,
                 Description = "Best Movie I've ever seen.",
-                Status = "Approved"
+                Status = Status.Approved,
             });
 
             Reviews.Add(new Review
             {
-                //Movie = "The Secret Life of Walter Mitty",
+                MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Secret Life of Walter Mitty")?.MovieID ?? string.Empty,
                 Rating = CustomerRating.Four,
-                //Customer = "Christopher",
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "cbaker@example.com")?.Id ?? string.Empty,
                 Description = "Not bad.",
-                Status = "Approved"
+                Status = Status.Approved,
             });
 
             Reviews.Add(new Review
             {
-                //Movie = "Jurassic Park",
+                MovieID = db.Movies.FirstOrDefault(m => m.Title == "Jurassic Park")?.MovieID ?? string.Empty,
                 Rating = CustomerRating.Five,
-                //Customer = "Brad",
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
                 Description = "Changed my life",
-                Status = "Approved"
+                Status = Status.Approved,
             });
 
             Reviews.Add(new Review
             {
-                //Movie = "The Goonies",
+                MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Goonies")?.MovieID ?? string.Empty,
                 Rating = CustomerRating.Five,
-                //Customer = "Franco",
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "franco@example.com")?.Id ?? string.Empty,
                 Description = "Great family adventure Movie",
-                Status = "Approved"
+                Status = Status.Approved,
             });
 
             Reviews.Add(new Review
             {
-                //Movie = "The Goonies",
+                MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Goonies")?.MovieID ?? string.Empty,
                 Rating = CustomerRating.Four,
-                //Customer = "Wendy",
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "wchang@example.com")?.Id ?? string.Empty,
                 Description = "Good Movie",
-                Status = "Approved"
+                Status = Status.Approved,
             });
 
             Reviews.Add(new Review
             {
-                //Movie = "The Goonies",
+                MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Goonies")?.MovieID ?? string.Empty,
                 Rating = CustomerRating.One,
-                //Customer = "Lim",
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "limchou@gogle.com")?.Id ?? string.Empty,
                 Description = "Worst thing I've ever seen",
-                Status = "Approved"
+                Status = Status.Approved,
             });
 
             Reviews.Add(new Review
             {
-                //Movie = "The Goonies",
-                Rating =CustomerRating.Five,
-                //Customer = "Brad",
+                MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Goonies")?.MovieID ?? string.Empty,
+                Rating = CustomerRating.Five,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
                 Description = "Reminded me of my summers in the NW",
-                Status = "Approved"
+                Status = Status.Approved,
             });
 
             Reviews.Add(new Review
             {
-                //Movie = "The Goonies",
+                MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Goonies")?.MovieID ?? string.Empty,
                 Rating = CustomerRating.Five,
-                //Customer = "Shan",
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "shdixon@aoll.com")?.Id ?? string.Empty,
                 Description = "I love a good treasure hunt!",
-                Status = "Needs Review"
+                Status = Status.NeedsReview,
             });
 
             Reviews.Add(new Review
             {
-                //Movie = "The Goonies",
+                MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Goonies")?.MovieID ?? string.Empty,
                 Rating = CustomerRating.Three,
-                //Customer = "Jim Bob",
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "j.b.evans@aheca.org")?.Id ?? string.Empty,
                 Description = "Meh",
-                Status = "Approved"
+                Status = Status.Approved,
             });
 
             Reviews.Add(new Review
             {
-                //Movie = "The Hobbit: The Battle of Five Armies",
+                MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Hobbit: The Battle of Five Armies")?.MovieID ?? string.Empty,
                 Rating = CustomerRating.Four,
-                //Customer = "Christopher",
-                Description = "",
-                Status = "Approved"
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "cbaker@example.com")?.Id ?? string.Empty,
+                Description = " ",
+                Status = Status.Approved,
             });
 
             Reviews.Add(new Review
             {
-                //Movie = "The Hobbit: The Battle of Five Armies",
+                MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Hobbit: The Battle of Five Armies")?.MovieID ?? string.Empty,
                 Rating = CustomerRating.Four,
-                //Customer = "Brad",
-                Description = "",
-                Status = "Approved"
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                Description = " ",
+                Status = Status.Approved,
             });
 
             Reviews.Add(new Review
             {
-                //Movie = "The Hobbit: The Battle of Five Armies",
+                MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Hobbit: The Battle of Five Armies")?.MovieID ?? string.Empty,
                 Rating = CustomerRating.Five,
-                //Customer = "Michelle",
-                Description = "",
-                Status = "Approved"
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "banker@longhorn.net")?.Id ?? string.Empty,
+                Description = " ",
+                Status = Status.Approved,
             });
 
             Reviews.Add(new Review
             {
-                //Movie = "The Hobbit: The Battle of Five Armies",
+                MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Hobbit: The Battle of Five Armies")?.MovieID ?? string.Empty,
                 Rating = CustomerRating.Five,
-                //Customer = "Franco",
-                Description = "",
-                Status = "Approved"
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "franco@example.com")?.Id ?? string.Empty,
+                Description = " ",
+                Status = Status.Approved,
             });
 
             Reviews.Add(new Review
             {
-                //Movie = "The Hobbit: The Battle of Five Armies",
+                MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Hobbit: The Battle of Five Armies")?.MovieID,
                 Rating = CustomerRating.One,
-                //Customer = "Wendy",
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "wchang@example.com")?.Id ?? string.Empty,
                 Description = "Too long",
-                Status = "Needs Review"
+                Status = Status.NeedsReview,
             });
 
             Reviews.Add(new Review
             {
-                //Movie = "The Hobbit: The Battle of Five Armies",
+                MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Hobbit: The Battle of Five Armies")?.MovieID ?? string.Empty,
                 Rating = CustomerRating.Two,
-                //Customer = "Lim",
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "limchou@gogle.com")?.Id ?? string.Empty,
                 Description = "Did they really need to drag this out into its own Movie?",
-                Status = "Needs Review"
+                Status = Status.NeedsReview,
             });
 
 
@@ -179,11 +179,11 @@ namespace Group_6_Final_Project.Seeding
                     else //dbReviews is not null - this title *is* in the database
                     {
                         //update all of the Reviews's properties
-                        //dbReviews.//Movie = ReviewsToAdd.//Movie;
                         dbReviews.Rating = ReviewsToAdd.Rating;
-                        //dbReviews.//Customer = ReviewsToAdd.//Customer;
                         dbReviews.Description = ReviewsToAdd.Description;
                         dbReviews.Status = ReviewsToAdd.Status;
+                        dbReviews.MovieID = ReviewsToAdd.MovieID;
+                        dbReviews.UserID = ReviewsToAdd.UserID;
 
                         //update the database and save the changes
                         db.Update(dbReviews);

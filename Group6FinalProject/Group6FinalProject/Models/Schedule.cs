@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
+using Group_6_Final_Project.Models;
 
 namespace Group_6_Final_Project.Models
 {
@@ -9,7 +10,7 @@ namespace Group_6_Final_Project.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public String ScheduleID { get; set; }
+        public int ScheduleID { get; set; }
 
         [Display(Name = "Start Time")]
         public DateTime DateTime { get; set; }
@@ -20,12 +21,13 @@ namespace Group_6_Final_Project.Models
         [Display(Name = "Theater")]
         public Theatre Theatre { get; set; }
 
-        [Display(Name = "Special Event")]
-        public Boolean SpecialEvent { get; set; }
-
         //NAVIGATIONAL PROPERTY
-        public List<Price> Prices { get; set; }
-        public List<Movie> Movie { get; set; }
+        public int PriceID { get; set; }  // Foreign key for the Product
+        public Price Price { get; set; }
+
+        public string MovieID { get; set; }  // Foreign key for the Product
+        public Movie Movie { get; set; }
+
         public List<TransactionDetail> transactionDetails { get; set; }
     }
 }

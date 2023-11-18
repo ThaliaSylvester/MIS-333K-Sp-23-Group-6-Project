@@ -22,9 +22,23 @@ namespace Group_6_Final_Project.Controllers
         // GET: Movie
         public async Task<IActionResult> Index()
         {
-              return _context.Movies != null ? 
-                          View(await _context.Movies.ToListAsync()) :
-                          Problem("Entity set 'AppDbContext.Movies'  is null.");
+            var movies = await _context.Movies.ToListAsync();
+
+            if (movies != null)
+            {
+                ViewBag.TotalMovieCount = movies.Count;
+
+                // Filter movies that are currently showing (you can modify this condition based on your requirements)
+                var currentlyShowingMovies = movies.Where(m => m.PublishedDate <= DateTime.Now);
+
+                ViewBag.CurrentlyShowingMovies = currentlyShowingMovies.Count();
+
+                return View(currentlyShowingMovies.ToList());
+            }
+            else
+            {
+                return Problem("Entity set 'AppDbContext.Movies' is null.");
+            }
         }
 
         // GET: Movie/Details/5
@@ -139,7 +153,7 @@ namespace Group_6_Final_Project.Controllers
         // POST: Movie/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Movies == null)
             {

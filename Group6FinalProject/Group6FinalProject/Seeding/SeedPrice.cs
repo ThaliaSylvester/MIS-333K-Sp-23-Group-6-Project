@@ -17,7 +17,7 @@ namespace Group_6_Final_Project.Seeding
         {
             // Create a counter and a flag to know which record is causing problems
             int intPricesAdded = 0;
-            string strPricesID = "Begin";
+            int intPricesID = 0;
 
             // Add the list of Prices
             List<Price> Prices = new List<Price>();
@@ -58,7 +58,7 @@ namespace Group_6_Final_Project.Seeding
                 foreach (Price PricesToAdd in Prices)
                 {
                     // Set the flag to the current title to help with debugging
-                    strPricesID = PricesToAdd.PriceID;
+                    intPricesID = PricesToAdd.PriceID;
 
                     // Look to see if the Prices is in the database - this assumes that no
                     // two Prices have the same title
@@ -86,7 +86,7 @@ namespace Group_6_Final_Project.Seeding
             catch (Exception ex)
             {
                 // Handle any exceptions
-                string msg = "Prices added: " + intPricesAdded + "; Error on " + strPricesID;
+                string msg = "Prices added: " + intPricesAdded + "; Error on " + intPricesID;
                 throw new InvalidOperationException(ex.Message + msg);
             }
         }

@@ -171,28 +171,6 @@ namespace Group_6_Final_Project.Controllers
             return View("Confirm");
         }
 
-        public async Task<IActionResult> SeedTransactionDetails()
-        {
-            try
-            {
-                // Call the method to seed the schedule
-                Seeding.SeedTransactionDetails.TransactionDetails(_context);
-            }
-            catch (Exception ex)
-            {
-                List<string> errorList = new List<string>
-        {
-            ex.Message
-        };
-
-                return View("Error", errorList);
-            }
-
-            // This is the happy path - seeding worked!
-            return View("Confirm");
-        }
-
-
         public async Task<IActionResult> SeedReviews()
         {
             try

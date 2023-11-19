@@ -1,0 +1,63 @@
+﻿/* manager.css */
+
+/* Additional body styling may be required depending on your overall site's styles */
+body {
+    background-color: #fff; /* Assuming a white background; adjust as needed */
+    font-family: 'Arial', sans-serif; /* Common font; adjust as needed */
+}
+
+/* Welcome message styling */
+h2 {
+    color: #d9534f; /* Red tone */
+    text-align: center;
+    margin-bottom: 0.5em;
+    font-size: 3em; /* Large font size */
+    font-weight: bold;
+}
+
+/* Paragraph styling */
+p {
+    color: #555; /* Darker grey for contrast */
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+/* Menu container styling */
+.option-menu {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column by default */
+    gap: 20px; /* Space between buttons */
+    justify-items: center; /* Center the buttons */
+    padding: 0;
+    margin: 0 auto; /* Center the container */
+    max-width: 600px; /* Max width of the container */
+}
+
+/* Button styling */
+.btn {
+    padding: 20px 40px; /* Larger padding for bigger buttons */
+    color: white;
+    background-color: #d9534f; /* Match the red color from the mockup */
+    border: none;
+    border-radius: 10px; /* Rounded corners */
+    font-size: 1.25em;
+    font-weight: bold;
+    transition: background-color 0.3s ease; /* Transition for interactive states */
+    text-decoration: none;
+    display: inline-block; /* Allows the width to be set */
+    width: calc(100% - 40px); /* Full width minus padding */
+}
+
+/* Hover and focus states for buttons */
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #c9302c; /* A darker shade for hover state */
+    color: #fff; /* Ensuring text color remains white on hover */
+}
+
+/* Responsive adjustments for larger screens */
+@media (min-width: 768px) {
+    .option-menu {
+        grid-template-columns: repeat(2, 1fr); /* Two columns */
+    }
+}

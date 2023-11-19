@@ -13,7 +13,7 @@ namespace Group_6_Final_Project.Models
         public int ScheduleID { get; set; }
 
         [Display(Name = "Start Time")]
-        public DateTime DateTime { get; set; }
+        public DateTime StartTime { get; set; }
 
         [Display(Name = "End Time")]
         public DateTime EndTime { get; set; }

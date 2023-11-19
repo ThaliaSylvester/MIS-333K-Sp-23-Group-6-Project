@@ -96,6 +96,11 @@ namespace Group6FinalProject.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TransactionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TransactionNote = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TransactionSubtotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PopcornPoints = table.Column<int>(type: "int", nullable: false),
+                    TransactionTax = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TransactionTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TotalNumberofSeats = table.Column<int>(type: "int", nullable: false),
                     PurchaseStatus = table.Column<int>(type: "int", nullable: false),
                     UserID = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -264,7 +269,7 @@ namespace Group6FinalProject.Migrations
                 {
                     ScheduleID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Theatre = table.Column<int>(type: "int", nullable: false),
                     PriceID = table.Column<int>(type: "int", nullable: false),
@@ -296,8 +301,6 @@ namespace Group6FinalProject.Migrations
                     NumberofTickets = table.Column<int>(type: "int", nullable: false),
                     SeatSelection = table.Column<int>(type: "int", nullable: false),
                     MoviePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    SeniorTicket = table.Column<bool>(type: "bit", nullable: false),
-                    TuesdayTicket = table.Column<bool>(type: "bit", nullable: false),
                     PaymentMethod = table.Column<int>(type: "int", nullable: false),
                     TransactionID = table.Column<int>(type: "int", nullable: false),
                     ScheduleID = table.Column<int>(type: "int", nullable: false)

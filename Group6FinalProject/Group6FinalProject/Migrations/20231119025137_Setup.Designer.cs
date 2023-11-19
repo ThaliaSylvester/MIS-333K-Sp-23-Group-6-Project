@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Group6FinalProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231118180800_Setup1234567")]
-    partial class Setup1234567
+    [Migration("20231119025137_Setup")]
+    partial class Setup
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -239,9 +239,6 @@ namespace Group6FinalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ScheduleID"));
 
-                    b.Property<DateTime>("DateTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
 
@@ -251,6 +248,9 @@ namespace Group6FinalProject.Migrations
 
                     b.Property<int>("PriceID")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Theatre")
                         .HasColumnType("int");
@@ -272,8 +272,8 @@ namespace Group6FinalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionID"));
 
-                    b.Property<decimal>("PopcornPoints")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("PopcornPoints")
+                        .HasColumnType("int");
 
                     b.Property<int>("PurchaseStatus")
                         .HasColumnType("int");

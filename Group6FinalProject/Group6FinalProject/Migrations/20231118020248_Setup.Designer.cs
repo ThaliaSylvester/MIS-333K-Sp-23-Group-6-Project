@@ -4,6 +4,7 @@ using Group_6_Final_Project.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Group6FinalProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231118020248_Setup")]
+    partial class Setup
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -269,13 +272,7 @@ namespace Group6FinalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionID"));
 
-                    b.Property<int>("PopcornPoints")
-                        .HasColumnType("int");
-
                     b.Property<int>("PurchaseStatus")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TotalNumberofSeats")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("TransactionDate")
@@ -283,15 +280,6 @@ namespace Group6FinalProject.Migrations
 
                     b.Property<string>("TransactionNote")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("TransactionSubtotal")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("TransactionTax")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("TransactionTotal")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("UserID")
                         .IsRequired()
@@ -325,8 +313,14 @@ namespace Group6FinalProject.Migrations
                     b.Property<int>("SeatSelection")
                         .HasColumnType("int");
 
+                    b.Property<bool>("SeniorTicket")
+                        .HasColumnType("bit");
+
                     b.Property<int>("TransactionID")
                         .HasColumnType("int");
+
+                    b.Property<bool>("TuesdayTicket")
+                        .HasColumnType("bit");
 
                     b.HasKey("TransactionDetailID");
 

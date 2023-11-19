@@ -43,7 +43,11 @@ namespace Group_6_Final_Project.Models
 
         //NAVIGATIONAL PROPERTIES
         public List<Review> Review { get; set; }
+
+        //public List<Schedule> Schedule { get; set; }
+
+        public int GenreID { get; set; }  // Foreign key for the Product
         public Genre Genre { get; set; }
-        public Schedule Schedule { get; set; }
+
     }
 }

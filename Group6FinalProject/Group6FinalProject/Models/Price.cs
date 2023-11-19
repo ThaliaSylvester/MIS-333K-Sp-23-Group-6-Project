@@ -11,13 +11,13 @@ namespace Group_6_Final_Project.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string PriceID { get; set; }
+        public int PriceID { get; set; }
 
         public Decimal TicketPrice { get; set; }
 
         public TicketType TicketType { get; set; }
 
         //NAVIGATIONAL PROPERTIES
-        public Schedule Schedule { get; set; }
+        public List<Schedule> Schedule { get; set; }
     }
 }

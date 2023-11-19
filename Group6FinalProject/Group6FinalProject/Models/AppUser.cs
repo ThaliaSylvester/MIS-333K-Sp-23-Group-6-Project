@@ -12,6 +12,12 @@ namespace Group_6_Final_Project.Models
         [Display(Name = "Last Name: ")]
         public string LastName { get; set; }
 
+        [Display(Name = "Full Name")]
+        public String FullName
+        {
+            get { return FirstName + " " + LastName; }
+        }
+
         [Display(Name = "Date of Birth: ")]
         public DateTime DateOfBirth { get; set; }
 
@@ -29,10 +35,6 @@ namespace Group_6_Final_Project.Models
 
         [Display(Name = "Zip")]
         public string Zip { get; set; }
-
-        //navigation property for Reviews 
-        public List<Review> Reviews { get; set; }
-        public List<Transaction> Transactions { get; set; }
     }
 }
 

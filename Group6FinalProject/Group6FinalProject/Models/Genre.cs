@@ -13,7 +13,7 @@ namespace Group_6_Final_Project.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string GenreID { get; set; }
+        public int GenreID { get; set; }
 
         public Genres Genres { get; set; }
 

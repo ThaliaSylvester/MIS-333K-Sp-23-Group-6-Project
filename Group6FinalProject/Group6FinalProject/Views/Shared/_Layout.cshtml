@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
-        @RenderSection("Styles", required: false)
+    @RenderSection("Styles", required: false)
 </head>
 <body>
 
@@ -25,100 +25,98 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!--All the Buttons/Links-->
                 <!--If User is a customer-->
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Movie" asp-action="Index">Movies</a>
-                    </li>
+                @if (User.IsInRole("Customer"))
+                {
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Movie" asp-action="Index">Movies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Account">PopcornPoints+</a>
+                        </li>
                     </ul>
-                    @if (User.IsInRole("Customer"))
-                    {
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav me-3 mb-2 mb-lg-0 justify-content-end">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                @User.Identity.Name!
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/Account">Account</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <form asp-action="LogOff" asp-controller="Account" method="post" id="logoutForm">
+                                <li><a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Log Off</a></li>
+                                </form>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!--Search Bar-->
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" style="width:250px" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-light" type="submit">Search</button>
+                    </form>
+                }
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">PopcornPoints+</a>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav me-3 mb-2 mb-lg-0 justify-content-end">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    @User.Identity.Name!
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="/Account">Account</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <form asp-action="LogOff" asp-controller="Account" method="post" id="logoutForm">
-                                    <li><a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Log Off</a></li>
-                                    </form>
-                                </ul>
-                            </li>
-                        </ul>
-                        <!--Search Bar-->
-                        <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" style="width:250px" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-light" type="submit">Search</button>
-                        </form>
-                    }
-                    else if (User.IsInRole("Manager") || (User.IsInRole("Employee")))
-                    {
-                        <!--If User is Manager or Employee-->
-                        <ul class="navbar-nav me-3 mb-2 mb-lg-0 ms-auto">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    @User.Identity.Name!
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="/Account">Account</a></li>
-                                    @if (User.IsInRole("Manager"))
-                                    {
-                                        <li><a class="dropdown-item" href="#">Menu</a></li>
-                                    }
-                                    else if (User.IsInRole("Employee"))
-                                    {
-                                        <li><a class="dropdown-item" href="#">Menu</a></li>
-                                    }
-                                    <li><hr class="dropdown-divider"></li>
-                                    <form asp-action="LogOff" asp-controller="Account" method="post" id="logoutForm">
-                                    <li><a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Log Off</a></li>
-                                    </form>
-                                </ul>
-                            </li>
-                        </ul>
-                        <!--Search Bar-->
-                        <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" style="width:250px" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-light" type="submit">Search</button>
-                        </form>
-                    }
-                    else
-                    {
-                        <!--If the user is not signed in-->
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Movie" asp-action="Index">Movies</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">PopcornPoints+</a>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav me-3 mb-2 mb-lg-0 justify-content-end">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Account
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="/Account/Register">Sign Up</a></li>
-                                    <li><a class="dropdown-item" href="/Account/Login">Login</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <!--Search Bar-->
-                        <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" style="width:250px" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-light" type="submit">Search</button>
-                        </form>
-                    }
-</div>
+                else if (User.IsInRole("Manager") || (User.IsInRole("Employee")))
+                {
+                    <!--If User is Manager or Employee-->
+                    <ul class="navbar-nav me-3 mb-2 mb-lg-0 ms-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                @User.Identity.Name!
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/Account">Account</a></li>
+                                @if (User.IsInRole("Manager"))
+                                {
+                                    <li><a class="dropdown-item" href="#">Menu</a></li>
+                                }
+                                else if (User.IsInRole("Employee"))
+                                {
+                                    <li><a class="dropdown-item" href="#">Menu</a></li>
+                                }
+                                <li><hr class="dropdown-divider"></li>
+                                <form asp-action="LogOff" asp-controller="Account" method="post" id="logoutForm">
+                                <li><a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Log Off</a></li>
+                                </form>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!--Search Bar-->
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" style="width:250px" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-light" type="submit">Search</button>
+                    </form>
+                }
+
+                else
+                {
+                    <!--If the user is not signed in-->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Movie" asp-action="Index">Movies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Account/Login">PopcornPoints+</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav me-3 mb-2 mb-lg-0 justify-content-end">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Account
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/Account/Register">Sign Up</a></li>
+                                <li><a class="dropdown-item" href="/Account/Login">Login</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!--Search Bar-->
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" style="width:250px" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-light" type="submit">Search</button>
+                    </form>
+                }
+            </div>
         </div>
     </nav>
 

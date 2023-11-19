@@ -5,11 +5,9 @@
     Layout = "_Layout";
 }
 
-<h1>Details</h1>
-
 <div>
-    <a asp-controller="Home" asp-action="Index">Mainstreet Movies</a>
-    <h4>Movie</h4>
+    <br />
+    <h1>@Html.DisplayFor(model => model.Title)</h1>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -57,7 +55,6 @@
     </dl>
 </div>
 <div>
-    <a asp-controller="Movie" asp-action="Details" asp-route-id="@Model?.MovieID" class="custom-button">View Details</a>
     <a asp-action="Index" class="custom-button">Back to List</a>
 </div>
 

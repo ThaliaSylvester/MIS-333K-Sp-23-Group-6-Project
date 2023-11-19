@@ -2,5 +2,37 @@
     Layout = "_Layout";
 }
 
+<!DOCTYPE html>
 
-<h1>Welcome to Our Mainstreet Movies!</h1>
+<div id="carousel" class="carousel carousel-dark slide ms-5" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="4000">
+            <a href="/Movie/Details/1a9ef99c-0d51-4f2c-909f-d9a3d9663027">
+                <img src="~/Img/Barbie.jpg" class="d-block" width="90%" alt="Barbie">
+            </a>
+        </div>
+        <div class="carousel-item" data-bs-interval="4000">
+            <a href="/Movie/Details/3ff5dd19-a363-43be-886f-15fca1957a84">
+                <img src="~/Img/JurassicPark.jpg" class="d-block" width="95%" alt="JurassicPark">
+            </a>
+        </div>
+        <div class="carousel-item" data-bs-interval="4000">
+            <a href="/Movie/Details/7565287f-264e-48a6-b921-7fec5ebde2f2">
+                <img src="~/Img/Titanic.jpg" class="d-block" width="95%" alt="Titanic">
+            </a>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>

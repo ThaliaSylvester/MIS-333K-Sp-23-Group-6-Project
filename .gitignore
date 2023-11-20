@@ -1,0 +1,16 @@
+
+*.dll
+*.pdb
+*.dll
+*.pdb
+*.xml
+*.json
+*.cache
+*.editorconfig
+*.props
+.DS_Store
+Group6FinalProject/.vs
+Group6FinalProject/Group6FinalProject/obj/Debug/net7.0/Group6FinalProject.csproj.FileListAbsolute.txt
+Group6FinalProject/Group6FinalProject/bin/Debug/net7.0/Group6FinalProject
+Group6FinalProject/Group6FinalProject/obj/Debug/net7.0/apphost
+Group6FinalProject/Group6FinalProject/obj/Debug/net7.0/Group6FinalProject.csproj.FileListAbsolute.txt

@@ -27,21 +27,27 @@ namespace Group6FinalProject.Controllers
             if (User.IsInRole("Manager"))
             {
                 orders = await _context.Transactions
-                    .Include(r => r.TransactionDetail)
-                        .ThenInclude(s => s.Schedule)
-                            .ThenInclude(m => m.Movie)
+                    .Include(t => t.TransactionDetail)
+                        .ThenInclude(td => td.Schedule)
+                            .ThenInclude(s => s.Movie)
                     .ToListAsync();
             }
             else
             {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
                 orders = await _context.Transactions
-                    .Where(r => r.UserID == User.Identity.Name)
+                    .Include(t => t.TransactionDetail)
+                        .ThenInclude(td => td.Schedule)
+                            .ThenInclude(s => s.Movie)
+                    .Where(t => t.UserID == userId)
                     .ToListAsync();
             }
 
             return View(orders);
         }
 
+        // GET: Orders/Details/5
         // GET: Orders/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -50,10 +56,10 @@ namespace Group6FinalProject.Controllers
                 return View("Error", new string[] { "Please specify an order to view!" });
             }
 
-            // Include related entities using lambda expressions
             Transaction transaction = await _context.Transactions
                 .Include(t => t.TransactionDetail)
                     .ThenInclude(td => td.Schedule)
+                .Include(t => t.UserID) // Include user information
                 .FirstOrDefaultAsync(t => t.TransactionID == id);
 
             if (transaction == null)
@@ -61,7 +67,6 @@ namespace Group6FinalProject.Controllers
                 return View("Error", new string[] { "This order was not found!" });
             }
 
-            // Check if the user is in the "Customer" role and if the transaction belongs to the current user
             if (User.IsInRole("Customer") && transaction.UserID != User.Identity.Name)
             {
                 return View("Error", new string[] { "This is not your order! Don't be such a snoop!" });
@@ -69,6 +74,7 @@ namespace Group6FinalProject.Controllers
 
             return View(transaction);
         }
+
 
         // POST: Transaction/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.

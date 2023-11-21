@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Group6FinalProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231119025137_Setup")]
+    [Migration("20231121061508_Setup")]
     partial class Setup
     {
         /// <inheritdoc />
@@ -161,8 +161,8 @@ namespace Group6FinalProject.Migrations
                     b.Property<DateTime>("PublishedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Runtime")
-                        .HasColumnType("int");
+                    b.Property<TimeSpan>("Runtime")
+                        .HasColumnType("time");
 
                     b.Property<string>("Tagline")
                         .IsRequired()
@@ -239,9 +239,6 @@ namespace Group6FinalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ScheduleID"));
 
-                    b.Property<DateTime>("EndTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("MovieID")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -287,6 +284,9 @@ namespace Group6FinalProject.Migrations
                     b.Property<string>("TransactionNote")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("TransactionNumber")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("TransactionSubtotal")
                         .HasColumnType("decimal(18,2)");
 
@@ -316,7 +316,7 @@ namespace Group6FinalProject.Migrations
                     b.Property<decimal>("MoviePrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("NumberofTickets")
+                    b.Property<int>("NumberOfTickets")
                         .HasColumnType("int");
 
                     b.Property<int>("PaymentMethod")

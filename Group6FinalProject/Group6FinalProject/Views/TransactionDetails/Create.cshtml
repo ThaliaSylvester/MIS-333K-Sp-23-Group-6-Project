@@ -1,22 +1,23 @@
 @model Group_6_Final_Project.Models.TransactionDetail
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
     Layout = "_Layout";
 }
 
-<h1>Create</h1>
+<h1>Edit</h1>
 
 <h4>TransactionDetail</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TransactionDetailID" />
             <div class="form-group">
-                <label asp-for="NumberofTickets" class="control-label"></label>
-                <input asp-for="NumberofTickets" class="form-control" />
-                <span asp-validation-for="NumberofTickets" class="text-danger"></span>
+                <label asp-for="NumberOfTickets" class="control-label"></label>
+                <input asp-for="NumberOfTickets" class="form-control" />
+                <span asp-validation-for="NumberOfTickets" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SeatSelection" class="control-label"></label>
@@ -35,14 +36,16 @@
             </div>
             <div class="form-group">
                 <label asp-for="TransactionID" class="control-label"></label>
-                <select asp-for="TransactionID" class ="form-control" asp-items="ViewBag.TransactionID"></select>
+                <select asp-for="TransactionID" class="form-control" asp-items="ViewBag.TransactionID"></select>
+                <span asp-validation-for="TransactionID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ScheduleID" class="control-label"></label>
-                <select asp-for="ScheduleID" class ="form-control" asp-items="ViewBag.ScheduleID"></select>
+                <select asp-for="ScheduleID" class="form-control" asp-items="ViewBag.ScheduleID"></select>
+                <span asp-validation-for="ScheduleID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>

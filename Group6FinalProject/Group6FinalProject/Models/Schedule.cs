@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
@@ -15,13 +16,18 @@ namespace Group_6_Final_Project.Models
         [Display(Name = "Start Time")]
         public DateTime StartTime { get; set; }
 
+        // Remove the EndTime property
+        // [Display(Name = "End Time")]
+        // public DateTime EndTime { get; set; }
+
+        // Add a custom property for EndTime based on StartTime and Movie's Runtime
         [Display(Name = "End Time")]
-        public DateTime EndTime { get; set; }
+        public DateTime EndTime => StartTime + Movie.Runtime;
 
         [Display(Name = "Theater")]
         public Theatre Theatre { get; set; }
 
-        //NAVIGATIONAL PROPERTY
+        // NAVIGATIONAL PROPERTY
         public int PriceID { get; set; }  // Foreign key for the Product
         public Price Price { get; set; }
 

@@ -37,9 +37,10 @@ namespace Group_6_Final_Project.Models
         [Display(Name = "Actors: ")]
         public string Actors { get; set; }
 
+        // Modify the Runtime property in the Movie class
         [Required(ErrorMessage = "Runtime is required")]
         [Display(Name = "Runtime: ")]
-        public Int32 Runtime { get; set; }
+        public TimeSpan Runtime { get; set; }
 
         //NAVIGATIONAL PROPERTIES
         public List<Review> Review { get; set; }

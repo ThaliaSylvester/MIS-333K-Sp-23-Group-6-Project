@@ -20,6 +20,9 @@ namespace Group_6_Final_Project.Models
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime TransactionDate { get; set; }
 
+        [Display(Name = "Transaction Number:")]
+        public Int32 TransactionNumber { get; set; }
+
         [Display(Name = "Transaction Notes:")]
         public string? TransactionNote { get; set; }
 
@@ -58,7 +61,7 @@ namespace Group_6_Final_Project.Models
         [DisplayFormat(DataFormatString = "{0:C}")]
         public int TotalNumberofSeats
         {
-            get { return TransactionDetail.Sum(od => od.NumberofTickets); }
+            get { return TransactionDetail.Sum(od => od.NumberOfTickets); }
             private set { /* Make the set accessor private to prevent external modification */ }
         }
 

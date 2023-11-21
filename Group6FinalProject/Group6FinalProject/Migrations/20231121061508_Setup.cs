@@ -95,6 +95,7 @@ namespace Group6FinalProject.Migrations
                     TransactionID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TransactionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TransactionNumber = table.Column<int>(type: "int", nullable: false),
                     TransactionNote = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TransactionSubtotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PopcornPoints = table.Column<int>(type: "int", nullable: false),
@@ -226,7 +227,7 @@ namespace Group6FinalProject.Migrations
                     Tagline = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PublishedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Actors = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Runtime = table.Column<int>(type: "int", nullable: false),
+                    Runtime = table.Column<TimeSpan>(type: "time", nullable: false),
                     GenreID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -270,7 +271,6 @@ namespace Group6FinalProject.Migrations
                     ScheduleID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Theatre = table.Column<int>(type: "int", nullable: false),
                     PriceID = table.Column<int>(type: "int", nullable: false),
                     MovieID = table.Column<string>(type: "nvarchar(450)", nullable: false)
@@ -298,7 +298,7 @@ namespace Group6FinalProject.Migrations
                 {
                     TransactionDetailID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NumberofTickets = table.Column<int>(type: "int", nullable: false),
+                    NumberOfTickets = table.Column<int>(type: "int", nullable: false),
                     SeatSelection = table.Column<int>(type: "int", nullable: false),
                     MoviePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PaymentMethod = table.Column<int>(type: "int", nullable: false),

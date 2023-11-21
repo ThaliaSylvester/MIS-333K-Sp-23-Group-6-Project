@@ -5,185 +5,344 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Group_6_Final_Project.DAL;
 using Group_6_Final_Project.Models;
+using Group_6_Final_Project.Utilities;
 using System.Security.Claims;
 
-namespace Group6FinalProject.Controllers
+namespace Group_6_Final_Project.Controllers
 {
+    [Authorize]
     public class TransactionController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly UserManager<AppUser> _userManager;
 
-        public TransactionController(AppDbContext context)
+        public TransactionController(AppDbContext context, UserManager<AppUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
-        // GET: Transaction
-        public async Task<IActionResult> Index()
+        // GET: Transactions
+        public IActionResult Index()
         {
-            List<Transaction> orders;
+            List<Transaction> Transactions;
 
-            if (User.IsInRole("Manager"))
+            if (User.IsInRole("Admin"))
             {
-                orders = await _context.Transactions
-                    .Include(t => t.TransactionDetail)
-                        .ThenInclude(td => td.Schedule)
-                            .ThenInclude(s => s.Movie)
-                    .ToListAsync();
+                Transactions = _context.Transactions
+                                .Include(r => r.TransactionDetail)
+                                .ToList();
             }
             else
             {
-                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                string userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the user's ID claim
 
-                orders = await _context.Transactions
-                    .Include(t => t.TransactionDetail)
-                        .ThenInclude(td => td.Schedule)
-                            .ThenInclude(s => s.Movie)
-                    .Where(t => t.UserID == userId)
-                    .ToListAsync();
+                Transactions = _context.Transactions
+                                .Include(r => r.TransactionDetail)
+                                .Where(r => r.UserID == userId)
+                                .ToList();
             }
 
-            return View(orders);
+            return View(Transactions);
         }
 
-        // GET: Orders/Details/5
-        // GET: Orders/Details/5
+        // GET: Transactions/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            string currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+
             if (id == null)
             {
-                return View("Error", new string[] { "Please specify an order to view!" });
+                return View("Error", new String[] { "Please specify a transaction to view!" });
             }
 
             Transaction transaction = await _context.Transactions
                 .Include(t => t.TransactionDetail)
-                    .ThenInclude(td => td.Schedule)
-                .Include(t => t.UserID) // Include user information
-                .FirstOrDefaultAsync(t => t.TransactionID == id);
-
-            if (transaction == null)
-            {
-                return View("Error", new string[] { "This order was not found!" });
-            }
-
-            if (User.IsInRole("Customer") && transaction.UserID != User.Identity.Name)
-            {
-                return View("Error", new string[] { "This is not your order! Don't be such a snoop!" });
-            }
-
-            return View(transaction);
-        }
-
-
-        // POST: Transaction/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TransactionID,TransactionDate,TransactionNote,TransactionSubtotal,PopcornPoints,TransactionTax,TransactionTotal,TotalNumberofSeats,PurchaseStatus,UserID")] Transaction transaction)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(transaction);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(transaction);
-        }
-
-        // GET: Transaction/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.Transactions == null)
-            {
-                return NotFound();
-            }
-
-            var transaction = await _context.Transactions.FindAsync(id);
-            if (transaction == null)
-            {
-                return NotFound();
-            }
-            return View(transaction);
-        }
-
-        // POST: Transaction/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TransactionID,TransactionDate,TransactionNote,TransactionSubtotal,PopcornPoints,TransactionTax,TransactionTotal,TotalNumberofSeats,PurchaseStatus,UserID")] Transaction transaction)
-        {
-            if (id != transaction.TransactionID)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(transaction);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TransactionExists(transaction.TransactionID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(transaction);
-        }
-
-        // GET: Transaction/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.Transactions == null)
-            {
-                return NotFound();
-            }
-
-            var transaction = await _context.Transactions
+                .ThenInclude(td => td.Schedule)
                 .FirstOrDefaultAsync(m => m.TransactionID == id);
+
             if (transaction == null)
             {
-                return NotFound();
+                return View("Error", new String[] { "This transaction was not found!" });
+            }
+
+            // Check if the user is in the 'Customer' role and the transaction's UserID matches the current user
+            if (User.IsInRole("Customer") && transaction.UserID != currentUserId)
+            {
+                return View("Error", new String[] { "This is not your transaction! Don't be such a snoop!" });
             }
 
             return View(transaction);
         }
 
-        // POST: Transaction/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> AddToCart(int? ScheduleID)
         {
-            if (_context.Transactions == null)
+            if (ScheduleID == null)
             {
-                return Problem("Entity set 'AppDbContext.Transactions'  is null.");
+                return View("Error", new string[] { "Please specify a Schedule to add to the Transaction" });
             }
-            var transaction = await _context.Transactions.FindAsync(id);
-            if (transaction != null)
+
+            string currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+
+            Schedule dbSchedule = _context.Schedules.Find(ScheduleID);
+
+            if (dbSchedule == null)
             {
-                _context.Transactions.Remove(transaction);
+                return View("Error", new string[] { "This Schedule was not in the database!" });
             }
-            
-            await _context.SaveChangesAsync();
+
+            // Assuming UserID is of type AppUser
+            AppUser user = await _userManager.FindByNameAsync(currentUserId);
+
+            Transaction tran = _context.Transactions.FirstOrDefault(r => r.UserID == currentUserId);
+
+            if (tran == null)
+            {
+                tran = new Transaction();
+
+                tran.TransactionDate = DateTime.Now;
+                tran.TransactionNumber = GenerateNextOrderNumber.GetNextOrderNumber(_context);
+                tran.UserID = currentUserId;
+
+                _context.Transactions.Add(tran);
+                await _context.SaveChangesAsync(); // Use await here to make it asynchronous
+            }
+
+            TransactionDetail od = new TransactionDetail();
+
+            od.Schedule = dbSchedule;
+            od.Transaction = tran;
+
+            _context.TransactionDetails.Add(od);
+            await _context.SaveChangesAsync(); // Use await here to make it asynchronous
+
+            return RedirectToAction("Details", new { id = tran.TransactionID });
+        }
+
+        // GET: Transactions/Edit/5
+        [Authorize(Roles = "Customer")]
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return View("Error", new String[] { "Please specify an Transaction to edit." });
+            }
+
+            Transaction Transaction = _context.Transactions
+                                       .Include(o => o.TransactionDetail)
+                                       .ThenInclude(r => r.Schedule)
+                                       .FirstOrDefault(r => r.TransactionID == id);
+
+            if (Transaction == null)
+            {
+                return View("Error", new String[] { "This Transaction was not found in the database!" });
+            }
+
+            string currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            if (User.IsInRole("Customer") && Transaction.UserID != currentUserId)
+            {
+                return View("Error", new String[] { "You are not authorized to edit this Transaction!" });
+            }
+
+            return View(Transaction);
+        }
+
+        // POST: Transactions/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Customer")]
+        public async Task<IActionResult> Edit(int id, Transaction Transaction)
+        {
+            if (id != Transaction.TransactionID)
+            {
+                return View("Error", new String[] { "There was a problem editing this Transaction. Try again!" });
+            }
+
+            if (ModelState.IsValid == false)
+            {
+                return View(Transaction);
+            }
+
+            try
+            {
+                Transaction dbTransaction = _context.Transactions.Find(Transaction.TransactionID);
+
+                dbTransaction.TransactionNote = Transaction.TransactionNote;
+
+                _context.Update(dbTransaction);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return View("Error", new String[] { "There was an error updating this Transaction!", ex.Message });
+            }
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TransactionExists(int id)
+
+        [HttpGet]
+        [Authorize]
+        [Authorize(Roles = "Customer")]
+        public async Task<IActionResult> Create()
         {
-          return (_context.Transactions?.Any(e => e.TransactionID == id)).GetValueOrDefault();
+            string currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+
+            if (User.IsInRole("Customer"))
+            {
+                if (string.IsNullOrEmpty(currentUserId))
+                {
+                    Console.WriteLine("User ID is null or empty.");
+                    return View("Error", new string[] { "User ID is null or empty." });
+                }
+
+                AppUser user = await _userManager.FindByIdAsync(currentUserId);
+
+                if (user != null)
+                {
+                    Transaction ord = new Transaction();
+                    ord.UserID = user.Id; // Assuming 'Id' is the property representing the user's ID
+                    return View(ord);
+                }
+                else
+                {
+                    // Log the details of the error for debugging purposes
+                    Console.WriteLine($"User with ID {currentUserId} not found.");
+
+                    // Log additional information
+                    Console.WriteLine($"User Manager: {_userManager}");
+                    Console.WriteLine($"User Manager Users: {_userManager.Users.Count()}");
+
+                    // Return an error view or handle the situation accordingly
+                    return View("Error", new string[] { "User not found." });
+                }
+            }
+            else
+            {
+                ViewBag.UserNames = await GetAllCustomerUserNamesSelectList();
+                return View("SelectCustomerForTransaction");
+            }
+        }
+
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Customer")]
+        public async Task<IActionResult> Create([Bind("UserID, TransactionNotes")] Transaction transaction)
+        {
+            string currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+
+            transaction.TransactionNumber = Utilities.GenerateNextOrderNumber.GetNextOrderNumber(_context);
+            transaction.TransactionDate = DateTime.Now;
+
+            if (User.IsInRole("Customer"))
+            {
+                if (string.IsNullOrEmpty(currentUserId))
+                {
+                    Console.WriteLine("User ID is null or empty.");
+                    return View("Error", new string[] { "User ID is null or empty." });
+                }
+
+                AppUser user = await _userManager.FindByIdAsync(currentUserId);
+
+                if (user != null)
+                {
+                    transaction.UserID = user.Id; // Assuming 'Id' is the property representing the user's ID
+                }
+                else
+                {
+                    Console.WriteLine($"User with ID {currentUserId} not found.");
+                    return View("Error", new string[] { "User not found." });
+                }
+            }
+            else
+            {
+                ViewBag.UserNames = await GetAllCustomerUserNamesSelectList();
+                return View("SelectCustomerForTransaction");
+            }
+
+            _context.Add(transaction);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Create", "TransactionDetails", new { TransactionID = transaction.TransactionID });
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> SelectCustomerForTransaction(String SelectedCustomer)
+        {
+            if (String.IsNullOrEmpty(SelectedCustomer))
+            {
+                ViewBag.UserNames = await GetAllCustomerUserNamesSelectList();
+                return View("SelectCustomerForTransaction");
+            }
+
+            string currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+
+            Transaction ord = new Transaction();
+            ord.UserID = currentUserId;
+            return View("Create", ord);
+        }
+
+
+        [Authorize]
+        public async Task<IActionResult> CheckoutTransaction(int? id)
+        {
+            string currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+
+            if (id == null)
+            {
+                return View("Error", new String[] { "Please specify an Transaction to view!" });
+            }
+
+            Transaction Transaction = await _context.Transactions
+                                              .Include(o => o.TransactionDetail)
+                                              .ThenInclude(o => o.Schedule)
+                                              .FirstOrDefaultAsync(m => m.TransactionID == id);
+
+            if (Transaction == null)
+            {
+                return View("Error", new String[] { "This Transaction was not found!" });
+            }
+
+            if (User.IsInRole("Customer") && Transaction.UserID != currentUserId)
+            {
+                return View("Error", new String[] { "This is not your Transaction!  Don't be such a snoop!" });
+            }
+
+            return View("Confirm", Transaction);
+        }
+
+        private async Task<IActionResult> Confirm(int? id)
+        {
+            Transaction dbOrd = await _context.Transactions.FindAsync(id);
+            _context.Update(dbOrd);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+
+        private async Task<SelectList> GetAllCustomerUserNamesSelectList()
+        {
+            List<AppUser> allCustomers = new List<AppUser>();
+
+            foreach (AppUser dbUser in _context.Users)
+            {
+                if (await _userManager.IsInRoleAsync(dbUser, "Customer") == true)//user is a customer
+                {
+                    allCustomers.Add(dbUser);
+                }
+            }
+
+            SelectList sl = new SelectList(allCustomers.OrderBy(c => c.UserName), nameof(AppUser.Id), nameof(AppUser.UserName));
+
+            return sl;
+
         }
     }
 }

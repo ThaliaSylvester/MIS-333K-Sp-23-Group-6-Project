@@ -80,5 +80,6 @@ namespace Group_6_Final_Project.Models
         }
 
         public string UserID { get; set; }  // Foreign key for the Product
+
     }
 }

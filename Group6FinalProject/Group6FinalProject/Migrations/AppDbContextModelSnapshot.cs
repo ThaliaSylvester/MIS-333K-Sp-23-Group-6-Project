@@ -155,8 +155,8 @@ namespace Group6FinalProject.Migrations
                     b.Property<int>("MPAARating")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("PublishedDate")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("PublishedDate")
+                        .HasColumnType("int");
 
                     b.Property<TimeSpan>("Runtime")
                         .HasColumnType("time");
@@ -322,7 +322,7 @@ namespace Group6FinalProject.Migrations
                     b.Property<int>("ScheduleID")
                         .HasColumnType("int");
 
-                    b.Property<int>("SeatSelection")
+                    b.Property<int?>("SeatSelection")
                         .HasColumnType("int");
 
                     b.Property<int>("TransactionID")

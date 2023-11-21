@@ -19,7 +19,7 @@ namespace Group_6_Final_Project.Models
         [Display(Name = "Number of Tickets")]
         public int NumberOfTickets { get; set; }
 
-        public SeatSelection SeatSelection { get; set; }
+        public SeatSelection? SeatSelection { get; set; }
 
         [Display(Name = "Movie Price")]
         public Decimal MoviePrice { get; set; }

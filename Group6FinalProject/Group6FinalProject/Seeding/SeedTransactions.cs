@@ -23,6 +23,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 1),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "banker@longhorn.net")?.Id ?? string.Empty,
+                TransactionNumber = 1,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -113,6 +114,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 5),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "cbaker@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 2,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -203,6 +205,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 20),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 3,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -229,6 +232,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 14),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "banker@longhorn.net")?.Id ?? string.Empty,
+                TransactionNumber = 4,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -255,6 +259,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 5),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "franco@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 5,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -273,6 +278,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 20),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "wchang@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 6,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -291,6 +297,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 14),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "limchou@gogle.com")?.Id ?? string.Empty,
+                TransactionNumber = 7,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -309,6 +316,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 20),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 8,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -327,6 +335,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 5),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "shdixon@aoll.com")?.Id ?? string.Empty,
+                TransactionNumber = 9,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -345,6 +354,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 20),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "j.b.evans@aheca.org")?.Id ?? string.Empty,
+                TransactionNumber = 10,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -363,6 +373,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 14),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "feeley@penguin.org")?.Id ?? string.Empty,
+                TransactionNumber = 11,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -381,6 +392,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 20),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 12,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -399,6 +411,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 5),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "thequeen@aska.net")?.Id ?? string.Empty,
+                TransactionNumber = 13,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -417,6 +430,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 20),
                 PurchaseStatus = PurchaseStatus.Cancelled,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "linebacker@gogle.com")?.Id ?? string.Empty,
+                TransactionNumber = 14,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -435,6 +449,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 14),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "elowe@netscare.net")?.Id ?? string.Empty,
+                TransactionNumber = 15,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -453,6 +468,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 20),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 16,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -471,6 +487,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 20),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 17,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -489,6 +506,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 20),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 18,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -507,6 +525,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 20),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 19,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -525,6 +544,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 20),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 20,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -543,6 +563,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 20),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 21,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -561,6 +582,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 24),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "banker@longhorn.net")?.Id ?? string.Empty,
+                TransactionNumber = 22,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -579,6 +601,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 24),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "cbaker@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 23,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -597,6 +620,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 24),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 24,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -615,6 +639,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 24),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "banker@longhorn.net")?.Id ?? string.Empty,
+                TransactionNumber = 25,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -633,6 +658,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 24),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "franco@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 26,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -651,6 +677,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 24),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "wchang@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 27,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -669,6 +696,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 24),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "limchou@gogle.com")?.Id ?? string.Empty,
+                TransactionNumber = 28,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -687,6 +715,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 24),
                 PurchaseStatus = PurchaseStatus.Cancelled,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "shdixon@aoll.com")?.Id ?? string.Empty,
+                TransactionNumber = 29,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -705,6 +734,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 24),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "j.b.evans@aheca.org")?.Id ?? string.Empty,
+                TransactionNumber = 30,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -723,6 +753,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 24),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "feeley@penguin.org")?.Id ?? string.Empty,
+                TransactionNumber = 31,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -741,6 +772,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 24),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "thequeen@aska.net")?.Id ?? string.Empty,
+                TransactionNumber = 32,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -759,6 +791,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 24),
                 PurchaseStatus = PurchaseStatus.Cancelled,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "linebacker@gogle.com")?.Id ?? string.Empty,
+                TransactionNumber = 33,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -777,6 +810,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 24),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "elowe@netscare.net")?.Id ?? string.Empty,
+                TransactionNumber = 34,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -795,6 +829,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 24),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "cbaker@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 35,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -813,6 +848,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 24),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "cbaker@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 36,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -831,6 +867,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 24),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "cbaker@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 37,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -849,6 +886,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 24),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "cbaker@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 38,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -867,6 +905,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 24),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "cbaker@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 39,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -901,6 +940,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 1),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 40,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -959,6 +999,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 1),
                 PurchaseStatus = PurchaseStatus.Cancelled,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "banker@longhorn.net")?.Id ?? string.Empty,
+                TransactionNumber = 41,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -985,6 +1026,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 1),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "j.b.evans@aheca.org")?.Id ?? string.Empty,
+                TransactionNumber = 42,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -1011,6 +1053,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 1),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "feeley@penguin.org")?.Id ?? string.Empty,
+                TransactionNumber = 43,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -1053,6 +1096,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 1),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 44,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -1087,6 +1131,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 1),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "thequeen@aska.net")?.Id ?? string.Empty,
+                TransactionNumber = 45,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -1104,6 +1149,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 1),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "franco@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 46,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -1130,6 +1176,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 1),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "wchang@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 47,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -1156,6 +1203,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 1),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "cbaker@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 48,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -1174,6 +1222,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 15),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "limchou@gogle.com")?.Id ?? string.Empty,
+                TransactionNumber = 49,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -1192,6 +1241,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 24),
                 PurchaseStatus = PurchaseStatus.Cancelled,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "j.b.evans@aheca.org")?.Id ?? string.Empty,
+                TransactionNumber = 50,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail
@@ -1274,6 +1324,7 @@ namespace Group_6_Final_Project.Seeding
                 TransactionDate = new DateTime(2023, 11, 26),
                 PurchaseStatus = PurchaseStatus.Purchased,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 51,
                 TransactionDetail = new List<TransactionDetail>
                 {
                     new TransactionDetail

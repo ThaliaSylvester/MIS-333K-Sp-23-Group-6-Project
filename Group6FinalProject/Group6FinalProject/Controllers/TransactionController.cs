@@ -79,6 +79,18 @@ namespace Group_6_Final_Project.Controllers
             return View(transaction);
         }
 
+        //public IActionResult Details(int id)
+        //{
+        //    var transaction = _context.Transactions.Find(id);
+
+        //    if (transaction == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(transaction);
+        //}
+
         public async Task<IActionResult> AddToCart(int? ScheduleID)
         {
             if (ScheduleID == null)
@@ -183,11 +195,10 @@ namespace Group_6_Final_Project.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
         [HttpGet]
         [Authorize]
         [Authorize(Roles = "Customer")]
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(int? scheduleID)
         {
             string currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
 
@@ -209,24 +220,17 @@ namespace Group_6_Final_Project.Controllers
                 }
                 else
                 {
-                    // Log the details of the error for debugging purposes
-                    Console.WriteLine($"User with ID {currentUserId} not found.");
-
-                    // Log additional information
-                    Console.WriteLine($"User Manager: {_userManager}");
-                    Console.WriteLine($"User Manager Users: {_userManager.Users.Count()}");
-
                     // Return an error view or handle the situation accordingly
                     return View("Error", new string[] { "User not found." });
                 }
             }
             else
             {
+                ViewBag.ScheduleID = scheduleID;
                 ViewBag.UserNames = await GetAllCustomerUserNamesSelectList();
                 return View("SelectCustomerForTransaction");
             }
         }
-
 
         [HttpPost]
         [Authorize]
@@ -238,12 +242,12 @@ namespace Group_6_Final_Project.Controllers
 
             transaction.TransactionNumber = Utilities.GenerateNextOrderNumber.GetNextOrderNumber(_context);
             transaction.TransactionDate = DateTime.Now;
+            transaction.TransactionNote = transaction.TransactionNote;
 
             if (User.IsInRole("Customer"))
             {
                 if (string.IsNullOrEmpty(currentUserId))
                 {
-                    Console.WriteLine("User ID is null or empty.");
                     return View("Error", new string[] { "User ID is null or empty." });
                 }
 
@@ -252,10 +256,10 @@ namespace Group_6_Final_Project.Controllers
                 if (user != null)
                 {
                     transaction.UserID = user.Id; // Assuming 'Id' is the property representing the user's ID
+                    string TransactionNote = transaction.TransactionNote;
                 }
                 else
                 {
-                    Console.WriteLine($"User with ID {currentUserId} not found.");
                     return View("Error", new string[] { "User not found." });
                 }
             }

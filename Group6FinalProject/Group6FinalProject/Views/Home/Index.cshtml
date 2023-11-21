@@ -4,35 +4,133 @@
 
 <!DOCTYPE html>
 
-<div id="carousel" class="carousel carousel-dark slide ms-5" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+@section Styles {
+    <!-- Add custom styles here if needed -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+    <style>
+        /* Add custom styles here */
+        .carousel-item img {
+            height: 400px;
+            object-fit: cover;
+        }
+    </style>
+}
+
+@section Scripts {
+    <!-- Add custom scripts here if needed -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Welcome to Mainstreet Movies</h2>
+
+    <!-- Featured Movies Carousel -->
+    <div id="carousel" class="carousel slide mb-4" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="4000">
+                <a href="/Movie/Details/1a9ef99c-0d51-4f2c-909f-d9a3d9663027">
+                    <img src="~/Img/Barbie.jpg" class="d-block w-100" alt="Barbie">
+                </a>
+            </div>
+            <div class="carousel-item" data-bs-interval="4000">
+                <a href="/Movie/Details/3ff5dd19-a363-43be-886f-15fca1957a84">
+                    <img src="~/Img/JurassicPark.jpg" class="d-block w-100" alt="JurassicPark">
+                </a>
+            </div>
+            <div class="carousel-item" data-bs-interval="4000">
+                <a href="/Movie/Details/7565287f-264e-48a6-b921-7fec5ebde2f2">
+                    <img src="~/Img/Titanic.jpg" class="d-block w-100" alt="Titanic">
+                </a>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
-    <div class="carousel-inner">
-        <div class="carousel-item active" data-bs-interval="4000">
-            <a href="/Movie/Details/1a9ef99c-0d51-4f2c-909f-d9a3d9663027">
-                <img src="~/Img/Barbie.jpg" class="d-block" width="90%" alt="Barbie">
-            </a>
+
+    <!-- Categories Section -->
+    <h3 class="mb-3">Explore by Category</h3>
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <!-- Category Card 1 -->
+            <div class="card">
+                <img src="placeholder-category-1.jpg" class="card-img-top" alt="Category 1">
+                <div class="card-body">
+                    <h5 class="card-title">Category 1</h5>
+                    <p class="card-text">Description of Category 1.</p>
+                    <a href="#" class="btn btn-primary">Explore</a>
+                </div>
+            </div>
         </div>
-        <div class="carousel-item" data-bs-interval="4000">
-            <a href="/Movie/Details/3ff5dd19-a363-43be-886f-15fca1957a84">
-                <img src="~/Img/JurassicPark.jpg" class="d-block" width="95%" alt="JurassicPark">
-            </a>
+        <div class="col-md-4 mb-3">
+            <!-- Category Card 2 -->
+            <div class="card">
+                <img src="placeholder-category-2.jpg" class="card-img-top" alt="Category 2">
+                <div class="card-body">
+                    <h5 class="card-title">Category 2</h5>
+                    <p class="card-text">Description of Category 2.</p>
+                    <a href="#" class="btn btn-primary">Explore</a>
+                </div>
+            </div>
         </div>
-        <div class="carousel-item" data-bs-interval="4000">
-            <a href="/Movie/Details/7565287f-264e-48a6-b921-7fec5ebde2f2">
-                <img src="~/Img/Titanic.jpg" class="d-block" width="95%" alt="Titanic">
-            </a>
+        <div class="col-md-4 mb-3">
+            <!-- Category Card 3 -->
+            <div class="card">
+                <img src="placeholder-category-3.jpg" class="card-img-top" alt="Category 3">
+                <div class="card-body">
+                    <h5 class="card-title">Category 3</h5>
+                    <p class="card-text">Description of Category 3.</p>
+                    <a href="#" class="btn btn-primary">Explore</a>
+                </div>
+            </div>
         </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
+
+    <!-- Popular Content Section -->
+    <h3 class="mb-3">Popular Movies</h3>
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <!-- Popular Movie Card 1 -->
+            <div class="card">
+                <img src="placeholder-popular-1.jpg" class="card-img-top" alt="Popular Movie 1">
+                <div class="card-body">
+                    <h5 class="card-title">Popular Movie 1</h5>
+                    <p class="card-text">Description of Popular Movie 1.</p>
+                    <a href="#" class="btn btn-primary">Watch Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <!-- Popular Movie Card 2 -->
+            <div class="card">
+                <img src="placeholder-popular-2.jpg" class="card-img-top" alt="Popular Movie 2">
+                <div class="card-body">
+                    <h5 class="card-title">Popular Movie 2</h5>
+                    <p class="card-text">Description of Popular Movie 2.</p>
+                    <a href="#" class="btn btn-primary">Watch Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <!-- Popular Movie Card 3 -->
+            <div class="card">
+                <img src="placeholder-popular-3.jpg" class="card-img-top" alt="Popular Movie 3">
+                <div class="card-body">
+                    <h5 class="card-title">Popular Movie 3</h5>
+                    <p class="card-text">Description of Popular Movie 3.</p>
+                    <a href="#" class="btn btn-primary">Watch Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -19,7 +19,7 @@ namespace Group_6_Final_Project.Models
         // Remove the EndTime property
         // [Display(Name = "End Time")]
         // public DateTime EndTime { get; set; }
-
+ 
         // Add a custom property for EndTime based on StartTime and Movie's Runtime
         [Display(Name = "End Time")]
         public DateTime EndTime => StartTime + Movie.Runtime;

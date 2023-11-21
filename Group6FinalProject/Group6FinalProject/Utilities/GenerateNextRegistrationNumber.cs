@@ -11,7 +11,7 @@ namespace Group_6_Final_Project.Utilities
         {
             //set a constant to designate where the order numbers 
             //should start
-            const Int32 START_NUMBER = 70001;
+            const Int32 START_NUMBER = 1;
 
             Int32 intMaxOrderNumber; //the current maximum order number
             Int32 intNextOrderNumber; //the course number for the next order

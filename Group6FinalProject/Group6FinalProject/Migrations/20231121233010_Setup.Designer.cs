@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Group6FinalProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231121061508_Setup")]
+    [Migration("20231121233010_Setup")]
     partial class Setup
     {
         /// <inheritdoc />
@@ -158,8 +158,8 @@ namespace Group6FinalProject.Migrations
                     b.Property<int>("MPAARating")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("PublishedDate")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("PublishedDate")
+                        .HasColumnType("int");
 
                     b.Property<TimeSpan>("Runtime")
                         .HasColumnType("time");
@@ -325,7 +325,7 @@ namespace Group6FinalProject.Migrations
                     b.Property<int>("ScheduleID")
                         .HasColumnType("int");
 
-                    b.Property<int>("SeatSelection")
+                    b.Property<int?>("SeatSelection")
                         .HasColumnType("int");
 
                     b.Property<int>("TransactionID")

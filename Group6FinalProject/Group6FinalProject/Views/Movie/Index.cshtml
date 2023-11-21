@@ -5,69 +5,97 @@
 }
 
 <h1>Movies</h1>
+<form asp-action="Index" asp-controller="Home" method="get">
+    <form method="get" action="mo">
+        <div class="form-group">
+            <label for="SearchString">Search:</label>
+            <input type="text" name="SearchString" id="SearchString" class="form-control" value="@ViewBag.SearchString" />
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
 
+    <a asp-action="DetailedSearch" class="btn btn-success">Detailed Search</a>
+    <a asp-action="Index" class="btn btn-danger">Show All</a>
+    </p>
+</form>
+<p>
+    <div>
+        <p>Displaying @ViewBag.CurrentlyShowingMovies out of @ViewBag.TotalMovieCount Movie</p>
+    </div>
 
-<div>
-    <p>Displaying @ViewBag.CurrentlyShowingMovies out of @ViewBag.TotalMovieCount Movie</p>
-</div>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Genre.Genres)
-            </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.Schedule1.DateTime)
-                </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.MPAARating)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PublishedDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Runtime)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Genre.Genres)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Schedule1.DateTime)
-                    </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.MPAARating)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PublishedDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Runtime)
-                </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.MovieID">Details</a>
-                    @if (User.IsInRole("Manager"))
-                    {
-                        <p>
-                            <a asp-action="Edit" asp-route-id="@item.MovieID">Edit</a> |
-                            <a asp-action="Delete" asp-route-id="@item.MovieID">Delete</a>
-                        </p>
-                    }
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Genre.Genres)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MPAARating)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PublishedDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Runtime)
+                </th>
+                <th>
+                    Avg. Customer Rating
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Genre.Genres)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MPAARating)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PublishedDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Runtime)
+                    </td>
+                    <td>
+                        @{
+                            double rating;
+                            if (ViewBag.AverageRatings != null && ViewBag.AverageRatings.ContainsKey(item.MovieID))
+                            {
+                                rating = ViewBag.AverageRatings[item.MovieID];
+                            }
+                            else
+                            {
+                                rating = 0.0;
+                            }
+
+                            // Display "N/A" when rating is 0.0, otherwise round to two decimal places
+                            string formattedRating = rating == 0.0 ? "N/A" : rating.ToString("0.00");
+                        }
+
+                        <text>@formattedRating</text>
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.MovieID">Details</a>
+                        @if (User.IsInRole("Manager"))
+                        {
+                            <p>
+                                <a asp-action="Edit" asp-route-id="@item.MovieID">Edit</a> |
+                                <a asp-action="Delete" asp-route-id="@item.MovieID">Delete</a>
+                            </p>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</p>

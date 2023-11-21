@@ -158,8 +158,8 @@ namespace Group6FinalProject.Migrations
                     b.Property<DateTime>("PublishedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Runtime")
-                        .HasColumnType("int");
+                    b.Property<double>("Runtime")
+                        .HasColumnType("float");
 
                     b.Property<string>("Tagline")
                         .IsRequired()

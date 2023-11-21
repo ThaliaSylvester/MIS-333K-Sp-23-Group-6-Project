@@ -76,6 +76,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUm9sZUFkbWluL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/jenny/Desktop/Fall 2023/MIS 333K/Group-6/Group6FinalProject/Group6FinalProject/Views/Schedule/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2NoZWR1bGUvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jenny/Desktop/Fall 2023/MIS 333K/Group-6/Group6FinalProject/Group6FinalProject/Views/Schedule/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2NoZWR1bGUvRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jenny/Desktop/Fall 2023/MIS 333K/Group-6/Group6FinalProject/Group6FinalProject/Views/Schedule/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2NoZWR1bGUvRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jenny/Desktop/Fall 2023/MIS 333K/Group-6/Group6FinalProject/Group6FinalProject/Views/Schedule/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2NoZWR1bGUvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jenny/Desktop/Fall 2023/MIS 333K/Group-6/Group6FinalProject/Group6FinalProject/Views/Schedule/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2NoZWR1bGUvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/jenny/Desktop/Fall 2023/MIS 333K/Group-6/Group6FinalProject/Group6FinalProject/Views/Seed/Confirm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VlZC9Db25maXJtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -90,6 +110,50 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/jenny/Desktop/Fall 2023/MIS 333K/Group-6/Group6FinalProject/Group6FinalProject/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jenny/Desktop/Fall 2023/MIS 333K/Group-6/Group6FinalProject/Group6FinalProject/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jenny/Desktop/Fall 2023/MIS 333K/Group-6/Group6FinalProject/Group6FinalProject/Views/Transaction/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJhbnNhY3Rpb24vQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jenny/Desktop/Fall 2023/MIS 333K/Group-6/Group6FinalProject/Group6FinalProject/Views/Transaction/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJhbnNhY3Rpb24vRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jenny/Desktop/Fall 2023/MIS 333K/Group-6/Group6FinalProject/Group6FinalProject/Views/Transaction/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJhbnNhY3Rpb24vRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jenny/Desktop/Fall 2023/MIS 333K/Group-6/Group6FinalProject/Group6FinalProject/Views/Transaction/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJhbnNhY3Rpb24vRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jenny/Desktop/Fall 2023/MIS 333K/Group-6/Group6FinalProject/Group6FinalProject/Views/Transaction/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJhbnNhY3Rpb24vSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jenny/Desktop/Fall 2023/MIS 333K/Group-6/Group6FinalProject/Group6FinalProject/Views/TransactionDetails/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJhbnNhY3Rpb25EZXRhaWxzL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jenny/Desktop/Fall 2023/MIS 333K/Group-6/Group6FinalProject/Group6FinalProject/Views/TransactionDetails/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJhbnNhY3Rpb25EZXRhaWxzL0RlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jenny/Desktop/Fall 2023/MIS 333K/Group-6/Group6FinalProject/Group6FinalProject/Views/TransactionDetails/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJhbnNhY3Rpb25EZXRhaWxzL0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jenny/Desktop/Fall 2023/MIS 333K/Group-6/Group6FinalProject/Group6FinalProject/Views/TransactionDetails/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJhbnNhY3Rpb25EZXRhaWxzL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jenny/Desktop/Fall 2023/MIS 333K/Group-6/Group6FinalProject/Group6FinalProject/Views/TransactionDetails/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJhbnNhY3Rpb25EZXRhaWxzL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/jenny/Desktop/Fall 2023/MIS 333K/Group-6/Group6FinalProject/Group6FinalProject/Views/_ViewImports.cshtml]

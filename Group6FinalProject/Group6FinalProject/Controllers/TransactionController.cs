@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Group_6_Final_Project.DAL;
 using Group_6_Final_Project.Models;
+using System.Security.Claims;
 
 namespace Group6FinalProject.Controllers
 {

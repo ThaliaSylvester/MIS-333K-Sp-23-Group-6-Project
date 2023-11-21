@@ -27,7 +27,7 @@ namespace Group_6_Final_Project.Seeding
                 PublishedDate = new DateTime(1993, 1, 1),
                 MPAARating = MPAARating.PG13,
                 Actors = "Sam Neill, Laura Dern, Jeff Goldblum",
-                Runtime = 90
+                Runtime = TimeSpan.FromMinutes(90)
             });
 
             Movies.Add(new Movie
@@ -39,7 +39,7 @@ namespace Group_6_Final_Project.Seeding
                 PublishedDate = new DateTime(2023, 1, 1),
                 MPAARating = MPAARating.G,
                 Actors = "Tom Hanks, Tim Allen",
-                Runtime = 90
+                Runtime = TimeSpan.FromMinutes(90)
             });
 
             Movies.Add(new Movie
@@ -51,7 +51,7 @@ namespace Group_6_Final_Project.Seeding
                 PublishedDate = new DateTime(2023, 1, 1),
                 MPAARating = MPAARating.R,
                 Actors = "The Rock, Vin Diesel",
-                Runtime = 120
+                Runtime = TimeSpan.FromMinutes(120)
             });
 
             Movies.Add(new Movie
@@ -63,7 +63,7 @@ namespace Group_6_Final_Project.Seeding
                 PublishedDate = new DateTime(1999, 1, 1),
                 MPAARating = MPAARating.PG13,
                 Actors = "Leonardo DiCaprio, Kate Winslet",
-                Runtime = 150
+                Runtime = TimeSpan.FromMinutes(150)
             });
 
             Movies.Add(new Movie
@@ -75,7 +75,7 @@ namespace Group_6_Final_Project.Seeding
                 PublishedDate = new DateTime(2013, 1, 1),
                 MPAARating = MPAARating.PG,
                 Actors = "Ben Stiller",
-                Runtime = 120
+                Runtime = TimeSpan.FromMinutes(120)
             });
 
             Movies.Add(new Movie
@@ -87,7 +87,7 @@ namespace Group_6_Final_Project.Seeding
                 PublishedDate = new DateTime(1985, 1, 1),
                 MPAARating = MPAARating.PG,
                 Actors = "Sean Astin, Josh Brolin, Corey Feldman",
-                Runtime = 90
+                Runtime = TimeSpan.FromMinutes(90)
             });
 
             Movies.Add(new Movie
@@ -99,7 +99,7 @@ namespace Group_6_Final_Project.Seeding
                 PublishedDate = new DateTime(1993, 1, 1),
                 MPAARating = MPAARating.PG,
                 Actors = "Mike Vitar, Patrick Renna, James Earl Jones",
-                Runtime = 90
+                Runtime = TimeSpan.FromMinutes(90)
             });
 
             Movies.Add(new Movie
@@ -111,7 +111,7 @@ namespace Group_6_Final_Project.Seeding
                 PublishedDate = new DateTime(1975, 1, 1),
                 MPAARating = MPAARating.R,
                 Actors = "Tim Curry, Susan Sarandon",
-                Runtime = 90
+                Runtime = TimeSpan.FromMinutes(90)
             });
 
             Movies.Add(new Movie
@@ -123,7 +123,7 @@ namespace Group_6_Final_Project.Seeding
                 PublishedDate = new DateTime(2023, 1, 1),
                 MPAARating = MPAARating.R,
                 Actors = "Leonardo DiCaprio, Kate Winslet",
-                Runtime = 150
+                Runtime = TimeSpan.FromMinutes(150)
             });
 
             Movies.Add(new Movie
@@ -135,7 +135,7 @@ namespace Group_6_Final_Project.Seeding
                 PublishedDate = new DateTime(2012, 1, 1),
                 MPAARating = MPAARating.PG13,
                 Actors = "Martin Freeman, Ian McKellan, Richard Armitage",
-                Runtime = 150
+                Runtime = TimeSpan.FromMinutes(150)
             });
 
             Movies.Add(new Movie
@@ -147,7 +147,7 @@ namespace Group_6_Final_Project.Seeding
                 PublishedDate = new DateTime(2014, 1, 1),
                 MPAARating = MPAARating.PG13,
                 Actors = "Martin Freeman, Ian McKellan, Richard Armitage",
-                Runtime = 150
+                Runtime = TimeSpan.FromMinutes(150)
             });
 
             Movies.Add(new Movie
@@ -159,7 +159,7 @@ namespace Group_6_Final_Project.Seeding
                 PublishedDate = new DateTime(2013, 1, 1),
                 MPAARating = MPAARating.PG13,
                 Actors = "Martin Freeman, Ian McKellan, Richard Armitage",
-                Runtime = 150
+                Runtime = TimeSpan.FromMinutes(150)
             });
 
             Movies.Add(new Movie
@@ -171,7 +171,7 @@ namespace Group_6_Final_Project.Seeding
                 PublishedDate = new DateTime(2001, 1, 1),
                 MPAARating = MPAARating.PG13,
                 Actors = "Elijah Wood, Sam Astin, Orlando Bloom, Viggo Mortenson, Billy Boyd, Dominic Monaghan, Sean Bean",
-                Runtime = 150
+                Runtime = TimeSpan.FromMinutes(150)
             });
 
             Movies.Add(new Movie
@@ -183,7 +183,7 @@ namespace Group_6_Final_Project.Seeding
                 PublishedDate = new DateTime(2002, 1, 1),
                 MPAARating = MPAARating.PG13,
                 Actors = "Elijah Wood, Sam Astin, Orlando Bloom, Viggo Mortenson, Billy Boyd, Dominic Monaghan, Sean Bean",
-                Runtime = 150
+                Runtime = TimeSpan.FromMinutes(150)
             });
 
             Movies.Add(new Movie
@@ -195,7 +195,7 @@ namespace Group_6_Final_Project.Seeding
                 PublishedDate = new DateTime(2003, 1, 1),
                 MPAARating = MPAARating.PG13,
                 Actors = "Elijah Wood, Sam Astin, Orlando Bloom, Viggo Mortenson, Billy Boyd, Dominic Monaghan, Sean Bean",
-                Runtime = 180
+                Runtime = TimeSpan.FromMinutes(180)
             });
 
             Movies.Add(new Movie
@@ -207,7 +207,7 @@ namespace Group_6_Final_Project.Seeding
                 PublishedDate = new DateTime(2023, 1, 1),
                 MPAARating = MPAARating.PG13,
                 Actors = "Ryan Gosling, Margot Robbie",
-                Runtime = 120
+                Runtime = TimeSpan.FromMinutes(120)
             });
 
             Movies.Add(new Movie
@@ -219,7 +219,7 @@ namespace Group_6_Final_Project.Seeding
                 PublishedDate = new DateTime(2018, 1, 1),
                 MPAARating = MPAARating.PG,
                 Actors = "Shameik Moore, Jake Johnson, Hailee Steinfeld, Stan Lee, Oscar Isaac, Nicolas Cage, Mahershala Ali",
-                Runtime = 120
+                Runtime = TimeSpan.FromMinutes(120)
             });
 
             Movies.Add(new Movie
@@ -231,7 +231,7 @@ namespace Group_6_Final_Project.Seeding
                 PublishedDate = new DateTime(2023, 1, 1),
                 MPAARating = MPAARating.PG,
                 Actors = "Shameik Moore, Hailee Steinfeld, Oscar Isaac, Karan Soni, Andy Samberg, Daniel Kaluuya",
-                Runtime = 150
+                Runtime = TimeSpan.FromMinutes(150)
             });
 
 

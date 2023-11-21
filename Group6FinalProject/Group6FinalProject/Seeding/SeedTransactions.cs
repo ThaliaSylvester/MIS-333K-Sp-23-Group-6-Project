@@ -27,7 +27,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.A1,
                         MoviePrice = 5.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -35,7 +35,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.A2,
                         MoviePrice = 5.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -43,7 +43,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.A3,
                         MoviePrice = 5.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -51,7 +51,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.A4,
                         MoviePrice = 5.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -59,7 +59,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.A5,
                         MoviePrice = 5.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -67,7 +67,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B1,
                         MoviePrice = 5.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -75,7 +75,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B2,
                         MoviePrice = 5.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -83,7 +83,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B3,
                         MoviePrice = 5.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -91,7 +91,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B4,
                         MoviePrice = 5.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -99,7 +99,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B5,
                         MoviePrice = 5.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -117,7 +117,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.A1,
                         MoviePrice = 10.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -125,7 +125,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.A2,
                         MoviePrice = 10.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -133,7 +133,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.A3,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -141,7 +141,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.A4,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -149,7 +149,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.A5,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -157,7 +157,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B1,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -165,7 +165,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B2,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -173,7 +173,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B3,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -181,7 +181,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B4,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -189,7 +189,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B5,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -207,7 +207,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.C2,
                         MoviePrice = 5.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -215,7 +215,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.C3,
                         MoviePrice = 5.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -233,7 +233,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.C4,
                         MoviePrice = 5.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -241,7 +241,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.C5,
                         MoviePrice = 5.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -259,7 +259,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.A1,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -277,7 +277,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.A2,
                         MoviePrice = 10.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -295,7 +295,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.A3,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -313,7 +313,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.A4,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -331,7 +331,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.A5,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -349,7 +349,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B1,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -367,7 +367,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B2,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -385,7 +385,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B3,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -403,7 +403,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B4,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -421,7 +421,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B5,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -439,7 +439,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E1,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -457,7 +457,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E2,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -475,7 +475,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E3,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -493,7 +493,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E4,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -511,7 +511,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E5,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -529,7 +529,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.C4,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -547,7 +547,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.C5,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -565,7 +565,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.D1,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -583,7 +583,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.A2,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -601,7 +601,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.A3,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -619,7 +619,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.A4,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -637,7 +637,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.A5,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -655,7 +655,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B1,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -673,7 +673,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B2,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -691,7 +691,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B3,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -709,7 +709,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B4,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -727,7 +727,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B5,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -745,7 +745,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E1,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -763,7 +763,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E2,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -781,7 +781,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E3,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -799,7 +799,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E4,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -817,7 +817,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E5,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -835,7 +835,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.C4,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -853,7 +853,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.C5,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -871,7 +871,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.D1,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -879,7 +879,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.A2,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -887,7 +887,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.A3,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -905,7 +905,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.A4,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -913,7 +913,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                      new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.A5,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -921,7 +921,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                       new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B1,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -929,7 +929,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B2,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -937,7 +937,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B3,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -945,7 +945,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B4,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -963,7 +963,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B5,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -971,7 +971,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E1,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -989,7 +989,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E2,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -997,7 +997,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E3,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -1015,7 +1015,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E4,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -1023,7 +1023,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E5,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -1031,7 +1031,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.C4,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -1039,7 +1039,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.C5,
                         MoviePrice = 15.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -1057,7 +1057,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B2,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -1065,7 +1065,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B3,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -1073,7 +1073,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B4,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -1091,7 +1091,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B5,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -1108,7 +1108,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E1,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -1116,7 +1116,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E2,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -1134,7 +1134,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E3,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -1142,7 +1142,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E4,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -1160,7 +1160,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E5,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -1178,7 +1178,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E5,
                         MoviePrice = 12.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -1196,7 +1196,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.A4,
                         MoviePrice = 5.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -1204,7 +1204,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E1,
                         MoviePrice = 5.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -1212,7 +1212,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E2,
                         MoviePrice = 5.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -1220,7 +1220,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E3,
                         MoviePrice = 5.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -1228,7 +1228,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E4,
                         MoviePrice = 5.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -1236,7 +1236,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.E5,
                         MoviePrice = 5.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -1244,7 +1244,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B3,
                         MoviePrice = 5.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -1252,7 +1252,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B4,
                         MoviePrice = 5.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -1260,7 +1260,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.B5,
                         MoviePrice = 5.00m,
                         PaymentMethod = PaymentMethod.CashCard,
@@ -1278,7 +1278,7 @@ namespace Group_6_Final_Project.Seeding
                 {
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.C3,
                         MoviePrice = 0.00m,
                         PaymentMethod = PaymentMethod.Points,
@@ -1286,7 +1286,7 @@ namespace Group_6_Final_Project.Seeding
                     },
                     new TransactionDetail
                     {
-                        NumberofTickets = 1,
+                        NumberOfTickets = 1,
                         SeatSelection = SeatSelection.C4,
                         MoviePrice = 0.00m,
                         PaymentMethod = PaymentMethod.Points,

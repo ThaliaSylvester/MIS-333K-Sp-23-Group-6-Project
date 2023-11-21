@@ -404,7 +404,7 @@ namespace Group_6_Final_Project.Seeding
                     Zip = "78705"
 
                 },
-                Password = " ",
+                Password = "bookworm",
                 RoleName = "Customer"
             });
 

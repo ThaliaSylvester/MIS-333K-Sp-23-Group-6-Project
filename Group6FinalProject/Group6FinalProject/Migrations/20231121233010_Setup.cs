@@ -225,7 +225,7 @@ namespace Group6FinalProject.Migrations
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Tagline = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PublishedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PublishedDate = table.Column<int>(type: "int", nullable: false),
                     Actors = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Runtime = table.Column<TimeSpan>(type: "time", nullable: false),
                     GenreID = table.Column<int>(type: "int", nullable: false)
@@ -299,7 +299,7 @@ namespace Group6FinalProject.Migrations
                     TransactionDetailID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NumberOfTickets = table.Column<int>(type: "int", nullable: false),
-                    SeatSelection = table.Column<int>(type: "int", nullable: false),
+                    SeatSelection = table.Column<int>(type: "int", nullable: true),
                     MoviePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PaymentMethod = table.Column<int>(type: "int", nullable: false),
                     TransactionID = table.Column<int>(type: "int", nullable: false),

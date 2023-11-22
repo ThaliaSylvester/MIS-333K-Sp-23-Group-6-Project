@@ -24,7 +24,7 @@ namespace Group_6_Final_Project.Seeding
                 Description = "A pragmatic paleontologist touring an almost complete theme park on an island in Central America is tasked with protecting a couple of kids after a power failure causes the park's cloned dinosaurs to run loose.",
                 Genre = new Genre { Genres = Genres.Drama },
                 Tagline = "Welcome to Jurassic Park",
-                PublishedDate = new DateTime(1993, 1, 1),
+                PublishedDate = 1993,
                 MPAARating = MPAARating.PG13,
                 Actors = "Sam Neill, Laura Dern, Jeff Goldblum",
                 Runtime = TimeSpan.FromMinutes(90)
@@ -36,7 +36,7 @@ namespace Group_6_Final_Project.Seeding
                 Description = "Woody and Buzz team up once again to lead the resistance in the Toy Revolt.",
                 Genre = new Genre { Genres = Genres.Action },
                 Tagline = "Play, pretend, and protect",
-                PublishedDate = new DateTime(2023, 1, 1),
+                PublishedDate = 2023,
                 MPAARating = MPAARating.G,
                 Actors = "Tom Hanks, Tim Allen",
                 Runtime = TimeSpan.FromMinutes(90)
@@ -48,7 +48,7 @@ namespace Group_6_Final_Project.Seeding
                 Description = "They may be riding mechanical scooters, but they are as furious as ever as they attend court-ordered therapy.",
                 Genre = new Genre { Genres = Genres.Action },
                 Tagline = "I drink your milkshake",
-                PublishedDate = new DateTime(2023, 1, 1),
+                PublishedDate = 2023,
                 MPAARating = MPAARating.R,
                 Actors = "The Rock, Vin Diesel",
                 Runtime = TimeSpan.FromMinutes(120)
@@ -60,7 +60,7 @@ namespace Group_6_Final_Project.Seeding
                 Description = "An epic, action-packed romance set against the ill-fated maiden voyage of the R.M.S. Titanic.",
                 Genre = new Genre { Genres = Genres.Romance },
                 Tagline = "Nothing On Earth Could Come Between Them. Collide With Destiny.",
-                PublishedDate = new DateTime(1999, 1, 1),
+                PublishedDate =  1999,  
                 MPAARating = MPAARating.PG13,
                 Actors = "Leonardo DiCaprio, Kate Winslet",
                 Runtime = TimeSpan.FromMinutes(150)
@@ -72,7 +72,7 @@ namespace Group_6_Final_Project.Seeding
                 Description = "When both he and a colleague are about to lose their job, Walter takes action by embarking on an adventure more extraordinary than anything he ever imagined.",
                 Genre = new Genre { Genres = Genres.Comedy },
                 Tagline = "Stop dreaming. Start Living.",
-                PublishedDate = new DateTime(2013, 1, 1),
+                PublishedDate =  2013,  
                 MPAARating = MPAARating.PG,
                 Actors = "Ben Stiller",
                 Runtime = TimeSpan.FromMinutes(120)
@@ -84,7 +84,7 @@ namespace Group_6_Final_Project.Seeding
                 Description = "A group of young misfits called The Goonies discover an ancient map and set out on an adventure to find a legendary pirate's long-lost treasure.",
                 Genre = new Genre { Genres = Genres.ChildrenFamily },
                 Tagline = "The treacherous traps. The hidden treasure. And Sloth... Join the adventure.",
-                PublishedDate = new DateTime(1985, 1, 1),
+                PublishedDate =  1985,  
                 MPAARating = MPAARating.PG,
                 Actors = "Sean Astin, Josh Brolin, Corey Feldman",
                 Runtime = TimeSpan.FromMinutes(90)
@@ -96,7 +96,7 @@ namespace Group_6_Final_Project.Seeding
                 Description = "When Scottie Smalls moves to a new neighborhood, he manages to make friends with a group of kids who play baseball at the sandlot.",
                 Genre = new Genre { Genres = Genres.ChildrenFamily },
                 Tagline = "The adventure of a lifetime, the summer of their dreams...the dog of their nightmares.",
-                PublishedDate = new DateTime(1993, 1, 1),
+                PublishedDate =  1993,  
                 MPAARating = MPAARating.PG,
                 Actors = "Mike Vitar, Patrick Renna, James Earl Jones",
                 Runtime = TimeSpan.FromMinutes(90)
@@ -108,7 +108,7 @@ namespace Group_6_Final_Project.Seeding
                 Description = "A newly-engaged couple have a breakdown in an isolated area and must seek shelter at the bizarre residence of Dr. Frank-n-Furter",
                 Genre = new Genre { Genres = Genres.Musical },
                 Tagline = "Don't Dream it, Be It!",
-                PublishedDate = new DateTime(1975, 1, 1),
+                PublishedDate =  1975,  
                 MPAARating = MPAARating.R,
                 Actors = "Tim Curry, Susan Sarandon",
                 Runtime = TimeSpan.FromMinutes(90)
@@ -120,7 +120,7 @@ namespace Group_6_Final_Project.Seeding
                 Description = "Emerging from the deep with revenge on his mind, Jack Dawson will stop at nothing to find Rose.",
                 Genre = new Genre { Genres = Genres.Horror },
                 Tagline = "She let me go, now I'll never let her forget it.",
-                PublishedDate = new DateTime(2023, 1, 1),
+                PublishedDate =  2023,  
                 MPAARating = MPAARating.R,
                 Actors = "Leonardo DiCaprio, Kate Winslet",
                 Runtime = TimeSpan.FromMinutes(150)
@@ -132,7 +132,7 @@ namespace Group_6_Final_Project.Seeding
                 Description = "An Unexpected Journey tells the tale of Bilbo Baggins, who is convinced by the wizard Gandalf to accompany thirteen Dwarves, led by Thorin Oakenshield, on a quest to reclaim the Lonely Mountain from the dragon Smaug.",
                 Genre = new Genre { Genres = Genres.SciFi },
                 Tagline = "From the smallest beginnings come the greatest legends. One journey started it all.",
-                PublishedDate = new DateTime(2012, 1, 1),
+                PublishedDate =  2012,  
                 MPAARating = MPAARating.PG13,
                 Actors = "Martin Freeman, Ian McKellan, Richard Armitage",
                 Runtime = TimeSpan.FromMinutes(150)
@@ -144,7 +144,7 @@ namespace Group_6_Final_Project.Seeding
                 Description = "Bilbo and company are forced to engage in a war against an array of combatants and keep the Lonely Mountain from falling into the hands of a rising darkness.",
                 Genre = new Genre { Genres = Genres.SciFi },
                 Tagline = "The defining chapter.",
-                PublishedDate = new DateTime(2014, 1, 1),
+                PublishedDate =  2014,  
                 MPAARating = MPAARating.PG13,
                 Actors = "Martin Freeman, Ian McKellan, Richard Armitage",
                 Runtime = TimeSpan.FromMinutes(150)
@@ -156,7 +156,7 @@ namespace Group_6_Final_Project.Seeding
                 Description = "The dwarves, along with Bilbo Baggins and Gandalf the Grey, continue their quest to reclaim Erebor, their homeland, from Smaug.",
                 Genre = new Genre { Genres = Genres.SciFi },
                 Tagline = "It's a really big dragon",
-                PublishedDate = new DateTime(2013, 1, 1),
+                PublishedDate =  2013,  
                 MPAARating = MPAARating.PG13,
                 Actors = "Martin Freeman, Ian McKellan, Richard Armitage",
                 Runtime = TimeSpan.FromMinutes(150)
@@ -168,7 +168,7 @@ namespace Group_6_Final_Project.Seeding
                 Description = "The future of civilization rests in the fate of the One Ring, which has been lost for centuries. Powerful forces are unrelenting in their search for it. But fate has placed it in the hands of a young Hobbit named Frodo Baggins, who inherits the Ring and steps into legend.",
                 Genre = new Genre { Genres = Genres.SciFi },
                 Tagline = "One Ring To Rule Them All. Fate Has Chosen Him. A Fellowship Will Protect Him. Evil Will Hunt Them.",
-                PublishedDate = new DateTime(2001, 1, 1),
+                PublishedDate =  2001,  
                 MPAARating = MPAARating.PG13,
                 Actors = "Elijah Wood, Sam Astin, Orlando Bloom, Viggo Mortenson, Billy Boyd, Dominic Monaghan, Sean Bean",
                 Runtime = TimeSpan.FromMinutes(150)
@@ -180,7 +180,7 @@ namespace Group_6_Final_Project.Seeding
                 Description = "Frodo and Sam discover they are being followed by the mysterious Gollum.",
                 Genre = new Genre { Genres = Genres.SciFi },
                 Tagline = "A New Power Is Rising. The Battle for Middle-earth Begins!",
-                PublishedDate = new DateTime(2002, 1, 1),
+                PublishedDate =  2002,  
                 MPAARating = MPAARating.PG13,
                 Actors = "Elijah Wood, Sam Astin, Orlando Bloom, Viggo Mortenson, Billy Boyd, Dominic Monaghan, Sean Bean",
                 Runtime = TimeSpan.FromMinutes(150)
@@ -192,7 +192,7 @@ namespace Group_6_Final_Project.Seeding
                 Description = "Continuing the plot of the previous film, Frodo, Sam and Gollum are making their final way toward Mount Doom to destroy the One Ring, unaware of Gollum's true intentions, while Merry, Pippin, Gandalf, Aragorn, Legolas, Gimli and the others join forces together against Sauron and his legions in Minas Tirith.",
                 Genre = new Genre { Genres = Genres.SciFi },
                 Tagline = "No victory without suffering. No freedom without sacrifice.",
-                PublishedDate = new DateTime(2003, 1, 1),
+                PublishedDate =  2003,  
                 MPAARating = MPAARating.PG13,
                 Actors = "Elijah Wood, Sam Astin, Orlando Bloom, Viggo Mortenson, Billy Boyd, Dominic Monaghan, Sean Bean",
                 Runtime = TimeSpan.FromMinutes(180)
@@ -204,7 +204,7 @@ namespace Group_6_Final_Project.Seeding
                 Description = "Stereotypical Barbie experiences a full-on existential crisis and embarks on a journey of self-discovery. Along for the ride is her beau Ken.",
                 Genre = new Genre { Genres = Genres.Comedy },
                 Tagline = "She can do everything. He's just Ken.",
-                PublishedDate = new DateTime(2023, 1, 1),
+                PublishedDate =  2023,  
                 MPAARating = MPAARating.PG13,
                 Actors = "Ryan Gosling, Margot Robbie",
                 Runtime = TimeSpan.FromMinutes(120)
@@ -216,7 +216,7 @@ namespace Group_6_Final_Project.Seeding
                 Description = "Teen Miles Morales becomes the Spider-Man of his universe and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.",
                 Genre = new Genre { Genres = Genres.Action },
                 Tagline = "Enter a universe where more than one wears the mask.",
-                PublishedDate = new DateTime(2018, 1, 1),
+                PublishedDate =  2018,  
                 MPAARating = MPAARating.PG,
                 Actors = "Shameik Moore, Jake Johnson, Hailee Steinfeld, Stan Lee, Oscar Isaac, Nicolas Cage, Mahershala Ali",
                 Runtime = TimeSpan.FromMinutes(120)
@@ -228,7 +228,7 @@ namespace Group_6_Final_Project.Seeding
                 Description = "Miles Morales catapults across the Multiverse, where he encounters a team of Spider-People charged with protecting its very existence.",
                 Genre = new Genre { Genres = Genres.Action },
                 Tagline = "With great power comes great responsibility.",
-                PublishedDate = new DateTime(2023, 1, 1),
+                PublishedDate =  2023,  
                 MPAARating = MPAARating.PG,
                 Actors = "Shameik Moore, Hailee Steinfeld, Oscar Isaac, Karan Soni, Andy Samberg, Daniel Kaluuya",
                 Runtime = TimeSpan.FromMinutes(150)

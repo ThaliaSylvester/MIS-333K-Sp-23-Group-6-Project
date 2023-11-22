@@ -52,34 +52,6 @@ namespace Group_6_Final_Project.Controllers
             return View(transactionDetail);
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create(TransactionDetail transactionDetail, int selectedProduct)
-        //{
-        //    if (ModelState.IsValid == false)
-        //    {
-        //        ViewBag.AllProducts = GetProductSelectList();
-        //        return View(transactionDetail);
-        //    }
-
-        //    Schedule dbSchedule = _context.Schedules.Find(selectedProduct);
-        //    transactionDetail.Schedule = dbSchedule;
-
-        //    Transaction dbTransaction = _context.Transactions.Find(transactionDetail.Transaction.TransactionID);
-        //    transactionDetail.Transaction = dbTransaction;
-
-        //    // Update NumberOfTickets to represent the count of selected seats
-        //    transactionDetail.NumberOfTickets = transactionDetail.NumberOfTickets;
-
-        //    // Calculate MoviePrice based on the count of selected seats
-        //    transactionDetail.MoviePrice = transactionDetail.NumberOfTickets * dbSchedule.Price.TicketPrice;
-
-        //    _context.Add(transactionDetail);
-        //    await _context.SaveChangesAsync();
-
-        //    return RedirectToAction("Details", "Transaction", new { id = transactionDetail.Transaction.TransactionID });
-        //}
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(TransactionDetail transactionDetail, int SelectedProduct)
@@ -90,23 +62,31 @@ namespace Group_6_Final_Project.Controllers
                 return View(transactionDetail);
             }
 
-            Schedule dbSchdule = _context.Schedules.Find(SelectedProduct);
+            // Find the selected schedule based on SelectedProduct
+            Schedule dbSchedule = _context.Schedules.Find(SelectedProduct);
 
-            transactionDetail.Schedule = dbSchdule;
+            if (dbSchedule == null)
+            {
+                // Handle the case where the schedule is not found
+                return NotFound();
+            }
 
-            Transaction dbTransaction = _context.Transactions.Find(transactionDetail.Transaction.TransactionID);
+            transactionDetail.Schedule = dbSchedule;
 
-            transactionDetail.Transaction = dbTransaction;
+            // Calculate MoviePrice based on the selected schedule's TicketPrice
+            transactionDetail.MoviePrice = dbSchedule.Price.TicketPrice;
 
-            transactionDetail.NumberOfTickets = transactionDetail.NumberOfTickets;
+            // Assuming TransactionID is an int property in the TransactionDetail model
+            transactionDetail.TransactionID = transactionDetail.Transaction.TransactionID;
 
-            transactionDetail.MoviePrice = 5;
+            transactionDetail.NumberOfTickets = 1;
+            transactionDetail.PaymentMethod = PaymentMethod.CashCard;
+            transactionDetail.SeatSelection = SeatSelection.A1;
 
             _context.Add(transactionDetail);
-
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Details", "Orders", new { id = transactionDetail.Transaction.TransactionID });
+            return RedirectToAction("Details", "Transaction", new { id = transactionDetail.Transaction.TransactionID });
         }
 
         // GET: TransactionDetails/Edit/5

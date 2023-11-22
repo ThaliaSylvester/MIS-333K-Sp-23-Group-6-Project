@@ -57,6 +57,7 @@ namespace Group_6_Final_Project.Controllers
                 LastName = rvm.LastName,
                 DateOfBirth = rvm.DateOfBirth,
                 AddressLine1 = rvm.AddressLine1,
+                AddressLine2 = rvm.AddressLine2,
                 City = rvm.City,
                 State = rvm.State,
                 Zip = rvm.Zip
@@ -166,12 +167,19 @@ namespace Group_6_Final_Project.Controllers
             ivm.HasPassword = true;
             ivm.UserID = user.Id;
             ivm.UserName = user.UserName;
+            ivm.FirstName = user.FirstName;
+            ivm.LastName = user.LastName;
+            ivm.PhoneNumber = user.PhoneNumber;
+            ivm.DateOfBirth = user.DateOfBirth;
+            ivm.AddressLine1 = user.AddressLine1;
+            ivm.AddressLine2 = user.AddressLine2;
+            ivm.City = user.City;
+            ivm.State = user.State;
+            ivm.Zip = user.Zip;
 
             //send data to the view
             return View(ivm);
         }
-
-
 
         //Logic for change password
         // GET: /Account/ChangePassword
@@ -179,8 +187,6 @@ namespace Group_6_Final_Project.Controllers
         {
             return View();
         }
-
-
 
         // POST: /Account/ChangePassword
         [HttpPost]
@@ -219,6 +225,62 @@ namespace Group_6_Final_Project.Controllers
 
                 //send the user back to the change password page to try again
                 return View(cpvm);
+            }
+        }
+
+        // GET: Account/Edit
+        public IActionResult EditProfile()
+        {
+            // Get user information
+            AppUser user = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+
+            // Map AppUser properties to EditProfileViewModel
+            EditProfileViewModel editProfileViewModel = new EditProfileViewModel
+            {
+                PhoneNumber = user.PhoneNumber,
+                DateOfBirth = user.DateOfBirth,
+                AddressLine1 = user.AddressLine1,
+                AddressLine2 = user.AddressLine2,
+                City = user.City,
+                State = user.State,
+                Zip = user.Zip
+            };
+
+            return View(editProfileViewModel);
+        }
+
+        //POST: Account/Edit
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditProfile(EditProfileViewModel epvm)
+        {
+            if (ModelState.IsValid == false)
+            {
+                return View(epvm);
+            }
+
+            // Find user
+            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            // Update properties
+            user.PhoneNumber = epvm.PhoneNumber;
+            user.DateOfBirth = epvm.DateOfBirth;
+            user.AddressLine1 = epvm.AddressLine1;
+            user.AddressLine2 = epvm.AddressLine2;
+            user.City = epvm.City;
+            user.State = epvm.State;
+            user.Zip = epvm.Zip;
+
+            // Update in database
+            IdentityResult result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(epvm);
             }
         }
 

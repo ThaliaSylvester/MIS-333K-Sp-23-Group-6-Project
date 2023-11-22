@@ -7,18 +7,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Group_6_Final_Project.Models
 {
-    public enum Genres { Horror, Drama, Action, Comedy, ChildrenFamily, Romance, Musical, SciFi }
+    public enum GenreType { Horror, Drama, Action, Comedy, Children_Family, Romance, Musical, SciFi }
 
     public class Genre
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string GenreID { get; set; }
+        public int GenreID { get; set; }
 
-        public Genres Genres { get; set; }
+        public GenreType GenreType { get; set; }
 
         //NAVIGATIONAL PROPERTIES
         public List<Movie> Movie { get; set; }
-
     }
 }

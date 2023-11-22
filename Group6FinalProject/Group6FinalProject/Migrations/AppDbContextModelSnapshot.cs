@@ -24,21 +24,6 @@ namespace Group6FinalProject.Migrations
             SqlServerModelBuilderExtensions.HasServiceTierSql(modelBuilder, "'Basic'");
             SqlServerModelBuilderExtensions.HasPerformanceLevelSql(modelBuilder, "'Basic'");
 
-            modelBuilder.Entity("AppUserReview", b =>
-                {
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("ReviewsReviewID")
-                        .HasColumnType("int");
-
-                    b.HasKey("AppUserId", "ReviewsReviewID");
-
-                    b.HasIndex("ReviewsReviewID");
-
-                    b.ToTable("AppUserReview");
-                });
-
             modelBuilder.Entity("Group_6_Final_Project.Models.AppUser", b =>
                 {
                     b.Property<string>("Id")
@@ -136,11 +121,13 @@ namespace Group6FinalProject.Migrations
 
             modelBuilder.Entity("Group_6_Final_Project.Models.Genre", b =>
                 {
-                    b.Property<string>("GenreID")
+                    b.Property<int>("GenreID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("int");
 
-                    b.Property<int>("Genres")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GenreID"));
+
+                    b.Property<int>("GenreType")
                         .HasColumnType("int");
 
                     b.HasKey("GenreID");
@@ -162,21 +149,17 @@ namespace Group6FinalProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("GenreID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("GenreID")
+                        .HasColumnType("int");
 
                     b.Property<int>("MPAARating")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("PublishedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Runtime")
+                    b.Property<int>("PublishedDate")
                         .HasColumnType("int");
 
-                    b.Property<string>("ScheduleID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<TimeSpan>("Runtime")
+                        .HasColumnType("time");
 
                     b.Property<string>("Tagline")
                         .IsRequired()
@@ -190,19 +173,16 @@ namespace Group6FinalProject.Migrations
 
                     b.HasIndex("GenreID");
 
-                    b.HasIndex("ScheduleID");
-
                     b.ToTable("Movies");
                 });
 
             modelBuilder.Entity("Group_6_Final_Project.Models.Price", b =>
                 {
-                    b.Property<string>("PriceID")
+                    b.Property<int>("PriceID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("int");
 
-                    b.Property<string>("ScheduleID")
-                        .HasColumnType("nvarchar(450)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PriceID"));
 
                     b.Property<decimal>("TicketPrice")
                         .HasColumnType("decimal(18,2)");
@@ -211,8 +191,6 @@ namespace Group6FinalProject.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("PriceID");
-
-                    b.HasIndex("ScheduleID");
 
                     b.ToTable("Prices");
                 });
@@ -229,42 +207,53 @@ namespace Group6FinalProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("MovieID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<string>("Status")
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserID")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ReviewID");
+
+                    b.HasIndex("MovieID");
 
                     b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("Group_6_Final_Project.Models.Schedule", b =>
                 {
-                    b.Property<string>("ScheduleID")
+                    b.Property<int>("ScheduleID")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ScheduleID"));
+
+                    b.Property<string>("MovieID")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("DateTime")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("PriceID")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("EndTime")
+                    b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("SpecialEvent")
-                        .HasColumnType("bit");
 
                     b.Property<int>("Theatre")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TransactionDetailID")
-                        .HasColumnType("int");
-
                     b.HasKey("ScheduleID");
 
-                    b.HasIndex("TransactionDetailID");
+                    b.HasIndex("MovieID");
+
+                    b.HasIndex("PriceID");
 
                     b.ToTable("Schedules");
                 });
@@ -277,23 +266,38 @@ namespace Group6FinalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionID"));
 
-                    b.Property<string>("AppUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("NumberofTickets")
+                    b.Property<int>("PopcornPoints")
                         .HasColumnType("int");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PurchaseStatus")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalNumberofSeats")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("TransactionDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("TransactionID");
+                    b.Property<string>("TransactionNote")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("AppUserId");
+                    b.Property<int>("TransactionNumber")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TransactionSubtotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TransactionTax")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TransactionTotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TransactionID");
 
                     b.ToTable("Transactions");
                 });
@@ -306,19 +310,29 @@ namespace Group6FinalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionDetailID"));
 
-                    b.Property<bool>("CashCard")
-                        .HasColumnType("bit");
-
-                    b.Property<decimal>("ExtendedPrice")
+                    b.Property<decimal>("MoviePrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("SeatSelection")
+                    b.Property<int>("NumberOfTickets")
                         .HasColumnType("int");
 
-                    b.Property<bool>("SeniorTicket")
-                        .HasColumnType("bit");
+                    b.Property<int>("PaymentMethod")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ScheduleID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SeatSelection")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TransactionID")
+                        .HasColumnType("int");
 
                     b.HasKey("TransactionDetailID");
+
+                    b.HasIndex("ScheduleID");
+
+                    b.HasIndex("TransactionID");
 
                     b.ToTable("TransactionDetails");
                 });
@@ -460,51 +474,6 @@ namespace Group6FinalProject.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("MovieReview", b =>
-                {
-                    b.Property<string>("MoviesMovieID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("ReviewID")
-                        .HasColumnType("int");
-
-                    b.HasKey("MoviesMovieID", "ReviewID");
-
-                    b.HasIndex("ReviewID");
-
-                    b.ToTable("MovieReview");
-                });
-
-            modelBuilder.Entity("TransactionTransactionDetail", b =>
-                {
-                    b.Property<int>("TransactionDetailID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TransactionID")
-                        .HasColumnType("int");
-
-                    b.HasKey("TransactionDetailID", "TransactionID");
-
-                    b.HasIndex("TransactionID");
-
-                    b.ToTable("TransactionTransactionDetail");
-                });
-
-            modelBuilder.Entity("AppUserReview", b =>
-                {
-                    b.HasOne("Group_6_Final_Project.Models.AppUser", null)
-                        .WithMany()
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Group_6_Final_Project.Models.Review", null)
-                        .WithMany()
-                        .HasForeignKey("ReviewsReviewID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Group_6_Final_Project.Models.Movie", b =>
                 {
                     b.HasOne("Group_6_Final_Project.Models.Genre", "Genre")
@@ -513,40 +482,56 @@ namespace Group6FinalProject.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Group_6_Final_Project.Models.Schedule", "Schedule")
-                        .WithMany("Movie")
-                        .HasForeignKey("ScheduleID");
-
                     b.Navigation("Genre");
-
-                    b.Navigation("Schedule");
                 });
 
-            modelBuilder.Entity("Group_6_Final_Project.Models.Price", b =>
+            modelBuilder.Entity("Group_6_Final_Project.Models.Review", b =>
                 {
-                    b.HasOne("Group_6_Final_Project.Models.Schedule", "Schedule")
-                        .WithMany("Prices")
-                        .HasForeignKey("ScheduleID");
+                    b.HasOne("Group_6_Final_Project.Models.Movie", "Movies")
+                        .WithMany("Review")
+                        .HasForeignKey("MovieID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Schedule");
+                    b.Navigation("Movies");
                 });
 
             modelBuilder.Entity("Group_6_Final_Project.Models.Schedule", b =>
                 {
-                    b.HasOne("Group_6_Final_Project.Models.TransactionDetail", null)
+                    b.HasOne("Group_6_Final_Project.Models.Movie", "Movie")
                         .WithMany("Schedule")
-                        .HasForeignKey("TransactionDetailID");
-                });
-
-            modelBuilder.Entity("Group_6_Final_Project.Models.Transaction", b =>
-                {
-                    b.HasOne("Group_6_Final_Project.Models.AppUser", "AppUser")
-                        .WithMany("Transactions")
-                        .HasForeignKey("AppUserId")
+                        .HasForeignKey("MovieID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("AppUser");
+                    b.HasOne("Group_6_Final_Project.Models.Price", "Price")
+                        .WithMany("Schedule")
+                        .HasForeignKey("PriceID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Movie");
+
+                    b.Navigation("Price");
+                });
+
+            modelBuilder.Entity("Group_6_Final_Project.Models.TransactionDetail", b =>
+                {
+                    b.HasOne("Group_6_Final_Project.Models.Schedule", "Schedule")
+                        .WithMany("transactionDetails")
+                        .HasForeignKey("ScheduleID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Group_6_Final_Project.Models.Transaction", "Transaction")
+                        .WithMany("TransactionDetail")
+                        .HasForeignKey("TransactionID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Schedule");
+
+                    b.Navigation("Transaction");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -600,56 +585,31 @@ namespace Group6FinalProject.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MovieReview", b =>
-                {
-                    b.HasOne("Group_6_Final_Project.Models.Movie", null)
-                        .WithMany()
-                        .HasForeignKey("MoviesMovieID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Group_6_Final_Project.Models.Review", null)
-                        .WithMany()
-                        .HasForeignKey("ReviewID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("TransactionTransactionDetail", b =>
-                {
-                    b.HasOne("Group_6_Final_Project.Models.TransactionDetail", null)
-                        .WithMany()
-                        .HasForeignKey("TransactionDetailID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Group_6_Final_Project.Models.Transaction", null)
-                        .WithMany()
-                        .HasForeignKey("TransactionID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Group_6_Final_Project.Models.AppUser", b =>
-                {
-                    b.Navigation("Transactions");
-                });
-
             modelBuilder.Entity("Group_6_Final_Project.Models.Genre", b =>
                 {
                     b.Navigation("Movie");
                 });
 
-            modelBuilder.Entity("Group_6_Final_Project.Models.Schedule", b =>
+            modelBuilder.Entity("Group_6_Final_Project.Models.Movie", b =>
                 {
-                    b.Navigation("Movie");
+                    b.Navigation("Review");
 
-                    b.Navigation("Prices");
+                    b.Navigation("Schedule");
                 });
 
-            modelBuilder.Entity("Group_6_Final_Project.Models.TransactionDetail", b =>
+            modelBuilder.Entity("Group_6_Final_Project.Models.Price", b =>
                 {
                     b.Navigation("Schedule");
+                });
+
+            modelBuilder.Entity("Group_6_Final_Project.Models.Schedule", b =>
+                {
+                    b.Navigation("transactionDetails");
+                });
+
+            modelBuilder.Entity("Group_6_Final_Project.Models.Transaction", b =>
+                {
+                    b.Navigation("TransactionDetail");
                 });
 #pragma warning restore 612, 618
         }

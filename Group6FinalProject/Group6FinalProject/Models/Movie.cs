@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Group_6_Final_Project.Models;
 
 namespace Group_6_Final_Project.Models
 {
@@ -31,19 +29,23 @@ namespace Group_6_Final_Project.Models
 
         [Required(ErrorMessage = "Published date is required")]
         [Display(Name = "Published Date: ")]
-        public DateTime PublishedDate { get; set; }
+        public int PublishedDate { get; set; }
 
         [Required(ErrorMessage = "Featured actors is required")]
         [Display(Name = "Actors: ")]
-        public string Actors { get; set; }
+         public string Actors { get; set; }
 
+        // Modify the Runtime property in the Movie class
         [Required(ErrorMessage = "Runtime is required")]
         [Display(Name = "Runtime: ")]
-        public Int32 Runtime { get; set; }
+        public TimeSpan Runtime { get; set; }
 
-        //NAVIGATIONAL PROPERTIES
+        // NAVIGATIONAL PROPERTIES
         public List<Review> Review { get; set; }
+
+        public List<Schedule> Schedule { get; set; }
+
+        public int GenreID { get; set; }  // Foreign key for the Product
         public Genre Genre { get; set; }
-        public Schedule Schedule { get; set; }
     }
 }

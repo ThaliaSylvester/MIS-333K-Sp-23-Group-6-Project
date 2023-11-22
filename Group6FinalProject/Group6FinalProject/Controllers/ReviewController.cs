@@ -22,9 +22,8 @@ namespace Group6FinalProject.Controllers
         // GET: Review
         public async Task<IActionResult> Index()
         {
-              return _context.Reviews != null ? 
-                          View(await _context.Reviews.ToListAsync()) :
-                          Problem("Entity set 'AppDbContext.Reviews'  is null.");
+            var appDbContext = _context.Reviews.Include(r => r.Movies);
+            return View(await appDbContext.ToListAsync());
         }
 
         // GET: Review/Details/5
@@ -36,6 +35,7 @@ namespace Group6FinalProject.Controllers
             }
 
             var review = await _context.Reviews
+                .Include(r => r.Movies)
                 .FirstOrDefaultAsync(m => m.ReviewID == id);
             if (review == null)
             {
@@ -48,6 +48,7 @@ namespace Group6FinalProject.Controllers
         // GET: Review/Create
         public IActionResult Create()
         {
+            ViewData["MovieID"] = new SelectList(_context.Movies, "MovieID", "MovieID");
             return View();
         }
 
@@ -56,7 +57,7 @@ namespace Group6FinalProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ReviewID,Rating,Description,Status")] Review review)
+        public async Task<IActionResult> Create([Bind("ReviewID,Rating,Description,Status,UserID,MovieID")] Review review)
         {
             if (ModelState.IsValid)
             {
@@ -64,6 +65,7 @@ namespace Group6FinalProject.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["MovieID"] = new SelectList(_context.Movies, "MovieID", "MovieID", review.MovieID);
             return View(review);
         }
 
@@ -80,6 +82,7 @@ namespace Group6FinalProject.Controllers
             {
                 return NotFound();
             }
+            ViewData["MovieID"] = new SelectList(_context.Movies, "MovieID", "MovieID", review.MovieID);
             return View(review);
         }
 
@@ -88,7 +91,7 @@ namespace Group6FinalProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ReviewID,Rating,Description,Status")] Review review)
+        public async Task<IActionResult> Edit(int id, [Bind("ReviewID,Rating,Description,Status,UserID,MovieID")] Review review)
         {
             if (id != review.ReviewID)
             {
@@ -115,6 +118,7 @@ namespace Group6FinalProject.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["MovieID"] = new SelectList(_context.Movies, "MovieID", "MovieID", review.MovieID);
             return View(review);
         }
 
@@ -127,6 +131,7 @@ namespace Group6FinalProject.Controllers
             }
 
             var review = await _context.Reviews
+                .Include(r => r.Movies)
                 .FirstOrDefaultAsync(m => m.ReviewID == id);
             if (review == null)
             {

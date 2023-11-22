@@ -1,0 +1,92 @@
+﻿@model Group_6_Final_Project.Models.SearchViewModel
+
+@{
+    ViewData["Title"] = "Detailed Search";
+    Layout = "_Layout";
+}
+
+<h1>Detailed Search</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="DisplaySearchResults" asp-controller="Movie">
+            <div class="text-danger validation-summary-valid" asp-validation-summary="All" data-valmsg-summary="true">
+                <ul>
+                    <li style="display:none"></li>
+                </ul>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="SearchTitle">Search by Title:</label>
+                <input class="form-control" asp-for="SearchTitle" />
+                <span asp-validation-for="SearchTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="SearchDescription">Search by Description:</label>
+                <input class="form-control" asp-for="SearchDescription" />
+                <span asp-validation-for="SearchDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="SearchActors">Search by Actors:</label>
+                <input class="form-control" asp-for="SearchActors" />
+                <span asp-validation-for="SearchActors" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="SelectedGenreID">Search by Genre:</label>
+                <select class="form-control" asp-for="SelectedGenreID" asp-items="@(ViewBag.GenreList as SelectList)"></select>
+                <span asp-validation-for="SelectedGenreID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="SelectedYear">Search by Published Year:</label>
+                <input class="form-control" type="text" asp-for="SelectedYear" />
+                <span asp-validation-for="SelectedYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="SearchType">Search Type:</label>&nbsp;
+                <input type="radio" value="GreaterThan" checked="checked" data-val="true" data-val-required="The Search Type: field is required." id="SearchType" name="SearchType" /> Greater Than &nbsp; &nbsp;
+                <input type="radio" value="LessThan" id="SearchType" name="SearchType" /> Less Than
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="SelectedRuntime">Search by Runtime:</label>
+                <select class="form-control" asp-for="SelectedRuntime">
+                    <option value="">Select Runtime</option>
+                    @{
+                        // Generate dropdown options with 15-minute increments
+                        for (int minutes = 15; minutes <= 240; minutes += 15)
+                        {
+                            int hours = minutes / 60;
+                            int remainderMinutes = minutes % 60;
+                            string formattedValue = $"{hours:D2}:{remainderMinutes:D2}";
+                            <option value="@formattedValue">@formattedValue</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="SelectedRuntime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="SearchType">Search Type:</label>&nbsp;
+                <input type="radio" value="GreaterThan" checked="checked" data-val="true" data-val-required="The Search Type: field is required." id="SearchType" name="SearchType" /> Greater Than &nbsp; &nbsp;
+                <input type="radio" value="LessThan" id="SearchType" name="SearchType" /> Less Than
+            </div>
+            <!-- New form fields for user ratings -->
+            <div class="form-group">
+                <label class="control-label" for="MinRating">Minimum User Rating:</label>
+                <input class="form-control" type="number" step="0.1" min="0" max="5" asp-for="MinRating" />
+                <span asp-validation-for="MinRating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="MaxRating">Maximum User Rating:</label>
+                <input class="form-control" type="number" step="0.1" min="0" max="5" asp-for="MaxRating" />
+                <span asp-validation-for="MaxRating" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

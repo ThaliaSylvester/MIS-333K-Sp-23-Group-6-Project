@@ -13,470 +13,1338 @@ namespace Group_6_Final_Project.Seeding
         {
             //Create a counter and a flag so we will know which record is causing problems
             Int32 intTransactionsAdded = 0;
-            int intTransactionsTransactionID = 0;
+            int intTransactionsID = 0;
 
             //Add the list of Transactions
             List<Transaction> Transactions = new List<Transaction>();
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 1,
                 TransactionDate = new DateTime(2023, 11, 1),
-                NumberofTickets = 10,
-                //PopcornPoints = 50,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "banker@longhorn.net")?.Id ?? string.Empty,
+                TransactionNumber = 1,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.A1,
+                        MoviePrice = 5.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 23, 11, 0, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.A2,
+                        MoviePrice = 5.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 23, 11, 0, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.A3,
+                        MoviePrice = 5.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 23, 11, 0, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.A4,
+                        MoviePrice = 5.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 23, 11, 0, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.A5,
+                        MoviePrice = 5.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 23, 11, 0, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B1,
+                        MoviePrice = 5.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 23, 11, 0, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B2,
+                        MoviePrice = 5.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 23, 11, 0, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B3,
+                        MoviePrice = 5.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 23, 11, 0, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B4,
+                        MoviePrice = 5.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 23, 11, 0, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B5,
+                        MoviePrice = 5.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 23, 11, 0, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 2,
                 TransactionDate = new DateTime(2023, 11, 5),
-                NumberofTickets = 10,
-                //PopcornPoints = 116,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "cbaker@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 2,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.A1,
+                        MoviePrice = 10.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 23, 16, 30, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.A2,
+                        MoviePrice = 10.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 23, 16, 30, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.A3,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 23, 16, 30, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.A4,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 23, 16, 30, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.A5,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 23, 16, 30, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B1,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 23, 16, 30, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B2,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 23, 16, 30, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B3,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 23, 16, 30, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B4,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 23, 16, 30, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B5,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 23, 16, 30, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 3,
                 TransactionDate = new DateTime(2023, 11, 20),
-                NumberofTickets = 2,
-                //PopcornPoints = 10,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 3,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.C2,
+                        MoviePrice = 5.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 23, 11, 00, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.C3,
+                        MoviePrice = 5.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 23, 11, 00, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 4,
                 TransactionDate = new DateTime(2023, 11, 14),
-                NumberofTickets = 1,
-                //PopcornPoints = 12,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "banker@longhorn.net")?.Id ?? string.Empty,
+                TransactionNumber = 4,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.C4,
+                        MoviePrice = 5.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 23, 11, 00, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.C5,
+                        MoviePrice = 5.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 23, 11, 00, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 5,
                 TransactionDate = new DateTime(2023, 11, 5),
-                NumberofTickets = 1,
-                //PopcornPoints = 12,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "franco@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 5,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.A1,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 24, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 6,
                 TransactionDate = new DateTime(2023, 11, 20),
-                NumberofTickets = 1,
-                //PopcornPoints = 10,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "wchang@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 6,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.A2,
+                        MoviePrice = 10.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 24, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 7,
                 TransactionDate = new DateTime(2023, 11, 14),
-                NumberofTickets = 1,
-                //PopcornPoints = 12,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "limchou@gogle.com")?.Id ?? string.Empty,
+                TransactionNumber = 7,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.A3,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 24, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 8,
                 TransactionDate = new DateTime(2023, 11, 20),
-                NumberofTickets = 1,
-                //PopcornPoints = 12,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 8,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.A4,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 24, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 9,
                 TransactionDate = new DateTime(2023, 11, 5),
-                NumberofTickets = 1,
-                //PopcornPoints = 12,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "shdixon@aoll.com")?.Id ?? string.Empty,
+                TransactionNumber = 9,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.A5,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 24, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 10,
                 TransactionDate = new DateTime(2023, 11, 20),
-                NumberofTickets = 1,
-                //PopcornPoints = 12,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "j.b.evans@aheca.org")?.Id ?? string.Empty,
+                TransactionNumber = 10,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B1,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 24, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 11,
                 TransactionDate = new DateTime(2023, 11, 14),
-                NumberofTickets = 1,
-                //PopcornPoints = 12,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "feeley@penguin.org")?.Id ?? string.Empty,
+                TransactionNumber = 11,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B2,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 24, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 12,
                 TransactionDate = new DateTime(2023, 11, 20),
-                NumberofTickets = 1,
-                //PopcornPoints = 12,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 12,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B3,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 24, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 13,
                 TransactionDate = new DateTime(2023, 11, 5),
-                NumberofTickets = 1,
-                //PopcornPoints = 12,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "thequeen@aska.net")?.Id ?? string.Empty,
+                TransactionNumber = 13,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B4,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 24, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 14,
                 TransactionDate = new DateTime(2023, 11, 20),
-                NumberofTickets = 1,
-                //PopcornPoints = 12,
-                Status = "Cancelled"
+                PurchaseStatus = PurchaseStatus.Cancelled,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "linebacker@gogle.com")?.Id ?? string.Empty,
+                TransactionNumber = 14,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B5,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 24, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 15,
                 TransactionDate = new DateTime(2023, 11, 14),
-                NumberofTickets = 1,
-                //PopcornPoints = 12,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "elowe@netscare.net")?.Id ?? string.Empty,
+                TransactionNumber = 15,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E1,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 24, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 16,
                 TransactionDate = new DateTime(2023, 11, 20),
-                NumberofTickets = 1,
-                //PopcornPoints = 12,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 16,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E2,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 24, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 17,
                 TransactionDate = new DateTime(2023, 11, 20),
-                NumberofTickets = 1,
-                //PopcornPoints = 12,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 17,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E3,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 24, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 18,
                 TransactionDate = new DateTime(2023, 11, 20),
-                NumberofTickets = 1,
-                //PopcornPoints = 12,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 18,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E4,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 24, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 19,
                 TransactionDate = new DateTime(2023, 11, 20),
-                NumberofTickets = 1,
-                //PopcornPoints = 12,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 19,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E5,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 24, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 20,
                 TransactionDate = new DateTime(2023, 11, 20),
-                NumberofTickets = 1,
-                //PopcornPoints = 12,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 20,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.C4,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 24, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 21,
                 TransactionDate = new DateTime(2023, 11, 20),
-                NumberofTickets = 1,
-                //PopcornPoints = 12,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 21,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.C5,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 24, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 22,
                 TransactionDate = new DateTime(2023, 11, 24),
-                NumberofTickets = 1,
-                //PopcornPoints = 15,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "banker@longhorn.net")?.Id ?? string.Empty,
+                TransactionNumber = 22,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.D1,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 23,
                 TransactionDate = new DateTime(2023, 11, 24),
-                NumberofTickets = 1,
-                //PopcornPoints = 15,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "cbaker@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 23,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.A2,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 24,
                 TransactionDate = new DateTime(2023, 11, 24),
-                NumberofTickets = 1,
-                //PopcornPoints = 15,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 24,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.A3,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 25,
                 TransactionDate = new DateTime(2023, 11, 24),
-                NumberofTickets = 1,
-                //PopcornPoints = 15,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "banker@longhorn.net")?.Id ?? string.Empty,
+                TransactionNumber = 25,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.A4,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 26,
                 TransactionDate = new DateTime(2023, 11, 24),
-                NumberofTickets = 1,
-                //PopcornPoints = 15,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "franco@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 26,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.A5,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 27,
                 TransactionDate = new DateTime(2023, 11, 24),
-                NumberofTickets = 1,
-                //PopcornPoints = 15,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "wchang@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 27,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B1,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 28,
                 TransactionDate = new DateTime(2023, 11, 24),
-                NumberofTickets = 1,
-                //PopcornPoints = 15,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "limchou@gogle.com")?.Id ?? string.Empty,
+                TransactionNumber = 28,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B2,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 29,
                 TransactionDate = new DateTime(2023, 11, 24),
-                NumberofTickets = 1,
-                //PopcornPoints = 15,
-                Status = "Cancelled"
+                PurchaseStatus = PurchaseStatus.Cancelled,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "shdixon@aoll.com")?.Id ?? string.Empty,
+                TransactionNumber = 29,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B3,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 30,
                 TransactionDate = new DateTime(2023, 11, 24),
-                NumberofTickets = 9,
-                //PopcornPoints = 45,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "j.b.evans@aheca.org")?.Id ?? string.Empty,
+                TransactionNumber = 30,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B4,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 31,
-                TransactionDate = new DateTime(2023, 11, 26),
-                NumberofTickets = 2,
-                //PopcornPoints = -200,
-                Status = "Purchased"
-            });
-
-            Transactions.Add(new Transaction
-            {
-                TransactionID = 32,
                 TransactionDate = new DateTime(2023, 11, 24),
-                NumberofTickets = 1,
-                //PopcornPoints = 15,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "feeley@penguin.org")?.Id ?? string.Empty,
+                TransactionNumber = 31,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B5,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 33,
                 TransactionDate = new DateTime(2023, 11, 24),
-                NumberofTickets = 1,
-                //PopcornPoints = 15,
-                Status = "Cancelled"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "thequeen@aska.net")?.Id ?? string.Empty,
+                TransactionNumber = 32,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E1,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 34,
                 TransactionDate = new DateTime(2023, 11, 24),
-                NumberofTickets = 1,
-                //PopcornPoints = 15,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Cancelled,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "linebacker@gogle.com")?.Id ?? string.Empty,
+                TransactionNumber = 33,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E2,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 35,
                 TransactionDate = new DateTime(2023, 11, 24),
-                NumberofTickets = 1,
-                //PopcornPoints = 15,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "elowe@netscare.net")?.Id ?? string.Empty,
+                TransactionNumber = 34,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E3,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 36,
                 TransactionDate = new DateTime(2023, 11, 24),
-                NumberofTickets = 1,
-                //PopcornPoints = 15,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "cbaker@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 35,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E4,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 37,
                 TransactionDate = new DateTime(2023, 11, 24),
-                NumberofTickets = 1,
-                //PopcornPoints = 15,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "cbaker@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 36,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E5,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 38,
                 TransactionDate = new DateTime(2023, 11, 24),
-                NumberofTickets = 1,
-                //PopcornPoints = 15,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "cbaker@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 37,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.C4,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 39,
                 TransactionDate = new DateTime(2023, 11, 24),
-                NumberofTickets = 2,
-                //PopcornPoints = 30,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "cbaker@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 38,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.C5,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 21, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 40,
+                TransactionDate = new DateTime(2023, 11, 24),
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "cbaker@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 39,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.D1,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 19, 30, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.A2,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 19, 30, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.A3,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 19, 30, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                }
+            });
+
+            Transactions.Add(new Transaction
+            {
                 TransactionDate = new DateTime(2023, 11, 1),
-                NumberofTickets = 6,
-                //PopcornPoints = 90,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 40,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.A4,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 19, 30, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                     new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.A5,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 19, 30, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                      new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B1,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 19, 30, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B2,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 19, 30, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B3,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 19, 30, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B4,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 19, 30, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 41,
                 TransactionDate = new DateTime(2023, 11, 1),
-                NumberofTickets = 2,
-                //PopcornPoints = 30,
-                Status = "Cancelled"
+                PurchaseStatus = PurchaseStatus.Cancelled,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "banker@longhorn.net")?.Id ?? string.Empty,
+                TransactionNumber = 41,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B5,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 19, 30, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E1,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 19, 30, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 42,
                 TransactionDate = new DateTime(2023, 11, 1),
-                NumberofTickets = 2,
-                //PopcornPoints = 30,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "j.b.evans@aheca.org")?.Id ?? string.Empty,
+                TransactionNumber = 42,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E2,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 19, 30, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E3,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 19, 30, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 43,
                 TransactionDate = new DateTime(2023, 11, 1),
-                NumberofTickets = 4,
-                //PopcornPoints = 60,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "feeley@penguin.org")?.Id ?? string.Empty,
+                TransactionNumber = 43,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E4,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 19, 30, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E5,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 19, 30, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.C4,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 19, 30, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.C5,
+                        MoviePrice = 15.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 19, 30, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 44,
                 TransactionDate = new DateTime(2023, 11, 1),
-                NumberofTickets = 3,
-                //PopcornPoints = 36,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 44,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B2,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 12, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B3,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 12, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B4,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 12, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 45,
                 TransactionDate = new DateTime(2023, 11, 1),
-                NumberofTickets = 1,
-                //PopcornPoints = 12,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "thequeen@aska.net")?.Id ?? string.Empty,
+                TransactionNumber = 45,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B5,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 12, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
-
             Transactions.Add(new Transaction
             {
-                TransactionID = 46,
                 TransactionDate = new DateTime(2023, 11, 1),
-                NumberofTickets = 2,
-                //PopcornPoints = 24,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "franco@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 46,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E1,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 12, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E2,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 12, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 47,
                 TransactionDate = new DateTime(2023, 11, 1),
-                NumberofTickets = 2,
-                //PopcornPoints = 20,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "wchang@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 47,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E3,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 12, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E4,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 12, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 48,
                 TransactionDate = new DateTime(2023, 11, 1),
-                NumberofTickets = 1,
-                //PopcornPoints = 10,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "cbaker@example.com")?.Id ?? string.Empty,
+                TransactionNumber = 48,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E5,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 12, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 49,
                 TransactionDate = new DateTime(2023, 11, 15),
-                NumberofTickets = 1,
-                //PopcornPoints = 12,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "limchou@gogle.com")?.Id ?? string.Empty,
+                TransactionNumber = 49,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E5,
+                        MoviePrice = 12.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 25, 9, 00, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 50,
                 TransactionDate = new DateTime(2023, 11, 24),
-                NumberofTickets = 9,
-                //PopcornPoints = 45,
-                Status = "Cancelled"
+                PurchaseStatus = PurchaseStatus.Cancelled,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "j.b.evans@aheca.org")?.Id ?? string.Empty,
+                TransactionNumber = 50,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.A4,
+                        MoviePrice = 5.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 27, 11, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E1,
+                        MoviePrice = 5.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 27, 11, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E2,
+                        MoviePrice = 5.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 27, 11, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E3,
+                        MoviePrice = 5.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 27, 11, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E4,
+                        MoviePrice = 5.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 27, 11, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.E5,
+                        MoviePrice = 5.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 27, 11, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B3,
+                        MoviePrice = 5.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 27, 11, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B4,
+                        MoviePrice = 5.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 27, 11, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.B5,
+                        MoviePrice = 5.00m,
+                        PaymentMethod = PaymentMethod.CashCard,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 11, 27, 11, 00, 0) && ds.Theatre == Theatre.Theatre1)?.ScheduleID ?? default(int)
+                    },
+                }
             });
 
             Transactions.Add(new Transaction
             {
-                TransactionID = 51,
                 TransactionDate = new DateTime(2023, 11, 26),
-                NumberofTickets = 2,
-                //PopcornPoints = -200,
-                Status = "Purchased"
+                PurchaseStatus = PurchaseStatus.Purchased,
+                UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
+                TransactionNumber = 51,
+                TransactionDetail = new List<TransactionDetail>
+                {
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.C3,
+                        MoviePrice = 0.00m,
+                        PaymentMethod = PaymentMethod.Points,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 12, 4, 22, 00, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                    new TransactionDetail
+                    {
+                        NumberOfTickets = 1,
+                        SeatSelection = SeatSelection.C4,
+                        MoviePrice = 0.00m,
+                        PaymentMethod = PaymentMethod.Points,
+                        ScheduleID = db.Schedules.FirstOrDefault(ds => ds.StartTime == new DateTime(2023, 12, 4, 22, 00, 0) && ds.Theatre == Theatre.Theatre2)?.ScheduleID ?? default(int)
+                    },
+                }
             });
-
 
             try
             {
@@ -484,7 +1352,7 @@ namespace Group_6_Final_Project.Seeding
                 foreach (Transaction TransactionsToAdd in Transactions)
                 {
                     // Set the flag to the current title to help with debugging
-                    intTransactionsTransactionID = TransactionsToAdd.TransactionID;
+                    intTransactionsID = TransactionsToAdd.TransactionID;
 
                     // Look to see if the Transactions is in the database - this assumes that no
                     // two Transactions have the same title
@@ -505,9 +1373,7 @@ namespace Group_6_Final_Project.Seeding
                     {
                         // Update all of the Transactions's properties
                         dbTransactions.TransactionDate = TransactionsToAdd.TransactionDate;
-                        dbTransactions.NumberofTickets = TransactionsToAdd.NumberofTickets;
-                        //dbTransactions.//PopcornPoints = TransactionsToAdd.//PopcornPoints;
-                        dbTransactions.Status = TransactionsToAdd.Status;
+                        dbTransactions.PurchaseStatus = TransactionsToAdd.PurchaseStatus;
 
                         // Update the database and save the changes
                         db.Update(dbTransactions);
@@ -522,7 +1388,7 @@ namespace Group_6_Final_Project.Seeding
             catch (Exception ex) // Something went wrong with adding or updating
             {
                 // Build a message using the flags we created
-                String msg = "  Repositories added:" + intTransactionsAdded + "; Error on " + intTransactionsTransactionID;
+                String msg = "  Repositories added:" + intTransactionsAdded + "; Error on " + intTransactionsID;
 
                 // Throw the exception with the new message
                 throw new InvalidOperationException(ex.Message + msg);

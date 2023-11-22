@@ -127,7 +127,7 @@ namespace Group6FinalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GenreID"));
 
-                    b.Property<int>("Genres")
+                    b.Property<int>("GenreType")
                         .HasColumnType("int");
 
                     b.HasKey("GenreID");
@@ -499,7 +499,7 @@ namespace Group6FinalProject.Migrations
             modelBuilder.Entity("Group_6_Final_Project.Models.Schedule", b =>
                 {
                     b.HasOne("Group_6_Final_Project.Models.Movie", "Movie")
-                        .WithMany()
+                        .WithMany("Schedule")
                         .HasForeignKey("MovieID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -593,6 +593,8 @@ namespace Group6FinalProject.Migrations
             modelBuilder.Entity("Group_6_Final_Project.Models.Movie", b =>
                 {
                     b.Navigation("Review");
+
+                    b.Navigation("Schedule");
                 });
 
             modelBuilder.Entity("Group_6_Final_Project.Models.Price", b =>

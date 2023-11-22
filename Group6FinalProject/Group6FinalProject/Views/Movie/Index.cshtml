@@ -2,27 +2,28 @@
 
 @{
     Layout = "_Layout";
+    bool isAdmin = User.IsInRole("Manager");
+
 }
 
 <h1>Movies</h1>
-<form asp-action="Index" asp-controller="Home" method="get">
-    <form method="get" action="mo">
-        <div class="form-group">
-            <label for="SearchString">Search:</label>
-            <input type="text" name="SearchString" id="SearchString" class="form-control" value="@ViewBag.SearchString" />
-        </div>
-        <button type="submit" class="btn btn-primary">Search</button>
-    </form>
-
-    <a asp-action="DetailedSearch" class="btn btn-success">Detailed Search</a>
-    <a asp-action="Index" class="btn btn-danger">Show All</a>
-    </p>
+<form asp-action="Index" asp-controller="Movie" method="get">
+    <div class="form-group">
+        <label for="SearchString">Search:</label>
+        <input type="text" name="searchString" id="SearchString" class="form-control" value="@ViewBag.SearchString" />
+    <button type="submit" class="btn btn-primary">Search</button>
 </form>
+
+<a asp-action="DetailedSearch" class="btn btn-success">Detailed Search</a>
+<a asp-action="Index" class="btn btn-danger">Show All</a>
 <p>
     <div>
         <p>Displaying @ViewBag.CurrentlyShowingMovies out of @ViewBag.TotalMovieCount Movie</p>
     </div>
-
+    @if (isAdmin)
+    {
+        <a asp-action="Create">Create New</a>
+    }
     <table class="table">
         <thead>
             <tr>
@@ -30,7 +31,7 @@
                     @Html.DisplayNameFor(model => model.Title)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Genre.Genres)
+                    @Html.DisplayNameFor(model => model.Genre.GenreType)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.MPAARating)
@@ -55,7 +56,7 @@
                         @Html.DisplayFor(modelItem => item.Title)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Genre.Genres)
+                        @Html.DisplayFor(modelItem => item.Genre.GenreType)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.MPAARating)
@@ -96,6 +97,7 @@
                     </td>
                 </tr>
             }
+
         </tbody>
     </table>
 </p>

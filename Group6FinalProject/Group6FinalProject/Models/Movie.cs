@@ -33,7 +33,7 @@ namespace Group_6_Final_Project.Models
 
         [Required(ErrorMessage = "Featured actors is required")]
         [Display(Name = "Actors: ")]
-        public string Actors { get; set; }
+         public string Actors { get; set; }
 
         // Modify the Runtime property in the Movie class
         [Required(ErrorMessage = "Runtime is required")]
@@ -43,9 +43,9 @@ namespace Group_6_Final_Project.Models
         // NAVIGATIONAL PROPERTIES
         public List<Review> Review { get; set; }
 
-        // public List<Schedule> Schedule { get; set; }
+        public List<Schedule> Schedule { get; set; }
 
-        public int GenreID { get; set; } // Foreign key for the Product
+        public int GenreID { get; set; }  // Foreign key for the Product
         public Genre Genre { get; set; }
     }
 }

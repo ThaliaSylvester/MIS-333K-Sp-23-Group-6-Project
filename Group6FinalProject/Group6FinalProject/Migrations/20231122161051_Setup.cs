@@ -67,7 +67,7 @@ namespace Group6FinalProject.Migrations
                 {
                     GenreID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Genres = table.Column<int>(type: "int", nullable: false)
+                    GenreType = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

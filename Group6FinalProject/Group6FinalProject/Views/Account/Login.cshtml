@@ -2,30 +2,32 @@
 
 @{
     ViewData["Title"] = "Login";
+    Layout = "_LayoutLogin";
+
 }
 <style>
     .signup-side {
-        background-color: #C32435; /* Your desired color code */
+        background-color: #e03444; /* Your desired color code */
         color: #fff;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 100vh;
-        width: 45%; 
+        height: 90vh;
+        width: 45%;
     }
 
     .login-side {
         flex-direction: column;
         justify-content: center;
-        height: 100vh;
+        height: 90vh;
     }
 </style>
-<div>
+</div>
     <div class="row">
+        <div></div>
         <!-- Left column for "Log In" -->
         <div class="col-md-6 login-side d-flex ms-auto me-auto">
-            <a asp-controller="Home" asp-action="Index">Mainstreet Movies</a>
             <h1>Login</h1>
             <hr />
             <form asp-action="Login" method="post">

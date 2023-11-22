@@ -24,13 +24,15 @@ namespace Group_6_Final_Project.Controllers
         {
             // Retrieve movies including the Genre information and reviews
             var movies = await _context.Movies
-              .Include(m => m.Genre) // Include genre information
-              .Include(m => m.Review) // Include reviews
-              .ToListAsync();
+                .Include(m => m.Genre)
+                .Include(m => m.Review)
+                .ToListAsync();
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                movies = movies.Where(m => m.Title.Contains(searchString)).ToList();
+                // Convert both the search string and movie titles to lowercase for case-insensitive comparison
+                var searchLower = searchString.ToLower();
+                movies = movies.Where(m => m.Title.ToLower().Contains(searchLower)).ToList();
 
                 // Check if a valid date string is provided
                 if (DateTime.TryParse(searchString, out DateTime searchDate))
@@ -82,18 +84,18 @@ namespace Group_6_Final_Project.Controllers
                 return NotFound();
             }
 
-            // Calculate average customer review
-            double averageRating = 0.0;
+            // Fetch reviews for the movie
             var reviews = await _context.Reviews
                 .Where(r => r.MovieID == id)
                 .ToListAsync();
 
-            if (reviews.Any())
-            {
-                averageRating = reviews.Average(r => (int)r.Rating);
-            }
+            // Calculate average customer review
+            double averageRating = reviews.Any() ? reviews.Average(r => (int)r.Rating) : 0.0;
 
             ViewBag.AverageCustomerReview = averageRating;
+
+            // Pass the reviews to the view
+            ViewBag.Reviews = reviews;
 
             return View(movie);
         }
@@ -101,15 +103,14 @@ namespace Group_6_Final_Project.Controllers
         // GET: Movie/Create
         public IActionResult Create()
         {
+            // Populate ViewBag.GenreList with available genres
+            ViewBag.GenreList = new SelectList(_context.Genres, "GenreID", "Genres");
             return View();
         }
 
-        // POST: Movie/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MovieID,MPAARating,Title,Description,Tagline,PublishedDate,Actors,Runtime")] Movie movie)
+        public async Task<IActionResult> Create([Bind("MovieID,MPAARating,Title,Description,Tagline,PublishedDate,Actors,Runtime,GenreID")] Movie movie)
         {
             if (ModelState.IsValid)
             {
@@ -117,8 +118,15 @@ namespace Group_6_Final_Project.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            // Check ModelState errors here (use debugger)
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
+            // Add a breakpoint here to inspect errors
+
+            ViewBag.GenreList = new SelectList(_context.Genres, "GenreID", "Genres", movie.GenreID);
             return View(movie);
         }
+
 
         // GET: Movie/Edit/5
         public async Task<IActionResult> Edit(string id)
@@ -224,8 +232,8 @@ namespace Group_6_Final_Project.Controllers
 
         private SelectList GetGenreSelectList()
         {
-            var genres = Enum.GetValues(typeof(Genres))
-                             .Cast<Genres>()
+            var genres = Enum.GetValues(typeof(GenreType))
+                             .Cast<GenreType>()
                              .Select(g => new SelectListItem
                              {
                                  Value = ((int)g).ToString(),
@@ -297,7 +305,7 @@ namespace Group_6_Final_Project.Controllers
             if (searchViewModel.MinRating.HasValue)
             {
                 // Assuming Rating is of type CustomerRating in your model
-                query = query.Where(m => m.Review.Any(r => (decimal)r.Rating > searchViewModel.MinRating.Value));
+                query = query.Where(m => m.Review.Any(r => (decimal)r.Rating > (decimal)searchViewModel.MinRating.Value));
             }
 
             if (searchViewModel.MaxRating.HasValue)
@@ -327,6 +335,9 @@ namespace Group_6_Final_Project.Controllers
 
             // Pass the average ratings dictionary to the view
             ViewBag.AverageRatings = averageRatings;
+
+            // Set the GenreList in ViewBag
+            ViewBag.GenreList = GetGenreSelectList();
 
             List<Movie> selectedMovies = query.Include(m => m.Genre).ToList();
 

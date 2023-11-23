@@ -108,6 +108,27 @@ namespace Group_6_Final_Project.Controllers
             return View("Confirm");
         }
 
+        public async Task<IActionResult> SeedGenre()
+        {
+            try
+            {
+                // Call the method to seed the prices
+                Seeding.SeedGenre.Genres(_context);
+            }
+            catch (Exception ex)
+            {
+                List<string> errorList = new List<string>
+        {
+            ex.Message
+        };
+
+                return View("Error", errorList);
+            }
+
+            // This is the happy path - seeding worked!
+            return View("Confirm");
+        }
+
         public async Task<IActionResult> SeedMovie()
         {
             try

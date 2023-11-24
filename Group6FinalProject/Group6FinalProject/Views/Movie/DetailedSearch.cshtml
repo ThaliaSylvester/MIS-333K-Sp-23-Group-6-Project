@@ -43,8 +43,8 @@
             </div>
             <div class="form-group">
                 <label class="control-label" for="SearchType">Search Type:</label>&nbsp;
-                <input type="radio" value="GreaterThan" checked="checked" data-val="true" data-val-required="The Search Type: field is required." id="SearchType" name="SearchType" /> Greater Than &nbsp; &nbsp;
-                <input type="radio" value="LessThan" id="SearchType" name="SearchType" /> Less Than
+                <input type="radio" value="GreaterThan" checked="checked" data-val="true" data-val-required="The Search Type (Year): field is required." id="SearchTypeYearGreaterThan" name="SearchTypeYear" /> Greater Than &nbsp; &nbsp;
+                <input type="radio" value="LessThan" id="SearchTypeYearLessThan" name="SearchTypeYear" /> Less Than
             </div>
             <div class="form-group">
                 <label class="control-label" for="SelectedRuntime">Search by Runtime:</label>
@@ -64,21 +64,21 @@
                 <span asp-validation-for="SelectedRuntime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label" for="SearchType">Search Type:</label>&nbsp;
-                <input type="radio" value="GreaterThan" checked="checked" data-val="true" data-val-required="The Search Type: field is required." id="SearchType" name="SearchType" /> Greater Than &nbsp; &nbsp;
-                <input type="radio" value="LessThan" id="SearchType" name="SearchType" /> Less Than
-            </div>
-            <!-- New form fields for user ratings -->
-            <div class="form-group">
-                <label class="control-label" for="MinRating">Minimum User Rating:</label>
-                <input class="form-control" type="number" step="0.1" min="0" max="5" asp-for="MinRating" />
-                <span asp-validation-for="MinRating" class="text-danger"></span>
+                <label class="control-label" for="SelectedRuntime">Search Type:</label>&nbsp;
+                <input type="radio" value="GreaterThan" checked="checked" data-val="true" data-val-required="The Search Type (Runtime): field is required." id="SearchTypeRuntimeGreaterThan" name="SearchTypeRuntime" /> Greater Than &nbsp; &nbsp;
+                <input type="radio" value="LessThan" id="SearchTypeRuntimeLessThan" name="SearchTypeRuntime" /> Less Than
             </div>
             <div class="form-group">
-                <label class="control-label" for="MaxRating">Maximum User Rating:</label>
-                <input class="form-control" type="number" step="0.1" min="0" max="5" asp-for="MaxRating" />
-                <span asp-validation-for="MaxRating" class="text-danger"></span>
+                <label class="control-label" for="SelectedYear">Search by User Rating:</label>
+                <input class="form-control" type="text" asp-for="SelectedRating" />
+                <span asp-validation-for="SelectedRating" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label class="control-label" for="SelectedRating">Search Type:</label>&nbsp;
+                <input type="radio" value="GreaterThan" checked="checked" data-val="true" data-val-required="The Search Type (Rating): field is required." id="SearchTypeRatingGreaterThan" name="SearchTypeRating" /> Greater Than &nbsp; &nbsp;
+                <input type="radio" value="LessThan" id="SearchTypeRatingLessThan" name="SearchTypeRating" /> Less Than
+            </div>
+
 
             <div class="form-group">
                 <input type="submit" value="Search" class="btn btn-primary" />

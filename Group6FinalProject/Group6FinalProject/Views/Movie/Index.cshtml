@@ -1,9 +1,8 @@
 @model IEnumerable<Group_6_Final_Project.Models.Movie>
 
 @{
-    Layout = "_Layout";
-    bool isAdmin = User.IsInRole("Manager");
-
+        Layout = "_Layout";
+        bool isAdmin = User.IsInRole("Manager");
 }
 
 <h1>Movies</h1>
@@ -11,7 +10,7 @@
     <div class="form-group">
         <label for="SearchString">Search:</label>
         <input type="text" name="searchString" id="SearchString" class="form-control" value="@ViewBag.SearchString" />
-    <button type="submit" class="btn btn-primary">Search</button>
+        <button type="submit" class="btn btn-primary">Search</button>
 </form>
 
 <a asp-action="DetailedSearch" class="btn btn-success">Detailed Search</a>
@@ -80,7 +79,7 @@
                             }
 
                             // Display "N/A" when rating is 0.0, otherwise round to two decimal places
-                            string formattedRating = rating == 0.0 ? "N/A" : rating.ToString("0.00");
+                            string formattedRating = rating == 0.0 ? " " : rating.ToString("0.0");
                         }
 
                         <text>@formattedRating</text>

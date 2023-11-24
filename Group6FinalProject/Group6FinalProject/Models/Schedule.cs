@@ -1,12 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.AspNetCore.Identity;
-using Group_6_Final_Project.Models;
 
 namespace Group_6_Final_Project.Models
 {
     public enum Theatre { Theatre1, Theatre2 }
+
     public class Schedule
     {
         [Key]
@@ -16,11 +16,6 @@ namespace Group_6_Final_Project.Models
         [Display(Name = "Start Time")]
         public DateTime StartTime { get; set; }
 
-        // Remove the EndTime property
-        // [Display(Name = "End Time")]
-        // public DateTime EndTime { get; set; }
- 
-        // Add a custom property for EndTime based on StartTime and Movie's Runtime
         [Display(Name = "End Time")]
         public DateTime EndTime => StartTime + Movie.Runtime;
 
@@ -28,12 +23,35 @@ namespace Group_6_Final_Project.Models
         public Theatre Theatre { get; set; }
 
         // NAVIGATIONAL PROPERTY
-        public int PriceID { get; set; }  // Foreign key for the Product
+        public int PriceID { get; set; }  // Foreign key for the Price
         public Price Price { get; set; }
 
-        public string MovieID { get; set; }  // Foreign key for the Product
+        public string MovieID { get; set; }  // Foreign key for the Movie
         public Movie Movie { get; set; }
 
-        public List<TransactionDetail> transactionDetails { get; set; }
+        public List<TransactionDetail> TransactionDetails { get; set; }
+
+        [Display(Name = "Product Price")]
+        public decimal SchedulePrice
+        {
+            get
+            {
+                // Check if Schedule and associated Price are not null, then return the ticket price
+                if (Price != null)
+                {
+                    return Price.TicketPrice;
+                }
+
+                // If Price is null, return 0 or some default value
+                return 0; // or throw an exception, return a default value, etc.
+            }
+            private set { /* Make the set accessor private to prevent external modification */ }
+        }
+
+        // Constructor to set the PriceID based on the SchedulePrice
+        public Schedule()
+        {
+            PriceID = (int)SchedulePrice;
+        }
     }
 }

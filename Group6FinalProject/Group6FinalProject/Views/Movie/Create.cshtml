@@ -3,6 +3,29 @@
 @{
     ViewData["Title"] = "Create";
     Layout = "_Layout";
+
+    // Helper method to get a list of years
+    List<int> GetYearsList()
+    {
+        int currentYear = DateTime.Now.Year;
+        List<int> yearsList = new List<int>();
+
+        for (int year = currentYear; year >= currentYear - 100; year--)
+        {
+            yearsList.Add(year);
+        }
+
+        return yearsList;
+    }
+
+    // Get the years list
+    List<int> yearsList = GetYearsList();
+
+    // Assign the GenreList to ViewBag if it's not already assigned
+    if (ViewBag.GenreList == null)
+    {
+        ViewBag.GenreList = new SelectList(ViewBag.GenreList, "GenreID", "GenreType");
+    }
 }
 
 <h1>Create</h1>
@@ -25,49 +48,40 @@
             </div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" value="Jurassic Park" />
+                <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
-                <textarea asp-for="Description" class="form-control" rows="4">A pragmatic paleontologist touring an almost complete theme park on an island in Central America is tasked with protecting a couple of kids after a power failure causes the park's cloned dinosaurs to run loose.</textarea>
+                <textarea asp-for="Description" class="form-control" rows="4"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Tagline" class="control-label"></label>
-                <input asp-for="Tagline" class="form-control" value="Welcome to Jurassic Park" />
+                <input asp-for="Tagline" class="form-control" />
                 <span asp-validation-for="Tagline" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PublishedDate" class="control-label"></label>
-                <input asp-for="PublishedDate" class="form-control" value="1993" />
+                @Html.DropDownListFor(model => model.PublishedDate, new SelectList(yearsList), new { @class = "form-control" })
                 <span asp-validation-for="PublishedDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Actors" class="control-label"></label>
-                <input asp-for="Actors" class="form-control" value="Sam Neill, Laura Dern, Jeff Goldblum" />
+                <input asp-for="Actors" class="form-control" />
                 <span asp-validation-for="Actors" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="GenreID" class="control-label"></label>
+                <label asp-for="Genre" class="control-label"></label>
                 <select asp-for="GenreID" asp-items="ViewBag.GenreList" class="form-control">
                     <option value="">Select Genre</option>
                 </select>
                 <span asp-validation-for="GenreID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Runtime" class="control-label"></label>
-                <div class="input-group">
-                    <input asp-for="Runtime.Hours" class="form-control" placeholder="Hours" value="1" />
-                    <div class="input-group-append">
-                        <span class="input-group-text">h</span>
-                    </div>
-                    <input asp-for="Runtime.Minutes" class="form-control" placeholder="Minutes" value="30" />
-                    <div class="input-group-append">
-                        <span class="input-group-text">min</span>
-                    </div>
-                </div>
-                <span asp-validation-for="Runtime" class="text-danger"></span>
+                <label for="Runtime" class="control-label">Runtime:</label>
+                <input type="text" id="Runtime" name="Runtime" class="form-control" />
+                <span class="text-danger"> <!-- Display validation error message here if needed --></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

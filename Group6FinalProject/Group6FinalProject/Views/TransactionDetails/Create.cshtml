@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Create";
-    Layout = "_Layout";
 }
 
 <h1>Create</h1>
@@ -13,37 +12,61 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @Html.HiddenFor(model => model.Transaction.TransactionID)
+
+            @* Hidden field for TransactionID *@
+            @Html.HiddenFor(model => model.TransactionID)
+
+            @*<div class="form-group">
+                <label class="control-label">Products:</label>
+                @Html.DropDownList("SelectedProduct", (SelectList)ViewBag.AllProducts, new { @class = "form-control" })
+            </div>*@
 
             <div class="form-group">
                 <label asp-for="NumberOfTickets" class="control-label"></label>
                 <input asp-for="NumberOfTickets" class="form-control" />
                 <span asp-validation-for="NumberOfTickets" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label class="control-label">Schedule:</label>
-                @Html.DropDownList("SelectedProduct", (SelectList)ViewBag.AllProducts, new { @class = "form-control" })
-            </div>
+
             <div class="form-group">
                 <label asp-for="SeatSelection" class="control-label"></label>
-                @Html.DropDownListFor(model => model.SeatSelection, Enum.GetNames(typeof(Group_6_Final_Project.Models.SeatSelection)).Select(x => new SelectListItem { Text = x, Value = x }), "Select a Seat", new { @class = "form-control" })
+                <select asp-for="SeatSelection" class="form-control">
+                    @foreach (var seat in Enum.GetValues(typeof(SeatSelection)))
+                    {
+                        <option value="@seat">@seat</option>
+                    }
+                </select>
                 <span asp-validation-for="SeatSelection" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="PaymentMethod" class="control-label"></label>
-                @Html.DropDownListFor(model => model.PaymentMethod, Enum.GetValues(typeof(PaymentMethod)).Cast<PaymentMethod>().Select(value => new SelectListItem
-                {
-                    Text = value.ToString(),
-                    Value = value.ToString()
-                }), "Select a Payment Method", new { @class = "form-control" })
+                <select asp-for="PaymentMethod" class="form-control">
+                    @foreach (var paymentMethod in Enum.GetValues(typeof(PaymentMethod)))
+                    {
+                        <option value="@paymentMethod">@paymentMethod</option>
+                    }
+                </select>
                 <span asp-validation-for="PaymentMethod" class="text-danger"></span>
             </div>
+
+            @* Add dropdowns for StartTimes and Theatres using ViewBag *@
+            <div class="form-group">
+                <label class="control-label">Start Time:</label>
+                @Html.DropDownList("SelectedStartTime", (SelectList)ViewBag.StartTimes, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Theatre:</label>
+                @Html.DropDownList("SelectedTheatre", (SelectList)ViewBag.Theatres, new { @class = "form-control" })
+            </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
+
 <div>
-    <a asp-action="Index" asp-route-orderID="@Model.Transaction.TransactionID">Back to List</a>
+    <a asp-action="Index">Back to List</a>
 </div>

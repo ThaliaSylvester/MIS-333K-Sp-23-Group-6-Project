@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Group_6_Final_Project.Models
 {
-    public enum CustomerRating { One = 1, Two = 2, Three = 3, Four = 4, Five = 5 };
+    //public enum CustomerRating { One = 1, Two = 2, Three = 3, Four = 4, Five = 5 };
 
     public enum Status { Approved, NeedsReview };
 
@@ -18,7 +18,7 @@ namespace Group_6_Final_Project.Models
         public int ReviewID { get; set; }
 
         [Range(1, 5, ErrorMessage = "Rating must be between 1 and 5.")]
-        public CustomerRating Rating { get; set; }
+        public int Rating { get; set; }
 
         [Display(Name = "Description: ")]
         public string Description { get; set; }

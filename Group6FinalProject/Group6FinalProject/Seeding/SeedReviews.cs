@@ -21,7 +21,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 MovieID = db.Movies.FirstOrDefault(m => m.Title == "Jurassic Park")?.MovieID ?? string.Empty,
-                Rating = CustomerRating.Five,
+                Rating = 5,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "banker@longhorn.net")?.Id ?? string.Empty,
                 Description = "Best Movie I've ever seen.",
                 Status = Status.Approved,
@@ -30,7 +30,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Secret Life of Walter Mitty")?.MovieID ?? string.Empty,
-                Rating = CustomerRating.Four,
+                Rating = 4,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "cbaker@example.com")?.Id ?? string.Empty,
                 Description = "Not bad.",
                 Status = Status.Approved,
@@ -39,7 +39,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 MovieID = db.Movies.FirstOrDefault(m => m.Title == "Jurassic Park")?.MovieID ?? string.Empty,
-                Rating = CustomerRating.Five,
+                Rating = 5,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
                 Description = "Changed my life",
                 Status = Status.Approved,
@@ -48,7 +48,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Goonies")?.MovieID ?? string.Empty,
-                Rating = CustomerRating.Five,
+                Rating = 5,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "franco@example.com")?.Id ?? string.Empty,
                 Description = "Great family adventure Movie",
                 Status = Status.Approved,
@@ -57,7 +57,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Goonies")?.MovieID ?? string.Empty,
-                Rating = CustomerRating.Four,
+                Rating = 4,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "wchang@example.com")?.Id ?? string.Empty,
                 Description = "Good Movie",
                 Status = Status.Approved,
@@ -66,7 +66,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Goonies")?.MovieID ?? string.Empty,
-                Rating = CustomerRating.One,
+                Rating = 1,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "limchou@gogle.com")?.Id ?? string.Empty,
                 Description = "Worst thing I've ever seen",
                 Status = Status.Approved,
@@ -75,7 +75,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Goonies")?.MovieID ?? string.Empty,
-                Rating = CustomerRating.Five,
+                Rating = 5,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
                 Description = "Reminded me of my summers in the NW",
                 Status = Status.Approved,
@@ -84,7 +84,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Goonies")?.MovieID ?? string.Empty,
-                Rating = CustomerRating.Five,
+                Rating = 5,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "shdixon@aoll.com")?.Id ?? string.Empty,
                 Description = "I love a good treasure hunt!",
                 Status = Status.NeedsReview,
@@ -93,7 +93,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Goonies")?.MovieID ?? string.Empty,
-                Rating = CustomerRating.Three,
+                Rating = 3,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "j.b.evans@aheca.org")?.Id ?? string.Empty,
                 Description = "Meh",
                 Status = Status.Approved,
@@ -102,7 +102,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Hobbit: The Battle of Five Armies")?.MovieID ?? string.Empty,
-                Rating = CustomerRating.Four,
+                Rating = 4,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "cbaker@example.com")?.Id ?? string.Empty,
                 Description = " ",
                 Status = Status.Approved,
@@ -111,7 +111,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Hobbit: The Battle of Five Armies")?.MovieID ?? string.Empty,
-                Rating = CustomerRating.Four,
+                Rating = 4,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "ingram@jack.com")?.Id ?? string.Empty,
                 Description = " ",
                 Status = Status.Approved,
@@ -120,7 +120,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Hobbit: The Battle of Five Armies")?.MovieID ?? string.Empty,
-                Rating = CustomerRating.Five,
+                Rating = 5,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "banker@longhorn.net")?.Id ?? string.Empty,
                 Description = " ",
                 Status = Status.Approved,
@@ -129,7 +129,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Hobbit: The Battle of Five Armies")?.MovieID ?? string.Empty,
-                Rating = CustomerRating.Five,
+                Rating = 5,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "franco@example.com")?.Id ?? string.Empty,
                 Description = " ",
                 Status = Status.Approved,
@@ -138,7 +138,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Hobbit: The Battle of Five Armies")?.MovieID,
-                Rating = CustomerRating.One,
+                Rating = 1,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "wchang@example.com")?.Id ?? string.Empty,
                 Description = "Too long",
                 Status = Status.NeedsReview,
@@ -147,7 +147,7 @@ namespace Group_6_Final_Project.Seeding
             Reviews.Add(new Review
             {
                 MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Hobbit: The Battle of Five Armies")?.MovieID ?? string.Empty,
-                Rating = CustomerRating.Two,
+                Rating = 2,
                 UserID = db.Users.FirstOrDefault(u => u.UserName == "limchou@gogle.com")?.Id ?? string.Empty,
                 Description = "Did they really need to drag this out into its own Movie?",
                 Status = Status.NeedsReview,

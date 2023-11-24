@@ -5,11 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authorization;
-using Group_6_Final_Project.Models;
 using Group_6_Final_Project.DAL;
+using Group_6_Final_Project.Models;
 
-namespace Group_6_Final_Project.Controllers
+namespace Group6FinalProject.Controllers
 {
     public class TransactionDetailsController : Controller
     {
@@ -21,161 +20,162 @@ namespace Group_6_Final_Project.Controllers
         }
 
         // GET: TransactionDetails
-        public IActionResult Index(int? transactionID)
+        public async Task<IActionResult> Index()
         {
-            if (transactionID == null)
-            {
-                return View("Error", new string[] { "Please specify a transaction to view!" });
-            }
-
-            List<TransactionDetail> transactionDetails = _context.TransactionDetails
-                                          .Include(td => td.Schedule)
-                                          .Where(td => td.Transaction.TransactionID == transactionID)
-                                          .ToList();
-
-            return View(transactionDetails);
+            var appDbContext = _context.TransactionDetails
+                //.Include(t => t.Schedule)
+                .Include(t => t.Transaction);
+            return View(await appDbContext.ToListAsync());
         }
 
-        // GET: TransactionDetails/Create
-        public IActionResult Create(int transactionID)
+        // GET: TransactionDetails/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
-            TransactionDetail transactionDetail = new TransactionDetail
+            if (id == null || _context.TransactionDetails == null)
             {
-                NumberOfTickets = 0
-            };
+                return NotFound();
+            }
 
-            Transaction dbTransaction = _context.Transactions.Find(transactionID);
-            transactionDetail.Transaction = dbTransaction;
-
-            ViewBag.AllProducts = GetProductSelectList();
+            var transactionDetail = await _context.TransactionDetails
+                //.Include(t => t.Schedule)
+                .Include(t => t.Transaction)
+                .FirstOrDefaultAsync(m => m.TransactionDetailID == id);
+            if (transactionDetail == null)
+            {
+                return NotFound();
+            }
 
             return View(transactionDetail);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(TransactionDetail transactionDetail, int SelectedProduct)
+        // GET: OrderDetails/Create
+        public IActionResult Create(int transactionID)
         {
-            if (ModelState.IsValid == false)
-            {
-                ViewBag.AllProducts = GetProductSelectList();
-                return View(transactionDetail);
-            }
+            TransactionDetail od = new TransactionDetail();
 
-            // Find the selected schedule based on SelectedProduct
-            Schedule dbSchedule = _context.Schedules.Find(SelectedProduct);
+            Transaction dbTransaction = _context.Transactions.Find(transactionID);
+            od.Transaction = dbTransaction;
 
-            if (dbSchedule == null)
-            {
-                // Handle the case where the schedule is not found
-                return NotFound();
-            }
+            ViewBag.StartTimes = GetStartTime();
+            ViewBag.Theatres = GetTheatre();
 
-            transactionDetail.Schedule = dbSchedule;
-
-            // Calculate MoviePrice based on the selected schedule's TicketPrice
-            transactionDetail.MoviePrice = dbSchedule.Price.TicketPrice;
-
-            // Assuming TransactionID is an int property in the TransactionDetail model
-            transactionDetail.TransactionID = transactionDetail.Transaction.TransactionID;
-
-            transactionDetail.NumberOfTickets = 1;
-            transactionDetail.PaymentMethod = PaymentMethod.CashCard;
-            transactionDetail.SeatSelection = SeatSelection.A1;
-
-            _context.Add(transactionDetail);
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction("Details", "Transaction", new { id = transactionDetail.Transaction.TransactionID });
+            return View(od);
         }
+
+        [HttpPost]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> Create(TransactionDetail transactionDetail, int SelectedStartTime, int SelectedTheatre)
+{
+    if (ModelState.IsValid == false)
+    {
+        ViewBag.StartTimes = GetStartTime();
+        ViewBag.Theatres = GetTheatre();
+        return View(transactionDetail);
+    }
+
+    // Find the ScheduleID based on the selected StartTime and Theatre
+    Schedule dbSchedules = _context.Schedules.FirstOrDefault(s => s.StartTime == new DateTime(SelectedStartTime) && s.Theatre == (Theatre)SelectedTheatre);
+
+
+    //if (dbSchedules == null)
+    //{
+    //    ModelState.AddModelError(string.Empty, "Invalid StartTime and Theatre combination");
+    //    ViewBag.StartTimes = GetStartTime();
+    //    ViewBag.Theatres = GetTheatre();
+    //    return View(transactionDetail);
+    //}
+
+    transactionDetail.Schedule = dbSchedules;
+
+    Transaction dbTransactions = _context.Transactions.Find(transactionDetail.TransactionID);
+    transactionDetail.Transaction = dbTransactions;
+
+    // Perform any other necessary logic here
+
+    _context.Add(transactionDetail);
+    await _context.SaveChangesAsync();
+
+    return RedirectToAction("Details", "Transaction", new { id = transactionDetail.Transaction.TransactionID });
+}
+
+
 
         // GET: TransactionDetails/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (id == null || _context.TransactionDetails == null)
             {
-                return View("Error", new string[] { "Please specify a transaction detail to edit!" });
+                return NotFound();
             }
 
-            TransactionDetail transactionDetail = await _context.TransactionDetails
-                                                   .Include(td => td.Schedule)
-                                                   .Include(td => td.Transaction)
-                                                   .FirstOrDefaultAsync(td => td.TransactionDetailID == id);
-
+            var transactionDetail = await _context.TransactionDetails.FindAsync(id);
             if (transactionDetail == null)
             {
-                return View("Error", new string[] { "This transaction detail was not found" });
+                return NotFound();
             }
-
-            ViewBag.AllProducts = GetProductSelectList();
-
+            //ViewData["ScheduleID"] = new SelectList(_context.Schedules, "ScheduleID", "ScheduleID", transactionDetail.ScheduleID);
+            ViewData["TransactionID"] = new SelectList(_context.Transactions, "TransactionID", "TransactionID", transactionDetail.TransactionID);
             return View(transactionDetail);
         }
 
         // POST: TransactionDetails/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, TransactionDetail transactionDetail, int selectedProduct)
+        public async Task<IActionResult> Edit(int id, TransactionDetail transactionDetail)
         {
             if (id != transactionDetail.TransactionDetailID)
             {
-                return View("Error", new string[] { "There was a problem editing this record. Try again!" });
+                return View("Error", new String[] { "There was a problem editing this record. Try again!" });
             }
 
-            TransactionDetail dbTransactionDetail;
+            TransactionDetail dbOD;
             try
             {
-                dbTransactionDetail = _context.TransactionDetails
-                      .Include(td => td.Schedule)
-                      .ThenInclude(s => s.Price)  // Include the Price associated with the Schedule
-                      .Include(td => td.Transaction)
-                      .FirstOrDefault(td => td.TransactionDetailID == transactionDetail.TransactionDetailID);
-
-                if (dbTransactionDetail == null)
-                {
-                    return NotFound("TransactionDetail not found.");
-                }
+                dbOD = _context.TransactionDetails
+                      //.Include(od => od.Schedule)
+                      .Include(od => od.Transaction)
+                      .FirstOrDefault(od => od.TransactionDetailID == transactionDetail.TransactionDetailID);
 
                 if (ModelState.IsValid == false)
                 {
-                    ViewBag.AllProducts = GetProductSelectList();
                     return View(transactionDetail);
                 }
 
-                dbTransactionDetail.NumberOfTickets = transactionDetail.NumberOfTickets;
+                //dbOD.NumberOfTickets = transactionDetail.NumberOfTickets;
+                //dbOD.SchedulePrice = dbOD.Schedule.SchedulePrice;
+                //dbOD.ExtendedPrice = dbOD.Quantity * dbOD.ProductPrice;
 
-                // Calculate MoviePrice based on the count of selected seats
-                dbTransactionDetail.MoviePrice = dbTransactionDetail.NumberOfTickets * dbTransactionDetail.Schedule.Price.TicketPrice;
-
-                _context.Update(dbTransactionDetail);
+                _context.Update(dbOD);
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
-                return View("Error", new string[] { "There was a problem editing this record", ex.Message });
+                return View("Error", new String[] { "There was a problem editing this record", ex.Message });
             }
 
-            return RedirectToAction("Details", "Transactions", new { id = dbTransactionDetail.Transaction.TransactionID });
+            return RedirectToAction("Details", "Transaction", new { id = dbOD.Transaction.TransactionID });
         }
 
         // GET: TransactionDetails/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (id == null || _context.TransactionDetails == null)
             {
-                return View("Error", new String[] { "Please specify an Transaction detail to delete!" });
+                return NotFound();
             }
 
-            TransactionDetail TransactionDetail = await _context.TransactionDetails
-                                                    .Include(o => o.Transaction)
-                                                   .FirstOrDefaultAsync(m => m.TransactionDetailID == id);
-
-            if (TransactionDetail == null)
+            var transactionDetail = await _context.TransactionDetails
+                //.Include(t => t.Schedule)
+                .Include(t => t.Transaction)
+                .FirstOrDefaultAsync(m => m.TransactionDetailID == id);
+            if (transactionDetail == null)
             {
-                return View("Error", new String[] { "This Transaction detail was not in the database!" });
+                return NotFound();
             }
 
-            return View(TransactionDetail);
+            return View(transactionDetail);
         }
 
         // POST: TransactionDetails/Delete/5
@@ -183,22 +183,51 @@ namespace Group_6_Final_Project.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            TransactionDetail TransactionDetail = await _context.TransactionDetails
-                                                   .Include(o => o.Transaction)
-                                                   .FirstOrDefaultAsync(o => o.TransactionDetailID == id);
-
-            _context.TransactionDetails.Remove(TransactionDetail);
+            if (_context.TransactionDetails == null)
+            {
+                return Problem("Entity set 'AppDbContext.TransactionDetails'  is null.");
+            }
+            var transactionDetail = await _context.TransactionDetails.FindAsync(id);
+            if (transactionDetail != null)
+            {
+                _context.TransactionDetails.Remove(transactionDetail);
+            }
+            
             await _context.SaveChangesAsync();
-
-            return RedirectToAction("Details", "Transactions", new { id = TransactionDetail.Transaction.TransactionID });
+            return RedirectToAction(nameof(Index));
         }
-        private SelectList GetProductSelectList()
+        //private SelectList GetProductSelectList()
+        //{
+        //    List<Schedule> allProducts = _context.Schedules.ToList();
+
+        //    // Create a list of SelectListItem using ScheduleID and other properties from the Schedule model
+        //    var productItems = allProducts.Select(schedule => new SelectListItem
+        //    {
+        //        // Assuming ScheduleID, StartTime, and Theatre are properties of the Schedule model
+        //        Value = $"{schedule.ScheduleID}",
+        //        Text = $"{schedule.StartTime:yyyy-MM-dd HH:mm} - Theatre {schedule.Theatre}"
+        //    }).ToList();
+
+        //    // Create the SelectList
+        //    SelectList slAllProducts = new SelectList(productItems, "Value", "Text");
+
+        //    return slAllProducts;
+        //}
+        private SelectList GetStartTime()
         {
-            List<Schedule> allSchedule = _context.Schedules.ToList();
+            List<Schedule> allStartTime = _context.Schedules.ToList();
 
-            SelectList slAllSchedule = new SelectList(allSchedule, nameof(Schedule.ScheduleID));
+            SelectList slallStartTime = new SelectList(allStartTime, nameof(Schedule.ScheduleID), nameof(Schedule.StartTime));
 
-            return slAllSchedule;
+            return slallStartTime;
+        }
+        private SelectList GetTheatre()
+        {
+            List<Schedule> allTheatre = _context.Schedules.ToList();
+
+            SelectList slallTheatre = new SelectList(allTheatre, nameof(Schedule.ScheduleID), nameof(Schedule.Theatre));
+
+            return slallTheatre;
         }
     }
 }

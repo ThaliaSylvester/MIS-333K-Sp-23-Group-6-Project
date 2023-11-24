@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Edit";
-    Layout = "_Layout";
 }
 
 <h1>Edit</h1>
@@ -14,36 +13,36 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="TransactionDetailID" />
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="NumberOfTickets" class="control-label"></label>
                 <input asp-for="NumberOfTickets" class="form-control" />
                 <span asp-validation-for="NumberOfTickets" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SeatSelection" class="control-label"></label>
-                <select asp-for="SeatSelection" class="form-control"></select>
+                <input asp-for="SeatSelection" class="form-control" />
                 <span asp-validation-for="SeatSelection" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MoviePrice" class="control-label"></label>
-                <input asp-for="MoviePrice" class="form-control" />
-                <span asp-validation-for="MoviePrice" class="text-danger"></span>
+                <label asp-for="SchedulePrice" class="control-label"></label>
+                <input asp-for="SchedulePrice" class="form-control" />
+                <span asp-validation-for="SchedulePrice" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PaymentMethod" class="control-label"></label>
                 <select asp-for="PaymentMethod" class="form-control"></select>
                 <span asp-validation-for="PaymentMethod" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="TransactionID" class="control-label"></label>
                 <select asp-for="TransactionID" class="form-control" asp-items="ViewBag.TransactionID"></select>
                 <span asp-validation-for="TransactionID" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="ScheduleID" class="control-label"></label>
                 <select asp-for="ScheduleID" class="form-control" asp-items="ViewBag.ScheduleID"></select>
                 <span asp-validation-for="ScheduleID" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

@@ -230,20 +230,12 @@ namespace Group_6_Final_Project.Controllers
             return View();
         }
 
-        private SelectList GetGenreSelectList()
+        public SelectList GetGenreSelectList()
         {
-            var genres = Enum.GetValues(typeof(GenreType))
-                             .Cast<GenreType>()
-                             .Select(g => new SelectListItem
-                             {
-                                 Value = ((int)g).ToString(),
-                                 Text = g.ToString()
-                             })
-                             .ToList();
+            var genres = _context.Genres.ToList();
+            genres.Insert(0, new Genre { GenreID = 0, GenreType = GenreType.Action });
 
-            genres.Insert(0, new SelectListItem { Value = "0", Text = "All Genres" });
-
-            return new SelectList(genres, "Value", "Text");
+            return new SelectList(genres, "GenreID", "GenreType");
         }
 
         public IActionResult DisplaySearchResults(SearchViewModel searchViewModel)
@@ -264,10 +256,9 @@ namespace Group_6_Final_Project.Controllers
                 query = query.Where(m => m.Description.Contains(searchViewModel.SearchDescription));
             }
 
-            // Checks if user entered a specific genre
-            if (searchViewModel.SelectedGenreID.HasValue && searchViewModel.SelectedGenreID.Value != 0)
+            if (searchViewModel.SelectedGenreID != 0)
             {
-                query = query.Where(m => m.GenreID == searchViewModel.SelectedGenreID);
+                query = query.Where(jp => jp.Genre.GenreID == searchViewModel.SelectedGenreID);
             }
 
             if (searchViewModel.SelectedYear.HasValue)
@@ -301,18 +292,6 @@ namespace Group_6_Final_Project.Controllers
                 }
             }
 
-            // Filter movies based on user ratings
-            if (searchViewModel.MinRating.HasValue)
-            {
-                // Assuming Rating is of type CustomerRating in your model
-                query = query.Where(m => m.Review.Any(r => (decimal)r.Rating > (decimal)searchViewModel.MinRating.Value));
-            }
-
-            if (searchViewModel.MaxRating.HasValue)
-            {
-                // Assuming Rating is of type CustomerRating in your model
-                query = query.Where(m => m.Review.Any(r => (decimal)r.Rating < searchViewModel.MaxRating.Value));
-            }
 
             // Calculate average user rating for each selected movie
             Dictionary<string, double> averageRatings = new Dictionary<string, double>();
@@ -331,6 +310,24 @@ namespace Group_6_Final_Project.Controllers
                     // If no approved ratings are available, you can handle it accordingly
                     averageRatings[movie.MovieID] = 0; // or another default value
                 }
+            }
+
+            if (searchViewModel.SelectedRating != null)
+            {
+                // Example: Search for movies with at least one review with a rating greater than or equal to the specified value
+                if (searchViewModel.SearchType == SearchType.GreaterThan)
+                {
+                    query = query.Where(m => m.Review.Any(r => r.Rating >= (decimal)searchViewModel.SelectedRating));
+                }
+                else if (searchViewModel.SearchType == SearchType.LessThan)
+                {
+                    query = query.Where(m => m.Review.Any(r => r.Rating <= (decimal)searchViewModel.SelectedRating));
+                }
+            }
+            else
+            {
+                // Handle invalid rating input (e.g., not a valid decimal)
+                // You can add your error handling logic here
             }
 
             // Pass the average ratings dictionary to the view

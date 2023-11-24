@@ -8,95 +8,69 @@
 <br />
 <h1>Movie Schedule</h1>
 
-@*<p>
-        <a asp-action="Create">Create New</a>
-    </p>
-    <table class="table">
-        <thead>
+<div class="row">
+    <div class="col-md-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <!--Filters-->
+        <form asp-action="Index" asp-controller="Schedule" method="post">
+            <div class="form-group">
+                <label for="selectedTheatre">Theater:</label><br />
+                <select class="form-control" name="selectedTheatre">
+                    <option value="" selected="@(ViewBag.SelectedTheatre == null)">All</option>
+                    <option value="@Theatre.Theatre1" selected="@(ViewBag.SelectedTheatre == Theatre.Theatre1)">Theater 1</option>
+                    <option value="@Theatre.Theatre2" selected="@(ViewBag.SelectedTheatre == Theatre.Theatre2)">Theater 2</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="weekStartDate">Week Start Date:</label>
+                <input type="date" id="weekStartDate" name="weekStartDate" class="form-control" value="@ViewBag.SelectedWeekStartDate" />
+
+                <label for="weekEndDate">Week End Date:</label>
+                <span id="weekEndDate">@ViewBag.EndDate</span>
+                <br />
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
+        </form>
+    </div>
+
+    <hr />
+    <div>
+        <p>Displaying @ViewBag.FilteredMovieSchedule out of @ViewBag.AllMovieSchedule Movies</p>
+    </div>
+
+    <!--Table for Schedule-->
+    <table class="table table-bordered">
+        <thead class="thead-dark">
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.StartTime)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.EndTime)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Theatre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Price)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Movie)
-                </th>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>Movie</th>
+                <th>Theater</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var schedule in Model)
             {
                 <tr>
+                    <td>@schedule.StartTime.ToString("MM-dd-yyyy")</td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.StartTime)
+                        @schedule.StartTime.ToString("HH:mm tt")
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.EndTime)
+                        @schedule.Movie.Title
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Theatre)
+                        @schedule.Theatre
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Price.PriceID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Movie.MovieID)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.ScheduleID">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.ScheduleID">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.ScheduleID">Delete</a>
+                        <a asp-action="Details" asp-route-id="@schedule.ScheduleID">Details</a> |
+                        <a asp-action="Edit" asp-route-id="@schedule.ScheduleID">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@schedule.ScheduleID">Delete</a>
                     </td>
                 </tr>
             }
         </tbody>
-    </table>*@
-
-
-<!--Test-->
-<div class="movie-schedule">
-    <form asp-action="Edit" method="post">
-        <table class="table table-bordered">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Date</th>
-                    <th>Start Time</th>
-                    <th>Movie</th>
-                    <th>Theater</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var schedule in Model)
-                {
-                    <tr>
-                        <td>@schedule.StartTime.ToString("MM-dd-yyyy")</td>
-                        <td>
-                            @schedule.StartTime.ToString("HH:mm")
-                        </td>
-                        <td>
-                            @schedule.Movie.Title
-                        </td>
-                        <td>
-                            @schedule.Theatre
-                        </td>
-                        <td>
-                            <a asp-action="Details" asp-route-id="@schedule.ScheduleID">Details</a> |
-                            <a asp-action="Edit" asp-route-id="@schedule.ScheduleID">Edit</a> |
-                            <a asp-action="Delete" asp-route-id="@schedule.ScheduleID">Delete</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </form>
+    </table>
 </div>

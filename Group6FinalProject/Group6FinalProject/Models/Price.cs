@@ -13,6 +13,7 @@ namespace Group_6_Final_Project.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PriceID { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public Decimal TicketPrice { get; set; }
 
         public TicketType TicketType { get; set; }

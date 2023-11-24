@@ -19,11 +19,42 @@ namespace Group6FinalProject.Controllers
             _context = context;
         }
 
-        // GET: Schedule
+        // GET: Schedule/Index
         public async Task<IActionResult> Index()
         {
             var appDbContext = _context.Schedules.Include(s => s.Movie).Include(s => s.Price);
+            ViewBag.AllMovieSchedule = appDbContext.Count();
+            ViewBag.FilteredMovieSchedule = appDbContext.Count();
             return View(await appDbContext.ToListAsync());
+        }
+
+        // POST: Schedule/Index
+        [HttpPost]
+        public IActionResult Index(Theatre? selectedTheatre, DateTime? weekStartDate)
+        {
+            IQueryable<Schedule> schedulesQuery = _context.Schedules.Include(s => s.Movie).Include(s => s.Price);
+
+            ViewBag.AllMovieSchedule = schedulesQuery.Count();
+
+            // Check if a specific theater is selected
+            if (selectedTheatre.HasValue)
+            {
+                schedulesQuery = schedulesQuery.Where(s => s.Theatre == selectedTheatre.Value);
+            }
+
+            // Check start date
+            if (weekStartDate.HasValue)
+            {
+                var weekEndDate = weekStartDate.Value.AddDays(6);
+                ViewBag.EndDate = weekEndDate;
+                schedulesQuery = schedulesQuery.Where(s => s.StartTime.Date >= weekStartDate.Value.Date && s.StartTime.Date <= weekEndDate.Date);
+            }
+
+            var schedules = schedulesQuery.ToList();
+            ViewBag.FilteredMovieSchedule = schedules.Count();
+            ViewBag.SelectedTheatre = selectedTheatre;
+            ViewBag.SelectedWeekStartDate = weekStartDate;
+            return View("Index", schedules);
         }
 
         // GET: Schedule/Details/5
@@ -161,14 +192,14 @@ namespace Group6FinalProject.Controllers
             {
                 _context.Schedules.Remove(schedule);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ScheduleExists(int id)
         {
-          return (_context.Schedules?.Any(e => e.ScheduleID == id)).GetValueOrDefault();
+            return (_context.Schedules?.Any(e => e.ScheduleID == id)).GetValueOrDefault();
         }
     }
 }

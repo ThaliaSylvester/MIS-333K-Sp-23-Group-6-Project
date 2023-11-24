@@ -1,18 +1,26 @@
 ﻿<Properties StartupConfiguration="{F9141F5C-27CF-4264-9DFA-C01C0F0F15B3}|https">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.Group6FinalProject PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Group6FinalProject PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Group6FinalProject/Views/Schedule/Index.cshtml">
+    <Files>
+      <File FileName="Group6FinalProject/Controllers/ScheduleController.cs" Line="56" Column="42" IsPinned="True" />
+      <File FileName="Group6FinalProject/Views/Schedule/Index.cshtml" Line="28" Column="1" IsPinned="True" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="Group6FinalProject" expanded="True">
+          <Node name="Group6FinalProject">
             <Node name="Group6FinalProject">
-              <Node name="Controllers" selected="True" />
+              <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Views" expanded="True">
-                <Node name="Movie" expanded="True" />
+                <Node name="Schedule" expanded="True">
+                  <Node name="Index.cshtml" selected="True" />
+                </Node>
               </Node>
             </Node>
           </Node>
@@ -20,7 +28,5 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

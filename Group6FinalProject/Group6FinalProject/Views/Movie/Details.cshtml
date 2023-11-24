@@ -74,23 +74,32 @@
                 var reviews = ViewBag.Reviews as List<Review>;
                 if (reviews != null && reviews.Any())
                 {
-                    foreach (var review in reviews)
-                    {
-                        <div>
-                            <p><strong>Reviewer:</strong> @review.UserID</p>
-                            <p><strong>Rating:</strong> @review.Rating</p>
-                            <p><strong>Comment:</strong> @review.Description</p>
-                            <hr />
-                        </div>
-                    }
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Reviewer</th>
+                                <th>Rating</th>
+                                <th>Comment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var review in reviews)
+                            {
+                                <tr>
+                                    <td><strong>Reviewer:</strong> @review.UserID/td>
+                                    <td><strong>Rating:</strong> @review.Rating</td>
+                                    <td><strong>Comment:</strong> @review.Description</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 }
                 else
                 {
                     <p>No reviews available for this movie.</p>
                 }
             }
-    </dl>
-</div>
-<div>
-    <a asp-action="Index" class="custom-button">Back to List</a>
-</div>
+        </div>
+        <div>
+            <a asp-action="Index" class="custom-button">Back to List</a>
+        </div>

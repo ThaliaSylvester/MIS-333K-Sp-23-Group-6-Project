@@ -32,11 +32,12 @@ namespace Group_6_Final_Project.Models
         public SearchType SearchType { get; set; }
 
         [Display(Name = "Minimum User Rating:")]
-        [Range(0, 5, ErrorMessage = "Rating must be between 0 and 5.")]
-        public decimal? MinRating { get; set; }
+        [Range(1, 5, ErrorMessage = "User Rating must be between 1 and 5.")]
+        public int SelectedRating { get; set; }
 
-        [Display(Name = "Maximum User Rating:")]
-        [Range(0, 5, ErrorMessage = "Rating must be between 0 and 5.")]
-        public decimal? MaxRating { get; set; }
+        //[Display(Name = "Maximum User Rating:")]
+        //[Range(1, 5, ErrorMessage = "User Rating must be between 1 and 5.")]
+        //public int? MaxUserRating { get; set; }
+
     }
 }

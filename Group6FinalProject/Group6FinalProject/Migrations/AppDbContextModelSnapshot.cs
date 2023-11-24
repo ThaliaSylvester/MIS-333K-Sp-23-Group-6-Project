@@ -243,6 +243,9 @@ namespace Group6FinalProject.Migrations
                     b.Property<int>("PriceID")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("SchedulePrice")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");
 
@@ -310,9 +313,6 @@ namespace Group6FinalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionDetailID"));
 
-                    b.Property<decimal>("MoviePrice")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<int>("NumberOfTickets")
                         .HasColumnType("int");
 
@@ -322,7 +322,7 @@ namespace Group6FinalProject.Migrations
                     b.Property<int>("ScheduleID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SeatSelection")
+                    b.Property<int>("SeatSelection")
                         .HasColumnType("int");
 
                     b.Property<int>("TransactionID")
@@ -518,7 +518,7 @@ namespace Group6FinalProject.Migrations
             modelBuilder.Entity("Group_6_Final_Project.Models.TransactionDetail", b =>
                 {
                     b.HasOne("Group_6_Final_Project.Models.Schedule", "Schedule")
-                        .WithMany("transactionDetails")
+                        .WithMany("TransactionDetails")
                         .HasForeignKey("ScheduleID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -604,7 +604,7 @@ namespace Group6FinalProject.Migrations
 
             modelBuilder.Entity("Group_6_Final_Project.Models.Schedule", b =>
                 {
-                    b.Navigation("transactionDetails");
+                    b.Navigation("TransactionDetails");
                 });
 
             modelBuilder.Entity("Group_6_Final_Project.Models.Transaction", b =>

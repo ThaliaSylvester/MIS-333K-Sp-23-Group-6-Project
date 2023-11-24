@@ -273,7 +273,8 @@ namespace Group6FinalProject.Migrations
                     StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Theatre = table.Column<int>(type: "int", nullable: false),
                     PriceID = table.Column<int>(type: "int", nullable: false),
-                    MovieID = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    MovieID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    SchedulePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -299,8 +300,7 @@ namespace Group6FinalProject.Migrations
                     TransactionDetailID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NumberOfTickets = table.Column<int>(type: "int", nullable: false),
-                    SeatSelection = table.Column<int>(type: "int", nullable: true),
-                    MoviePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SeatSelection = table.Column<int>(type: "int", nullable: false),
                     PaymentMethod = table.Column<int>(type: "int", nullable: false),
                     TransactionID = table.Column<int>(type: "int", nullable: false),
                     ScheduleID = table.Column<int>(type: "int", nullable: false)

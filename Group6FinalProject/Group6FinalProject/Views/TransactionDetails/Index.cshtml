@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "_Layout";
 }
 
 <h1>Index</h1>
@@ -13,48 +12,54 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.NumberOfTickets)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.SeatSelection)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MoviePrice)
+                @Html.DisplayNameFor(model => model.SchedulePrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SchedulePrice)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PaymentMethod)
-            </th>
+            </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.Transaction)
+                @Html.DisplayNameFor(model => model.Transaction.TransactionID)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Schedule)
-            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Schedule.ScheduleID)
+            </th>*@
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.NumberOfTickets)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SeatSelection)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MoviePrice)
+                @Html.DisplayFor(modelItem => item.SchedulePrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SchedulePrice)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PaymentMethod)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Transaction.TransactionID)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Schedule.ScheduleID)
-            </td>
+            </td>*@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.TransactionDetailID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.TransactionDetailID">Details</a> |

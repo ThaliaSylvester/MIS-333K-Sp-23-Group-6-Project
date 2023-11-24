@@ -30,7 +30,8 @@ namespace Group_6_Final_Project.Models
         [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal TransactionSubtotal
         {
-            get { return TransactionDetail.Sum(od => od.MoviePrice); }
+            //get { return TransactionDetail.Sum(od => od.SchedulePrice); }
+            get { return 50; }
             private set { /* Make the set accessor private to prevent external modification */ }
         }
 
@@ -61,7 +62,8 @@ namespace Group_6_Final_Project.Models
         [DisplayFormat(DataFormatString = "{0:C}")]
         public int TotalNumberofSeats
         {
-            get { return TransactionDetail.Sum(od => od.NumberOfTickets); }
+            //get { return TransactionDetail.Sum(od => od.NumberOfTickets); }
+            get { return 1; }
             private set { /* Make the set accessor private to prevent external modification */ }
         }
 
@@ -80,6 +82,5 @@ namespace Group_6_Final_Project.Models
         }
 
         public string UserID { get; set; }  // Foreign key for the Product
-
     }
 }

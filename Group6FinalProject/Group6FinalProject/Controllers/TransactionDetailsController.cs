@@ -63,40 +63,40 @@ namespace Group6FinalProject.Controllers
         }
 
         [HttpPost]
-[ValidateAntiForgeryToken]
-public async Task<IActionResult> Create(TransactionDetail transactionDetail, int SelectedStartTime, int SelectedTheatre)
-{
-    if (ModelState.IsValid == false)
-    {
-        ViewBag.StartTimes = GetStartTime();
-        ViewBag.Theatres = GetTheatre();
-        return View(transactionDetail);
-    }
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(TransactionDetail transactionDetail, DateTime selectedStartTime, Theatre selectedTheatre)
+        {
+            if (ModelState.IsValid == false)
+            {
+                ViewBag.StartTimes = GetStartTime();
+                ViewBag.Theatres = GetTheatre();
+                return View(transactionDetail);
+            }
 
-    // Find the ScheduleID based on the selected StartTime and Theatre
-    Schedule dbSchedules = _context.Schedules.FirstOrDefault(s => s.StartTime == new DateTime(SelectedStartTime) && s.Theatre == (Theatre)SelectedTheatre);
+            // Find the ScheduleID based on the selected StartTime and Theatre
+            Schedule dbSchedules = _context.Schedules.FirstOrDefault(s => s.StartTime == selectedStartTime && s.Theatre == selectedTheatre);
 
 
-    //if (dbSchedules == null)
-    //{
-    //    ModelState.AddModelError(string.Empty, "Invalid StartTime and Theatre combination");
-    //    ViewBag.StartTimes = GetStartTime();
-    //    ViewBag.Theatres = GetTheatre();
-    //    return View(transactionDetail);
-    //}
+            //if (dbSchedules == null)
+            //{
+            //    ModelState.AddModelError(string.Empty, "Invalid StartTime and Theatre combination");
+            //    ViewBag.StartTimes = GetStartTime();
+            //    ViewBag.Theatres = GetTheatre();
+            //    return View(transactionDetail);
+            //}
 
-    transactionDetail.Schedule = dbSchedules;
+            transactionDetail.Schedule = dbSchedules;
 
-    Transaction dbTransactions = _context.Transactions.Find(transactionDetail.TransactionID);
-    transactionDetail.Transaction = dbTransactions;
+            Transaction dbTransactions = _context.Transactions.Find(transactionDetail.TransactionID);
+            transactionDetail.Transaction = dbTransactions;
 
-    // Perform any other necessary logic here
+            // Perform any other necessary logic here
 
-    _context.Add(transactionDetail);
-    await _context.SaveChangesAsync();
+            _context.Add(transactionDetail);
+            await _context.SaveChangesAsync();
 
-    return RedirectToAction("Details", "Transaction", new { id = transactionDetail.Transaction.TransactionID });
-}
+            return RedirectToAction("Details", "Transaction", new { id = transactionDetail.Transaction.TransactionID });
+        }
 
 
 
@@ -192,7 +192,7 @@ public async Task<IActionResult> Create(TransactionDetail transactionDetail, int
             {
                 _context.TransactionDetails.Remove(transactionDetail);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

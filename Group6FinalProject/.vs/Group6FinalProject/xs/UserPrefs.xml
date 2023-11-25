@@ -1,26 +1,33 @@
 ﻿<Properties StartupConfiguration="{F9141F5C-27CF-4264-9DFA-C01C0F0F15B3}|https">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Group6FinalProject PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Group6FinalProject/Controllers/TransactionController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Group6FinalProject/Controllers/TransactionDetailsController.cs">
     <Files>
       <File FileName="Group6FinalProject/Controllers/ScheduleController.cs" Line="56" Column="42" IsPinned="True" />
       <File FileName="Group6FinalProject/Views/Schedule/Index.cshtml" Line="28" Column="1" IsPinned="True" />
-      <File FileName="Group6FinalProject/Controllers/TransactionController.cs" Line="1" Column="1" />
+      <File FileName="Group6FinalProject/Controllers/TransactionDetailsController.cs" Line="94" Column="1" IsPinned="True" />
+      <File FileName="Group6FinalProject/Controllers/TransactionController.cs" Line="66" Column="66" />
+      <File FileName="Group6FinalProject/Views/Transaction/Index.cshtml" Line="1" Column="1" />
+      <File FileName="Group6FinalProject/Views/Transaction/Details.cshtml" Line="1" Column="1" />
+      <File FileName="Group6FinalProject/Views/TransactionDetails/Create.cshtml" Line="13" Column="30" />
+      <File FileName="Group6FinalProject/Models/Schedule.cs" Line="1" Column="1" />
+      <File FileName="Group6FinalProject/Views/TransactionDetails/Details.cshtml" Line="1" Column="1" />
+      <File FileName="Group6FinalProject/Models/Transaction.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="Group6FinalProject" expanded="True">
+          <Node name="Group6FinalProject">
             <Node name="Group6FinalProject">
-              <Node name="Controllers" expanded="True">
-                <Node name="TransactionController.cs" selected="True" />
+              <Node name="Controllers">
+                <Node name="TransactionDetailsController.cs" selected="True" />
               </Node>
+              <Node name="Models" expanded="True" />
               <Node name="Views" expanded="True">
-                <Node name="Transaction" expanded="True" />
+                <Node name="TransactionDetails" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -29,4 +36,5 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Group6FinalProject PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>

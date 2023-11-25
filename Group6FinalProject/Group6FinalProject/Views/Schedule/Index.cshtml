@@ -1,4 +1,5 @@
-@model IEnumerable<Group_6_Final_Project.Models.Schedule>
+@model Group_6_Final_Project.ViewModels.ScheduleViewModel
+
 
 @{
     ViewData["Title"] = "Index";
@@ -15,26 +16,25 @@
         <!--Filters-->
         <form asp-action="Index" asp-controller="Schedule" method="post">
             <div class="form-group">
-                <label for="selectedTheatre">Theater:</label><br />
-                <select class="form-control" name="selectedTheatre">
-                    <option value="" selected="@(ViewBag.SelectedTheatre == null)">All</option>
-                    <option value="@Theatre.Theatre1" selected="@(ViewBag.SelectedTheatre == Theatre.Theatre1)">Theater 1</option>
-                    <option value="@Theatre.Theatre2" selected="@(ViewBag.SelectedTheatre == Theatre.Theatre2)">Theater 2</option>
+                <label asp-for="SelectedTheatre" class="control-label">Theater:</label>
+                <select asp-for="SelectedTheatre" asp-items="Html.GetEnumSelectList<Theatre>()" class="form-control">
+                    <option selected="selected" value="">All Theaters</option>
                 </select>
+                <span asp-validation-for="SelectedTheatre" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label for="weekStartDate">Week Start Date:</label>
-                <input type="date" id="weekStartDate" name="weekStartDate" class="form-control" value="@ViewBag.SelectedWeekStartDate" />
-
-                <label for="weekEndDate">Week End Date:</label>
-                <span id="weekEndDate">@ViewBag.EndDate</span>
-                <br />
-                <button type="submit" class="btn btn-primary">Filter</button>
+                <label asp-for="SelectedWeekStartDate" class="control-label">Week Start Date:</label>
+                <input asp-for="SelectedWeekStartDate" class="form-control" type="date" id="weekStartDate" name="weekStartDate" min="2023-01-06" max="2024-01-03" step="7"/>
+                <span asp-validation-for="SelectedWeekStartDate" class="text-danger"></span>
             </div>
+            <p>
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </p>
         </form>
     </div>
 
     <hr />
+
     <div>
         <p>Displaying @ViewBag.FilteredMovieSchedule out of @ViewBag.AllMovieSchedule Movies</p>
     </div>
@@ -51,12 +51,12 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var schedule in Model)
+            @foreach (var schedule in Model.Schedules)
             {
                 <tr>
                     <td>@schedule.StartTime.ToString("MM-dd-yyyy")</td>
                     <td>
-                        @schedule.StartTime.ToString("HH:mm tt")
+                        @schedule.StartTime.ToString("hh:mm tt")
                     </td>
                     <td>
                         @schedule.Movie.Title

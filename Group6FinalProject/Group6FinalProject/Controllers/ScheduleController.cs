@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Group_6_Final_Project.DAL;
 using Group_6_Final_Project.Models;
+using Group_6_Final_Project.ViewModels;
 
 namespace Group6FinalProject.Controllers
 {
@@ -22,39 +23,43 @@ namespace Group6FinalProject.Controllers
         // GET: Schedule/Index
         public async Task<IActionResult> Index()
         {
-            var appDbContext = _context.Schedules.Include(s => s.Movie).Include(s => s.Price);
-            ViewBag.AllMovieSchedule = appDbContext.Count();
-            ViewBag.FilteredMovieSchedule = appDbContext.Count();
-            return View(await appDbContext.ToListAsync());
+            // Get all schedules
+            var schedulesQuery = GetFilteredSchedules(null, null);
+
+            // Pass through ScheduleViewModel
+            var viewModel = new ScheduleViewModel
+            {
+                Schedules = await schedulesQuery.ToListAsync(),
+                TheatreOptions = _context.Schedules.Select(s => s.Theatre.ToString()).Distinct(),
+            };
+
+            // Initiate ViewBags
+            ViewBag.AllMovieSchedule = viewModel.Schedules.Count();
+            ViewBag.FilteredMovieSchedule = viewModel.Schedules.Count();
+
+            return View(viewModel);
         }
 
         // POST: Schedule/Index
         [HttpPost]
         public IActionResult Index(Theatre? selectedTheatre, DateTime? weekStartDate)
         {
-            IQueryable<Schedule> schedulesQuery = _context.Schedules.Include(s => s.Movie).Include(s => s.Price);
+            // Filter the schedules
+            var schedulesQuery = GetFilteredSchedules(selectedTheatre, weekStartDate);
 
-            ViewBag.AllMovieSchedule = schedulesQuery.Count();
-
-            // Check if a specific theater is selected
-            if (selectedTheatre.HasValue)
+            // Pass through ScheduleViewModel
+            var viewModel = new ScheduleViewModel
             {
-                schedulesQuery = schedulesQuery.Where(s => s.Theatre == selectedTheatre.Value);
-            }
+                Schedules = schedulesQuery.ToList(),
+                TheatreOptions = _context.Schedules.Select(s => s.Theatre.ToString()).Distinct(),
+                SelectedWeekStartDate = weekStartDate
+            };
 
-            // Check start date
-            if (weekStartDate.HasValue)
-            {
-                var weekEndDate = weekStartDate.Value.AddDays(6);
-                ViewBag.EndDate = weekEndDate;
-                schedulesQuery = schedulesQuery.Where(s => s.StartTime.Date >= weekStartDate.Value.Date && s.StartTime.Date <= weekEndDate.Date);
-            }
+            // Initiate ViewBags
+            ViewBag.AllMovieSchedule = viewModel.Schedules.Count();
+            ViewBag.FilteredMovieSchedule = viewModel.Schedules.Count();
 
-            var schedules = schedulesQuery.ToList();
-            ViewBag.FilteredMovieSchedule = schedules.Count();
-            ViewBag.SelectedTheatre = selectedTheatre;
-            ViewBag.SelectedWeekStartDate = weekStartDate;
-            return View("Index", schedules);
+            return View(viewModel);
         }
 
         // GET: Schedule/Details/5
@@ -196,6 +201,25 @@ namespace Group6FinalProject.Controllers
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        // Helper function to filter the schedule
+        private IQueryable<Schedule> GetFilteredSchedules(Theatre? selectedTheatre, DateTime? weekStartDate)
+        {
+            var schedulesQuery = _context.Schedules.Include(s => s.Movie).Include(s => s.Price).AsQueryable();
+
+            if (selectedTheatre.HasValue)
+            {
+                schedulesQuery = schedulesQuery.Where(s => s.Theatre == selectedTheatre.Value);
+            }
+
+            if (weekStartDate.HasValue)
+            {
+                var weekEndDate = weekStartDate.Value.AddDays(6);
+                schedulesQuery = schedulesQuery.Where(s => s.StartTime.Date >= weekStartDate.Value.Date && s.StartTime.Date <= weekEndDate.Date);
+            }
+
+            return schedulesQuery;
         }
 
         private bool ScheduleExists(int id)

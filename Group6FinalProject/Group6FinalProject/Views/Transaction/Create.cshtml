@@ -13,18 +13,26 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @*<input type="hidden" asp-for="ScheduleID" value="@ViewBag.ScheduleID" />*@
+            @*@Html.HiddenFor(model => model.ScheduleID)*@
+            <!-- Display ScheduleID -->
+            @*<div class="form-group">
+                <label asp-for="ScheduleID" class="control-label"></label>
+                <input asp-for="ScheduleID" class="form-control" />
+                <span asp-validation-for="ScheduleID" class="text-danger"></span>
+            </div>*@
             <div class="form-group">
                 <label asp-for="TransactionNote" class="control-label"></label>
                 <input asp-for="TransactionNote" class="form-control" />
                 <span asp-validation-for="TransactionNote" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
+
 <div>
     <a asp-action="Index">Back to List</a>
 </div>

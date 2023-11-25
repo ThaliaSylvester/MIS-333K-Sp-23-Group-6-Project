@@ -8,65 +8,75 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Transaction</h4>
+    <h4>Order</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AppUser.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AppUser.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TransactionNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TransactionNumber)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.TransactionDate)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.TransactionDate)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.TransactionNote)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.TransactionNote)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TransactionSubtotal)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TransactionSubtotal)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PopcornPoints)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PopcornPoints)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TransactionTax)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TransactionTax)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TransactionTotal)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TransactionTotal)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TotalNumberofSeats)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TotalNumberofSeats)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PurchaseStatus)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PurchaseStatus)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UserID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UserID)
         </dd>
     </dl>
 </div>
+<h5>Products on this Order</h5>
+<table class="table table-primary">
+    <tr>
+        <th>Movie Title</th>
+        <th>Start Time</th>
+        <th>Theatre</th>
+        <th>Ticket Price</th>
+        <th>Seat Selection</th>
+    </tr>
+    @foreach (TransactionDetail od in Model.TransactionDetail)
+    {
+        <tr>
+            <td>@Html.DisplayFor(ModelItem => od.Schedule.Movie.Title)</td>
+            <td>@Html.DisplayFor(ModelItem => od.Schedule.StartTime)</td>
+            <td>@Html.DisplayFor(ModelItem => od.Schedule.Theatre)</td>
+            <td>@Html.DisplayFor(ModelItem => od.Schedule.Price)</td>
+            <td>@Html.DisplayFor(ModelItem => od.SeatSelection)</td>
+        </tr>
+    }
+</table>
+
+<h5>Order Summary</h5>
+<table class="table table-sm table-bordered" style="width:30%">
+    <tr>
+        <th colspan="2" style="text-align:center">Order Summary</th>
+    </tr>
+    <tr>
+        <td>Order Subtotal:</td>
+        <td>@Html.DisplayFor(model => model.TransactionSubtotal)</td>
+    </tr>
+    <tr>
+        <td>Tax:</td>
+        <td>@Html.DisplayFor(model => model.TransactionTax)</td>
+    </tr>
+    <tr>
+        <td>Order Total:</td>
+        <td>@Html.DisplayFor(model => model.TransactionTotal)</td>
+    </tr>
+
+</table>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.TransactionID">Edit</a> |
     <a asp-action="Index">Back to List</a>

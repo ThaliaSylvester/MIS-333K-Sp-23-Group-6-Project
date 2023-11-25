@@ -18,7 +18,7 @@ namespace Group_6_Final_Project.Models
 
         public TicketType TicketType { get; set; }
 
-        //NAVIGATIONAL PROPERTIES
-        public List<Schedule> Schedule { get; set; }
+        // NAVIGATIONAL PROPERTIES
+        public List<Schedule> Schedules { get; set; }
     }
 }

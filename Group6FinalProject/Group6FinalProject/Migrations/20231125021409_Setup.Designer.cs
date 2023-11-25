@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Group6FinalProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231124033731_Setup")]
+    [Migration("20231125021409_Setup")]
     partial class Setup
     {
         /// <inheritdoc />
@@ -272,6 +272,10 @@ namespace Group6FinalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionID"));
 
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("PopcornPoints")
                         .HasColumnType("int");
 
@@ -299,11 +303,9 @@ namespace Group6FinalProject.Migrations
                     b.Property<decimal>("TransactionTotal")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("UserID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("TransactionID");
+
+                    b.HasIndex("AppUserId");
 
                     b.ToTable("Transactions");
                 });
@@ -316,7 +318,7 @@ namespace Group6FinalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionDetailID"));
 
-                    b.Property<int>("NumberOfTickets")
+                    b.Property<int>("NumberofTickets")
                         .HasColumnType("int");
 
                     b.Property<int>("PaymentMethod")
@@ -325,8 +327,14 @@ namespace Group6FinalProject.Migrations
                     b.Property<int>("ScheduleID")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("SchedulePrice")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int>("SeatSelection")
                         .HasColumnType("int");
+
+                    b.Property<bool>("SeniorDiscount")
+                        .HasColumnType("bit");
 
                     b.Property<int>("TransactionID")
                         .HasColumnType("int");
@@ -508,7 +516,7 @@ namespace Group6FinalProject.Migrations
                         .IsRequired();
 
                     b.HasOne("Group_6_Final_Project.Models.Price", "Price")
-                        .WithMany("Schedule")
+                        .WithMany("Schedules")
                         .HasForeignKey("PriceID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -516,6 +524,17 @@ namespace Group6FinalProject.Migrations
                     b.Navigation("Movie");
 
                     b.Navigation("Price");
+                });
+
+            modelBuilder.Entity("Group_6_Final_Project.Models.Transaction", b =>
+                {
+                    b.HasOne("Group_6_Final_Project.Models.AppUser", "AppUser")
+                        .WithMany("Transactions")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("Group_6_Final_Project.Models.TransactionDetail", b =>
@@ -588,6 +607,11 @@ namespace Group6FinalProject.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Group_6_Final_Project.Models.AppUser", b =>
+                {
+                    b.Navigation("Transactions");
+                });
+
             modelBuilder.Entity("Group_6_Final_Project.Models.Genre", b =>
                 {
                     b.Navigation("Movie");
@@ -602,7 +626,7 @@ namespace Group6FinalProject.Migrations
 
             modelBuilder.Entity("Group_6_Final_Project.Models.Price", b =>
                 {
-                    b.Navigation("Schedule");
+                    b.Navigation("Schedules");
                 });
 
             modelBuilder.Entity("Group_6_Final_Project.Models.Schedule", b =>

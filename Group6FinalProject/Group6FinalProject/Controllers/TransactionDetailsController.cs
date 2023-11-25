@@ -64,7 +64,7 @@ namespace Group6FinalProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(TransactionDetail transactionDetail, DateTime selectedStartTime, Theatre selectedTheatre)
+        public async Task<IActionResult> Create(TransactionDetail transactionDetail, int SelectedStartTime, int SelectedTheatre)
         {
             if (ModelState.IsValid == false)
             {
@@ -74,7 +74,7 @@ namespace Group6FinalProject.Controllers
             }
 
             // Find the ScheduleID based on the selected StartTime and Theatre
-            Schedule dbSchedules = _context.Schedules.FirstOrDefault(s => s.StartTime == selectedStartTime && s.Theatre == selectedTheatre);
+            Schedule dbSchedules = _context.Schedules.FirstOrDefault(s => s.StartTime == new DateTime(SelectedStartTime) && s.Theatre == (Theatre)SelectedTheatre);
 
 
             //if (dbSchedules == null)

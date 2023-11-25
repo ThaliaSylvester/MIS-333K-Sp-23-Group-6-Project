@@ -361,11 +361,11 @@ namespace Group_6_Final_Project.Controllers
             _context.SaveChanges();
 
             // Send confirmation email
-            string emailSubject = "Ticket Confirmation";
-            string emailBody = $"Thank you for your purchase! Your confirmation number is: {transaction.ConfirmNumber}";
+            //string emailSubject = "Ticket Confirmation";
+            //string emailBody = $"Thank you for your purchase! Your confirmation number is: {transaction.ConfirmNumber}";
 
-            // Use the SendEmail method from EmailMessaging class
-            EmailMessaging.SendEmail(emailSubject, emailBody);
+            //// Use the SendEmail method from EmailMessaging class
+            //EmailMessaging.SendEmail(emailSubject, emailBody);
 
             return RedirectToAction("ThankYou", new { id = transactionId });
         }

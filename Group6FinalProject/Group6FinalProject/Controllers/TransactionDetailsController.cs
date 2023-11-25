@@ -20,25 +20,19 @@ namespace Group6FinalProject.Controllers
         }
 
         // GET: TransactionDetails
-        public async Task<IActionResult> Details(int? transactionid)
+        public IActionResult Index(int? transactionID)
         {
-            if (transactionid == null || _context.TransactionDetails == null)
+            if (transactionID == null)
             {
-                return NotFound();
+                return View("Error", new String[] { "Please specify an transaction to view!" });
             }
 
+            List<TransactionDetail> ods = _context.TransactionDetails
+                                          .Include(od => od.Schedule)
+                                          .Where(od => od.Transaction.TransactionID == transactionID)
+                                          .ToList();
 
-
-            var transactionDetail = await _context.TransactionDetails
-                //.Include(t => t.Schedule)
-                .Include(t => t.Transaction)
-                .FirstOrDefaultAsync(m => m.TransactionDetailID == transactionid);
-            if (transactionDetail == null)
-            {
-                return NotFound();
-            }
-
-            return View(transactionDetail);
+            return View(ods);
         }
 
         // GET: TransactionDetails/Create

@@ -20,10 +20,7 @@
             <div class="form-group">
                 <label class="control-label">Products:</label>
                 <select name="SelectedSchedule" asp-items="ViewBag.ScheduledMovies" class="form-control"></select>
-
-
             </div>
-
             <div class="form-group">
                 <label asp-for="NumberofTickets" class="control-label"></label>
                 <input asp-for="NumberofTickets" class="form-control" />
@@ -45,7 +42,6 @@
                 </select>
                 <span asp-validation-for="SeatSelection" class="text-danger"></span>
             </div>
-
             <div class="form-group">
                 <label asp-for="PaymentMethod" class="control-label"></label>
                 <select asp-for="PaymentMethod" class="form-control">

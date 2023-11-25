@@ -7,66 +7,64 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
-            @*<th>
-                @Html.DisplayNameFor(model => model.NumberOfTickets)
+            <th>
+                Movie Title
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SeatSelection)
+                Start Time
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SchedulePrice)
+                Theatre
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SchedulePrice)
+                Seat Selection
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PaymentMethod)
-            </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.Transaction.TransactionID)
+                Schedule Price
             </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.Schedule.ScheduleID)
-            </th>*@
+            <th>
+                Extended Price
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.NumberOfTickets)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SeatSelection)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SchedulePrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SchedulePrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentMethod)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.Transaction.TransactionID)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Schedule.ScheduleID)
-            </td>*@
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.TransactionDetailID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TransactionDetailID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TransactionDetailID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                @if (item.Schedule != null && item.Schedule.Movie != null)
+                {
+                    <td>
+                        <h2>@item.Schedule.Movie.Title</h2>
+                    </td>
+                }
+                else
+                {
+                    <td colspan="6">No Schedule or Movie Available</td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.Schedule.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Schedule.Theatre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SeatSelection)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SchedulePrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExtendedPrice)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.TransactionDetailID">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.TransactionDetailID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

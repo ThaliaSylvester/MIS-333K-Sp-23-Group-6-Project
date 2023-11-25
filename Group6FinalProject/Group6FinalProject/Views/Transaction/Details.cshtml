@@ -5,79 +5,74 @@
     Layout = "_Layout";
 }
 
-<h1>Details</h1>
-
 <div>
     <h4>Order</h4>
     <hr />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.AppUser.Email)
+            @Html.DisplayNameFor(model => model.AppUser.FullName)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.AppUser.Email)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TransactionNumber)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TransactionNumber)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TransactionDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TransactionDate)
+            @User.Identity.Name
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.TransactionNote)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TransactionNote)
+            @Model.TransactionNote
         </dd>
     </dl>
-</div>
-<h5>Products on this Order</h5>
-<table class="table table-primary">
-    <tr>
-        <th>Movie Title</th>
-        <th>Start Time</th>
-        <th>Theatre</th>
-        <th>Ticket Price</th>
-        <th>Seat Selection</th>
-    </tr>
-    @foreach (TransactionDetail od in Model.TransactionDetail)
-    {
+
+    <h5>Tickets on this Order</h5>
+    <table class="table table-primary">
         <tr>
-            <td>@Html.DisplayFor(ModelItem => od.Schedule.Movie.Title)</td>
-            <td>@Html.DisplayFor(ModelItem => od.Schedule.StartTime)</td>
-            <td>@Html.DisplayFor(ModelItem => od.Schedule.Theatre)</td>
-            <td>@Html.DisplayFor(ModelItem => od.Schedule.Price)</td>
-            <td>@Html.DisplayFor(ModelItem => od.SeatSelection)</td>
+            <th>Movie Title</th>
+            <th>Start Time</th>
+            <th>Theatre</th>
+            <th>Ticket Price</th>
+            <th>Seat Selection</th>
         </tr>
-    }
-</table>
+        @foreach (var transactionDetail in Model.TransactionDetail)
+        {
+            <tr>
+                <td>@transactionDetail.Schedule.Movie.Title</td>
+                <td>@transactionDetail.Schedule.StartTime.ToString("HH:mm tt")</td>
+                <td>@transactionDetail.Schedule.Theatre</td>
+                <td>@transactionDetail.SchedulePrice</td>
+                <td>@transactionDetail.SeatSelection</td>
+            </tr>
+        }
+    </table>
 
-<h5>Order Summary</h5>
-<table class="table table-sm table-bordered" style="width:30%">
-    <tr>
-        <th colspan="2" style="text-align:center">Order Summary</th>
-    </tr>
-    <tr>
-        <td>Order Subtotal:</td>
-        <td>@Html.DisplayFor(model => model.TransactionSubtotal)</td>
-    </tr>
-    <tr>
-        <td>Tax:</td>
-        <td>@Html.DisplayFor(model => model.TransactionTax)</td>
-    </tr>
-    <tr>
-        <td>Order Total:</td>
-        <td>@Html.DisplayFor(model => model.TransactionTotal)</td>
-    </tr>
+    <h5>Order Summary</h5>
+    <table class="table table-sm table-bordered" style="width:30%">
+        <tr>
+            <th colspan="2" style="text-align:center">Order Summary</th>
+        </tr>
+        <tr>
+            <td>Order Subtotal:</td>
+            <td>@Html.DisplayFor(model => model.TransactionSubtotal)</td>
+        </tr>
+        <tr>
+            <td>Tax:</td>
+            <td>@Html.DisplayFor(model => model.TransactionTax)</td>
+        </tr>
+        <tr>
+            <td>Order Total:</td>
+            <td>@Html.DisplayFor(model => model.TransactionTotal)</td>
+        </tr>
+    </table>
 
-</table>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.TransactionID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <div>
+        @if (Model.PurchaseStatus == PurchaseStatus.Pending)
+        {
+            <form asp-action="ConfirmPurchase" method="post">
+                <input type="hidden" asp-for="TransactionID" />
+                <button type="submit" class="btn btn-primary">Confirm Purchase</button>
+            </form>
+        }
+        <a asp-action="Edit" asp-route-id="@Model.TransactionID">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
 </div>

@@ -50,34 +50,28 @@ namespace Group_6_Final_Project.Controllers
             return View(Transactions);
         }
 
-        // GET: Transactions/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: Transaction/Details/5
+        public IActionResult Details(int? id)
         {
-            string currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-
             if (id == null)
             {
-                return View("Error", new String[] { "Please specify a transaction to view!" });
+                return NotFound();
             }
 
-            Transaction transaction = await _context.Transactions
+            var transaction = _context.Transactions
                 .Include(t => t.TransactionDetail)
-                //.Include(td => td.Schedule)
-                .FirstOrDefaultAsync(m => m.TransactionID == id);
+                    .ThenInclude(td => td.Schedule)
+                        .ThenInclude(s => s.Movie)
+                .FirstOrDefault(t => t.TransactionID == id);
 
             if (transaction == null)
             {
-                return View("Error", new String[] { "This transaction was not found!" });
-            }
-
-            // Check if the user is in the 'Customer' role and the transaction's UserID matches the current user
-            if (User.IsInRole("Customer") && transaction.AppUserId != currentUserId)
-            {
-                return View("Error", new String[] { "This is not your transaction! Don't be such a snoop!" });
+                return NotFound();
             }
 
             return View(transaction);
         }
+
 
         //public IActionResult Details(int id)
         //{
@@ -134,62 +128,63 @@ namespace Group_6_Final_Project.Controllers
             return RedirectToAction("Details", new { id = tran.TransactionID });
         }
 
-        // GET: Transactions/Edit/5
+        // GET: Orders/Edit/5
         [Authorize(Roles = "Customer")]
         public IActionResult Edit(int? id)
         {
             if (id == null)
             {
-                return View("Error", new String[] { "Please specify an Transaction to edit." });
+                return View("Error", new String[] { "Please specify an order to edit." });
             }
 
-            Transaction Transaction = _context.Transactions
+            Transaction transaction = _context.Transactions
                                        .Include(o => o.TransactionDetail)
-                                       //.Include(r => r.Schedule)
+                                       .ThenInclude(r => r.Schedule)
+                                       .ThenInclude(s => s.Movie)
+                                       .Include(r => r.AppUser)
                                        .FirstOrDefault(r => r.TransactionID == id);
 
-            if (Transaction == null)
+            if (transaction == null)
             {
-                return View("Error", new String[] { "This Transaction was not found in the database!" });
+                return View("Error", new String[] { "This order was not found in the database!" });
             }
 
-            string currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-            if (User.IsInRole("Customer") && Transaction.AppUserId != currentUserId)
+            if (User.IsInRole("Customer") && transaction.AppUser.UserName != User.Identity.Name)
             {
-                return View("Error", new String[] { "You are not authorized to edit this Transaction!" });
+                return View("Error", new String[] { "You are not authorized to edit this order!" });
             }
 
-            return View(Transaction);
+            return View(transaction);
         }
 
-        // POST: Transactions/Edit/5
+        // POST: Orders/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Customer")]
-        public async Task<IActionResult> Edit(int id, Transaction Transaction)
+        public async Task<IActionResult> Edit(int id, Transaction transaction)
         {
-            if (id != Transaction.TransactionID)
+            if (id != transaction.TransactionID)
             {
-                return View("Error", new String[] { "There was a problem editing this Transaction. Try again!" });
+                return View("Error", new String[] { "There was a problem editing this order. Try again!" });
             }
 
             if (ModelState.IsValid == false)
             {
-                return View(Transaction);
+                return View(transaction);
             }
 
             try
             {
-                Transaction dbTransaction = _context.Transactions.Find(Transaction.TransactionID);
+                Transaction dbTransactions = _context.Transactions.Find(transaction.TransactionID);
 
-                dbTransaction.TransactionNote = Transaction.TransactionNote;
+                dbTransactions.TransactionNote = transaction.TransactionNote;
 
-                _context.Update(dbTransaction);
+                _context.Update(dbTransactions);
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
-                return View("Error", new String[] { "There was an error updating this Transaction!", ex.Message });
+                return View("Error", new String[] { "There was an error updating this order!", ex.Message });
             }
             return RedirectToAction(nameof(Index));
         }
@@ -274,7 +269,6 @@ namespace Group_6_Final_Project.Controllers
             return RedirectToAction("Create", "TransactionDetails", new { TransactionID = transaction.TransactionID });
         }
 
-
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> SelectCustomerForTransaction(String SelectedCustomer)
         {
@@ -347,5 +341,21 @@ namespace Group_6_Final_Project.Controllers
             return sl;
 
         }
+        public IActionResult ConfirmPurchase(int transactionId)
+        {
+            var transaction = _context.Transactions.Find(transactionId);
+
+            if (transaction == null)
+            {
+                return NotFound();
+            }
+
+            // Update PurchaseStatus to Purchased
+            transaction.PurchaseStatus = PurchaseStatus.Purchased;
+            _context.SaveChanges();
+
+            return RedirectToAction("ThankYou", new { id = transactionId });
+        }
+
     }
 }

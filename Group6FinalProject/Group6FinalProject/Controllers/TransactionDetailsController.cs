@@ -95,7 +95,7 @@ namespace Group6FinalProject.Controllers
             await _context.SaveChangesAsync();
 
             //send the user to the details page for this transaction
-            return RedirectToAction("Details", "Transactions", new { id = transactionDetail.Transaction.TransactionID });
+            return RedirectToAction("Details", "Transaction", new { id = transactionDetail.Transaction.TransactionID });
 
             //if (ModelState.IsValid == false)
             //{

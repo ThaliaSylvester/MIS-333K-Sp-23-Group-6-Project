@@ -7,7 +7,7 @@
 
 <h1>Edit</h1>
 
-<h4>Transaction</h4>
+<h4>Edit Transaction</h2>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,58 +15,52 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="TransactionID" />
             <div class="form-group">
-                <label asp-for="TransactionDate" class="control-label"></label>
-                <input asp-for="TransactionDate" class="form-control" />
-                <span asp-validation-for="TransactionDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="TransactionNote" class="control-label"></label>
-                <input asp-for="TransactionNote" class="form-control" />
-                <span asp-validation-for="TransactionNote" class="text-danger"></span>
+                @Html.DisplayFor(Model => Model.TransactionNumber, new { @class = "form-control" })
             </div>
-            <div class="form-group">
-                <label asp-for="TransactionSubtotal" class="control-label"></label>
-                <input asp-for="TransactionSubtotal" class="form-control" />
-                <span asp-validation-for="TransactionSubtotal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PopcornPoints" class="control-label"></label>
-                <input asp-for="PopcornPoints" class="form-control" />
-                <span asp-validation-for="PopcornPoints" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TransactionTax" class="control-label"></label>
-                <input asp-for="TransactionTax" class="form-control" />
-                <span asp-validation-for="TransactionTax" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TransactionTotal" class="control-label"></label>
-                <input asp-for="TransactionTotal" class="form-control" />
-                <span asp-validation-for="TransactionTotal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TotalNumberofSeats" class="control-label"></label>
-                <input asp-for="TotalNumberofSeats" class="form-control" />
-                <span asp-validation-for="TotalNumberofSeats" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PurchaseStatus" class="control-label"></label>
-                <select asp-for="PurchaseStatus" class="form-control"></select>
-                <span asp-validation-for="PurchaseStatus" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AppUserId" class="control-label"></label>
-                <input asp-for="AppUserId" class="form-control" />
-                <span asp-validation-for="AppUserId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AppUser.FullName)
+        </dt>
+        <dd class="col-sm-10">
+            @User.Identity.Name
+        </dd>
+        <div class="form-group">
+            <label asp-for="TransactionDate" class="control-label"></label>
+            @Html.DisplayFor(Model => Model.TransactionDate, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label asp-for="TransactionNote" class="control-label"></label>
+            <input asp-for="TransactionNote" class="form-control" />
+            <span asp-validation-for="TransactionNote" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-success" />
+        </div>
         </form>
     </div>
 </div>
-
+<h5>Tickets on this Order</h5>
+<table class="table table-primary">
+    <tr>
+        <th>Movie Title</th>
+        <th>Start Time</th>
+        <th>Theatre</th>
+        <th>Ticket Price</th>
+        <th>Seat Selection</th>
+    </tr>
+    @foreach (var transactionDetail in Model.TransactionDetail)
+    {
+        <tr>
+            <td>@transactionDetail.Schedule.Movie.Title</td>
+            <td>@transactionDetail.Schedule.StartTime.ToString("HH:mm tt")</td>
+            <td>@transactionDetail.Schedule.Theatre</td>
+            <td>@transactionDetail.SchedulePrice</td>
+            <td>@transactionDetail.SeatSelection</td>
+        </tr>
+    }
+</table>
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-info">Back to List</a>
+    <a asp-action="Create" asp-controller="OrderDetails" asp-route-orderID="@Model.TransactionID" class="btn btn-warning">Add Another Item</a>
+    <a asp-action="Index" asp-controller="OrderDetails" asp-route-orderID="@Model.TransactionID" class="btn btn-danger">Edit Existing Items</a>
 </div>
-

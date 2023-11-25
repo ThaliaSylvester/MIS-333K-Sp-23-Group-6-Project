@@ -47,5 +47,10 @@ namespace Group_6_Final_Project.Models
         public Movie Movie { get; set; }
 
         public List<TransactionDetail> TransactionDetails { get; set; }
+
+        public Schedule()
+        {
+            TransactionDetails ??= new List<TransactionDetail>();
+        }
     }
 }

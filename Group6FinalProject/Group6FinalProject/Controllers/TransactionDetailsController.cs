@@ -20,26 +20,19 @@ namespace Group6FinalProject.Controllers
         }
 
         // GET: TransactionDetails
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Details(int? transactionid)
         {
-            var appDbContext = _context.TransactionDetails
-                //.Include(t => t.Schedule)
-                .Include(t => t.Transaction);
-            return View(await appDbContext.ToListAsync());
-        }
-
-        // GET: TransactionDetails/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.TransactionDetails == null)
+            if (transactionid == null || _context.TransactionDetails == null)
             {
                 return NotFound();
             }
 
+
+
             var transactionDetail = await _context.TransactionDetails
                 //.Include(t => t.Schedule)
                 .Include(t => t.Transaction)
-                .FirstOrDefaultAsync(m => m.TransactionDetailID == id);
+                .FirstOrDefaultAsync(m => m.TransactionDetailID == transactionid);
             if (transactionDetail == null)
             {
                 return NotFound();
@@ -48,33 +41,71 @@ namespace Group6FinalProject.Controllers
             return View(transactionDetail);
         }
 
-        // GET: OrderDetails/Create
+        // GET: TransactionDetails/Create
         public IActionResult Create(int transactionID)
         {
-            TransactionDetail od = new TransactionDetail();
+            //create a new instance of the TransactionDetail class
+            TransactionDetail td = new TransactionDetail();
 
+            //find the transaction that should be associated with this transaction
             Transaction dbTransaction = _context.Transactions.Find(transactionID);
-            od.Transaction = dbTransaction;
 
-            ViewBag.StartTimes = GetStartTime();
-            ViewBag.Theatres = GetTheatre();
+            //set the new transaction detail's transaction equal to the transaction you just found
+            td.Transaction = dbTransaction;
 
-            return View(od);
+            ViewBag.ScheduledMovies = GetScheduleSelectList();
+
+            return View(td);
         }
 
+        // POST: TransactionDetails/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(TransactionDetail transactionDetail, int SelectedStartTime, int SelectedTheatre)
+        public async Task<IActionResult> Create(TransactionDetail transactionDetail, int SelectedSchedule)
         {
-            if (ModelState.IsValid == false)
-            {
-                ViewBag.StartTimes = GetStartTime();
-                ViewBag.Theatres = GetTheatre();
-                return View(transactionDetail);
-            }
+            //if user has not entered all fields, send them back to try again
+            //if (ModelState.IsValid == false)
+            //{
+            //    ViewBag.ScheduledMovies = GetScheduleSelectList();
+            //    return View(transactionDetail);
+            //}
+
+
+            //find the scheudled movie  to be associated with this transaction
+            Schedule dbSchedule = _context.Schedules.Find(SelectedSchedule);
+
+            //set the transaction detail's scheduled movie to be equal to the one we just found
+            transactionDetail.Schedule = dbSchedule;
+
+            //find the transaction on the database that has the correct transaction id
+            Transaction dbTransaction = _context.Transactions.Find(transactionDetail.Transaction.TransactionID);
+
+            //set the transaction on the transaction detail equal to the transaction we just found
+            transactionDetail.Transaction = dbTransaction;
+
+            //set the transaction detail's price equal to the schedule's price
+            //this allows us to store the price that the user paid
+            transactionDetail.SchedulePrice = dbSchedule.SchedulePrice;
+
+            //calculate the extended price for the transaction detail
+            transactionDetail.ExtendedPrice = transactionDetail.NumberofTickets * transactionDetail.SchedulePrice;
+
+            //add the transaction detail to the database
+            _context.Add(transactionDetail);
+            await _context.SaveChangesAsync();
+
+            //send the user to the details page for this transaction
+            return RedirectToAction("Details", "Transactions", new { id = transactionDetail.Transaction.TransactionID });
+
+            //if (ModelState.IsValid == false)
+            //{
+            //    ViewBag.StartTimes = GetStartTime();
+            //    ViewBag.Theatres = GetTheatre();
+            //    return View(transactionDetail);
+            //}
 
             // Find the ScheduleID based on the selected StartTime and Theatre
-            Schedule dbSchedules = _context.Schedules.FirstOrDefault(s => s.StartTime == new DateTime(SelectedStartTime) && s.Theatre == (Theatre)SelectedTheatre);
+            //Schedule dbSchedules = _context.Schedules.FirstOrDefault(s => s.StartTime == new DateTime(SelectedStartTime) && s.Theatre == (Theatre)SelectedTheatre);
 
 
             //if (dbSchedules == null)
@@ -85,17 +116,17 @@ namespace Group6FinalProject.Controllers
             //    return View(transactionDetail);
             //}
 
-            transactionDetail.Schedule = dbSchedules;
+            //transactionDetail.Schedule = dbSchedules;
 
-            Transaction dbTransactions = _context.Transactions.Find(transactionDetail.TransactionID);
-            transactionDetail.Transaction = dbTransactions;
+            //Transaction dbTransactions = _context.Transactions.Find(transactionDetail.Transaction.TransactionID);
+            //transactionDetail.Transaction = dbTransactions;
 
-            // Perform any other necessary logic here
+            //// Perform any other necessary logic here
 
-            _context.Add(transactionDetail);
-            await _context.SaveChangesAsync();
+            //_context.Add(transactionDetail);
+            //await _context.SaveChangesAsync();
 
-            return RedirectToAction("Details", "Transaction", new { id = transactionDetail.Transaction.TransactionID });
+            //return RedirectToAction("Details", "Transactions", new { id = transactionDetail.Transaction.TransactionID });
         }
 
 
@@ -221,13 +252,26 @@ namespace Group6FinalProject.Controllers
 
             return slallStartTime;
         }
-        private SelectList GetTheatre()
+        //private SelectList GetTheatre()
+        //{
+        //    List<Schedule> allTheatre = _context.Schedules.ToList();
+
+        //    SelectList slallTheatre = new SelectList(allTheatre, nameof(Schedule.ScheduleID), nameof(Schedule.Theatre));
+
+        //    return slallTheatre;
+        //}
+
+        private SelectList GetScheduleSelectList()
         {
-            List<Schedule> allTheatre = _context.Schedules.ToList();
+            //create a list for all the scheduled movies
+            List<Schedule> allScheduledMovies = _context.Schedules.ToList();
 
-            SelectList slallTheatre = new SelectList(allTheatre, nameof(Schedule.ScheduleID), nameof(Schedule.Theatre));
+            //the user MUST select a scheduled movie, so you don't need a dummy option for no movie
 
-            return slallTheatre;
+            //use the constructor on select list to create a new select list with the options
+            SelectList GetAllScheduledMovies = new SelectList(allScheduledMovies, nameof(Schedule.ScheduleID), nameof(Schedule.Theatre), nameof(Schedule.StartTime));
+
+            return GetAllScheduledMovies;
         }
     }
 }

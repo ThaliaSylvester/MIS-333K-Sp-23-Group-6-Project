@@ -31,7 +31,7 @@ namespace Group_6_Final_Project.Models
         [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal TransactionSubtotal
         {
-            get { return TransactionDetail.Sum(od => od.SchedulePrice); }
+            get { return TransactionDetail.Sum(od => od.ExtendedPrice); }
             //get { return 50; }
             private set { /* Make the set accessor private to prevent external modification */ }
         }

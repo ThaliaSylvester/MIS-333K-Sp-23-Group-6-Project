@@ -24,8 +24,12 @@ namespace Group_6_Final_Project.Models
 
         public PaymentMethod PaymentMethod { get; set; }
 
-        [Display(Name = "Product Price")]
+        [Display(Name = "Schedule Price")]
         public decimal SchedulePrice { get; set; }
+
+        [Display(Name = "Extended Price")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
+        public Decimal ExtendedPrice { get; set; }
 
         [Display(Name = "Senior Discount")]
         public bool SeniorDiscount { get; set; }

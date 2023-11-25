@@ -69,6 +69,7 @@ namespace Group6FinalProject.Controllers
             }
             ViewData["MovieID"] = new SelectList(_context.Movies, "MovieID", "MovieID", schedule.MovieID);
             ViewData["PriceID"] = new SelectList(_context.Prices, "PriceID", "PriceID", schedule.PriceID);
+
             return View(schedule);
         }
 

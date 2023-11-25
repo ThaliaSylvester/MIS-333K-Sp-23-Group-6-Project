@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace Group_6_Final_Project.Models
 {
@@ -39,13 +40,13 @@ namespace Group_6_Final_Project.Models
 
         public PaymentMethod PaymentMethod { get; set; }
 
-        //[Display(Name = "Product Price")]
-        //public decimal SchedulePrice { get; set; }
+        [Display(Name = "Product Price")]
+        public decimal SchedulePrice { get; set; }
 
-        public int TransactionID { get; set; } // Foreign key for the Order
+        public int TransactionID { get; set; } // Foreign key for the Transaction
         public Transaction Transaction { get; set; }
 
-        public int ScheduleID { get; set; } // Foreign key for the Order
-        public Schedule Schedule { get; set; }
+        //public int ScheduleID { get; set; } // Foreign key for the Schedule
+        //public Schedule Schedule { get; set; }
+        }
     }
-}

@@ -53,52 +53,48 @@ namespace Group6FinalProject.Controllers
         {
             TransactionDetail od = new TransactionDetail();
 
-            Transaction dbTransaction = _context.Transactions.Find(transactionID);
+            Transaction dbTransaction = _context.Transactions
+                .Include(t => t.Schedule)
+                    .ThenInclude(s => s.Price)
+                .FirstOrDefault(t => t.TransactionID == transactionID);
+
             od.Transaction = dbTransaction;
 
-            ViewBag.StartTimes = GetStartTime();
-            ViewBag.Theatres = GetTheatre();
+            // Set SchedulePrice based on TicketPrice
+            if (od.Transaction != null && od.Transaction.Schedule != null && od.Transaction.Schedule.Price != null)
+            {
+                od.SchedulePrice = od.Transaction.Schedule.Price.TicketPrice;
+            }
 
             return View(od);
         }
 
         [HttpPost]
-[ValidateAntiForgeryToken]
-public async Task<IActionResult> Create(TransactionDetail transactionDetail, int SelectedStartTime, int SelectedTheatre)
-{
-    if (ModelState.IsValid == false)
-    {
-        ViewBag.StartTimes = GetStartTime();
-        ViewBag.Theatres = GetTheatre();
-        return View(transactionDetail);
-    }
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(TransactionDetail transactionDetail)
+        {
+            // Assuming your entity relationships are set up correctly
+            Transaction dbTransactions = _context.Transactions
+                .Include(t => t.Schedule)
+                    .ThenInclude(s => s.Price)
+                .FirstOrDefault(t => t.TransactionID == transactionDetail.TransactionID);
 
-    // Find the ScheduleID based on the selected StartTime and Theatre
-    Schedule dbSchedules = _context.Schedules.FirstOrDefault(s => s.StartTime == new DateTime(SelectedStartTime) && s.Theatre == (Theatre)SelectedTheatre);
+            transactionDetail.Transaction = dbTransactions;
 
+            // Set SchedulePrice based on TicketPrice
+            if (transactionDetail.Transaction != null &&
+                transactionDetail.Transaction.Schedule != null &&
+                transactionDetail.Transaction.Schedule.Price != null)
+            {
+                transactionDetail.SchedulePrice = transactionDetail.Transaction.Schedule.Price.TicketPrice;
+            }
 
-    //if (dbSchedules == null)
-    //{
-    //    ModelState.AddModelError(string.Empty, "Invalid StartTime and Theatre combination");
-    //    ViewBag.StartTimes = GetStartTime();
-    //    ViewBag.Theatres = GetTheatre();
-    //    return View(transactionDetail);
-    //}
+            _context.Add(transactionDetail);
 
-    transactionDetail.Schedule = dbSchedules;
+            await _context.SaveChangesAsync();
 
-    Transaction dbTransactions = _context.Transactions.Find(transactionDetail.TransactionID);
-    transactionDetail.Transaction = dbTransactions;
-
-    // Perform any other necessary logic here
-
-    _context.Add(transactionDetail);
-    await _context.SaveChangesAsync();
-
-    return RedirectToAction("Details", "Transaction", new { id = transactionDetail.Transaction.TransactionID });
-}
-
-
+            return RedirectToAction("Details", "Transaction", new { id = transactionDetail.Transaction.TransactionID });
+        }
 
         // GET: TransactionDetails/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -213,21 +209,21 @@ public async Task<IActionResult> Create(TransactionDetail transactionDetail, int
 
         //    return slAllProducts;
         //}
-        private SelectList GetStartTime()
+        //private SelectList GetStartTime()
+        //{
+        //    List<Schedule> allStartTime = _context.Schedules.ToList();
+
+        //    SelectList slallStartTime = new SelectList(allStartTime, nameof(Schedule.ScheduleID), nameof(Schedule.StartTime));
+
+        //    return slallStartTime;
+        //}
+        private SelectList GetScheduleID()
         {
-            List<Schedule> allStartTime = _context.Schedules.ToList();
+            List<Schedule> allScheduleID = _context.Schedules.ToList();
 
-            SelectList slallStartTime = new SelectList(allStartTime, nameof(Schedule.ScheduleID), nameof(Schedule.StartTime));
+            SelectList sallScheduleID = new SelectList(allScheduleID, nameof(Schedule.ScheduleID));
 
-            return slallStartTime;
-        }
-        private SelectList GetTheatre()
-        {
-            List<Schedule> allTheatre = _context.Schedules.ToList();
-
-            SelectList slallTheatre = new SelectList(allTheatre, nameof(Schedule.ScheduleID), nameof(Schedule.Theatre));
-
-            return slallTheatre;
+            return sallScheduleID;
         }
     }
 }

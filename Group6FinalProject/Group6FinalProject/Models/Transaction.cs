@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using Group_6_Final_Project.Models;
 
 namespace Group_6_Final_Project.Models
 {
@@ -30,8 +31,8 @@ namespace Group_6_Final_Project.Models
         [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal TransactionSubtotal
         {
-            //get { return TransactionDetail.Sum(od => od.SchedulePrice); }
-            get { return 50; }
+            get { return TransactionDetail.Sum(od => od.SchedulePrice); }
+            //get { return 50; }
             private set { /* Make the set accessor private to prevent external modification */ }
         }
 
@@ -62,8 +63,8 @@ namespace Group_6_Final_Project.Models
         [DisplayFormat(DataFormatString = "{0:C}")]
         public int TotalNumberofSeats
         {
-            //get { return TransactionDetail.Sum(od => od.NumberOfTickets); }
-            get { return 1; }
+            get { return TransactionDetail.Sum(od => od.NumberOfTickets); }
+            //get { return 1; }
             private set { /* Make the set accessor private to prevent external modification */ }
         }
 
@@ -81,6 +82,12 @@ namespace Group_6_Final_Project.Models
             }
         }
 
-        public string UserID { get; set; }  // Foreign key for the Product
+        public string AppUserId { get; set; }  // Foreign key for the Product
+        public AppUser AppUser { get; set; }
+
+        public int ScheduleID { get; set; }
+        public Schedule Schedule { get; set; }
     }
 }
+
+

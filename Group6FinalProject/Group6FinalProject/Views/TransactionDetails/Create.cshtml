@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Create";
+    Layout = "_Layout";
 }
 
 <h1>Create</h1>
@@ -10,16 +11,11 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             @* Hidden field for TransactionID *@
             @Html.HiddenFor(model => model.TransactionID)
-
-            @*<div class="form-group">
-                <label class="control-label">Products:</label>
-                @Html.DropDownList("SelectedProduct", (SelectList)ViewBag.AllProducts, new { @class = "form-control" })
-            </div>*@
 
             <div class="form-group">
                 <label asp-for="NumberOfTickets" class="control-label"></label>
@@ -27,6 +23,11 @@
                 <span asp-validation-for="NumberOfTickets" class="text-danger"></span>
             </div>
 
+            <div class="form-group">
+                <label asp-for="SchedulePrice" class="control-label"></label>
+                <input asp-for="SchedulePrice" class="form-control" />
+                <span asp-validation-for="SchedulePrice" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="SeatSelection" class="control-label"></label>
                 <select asp-for="SeatSelection" class="form-control">
@@ -48,18 +49,6 @@
                 </select>
                 <span asp-validation-for="PaymentMethod" class="text-danger"></span>
             </div>
-
-            @* Add dropdowns for StartTimes and Theatres using ViewBag *@
-            <div class="form-group">
-                <label class="control-label">Start Time:</label>
-                @Html.DropDownList("SelectedStartTime", (SelectList)ViewBag.StartTimes, new { @class = "form-control" })
-            </div>
-
-            <div class="form-group">
-                <label class="control-label">Theatre:</label>
-                @Html.DropDownList("SelectedTheatre", (SelectList)ViewBag.Theatres, new { @class = "form-control" })
-            </div>
-
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

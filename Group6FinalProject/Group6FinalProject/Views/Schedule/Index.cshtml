@@ -65,6 +65,7 @@
                         @schedule.Theatre
                     </td>
                     <td>
+                        <a asp-controller="Transaction" asp-action="Create" asp-route-scheduleID="@schedule.ScheduleID" class="btn btn-primary">Buy Tickets</a>
                         <a asp-action="Details" asp-route-id="@schedule.ScheduleID">Details</a> |
                         <a asp-action="Edit" asp-route-id="@schedule.ScheduleID">Edit</a> |
                         <a asp-action="Delete" asp-route-id="@schedule.ScheduleID">Delete</a>

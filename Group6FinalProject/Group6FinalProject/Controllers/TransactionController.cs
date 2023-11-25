@@ -43,7 +43,7 @@ namespace Group_6_Final_Project.Controllers
 
                 Transactions = _context.Transactions
                                 .Include(r => r.TransactionDetail)
-                                .Where(r => r.UserID == userId)
+                                .Where(r => r.AppUserId == userId)
                                 .ToList();
             }
 
@@ -62,7 +62,7 @@ namespace Group_6_Final_Project.Controllers
 
             Transaction transaction = await _context.Transactions
                 .Include(t => t.TransactionDetail)
-                .ThenInclude(td => td.Schedule)
+                .Include(td => td.Schedule)
                 .FirstOrDefaultAsync(m => m.TransactionID == id);
 
             if (transaction == null)
@@ -71,7 +71,7 @@ namespace Group_6_Final_Project.Controllers
             }
 
             // Check if the user is in the 'Customer' role and the transaction's UserID matches the current user
-            if (User.IsInRole("Customer") && transaction.UserID != currentUserId)
+            if (User.IsInRole("Customer") && transaction.AppUserId != currentUserId)
             {
                 return View("Error", new String[] { "This is not your transaction! Don't be such a snoop!" });
             }
@@ -110,7 +110,7 @@ namespace Group_6_Final_Project.Controllers
             // Assuming UserID is of type AppUser
             AppUser user = await _userManager.FindByNameAsync(currentUserId);
 
-            Transaction tran = _context.Transactions.FirstOrDefault(r => r.UserID == currentUserId);
+            Transaction tran = _context.Transactions.FirstOrDefault(r => r.AppUserId == currentUserId);
 
             if (tran == null)
             {
@@ -118,15 +118,14 @@ namespace Group_6_Final_Project.Controllers
 
                 tran.TransactionDate = DateTime.Now;
                 tran.TransactionNumber = GenerateNextOrderNumber.GetNextOrderNumber(_context);
-                tran.UserID = currentUserId;
+                tran.AppUserId = currentUserId;
 
                 _context.Transactions.Add(tran);
-                await _context.SaveChangesAsync(); // Use await here to make it asynchronous
+                await _context.SaveChangesAsync();
             }
 
             TransactionDetail od = new TransactionDetail();
 
-            od.Schedule = dbSchedule;
             od.Transaction = tran;
 
             _context.TransactionDetails.Add(od);
@@ -146,7 +145,7 @@ namespace Group_6_Final_Project.Controllers
 
             Transaction Transaction = _context.Transactions
                                        .Include(o => o.TransactionDetail)
-                                       .ThenInclude(r => r.Schedule)
+                                       .Include(r => r.Schedule)
                                        .FirstOrDefault(r => r.TransactionID == id);
 
             if (Transaction == null)
@@ -155,7 +154,7 @@ namespace Group_6_Final_Project.Controllers
             }
 
             string currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-            if (User.IsInRole("Customer") && Transaction.UserID != currentUserId)
+            if (User.IsInRole("Customer") && Transaction.AppUserId != currentUserId)
             {
                 return View("Error", new String[] { "You are not authorized to edit this Transaction!" });
             }
@@ -215,7 +214,7 @@ namespace Group_6_Final_Project.Controllers
                 if (user != null)
                 {
                     Transaction ord = new Transaction();
-                    ord.UserID = user.Id; // Assuming 'Id' is the property representing the user's ID
+                    ord.AppUserId = user.Id; // Assuming 'Id' is the property representing the user's ID
                     return View(ord);
                 }
                 else
@@ -255,7 +254,7 @@ namespace Group_6_Final_Project.Controllers
 
                 if (user != null)
                 {
-                    transaction.UserID = user.Id; // Assuming 'Id' is the property representing the user's ID
+                    transaction.AppUserId = user.Id; // Assuming 'Id' is the property representing the user's ID
                     string TransactionNote = transaction.TransactionNote;
                 }
                 else
@@ -288,7 +287,7 @@ namespace Group_6_Final_Project.Controllers
             string currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
 
             Transaction ord = new Transaction();
-            ord.UserID = currentUserId;
+            ord.AppUserId = currentUserId;
             return View("Create", ord);
         }
 
@@ -305,7 +304,7 @@ namespace Group_6_Final_Project.Controllers
 
             Transaction Transaction = await _context.Transactions
                                               .Include(o => o.TransactionDetail)
-                                              .ThenInclude(o => o.Schedule)
+                                              .Include(o => o.Schedule)
                                               .FirstOrDefaultAsync(m => m.TransactionID == id);
 
             if (Transaction == null)
@@ -313,7 +312,7 @@ namespace Group_6_Final_Project.Controllers
                 return View("Error", new String[] { "This Transaction was not found!" });
             }
 
-            if (User.IsInRole("Customer") && Transaction.UserID != currentUserId)
+            if (User.IsInRole("Customer") && Transaction.AppUserId != currentUserId)
             {
                 return View("Error", new String[] { "This is not your Transaction!  Don't be such a snoop!" });
             }

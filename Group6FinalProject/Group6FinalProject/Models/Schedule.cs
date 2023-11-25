@@ -16,20 +16,11 @@ namespace Group_6_Final_Project.Models
         [Display(Name = "Start Time")]
         public DateTime StartTime { get; set; }
 
-        [Display(Name = "End Time")]
-        public DateTime EndTime => StartTime + Movie.Runtime;
+        //[Display(Name = "End Time")]
+        //public DateTime EndTime => StartTime + Movie.Runtime;
 
         [Display(Name = "Theater")]
         public Theatre Theatre { get; set; }
-
-        // NAVIGATIONAL PROPERTY
-        public int PriceID { get; set; }  // Foreign key for the Price
-        public Price Price { get; set; }
-
-        public string MovieID { get; set; }  // Foreign key for the Movie
-        public Movie Movie { get; set; }
-
-        public List<TransactionDetail> TransactionDetails { get; set; }
 
         [Display(Name = "Product Price")]
         public decimal SchedulePrice
@@ -45,13 +36,16 @@ namespace Group_6_Final_Project.Models
                 // If Price is null, return 0 or some default value
                 return 0; // or throw an exception, return a default value, etc.
             }
-            private set { /* Make the set accessor private to prevent external modification */ }
+            set { /* Make the set accessor private to prevent external modification */ }
         }
 
-        // Constructor to set the PriceID based on the SchedulePrice
-        public Schedule()
-        {
-            PriceID = (int)SchedulePrice;
-        }
+        // NAVIGATIONAL PROPERTY
+        public int PriceID { get; set; }  // Foreign key for the Price
+        public Price Price { get; set; }
+
+        public string MovieID { get; set; }  // Foreign key for the Movie
+        public Movie Movie { get; set; }
+
+        public List<Transaction> Transactions { get; set; }
     }
 }

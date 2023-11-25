@@ -24,6 +24,9 @@ namespace Group_6_Final_Project.Models
         [Display(Name = "Transaction Number:")]
         public Int32 TransactionNumber { get; set; }
 
+        [Display(Name = "Confirmation Number:")]
+        public Int32 ConfirmNumber { get; set; }
+
         [Display(Name = "Transaction Notes:")]
         public string? TransactionNote { get; set; }
 

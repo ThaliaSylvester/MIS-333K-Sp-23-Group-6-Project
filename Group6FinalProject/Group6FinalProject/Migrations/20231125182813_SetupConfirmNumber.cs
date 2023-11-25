@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Group6FinalProject.Migrations
 {
     /// <inheritdoc />
-    public partial class Setup : Migration
+    public partial class SetupConfirmNumber : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -33,14 +33,14 @@ namespace Group6FinalProject.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    AddressLine1 = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AddressLine1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AddressLine2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    State = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Zip = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    State = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Zip = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -202,6 +202,7 @@ namespace Group6FinalProject.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TransactionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TransactionNumber = table.Column<int>(type: "int", nullable: false),
+                    ConfirmNumber = table.Column<int>(type: "int", nullable: false),
                     TransactionNote = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TransactionSubtotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PopcornPoints = table.Column<int>(type: "int", nullable: false),
@@ -209,7 +210,7 @@ namespace Group6FinalProject.Migrations
                     TransactionTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     TotalNumberofSeats = table.Column<int>(type: "int", nullable: false),
                     PurchaseStatus = table.Column<int>(type: "int", nullable: false),
-                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -218,8 +219,7 @@ namespace Group6FinalProject.Migrations
                         name: "FK_Transactions_AspNetUsers_AppUserId",
                         column: x => x.AppUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -254,10 +254,10 @@ namespace Group6FinalProject.Migrations
                     ReviewID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Rating = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    UserID = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MovieID = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MovieID = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -266,8 +266,7 @@ namespace Group6FinalProject.Migrations
                         name: "FK_Reviews_Movies_MovieID",
                         column: x => x.MovieID,
                         principalTable: "Movies",
-                        principalColumn: "MovieID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "MovieID");
                 });
 
             migrationBuilder.CreateTable(
@@ -280,7 +279,7 @@ namespace Group6FinalProject.Migrations
                     Theatre = table.Column<int>(type: "int", nullable: false),
                     SchedulePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PriceID = table.Column<int>(type: "int", nullable: false),
-                    MovieID = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    MovieID = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -289,8 +288,7 @@ namespace Group6FinalProject.Migrations
                         name: "FK_Schedules_Movies_MovieID",
                         column: x => x.MovieID,
                         principalTable: "Movies",
-                        principalColumn: "MovieID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "MovieID");
                     table.ForeignKey(
                         name: "FK_Schedules_Prices_PriceID",
                         column: x => x.PriceID,
@@ -309,6 +307,7 @@ namespace Group6FinalProject.Migrations
                     SeatSelection = table.Column<int>(type: "int", nullable: false),
                     PaymentMethod = table.Column<int>(type: "int", nullable: false),
                     SchedulePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ExtendedPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     SeniorDiscount = table.Column<bool>(type: "bit", nullable: false),
                     TransactionID = table.Column<int>(type: "int", nullable: false),
                     ScheduleID = table.Column<int>(type: "int", nullable: false)

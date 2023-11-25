@@ -33,14 +33,12 @@ namespace Group6FinalProject.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("AddressLine1")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AddressLine2")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -58,11 +56,9 @@ namespace Group6FinalProject.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -92,7 +88,6 @@ namespace Group6FinalProject.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -103,7 +98,6 @@ namespace Group6FinalProject.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("Zip")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -204,11 +198,9 @@ namespace Group6FinalProject.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReviewID"));
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MovieID")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Rating")
@@ -218,7 +210,6 @@ namespace Group6FinalProject.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("UserID")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ReviewID");
@@ -237,7 +228,6 @@ namespace Group6FinalProject.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ScheduleID"));
 
                     b.Property<string>("MovieID")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("PriceID")
@@ -270,8 +260,10 @@ namespace Group6FinalProject.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionID"));
 
                     b.Property<string>("AppUserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("ConfirmNumber")
+                        .HasColumnType("int");
 
                     b.Property<int>("PopcornPoints")
                         .HasColumnType("int");
@@ -500,9 +492,7 @@ namespace Group6FinalProject.Migrations
                 {
                     b.HasOne("Group_6_Final_Project.Models.Movie", "Movies")
                         .WithMany("Review")
-                        .HasForeignKey("MovieID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MovieID");
 
                     b.Navigation("Movies");
                 });
@@ -511,9 +501,7 @@ namespace Group6FinalProject.Migrations
                 {
                     b.HasOne("Group_6_Final_Project.Models.Movie", "Movie")
                         .WithMany("Schedule")
-                        .HasForeignKey("MovieID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MovieID");
 
                     b.HasOne("Group_6_Final_Project.Models.Price", "Price")
                         .WithMany("Schedules")
@@ -530,9 +518,7 @@ namespace Group6FinalProject.Migrations
                 {
                     b.HasOne("Group_6_Final_Project.Models.AppUser", "AppUser")
                         .WithMany("Transactions")
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AppUserId");
 
                     b.Navigation("AppUser");
                 });

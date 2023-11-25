@@ -6,7 +6,8 @@
 }
 
 <div>
-    <h4>Order</h4>
+    <h2>@Model.TransactionDetail.FirstOrDefault()?.Schedule.Movie.Title</h2>
+
     <hr />
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <dl class="row">
@@ -70,6 +71,21 @@
             <form asp-action="ConfirmPurchase" method="post">
                 <input type="hidden" asp-for="TransactionID" />
                 <button type="submit" class="btn btn-primary">Confirm Purchase</button>
+            </form>
+        }
+        @if (Model.PurchaseStatus == PurchaseStatus.Purchased)
+        {
+            var currentTime = DateTime.Now;
+            var movieStartTime = Model.TransactionDetail.FirstOrDefault()?.Schedule.StartTime;
+
+            if (movieStartTime != null && currentTime > movieStartTime)
+            {
+                <a asp-action="Create" asp-controller="Review" asp-route-MovieID="@Model.TransactionDetail.FirstOrDefault()?.Schedule.Movie.MovieID">Write a Review</a>
+            }
+
+            <form asp-action="CancelPurchase" method="post">
+                <input type="hidden" asp-for="TransactionID" />
+                <button type="submit" class="btn btn-primary">Cancel Purchase</button>
             </form>
         }
         <a asp-action="Edit" asp-route-id="@Model.TransactionID">Edit</a> |

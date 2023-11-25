@@ -14,6 +14,13 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <input type="hidden" asp-for="MovieID" />
+                <div class="form-group">
+                    <label asp-for="MovieID" class="control-label"></label>
+                    <select asp-for="MovieID" class="form-control" asp-items="ViewBag.MovieID">
+                        <option value="@ViewData["SelectedMovieID"]" selected="selected">@ViewData["SelectedMovieID"]</option>
+                    </select>
+                </div>
                 <label asp-for="Rating" class="control-label"></label>
                 <select asp-for="Rating" class="form-control"></select>
                 <span asp-validation-for="Rating" class="text-danger"></span>
@@ -32,10 +39,6 @@
                 <label asp-for="UserID" class="control-label"></label>
                 <input asp-for="UserID" class="form-control" />
                 <span asp-validation-for="UserID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MovieID" class="control-label"></label>
-                <select asp-for="MovieID" class ="form-control" asp-items="ViewBag.MovieID"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

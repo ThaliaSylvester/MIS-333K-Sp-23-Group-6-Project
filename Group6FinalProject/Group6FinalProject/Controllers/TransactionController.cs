@@ -11,6 +11,7 @@ using Group_6_Final_Project.DAL;
 using Group_6_Final_Project.Models;
 using Group_6_Final_Project.Utilities;
 using System.Security.Claims;
+using fa22RelationalDataDemo.Utilities;
 
 namespace Group_6_Final_Project.Controllers
 {
@@ -344,7 +345,6 @@ namespace Group_6_Final_Project.Controllers
         public IActionResult ConfirmPurchase(int transactionId)
         {
             var transaction = _context.Transactions.Find(transactionId);
-
             if (transaction == null)
             {
                 return NotFound();
@@ -352,10 +352,57 @@ namespace Group_6_Final_Project.Controllers
 
             // Update PurchaseStatus to Purchased
             transaction.PurchaseStatus = PurchaseStatus.Purchased;
+
+            // Save changes to the database
             _context.SaveChanges();
+
+            // Generate confirmation number
+            transaction.ConfirmNumber = GenerateNextConfirmNumber.GetNextConfirmNumber(_context);
+            _context.SaveChanges();
+
+            // Send confirmation email
+            string emailSubject = "Ticket Confirmation";
+            string emailBody = $"Thank you for your purchase! Your confirmation number is: {transaction.ConfirmNumber}";
+
+            // Use the SendEmail method from EmailMessaging class
+            EmailMessaging.SendEmail(emailSubject, emailBody);
 
             return RedirectToAction("ThankYou", new { id = transactionId });
         }
+        public IActionResult CancelPurchase(int transactionId)
+        {
+            var transaction = _context.Transactions.Find(transactionId);
 
+            if (transaction == null)
+            {
+                return NotFound();
+            }
+
+            // Update PurchaseStatus to Purchased
+            transaction.PurchaseStatus = PurchaseStatus.Cancelled;
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+        public IActionResult ThankYou(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var transaction = _context.Transactions
+                .Include(t => t.TransactionDetail)
+                    .ThenInclude(td => td.Schedule)
+                        .ThenInclude(s => s.Movie)
+                .FirstOrDefault(t => t.TransactionID == id);
+
+            if (transaction == null)
+            {
+                return NotFound();
+            }
+
+            return View(transaction);
+        }
     }
 }

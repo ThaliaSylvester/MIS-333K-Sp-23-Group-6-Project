@@ -46,9 +46,18 @@ namespace Group6FinalProject.Controllers
         }
 
         // GET: Review/Create
-        public IActionResult Create()
+        public IActionResult Create(string movieId)
         {
-            ViewData["MovieID"] = new SelectList(_context.Movies, "MovieID", "MovieID");
+            if (string.IsNullOrEmpty(movieId))
+            {
+                // Handle the case where MovieID is not provided.
+                // You may redirect to an error page or take appropriate action.
+                return RedirectToAction("Index", "Home"); // Redirect to the home page as an example.
+            }
+
+            ViewData["MovieID"] = new SelectList(_context.Movies, "MovieID", "Title");
+            ViewData["SelectedMovieID"] = movieId; // Add this line to pass the selected MovieID to the view.
+
             return View();
         }
 

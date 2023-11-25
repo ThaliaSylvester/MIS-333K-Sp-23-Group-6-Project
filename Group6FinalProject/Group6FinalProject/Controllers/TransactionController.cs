@@ -62,7 +62,7 @@ namespace Group_6_Final_Project.Controllers
 
             Transaction transaction = await _context.Transactions
                 .Include(t => t.TransactionDetail)
-                .Include(td => td.Schedule)
+                //.Include(td => td.Schedule)
                 .FirstOrDefaultAsync(m => m.TransactionID == id);
 
             if (transaction == null)
@@ -145,7 +145,7 @@ namespace Group_6_Final_Project.Controllers
 
             Transaction Transaction = _context.Transactions
                                        .Include(o => o.TransactionDetail)
-                                       .Include(r => r.Schedule)
+                                       //.Include(r => r.Schedule)
                                        .FirstOrDefault(r => r.TransactionID == id);
 
             if (Transaction == null)
@@ -304,7 +304,7 @@ namespace Group_6_Final_Project.Controllers
 
             Transaction Transaction = await _context.Transactions
                                               .Include(o => o.TransactionDetail)
-                                              .Include(o => o.Schedule)
+                                              //.Include(o => o.Schedule)
                                               .FirstOrDefaultAsync(m => m.TransactionID == id);
 
             if (Transaction == null)

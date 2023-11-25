@@ -46,6 +46,6 @@ namespace Group_6_Final_Project.Models
         public string MovieID { get; set; }  // Foreign key for the Movie
         public Movie Movie { get; set; }
 
-        public List<Transaction> Transactions { get; set; }
+        public List<TransactionDetail> TransactionDetails { get; set; }
     }
 }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Group6FinalProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231125012511_Setup")]
+    [Migration("20231125021409_Setup")]
     partial class Setup
     {
         /// <inheritdoc />
@@ -282,12 +282,6 @@ namespace Group6FinalProject.Migrations
                     b.Property<int>("PurchaseStatus")
                         .HasColumnType("int");
 
-                    b.Property<int>("ScheduleID")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("TempPrice")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<int>("TotalNumberofSeats")
                         .HasColumnType("int");
 
@@ -313,8 +307,6 @@ namespace Group6FinalProject.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.HasIndex("ScheduleID");
-
                     b.ToTable("Transactions");
                 });
 
@@ -326,10 +318,13 @@ namespace Group6FinalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionDetailID"));
 
-                    b.Property<int>("NumberOfTickets")
+                    b.Property<int>("NumberofTickets")
                         .HasColumnType("int");
 
                     b.Property<int>("PaymentMethod")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ScheduleID")
                         .HasColumnType("int");
 
                     b.Property<decimal>("SchedulePrice")
@@ -338,10 +333,15 @@ namespace Group6FinalProject.Migrations
                     b.Property<int>("SeatSelection")
                         .HasColumnType("int");
 
+                    b.Property<bool>("SeniorDiscount")
+                        .HasColumnType("bit");
+
                     b.Property<int>("TransactionID")
                         .HasColumnType("int");
 
                     b.HasKey("TransactionDetailID");
+
+                    b.HasIndex("ScheduleID");
 
                     b.HasIndex("TransactionID");
 
@@ -534,24 +534,24 @@ namespace Group6FinalProject.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Group_6_Final_Project.Models.Schedule", "Schedule")
-                        .WithMany("Transactions")
-                        .HasForeignKey("ScheduleID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("AppUser");
-
-                    b.Navigation("Schedule");
                 });
 
             modelBuilder.Entity("Group_6_Final_Project.Models.TransactionDetail", b =>
                 {
+                    b.HasOne("Group_6_Final_Project.Models.Schedule", "Schedule")
+                        .WithMany("TransactionDetails")
+                        .HasForeignKey("ScheduleID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Group_6_Final_Project.Models.Transaction", "Transaction")
                         .WithMany("TransactionDetail")
                         .HasForeignKey("TransactionID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Schedule");
 
                     b.Navigation("Transaction");
                 });
@@ -631,7 +631,7 @@ namespace Group6FinalProject.Migrations
 
             modelBuilder.Entity("Group_6_Final_Project.Models.Schedule", b =>
                 {
-                    b.Navigation("Transactions");
+                    b.Navigation("TransactionDetails");
                 });
 
             modelBuilder.Entity("Group_6_Final_Project.Models.Transaction", b =>

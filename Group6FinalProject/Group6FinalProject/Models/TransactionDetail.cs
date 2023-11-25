@@ -18,24 +18,8 @@ namespace Group_6_Final_Project.Models
 
         [Range(1, 25, ErrorMessage = "Number of Tickets must be between 1 and 25")]
         [Display(Name = "Number of Tickets")]
-        public int NumberOfTickets
-        {
-            get
-            {
-                // Calculate the number of tickets based on the SeatSelection
-                // For example, you may want to count the number of selected seats
-                // and use that as the number of tickets.
-                // This is just a placeholder; adjust it based on your logic.
-
-                var selectedSeats = Enum.GetValues(typeof(SeatSelection))
-                                        .Cast<SeatSelection>()
-                                        .Count(s => s.HasFlag(SeatSelection));
-
-                return selectedSeats;
-            }
-            private set { }
-        }
-
+        public int NumberofTickets { get; set; }
+     
         public SeatSelection SeatSelection { get; set; }
 
         public PaymentMethod PaymentMethod { get; set; }
@@ -43,10 +27,13 @@ namespace Group_6_Final_Project.Models
         [Display(Name = "Product Price")]
         public decimal SchedulePrice { get; set; }
 
+        [Display(Name = "Senior Discount")]
+        public bool SeniorDiscount { get; set; }
+
         public int TransactionID { get; set; } // Foreign key for the Transaction
         public Transaction Transaction { get; set; }
 
-        //public int ScheduleID { get; set; } // Foreign key for the Schedule
-        //public Schedule Schedule { get; set; }
-        }
+        public int ScheduleID { get; set; } // Foreign key for the Schedule
+        public Schedule Schedule { get; set; }
     }
+}

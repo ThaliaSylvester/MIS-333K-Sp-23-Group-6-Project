@@ -7,49 +7,56 @@
 
 <h1>Details</h1>
 
-<dd class="col-sm-10">
-    @if (Model.AppUser != null)
-    {
-        @Html.DisplayFor(model => model.AppUser.UserName)
-    }
-    else
-    {
-        <p>AppUser is null</p>
-    }
-</dd>
-
-
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AppUser.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AppUser.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TransactionNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TransactionNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TransactionDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TransactionDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TransactionNote)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TransactionNote)
+        </dd>
+    </dl>
+</div>
 <h5>Products on this Order</h5>
 <table class="table table-primary">
     <tr>
-        <th>Product Name</th>
-        <th>Price</th>
-        <th>Quantity</th>
+        <th>Movie Title</th>
+        <th>Start Time</th>
+        <th>Theatre</th>
+        <th>Ticket Price</th>
+        <th>Seat Selection</th>
     </tr>
-    <!-- Other table headers... -->
+    @foreach (TransactionDetail od in Model.TransactionDetail)
+    {
+        <tr>
+            <td>@Html.DisplayFor(ModelItem => od.Schedule.Movie.Title)</td>
+            <td>@Html.DisplayFor(ModelItem => od.Schedule.StartTime)</td>
+            <td>@Html.DisplayFor(ModelItem => od.Schedule.Theatre)</td>
+            <td>@Html.DisplayFor(ModelItem => od.Schedule.Price)</td>
+            <td>@Html.DisplayFor(ModelItem => od.SeatSelection)</td>
+        </tr>
+    }
 </table>
-
-<h5>Schedule Information</h5>
-<dl class="row">
-    <dt class="col-sm-2">
-        Movie Name:
-    </dt>
-    <dd class="col-sm-10">
-        @Html.DisplayFor(model => model.Schedule.Movie.Title)
-    </dd>
-    <dt class="col-sm-2">
-        Start Time:
-    </dt>
-    <dd class="col-sm-10">
-        @Html.DisplayFor(model => model.Schedule.StartTime)
-    </dd>
-    <dt class="col-sm-2">
-        Theatre:
-    </dt>
-    <dd class="col-sm-10">
-        @Html.DisplayFor(model => model.Schedule.Theatre)
-    </dd>
-</dl>
 
 <h5>Order Summary</h5>
 <table class="table table-sm table-bordered" style="width:30%">

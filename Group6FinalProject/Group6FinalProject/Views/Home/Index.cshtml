@@ -34,7 +34,6 @@
 
 <div class="container-fluid mt-4">
     <!-- Use container-fluid for full width -->
-
     <!-- Featured Movies Carousel -->
     <div id="carousel" class="carousel slide mb-4" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -45,7 +44,7 @@
         <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="4000">
                 <a href="/Movie/Details/1a9ef99c-0d51-4f2c-909f-d9a3d9663027">
-                    <img src="~/Img/Barbie.jpg" class="d-block w-100" alt="Barbie">
+                    <img src="~/Img/BarbieTheMovie.png" class="d-block w-100" alt="Barbie">
                 </a>
             </div>
             <div class="carousel-item" data-bs-interval="4000">
@@ -55,7 +54,7 @@
             </div>
             <div class="carousel-item" data-bs-interval="4000">
                 <a href="/Movie/Details/7565287f-264e-48a6-b921-7fec5ebde2f2">
-                    <img src="~/Img/Titanic.jpg" class="d-block w-100" alt="Titanic">
+                    <img src="~/Img/Spiderman.jpg" class="d-block w-100" alt="Titanic">
                 </a>
             </div>
         </div>
@@ -71,41 +70,121 @@
 
     <!-- Categories Section -->
     <h3 class="mb-3">Explore by Category</h3>
+
+    <!-- Visible Categories -->
     <div class="row">
+        <!-- Action Card -->
         <div class="col-md-4 mb-3">
-            <!-- Category Card 1 -->
             <div class="card">
-                <img src="placeholder-category-1.jpg" class="card-img-top" alt="Category 1">
+                <img src="~/Img/Action.jpg" class="card-img-top" alt="Action">
                 <div class="card-body">
-                    <h5 class="card-title">Category 1</h5>
-                    <p class="card-text">Description of Category 1.</p>
+                    <h5 class="card-title">Action</h5>
+                    <p class="card-text"> High-octane blend of fast-paced sequences, daring stunts, and epic confrontations...</p>
                     <a href="#" class="btn btn-primary">Explore</a>
                 </div>
             </div>
         </div>
+
+        <!-- Family Card-->
         <div class="col-md-4 mb-3">
-            <!-- Category Card 2 -->
             <div class="card">
-                <img src="placeholder-category-2.jpg" class="card-img-top" alt="Category 2">
+                <img src="~/Img/Children_Family.jpg" class="card-img-top" alt="Family">
                 <div class="card-body">
-                    <h5 class="card-title">Category 2</h5>
-                    <p class="card-text">Description of Category 2.</p>
+                    <h5 class="card-title">Family</h5>
+                    <p class="card-text">Heartwarming stories filled with adventure, humor, and lessons suitable for all ages...</p>
                     <a href="#" class="btn btn-primary">Explore</a>
                 </div>
             </div>
         </div>
+
+        <!-- Comedy Card -->
         <div class="col-md-4 mb-3">
-            <!-- Category Card 3 -->
             <div class="card">
-                <img src="placeholder-category-3.jpg" class="card-img-top" alt="Category 3">
+                <img src="~/Img/Comedy.jpg" class="card-img-top" alt="Comedy">
                 <div class="card-body">
-                    <h5 class="card-title">Category 3</h5>
-                    <p class="card-text">Description of Category 3.</p>
+                    <h5 class="card-title">Comedy</h5>
+                    <p class="card-text"> Laughter-inducing escapades, spotlighting the humorous side of life with wit and whimsy...</p>
                     <a href="#" class="btn btn-primary">Explore</a>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Hidden Categories -->
+    <div id="additionalCategories" class="row d-none">
+        <!-- Categories 4 to 9 here -->
+        <!-- Drama Card -->
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img src="~/Img/Drama.jpg" class="card-img-top" alt="Drama">
+                <div class="card-body">
+                    <h5 class="card-title">Drama</h5>
+                    <p class="card-text">Emotionally rich narratives that delve into the complexities and profundities of the human condition...</p>
+                    <a href="#" class="btn btn-primary">Explore</a>
+                </div>
+            </div>
+        </div>
+        <!-- Horror Card -->
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img src="~/Img/Horror.jpg" class="card-img-top" alt="Horror">
+                <div class="card-body">
+                    <h5 class="card-title">Horror</h5>
+                    <p class="card-text">Suspenseful and eerie, weaving fear and the supernatural into a thrilling experience...</p>
+                    <a href="#" class="btn btn-primary">Explore</a>
+                </div>
+            </div>
+        </div> <!-- Musical Card -->
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img src="~/Img/Musical.jpg" class="card-img-top" alt="Musical">
+                <div class="card-body">
+                    <h5 class="card-title">Musical</h5>
+                    <p class="card-text">Vibrant fusion of storytelling, music, and dance, creating an enchanting theatrical experience...</p>
+                    <a href="#" class="btn btn-primary">Explore</a>
+                </div>
+            </div>
+        </div>
+        <!-- Romance Card -->
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img src="~/Img/Romance.jpg" class="card-img-top" alt="Romance">
+                <div class="card-body">
+                    <h5 class="card-title">Romance</h5>
+                    <p class="card-text">Captivating tales of love, exploring the emotional dynamics and joys of relationships...</p>
+                    <a href="#" class="btn btn-primary">Explore</a>
+                </div>
+            </div>
+        </div>
+        <!-- Sci-Fi -->
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img src="~/Img/Sci-Fi.jpg" class="card-img-top" alt="Sci-Fi">
+                <div class="card-body">
+                    <h5 class="card-title">Sci-Fi</h5>
+                    <p class="card-text">Imaginative journeys into futuristic and speculative worlds, often interwoven with profound themes.</p>
+                    <a href="#" class="btn btn-primary">Explore</a>
+                </div>
+            </div>
+        </div>
+        <!-- Repeat the structure for each category, changing the numbers and details accordingly -->
+    </div>
+
+    <!-- Show More Button -->
+    <button id="showMoreButton" class="btn btn-primary mt-3">Show More</button>
+
+    <!-- Inline JavaScript -->
+    <script>document.getElementById('showMoreButton').addEventListener('click', function () {
+            var additionalCategories = document.getElementById('additionalCategories');
+            if (additionalCategories.classList.contains('d-none')) {
+                additionalCategories.classList.remove('d-none');
+                this.textContent = 'Show Less';
+            } else {
+                additionalCategories.classList.add('d-none');
+                this.textContent = 'Show More';
+            }
+        });</script>
+
 
     <!-- Popular Content Section -->
     <h3 class="mb-3">Popular Movies</h3>

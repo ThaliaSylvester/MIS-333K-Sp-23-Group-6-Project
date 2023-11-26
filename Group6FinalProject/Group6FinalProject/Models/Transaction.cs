@@ -17,7 +17,7 @@ namespace Group_6_Final_Project.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TransactionID { get; set; }
 
-        [Display(Name = "Transaction Date")]
+        [Display(Name = "Order Date")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime TransactionDate { get; set; }
 
@@ -27,14 +27,14 @@ namespace Group_6_Final_Project.Models
         [Display(Name = "Confirmation Number:")]
         public Int32 ConfirmNumber { get; set; }
 
-        [Display(Name = "Transaction Notes:")]
+        [Display(Name = "Order Notes:")]
         public string? TransactionNote { get; set; }
 
         [Display(Name = "Order Subtotal")]
         [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal TransactionSubtotal
         {
-            get { return TransactionDetail.Sum(od => od.ExtendedPrice); }
+            get { return TransactionDetail.Sum(td => td.ExtendedPrice); }
             //get { return 50; }
             private set { /* Make the set accessor private to prevent external modification */ }
         }
@@ -59,15 +59,6 @@ namespace Group_6_Final_Project.Models
         public decimal TransactionTotal
         {
             get { return TransactionSubtotal + TransactionTax; }
-            private set { /* Make the set accessor private to prevent external modification */ }
-        }
-
-        [Display(Name = "Transaction Total")]
-        [DisplayFormat(DataFormatString = "{0:C}")]
-        public int TotalNumberofSeats
-        {
-            get { return TransactionDetail.Sum(od => od.NumberofTickets); }
-            //get { return 1; }
             private set { /* Make the set accessor private to prevent external modification */ }
         }
 

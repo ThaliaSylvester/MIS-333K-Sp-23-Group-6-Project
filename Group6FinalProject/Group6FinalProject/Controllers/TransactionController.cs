@@ -28,27 +28,36 @@ namespace Group_6_Final_Project.Controllers
         }
 
         // GET: Transactions
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder)
         {
-            List<Transaction> Transactions;
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.DateSortParm = sortOrder == "date_asc" ? "date_desc" : "date_asc";
+
+
+            var transactionsQuery = from t in _context.Transactions select t;
 
             if (User.IsInRole("Admin"))
             {
-                Transactions = _context.Transactions
-                                .Include(r => r.TransactionDetail)
-                                .ToList();
+                transactionsQuery = transactionsQuery.Include(r => r.TransactionDetail);
             }
             else
             {
-                string userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the user's ID claim
-
-                Transactions = _context.Transactions
-                                .Include(r => r.TransactionDetail)
-                                .Where(r => r.AppUserId == userId)
-                                .ToList();
+                string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                transactionsQuery = transactionsQuery.Include(r => r.TransactionDetail)
+                                                     .Where(r => r.AppUserId == userId);
             }
 
-            return View(Transactions);
+            switch (sortOrder)
+            {
+                case "Date":
+                    transactionsQuery = transactionsQuery.OrderBy(t => t.TransactionDate);
+                    break;
+                case "date_desc":
+                    transactionsQuery = transactionsQuery.OrderByDescending(t => t.TransactionDate);
+                    break;
+            }
+
+            return View(transactionsQuery.ToList());
         }
 
         // GET: Transaction/Details/5

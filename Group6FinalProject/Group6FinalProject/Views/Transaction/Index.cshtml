@@ -2,11 +2,12 @@
 @using System.Security.Claims
 
 @{
-    ViewData["Title"] = "Index";
     Layout = "_Layout";
+    string dateSortOrder = ViewBag.DateSortParm as string;
+    string arrowDate = dateSortOrder == "date_desc" ? "↑" : "↓"; // Flip arrow direction
 }
 
-<h1>Index</h1>
+<h1 style="margin-top: 20px;">Order History</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -14,17 +15,12 @@
     @*<a asp-action="Create" asp- -scheduleID="8">Create Transaction</a> 
 </p>*@
 <p>
-    Current User ID: @User.Identity.Name
-    Current User ID: @User.FindFirst(ClaimTypes.NameIdentifier)?.Value
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.TransactionDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TransactionNote)
+                Order Date <span class="sort-arrow" onclick="sortTable('@dateSortOrder')">@arrowDate</span>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TransactionSubtotal)
@@ -39,13 +35,13 @@
                 @Html.DisplayNameFor(model => model.TransactionTotal)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TotalNumberofSeats)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.PurchaseStatus)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AppUserId)
+                @Html.DisplayNameFor(model => model.ConfirmNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransactionNote)
             </th>
             <th></th>
         </tr>
@@ -56,9 +52,6 @@
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.TransactionDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TransactionNote)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TransactionSubtotal)
@@ -73,13 +66,13 @@
                     @Html.DisplayFor(modelItem => item.TransactionTotal)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TotalNumberofSeats)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.PurchaseStatus)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.AppUserId)
+                    @Html.DisplayFor(modelItem => item.ConfirmNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionNote)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.TransactionID">Edit</a> |
@@ -90,3 +83,8 @@
         }
     </tbody>
 </table>
+
+<script>function sortTable(sortOrder) {
+        window.location.href = '?sortOrder=' + sortOrder;
+    }
+</script>

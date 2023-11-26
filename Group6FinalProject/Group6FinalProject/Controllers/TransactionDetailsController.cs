@@ -80,10 +80,27 @@ namespace Group6FinalProject.Controllers
 
             //set the transaction detail's price equal to the schedule's price
             //this allows us to store the price that the user paid
-            transactionDetail.SchedulePrice = dbSchedule.SchedulePrice;
+            // Assuming Schedule has a navigation property to Price, e.g., PriceNavigation
+            // Assuming PriceID is the foreign key in Schedule referencing the Price table
+            int priceId = dbSchedule.PriceID;
+
+            // Fetch the Price entity based on PriceID
+            Price price = _context.Prices.Find(priceId);
+
+            // Check if the Price entity is found
+            if (price != null)
+            {
+                // Use the TicketPrice property of the Price entity
+                transactionDetail.SchedulePrice = price.TicketPrice;
+            }
+            else
+            {
+                // Handle the case where the Price entity is not found
+                // You might want to log an error, set a default price, or take appropriate action.
+            }
 
             //calculate the extended price for the transaction detail
-            transactionDetail.ExtendedPrice = transactionDetail.NumberofTickets * transactionDetail.SchedulePrice;
+            //transactionDetail.ExtendedPrice = transactionDetail.NumberofTickets * transactionDetail.SchedulePrice;
 
             //add the transaction detail to the database
             _context.Add(transactionDetail);

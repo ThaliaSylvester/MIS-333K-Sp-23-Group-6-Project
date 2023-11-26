@@ -22,23 +22,6 @@ namespace Group_6_Final_Project.Models
         [Display(Name = "Theater")]
         public Theatre Theatre { get; set; }
 
-        [Display(Name = "Product Price")]
-        public decimal SchedulePrice
-        {
-            get
-            {
-                // Check if Schedule and associated Price are not null, then return the ticket price
-                if (Price != null)
-                {
-                    return Price.TicketPrice;
-                }
-
-                // If Price is null, return 0 or some default value
-                return 0; // or throw an exception, return a default value, etc.
-            }
-            set { /* Make the set accessor private to prevent external modification */ }
-        }
-
         // NAVIGATIONAL PROPERTY
         public int PriceID { get; set; }  // Foreign key for the Price
         public Price Price { get; set; }

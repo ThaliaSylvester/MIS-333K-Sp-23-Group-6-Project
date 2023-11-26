@@ -29,7 +29,15 @@ namespace Group_6_Final_Project.Models
 
         [Display(Name = "Extended Price")]
         [DisplayFormat(DataFormatString = "{0:C}")]
-        public Decimal ExtendedPrice { get; set; }
+        public decimal ExtendedPrice
+        {
+            get
+            {
+                // Calculate the extended price by multiplying number of tickets by schedule price
+                return NumberofTickets * SchedulePrice;
+            }
+            private set { }
+        }
 
         [Display(Name = "Senior Discount")]
         public bool SeniorDiscount { get; set; }

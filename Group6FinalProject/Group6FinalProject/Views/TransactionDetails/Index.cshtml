@@ -5,28 +5,22 @@
     Layout = "_Layout";
 }
 
-<h1>Order Details</h1>
+<h1>Index</h1>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                Movie Title
+                @Html.DisplayNameFor(model => model.Schedule.Movie.Title)
             </th>
             <th>
-                Start Time
+                @Html.DisplayNameFor(model => model.SeatSelection)
             </th>
             <th>
-                Theatre
+                @Html.DisplayNameFor(model => model.SchedulePrice)
             </th>
             <th>
-                Seat Selection
-            </th>
-            <th>
-                Schedule Price
-            </th>
-            <th>
-                Extended Price
+                @Html.DisplayNameFor(model => model.ExtendedPrice)
             </th>
             <th></th>
         </tr>
@@ -35,21 +29,8 @@
         @foreach (var item in Model)
         {
             <tr>
-                @if (item.Schedule != null && item.Schedule.Movie != null)
-                {
-                    <td>
-                        <h2>@item.Schedule.Movie.Title</h2>
-                    </td>
-                }
-                else
-                {
-                    <td colspan="6">No Schedule or Movie Available</td>
-                }
                 <td>
-                    @Html.DisplayFor(modelItem => item.Schedule.StartTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Schedule.Theatre)
+                    @Html.DisplayFor(modelItem => item.Schedule.Movie.Title)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.SeatSelection)

@@ -29,6 +29,7 @@ namespace Group6FinalProject.Controllers
 
             List<TransactionDetail> ods = _context.TransactionDetails
                                           .Include(od => od.Schedule)
+                                          .ThenInclude(od => od.Movie)
                                           .Where(od => od.Transaction.TransactionID == transactionID)
                                           .ToList();
 
@@ -183,44 +184,51 @@ namespace Group6FinalProject.Controllers
             return RedirectToAction("Details", "Transaction", new { id = dbOD.Transaction.TransactionID });
         }
 
-        // GET: TransactionDetails/Delete/5
+        // GET: OrderDetails/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.TransactionDetails == null)
+            if (id == null)
             {
-                return NotFound();
+                return View("Error", new String[] { "Please specify an order detail to delete!" });
             }
 
-            var transactionDetail = await _context.TransactionDetails
-                //.Include(t => t.Schedule)
-                .Include(t => t.Transaction)
-                .FirstOrDefaultAsync(m => m.TransactionDetailID == id);
+            TransactionDetail transactionDetail = await _context.TransactionDetails
+                                                    .Include(o => o.Transaction)
+                                                    .Include(o => o.Schedule)
+                                                    .ThenInclude(o => o.Movie)
+                                                   .FirstOrDefaultAsync(m => m.TransactionDetailID == id);
+
             if (transactionDetail == null)
             {
-                return NotFound();
+                return View("Error", new String[] { "This transaction detail was not in the database!" });
             }
 
             return View(transactionDetail);
         }
 
-        // POST: TransactionDetails/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.TransactionDetails == null)
+            TransactionDetail transactionDetail = await _context.TransactionDetails
+                                                    .Include(o => o.Transaction)
+                                                    .FirstOrDefaultAsync(o => o.TransactionDetailID == id);
+
+            if (transactionDetail == null)
             {
-                return Problem("Entity set 'AppDbContext.TransactionDetails'  is null.");
-            }
-            var transactionDetail = await _context.TransactionDetails.FindAsync(id);
-            if (transactionDetail != null)
-            {
-                _context.TransactionDetails.Remove(transactionDetail);
+                // Handle the case when the transactionDetail is not found
+                return NotFound();
             }
 
+            _context.TransactionDetails.Remove(transactionDetail);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+
+            // Redirect to the "Details" action of the "Transactions" controller with the correct TransactionID
+            return RedirectToAction("Details", "Transaction", new { id = transactionDetail.Transaction.TransactionID });
         }
+
+
+
         //private SelectList GetProductSelectList()
         //{
         //    List<Schedule> allProducts = _context.Schedules.ToList();

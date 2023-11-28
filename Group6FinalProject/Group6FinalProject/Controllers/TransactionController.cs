@@ -27,7 +27,7 @@ namespace Group_6_Final_Project.Controllers
             _userManager = userManager;
         }
 
-        // GET: Transactions
+        // GET: Transactions/Index
         public IActionResult Index(string sortOrder)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -63,90 +63,38 @@ namespace Group_6_Final_Project.Controllers
         // GET: Transaction/Details/5
         public IActionResult Details(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Transactions == null)
             {
-                return NotFound();
+                return View("Error", new String[] { "Please specify a transaction to view!" });
             }
 
+            // Find in database
             var transaction = _context.Transactions
-                .Include(t => t.TransactionDetail)
-                    .ThenInclude(td => td.Schedule)
-                        .ThenInclude(s => s.Movie)
-                .FirstOrDefault(t => t.TransactionID == id);
+                              .Include(t => t.TransactionDetail)
+                              .ThenInclude(t => t.Schedule)
+                              .ThenInclude(t => t.Movie)
+                              .FirstOrDefault(m => m.TransactionID == id);
 
+            // If transaction was not found in database
             if (transaction == null)
             {
-                return NotFound();
+                return View("Error", new String[] { "This transaction was not found!" });
             }
 
+            // Send user to details page
             return View(transaction);
         }
 
-
-        //public IActionResult Details(int id)
-        //{
-        //    var transaction = _context.Transactions.Find(id);
-
-        //    if (transaction == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(transaction);
-        //}
-
-        public async Task<IActionResult> AddToCart(int? ScheduleID)
-        {
-            if (ScheduleID == null)
-            {
-                return View("Error", new string[] { "Please specify a Schedule to add to the Transaction" });
-            }
-
-            string currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-
-            Schedule dbSchedule = _context.Schedules.Find(ScheduleID);
-
-            if (dbSchedule == null)
-            {
-                return View("Error", new string[] { "This Schedule was not in the database!" });
-            }
-
-            // Assuming UserID is of type AppUser
-            AppUser user = await _userManager.FindByNameAsync(currentUserId);
-
-            Transaction tran = _context.Transactions.FirstOrDefault(r => r.AppUserId == currentUserId);
-
-            if (tran == null)
-            {
-                tran = new Transaction();
-
-                tran.TransactionDate = DateTime.Now;
-                tran.TransactionNumber = GenerateNextOrderNumber.GetNextOrderNumber(_context);
-                tran.AppUserId = currentUserId;
-
-                _context.Transactions.Add(tran);
-                await _context.SaveChangesAsync();
-            }
-
-            TransactionDetail od = new TransactionDetail();
-
-            od.Transaction = tran;
-
-            _context.TransactionDetails.Add(od);
-            await _context.SaveChangesAsync(); // Use await here to make it asynchronous
-
-            return RedirectToAction("Details", new { id = tran.TransactionID });
-        }
-
-        // GET: Orders/Edit/5
+        // GET: Transaction/Edit/5
         [Authorize(Roles = "Customer")]
         public IActionResult Edit(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Transactions == null)
             {
-                return View("Error", new String[] { "Please specify an order to edit." });
+                return View("Error", new String[] { "Please specify an order to edit" });
             }
 
+            // Find transaction in database
             Transaction transaction = _context.Transactions
                                        .Include(o => o.TransactionDetail)
                                        .ThenInclude(r => r.Schedule)
@@ -154,20 +102,22 @@ namespace Group_6_Final_Project.Controllers
                                        .Include(r => r.AppUser)
                                        .FirstOrDefault(r => r.TransactionID == id);
 
+            // If transaction was not found
             if (transaction == null)
             {
-                return View("Error", new String[] { "This order was not found in the database!" });
+                return View("Error", new String[] { "This transaction was not found in the database!" });
             }
 
+            // Order does not belong to this user
             if (User.IsInRole("Customer") && transaction.AppUser.UserName != User.Identity.Name)
             {
-                return View("Error", new String[] { "You are not authorized to edit this order!" });
+                return View("Error", new String[] { "You are not authorized to edit this transaction!" });
             }
 
             return View(transaction);
         }
 
-        // POST: Orders/Edit/5
+        // POST: Transaction/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Customer")]
@@ -175,226 +125,61 @@ namespace Group_6_Final_Project.Controllers
         {
             if (id != transaction.TransactionID)
             {
-                return View("Error", new String[] { "There was a problem editing this order. Try again!" });
+                return View("Error", new String[] { "There was a problem editing this transaction. Try again!" });
             }
 
+            // If something is wrong with transaction
             if (ModelState.IsValid == false)
             {
                 return View(transaction);
             }
 
+            // If code is good, update records
             try
             {
-                Transaction dbTransactions = _context.Transactions.Find(transaction.TransactionID);
+                // Find transaction
+                Transaction dbTransaction = _context.Transactions.Find(transaction.TransactionID);
 
-                dbTransactions.TransactionNote = transaction.TransactionNote;
+                // Update notes
+                dbTransaction.TransactionNote = transaction.TransactionNote;
 
-                _context.Update(dbTransactions);
+                _context.Update(dbTransaction);
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
-                return View("Error", new String[] { "There was an error updating this order!", ex.Message });
+                return View("Error", new String[] { "There was an error updating this transaction!", ex.Message });
             }
+
+            // Send user to order index page
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpGet]
-        [Authorize]
-        [Authorize(Roles = "Customer")]
-        public async Task<IActionResult> Create(int? scheduleID)
+        public IActionResult Create()
         {
-            string currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-
-            if (User.IsInRole("Customer"))
-            {
-                if (string.IsNullOrEmpty(currentUserId))
-                {
-                    Console.WriteLine("User ID is null or empty.");
-                    return View("Error", new string[] { "User ID is null or empty." });
-                }
-
-                AppUser user = await _userManager.FindByIdAsync(currentUserId);
-
-                if (user != null)
-                {
-                    // Here you check if the scheduleID has a value
-                    if (scheduleID.HasValue)
-                    {
-                        Schedule schedule = await _context.Schedules
-                                                          .FirstOrDefaultAsync(s => s.ScheduleID == scheduleID.Value);
-                        if (schedule == null)
-                        {
-                            return View("Error", new String[] { "Schedule not found." });
-                        }
-
-                        Transaction transaction = new Transaction
-                        {
-                            AppUserId = user.Id, // Assuming 'Id' is the property representing the user's ID
-                            TransactionDate = DateTime.Now,
-                            // Other properties...
-                        };
-
-                        _context.Transactions.Add(transaction);
-                        await _context.SaveChangesAsync();
-
-                        // Redirect to the POST Create method with TransactionID and ScheduleID
-                        return RedirectToAction("Create", new { transactionID = transaction.TransactionID, scheduleID = scheduleID.Value });
-                    }
-
-                    // Your existing code for creating a transaction without a schedule...
-                    Transaction ord = new Transaction();
-                    ord.AppUserId = user.Id;
-                    return View(ord);
-                }
-                else
-                {
-                    // Return an error view or handle the situation accordingly
-                    return View("Error", new string[] { "User not found." });
-                }
-            }
-            else
-            {
-                ViewBag.ScheduleID = scheduleID;
-                ViewBag.UserNames = await GetAllCustomerUserNamesSelectList();
-                return View("SelectCustomerForTransaction");
-            }
+            return View();
         }
 
         [HttpPost]
-        [Authorize(Roles = "Customer")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TransactionNotes")] Transaction transaction, int scheduleID)
+        public async Task<IActionResult> Create([Bind("TransactionNotes")] Transaction transaction)
         {
-            string currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (string.IsNullOrEmpty(currentUserId))
-            {
-                return View("Error", new string[] { "User ID is null or empty." });
-            }
+            // Find next transaction number from utilities class
+            transaction.TransactionNumber = Utilities.GenerateNextTransactionNumber.GetNextTransactionNumber(_context);
 
-            if (!ModelState.IsValid)
-            {
-                return View(transaction);
-            }
-
-            AppUser user = await _userManager.FindByIdAsync(currentUserId);
-            if (user == null)
-            {
-                return View("Error", new string[] { "User not found." });
-            }
-
-            // Create the transaction
-            transaction.AppUserId = user.Id;
-            transaction.TransactionNumber = Utilities.GenerateNextOrderNumber.GetNextOrderNumber(_context);
+            // Set date of transaction
             transaction.TransactionDate = DateTime.Now;
 
+            // Associate the transaction with a logged-in customer
+            transaction.AppUser = _context.Users.FirstOrDefault(o => o.UserName == User.Identity.Name);
+
+            // If code gets this far, add transaction to database
             _context.Add(transaction);
             await _context.SaveChangesAsync();
 
-            // Create and add the transaction detail
-            TransactionDetail transactionDetail = new TransactionDetail
-            {
-                TransactionID = transaction.TransactionID,
-                ScheduleID = scheduleID,
-                // Set other properties as necessary...
-            };
-
-            _context.TransactionDetails.Add(transactionDetail);
-            await _context.SaveChangesAsync();
-
-            // Redirect to a suitable page, like TransactionDetails
-            return RedirectToAction("Index", "TransactionDetails", new { transactionId = transaction.TransactionID });
+            // Send user to add orders detail
+            return RedirectToAction("Create", "TransactionDetails", new { transactionID = transaction.TransactionID });
         }
-
-
-
-        //[HttpPost]
-        //[Authorize]
-        //[ValidateAntiForgeryToken]
-        //[Authorize(Roles = "Customer")]
-        //public async Task<IActionResult> Create([Bind("UserID, TransactionNotes")] Transaction transaction)
-        //{
-        //    string currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-
-        //    transaction.TransactionNumber = Utilities.GenerateNextOrderNumber.GetNextOrderNumber(_context);
-        //    transaction.TransactionDate = DateTime.Now;
-        //    transaction.TransactionNote = transaction.TransactionNote;
-
-
-        //    if (User.IsInRole("Customer"))
-        //    {
-        //        if (string.IsNullOrEmpty(currentUserId))
-        //        {
-        //            return View("Error", new string[] { "User ID is null or empty." });
-        //        }
-
-        //        AppUser user = await _userManager.FindByIdAsync(currentUserId);
-
-        //        if (user != null)
-        //        {
-        //            transaction.AppUserId = user.Id; // Assuming 'Id' is the property representing the user's ID
-        //            string TransactionNote = transaction.TransactionNote;
-        //        }
-        //        else
-        //        {
-        //            return View("Error", new string[] { "User not found." });
-        //        }
-        //    }
-        //    else
-        //    {
-        //        ViewBag.UserNames = await GetAllCustomerUserNamesSelectList();
-        //        return View("SelectCustomerForTransaction");
-        //    }
-
-        //    _context.Add(transaction);
-        //    await _context.SaveChangesAsync();
-
-        //    return RedirectToAction("Create", "TransactionDetails", new { TransactionID = transaction.TransactionID });
-        //}
-
-        //[HttpPost]
-        //[Authorize]
-        //[ValidateAntiForgeryToken]
-        //[Authorize(Roles = "Customer")]
-        //public async Task<IActionResult> Create([Bind("UserID, TransactionNotes")] Transaction transaction)
-        //{
-        //    string currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-
-        //    transaction.TransactionNumber = Utilities.GenerateNextOrderNumber.GetNextOrderNumber(_context);
-        //    transaction.TransactionDate = DateTime.Now;
-        //    transaction.TransactionNote = transaction.TransactionNote;
-
-
-        //    if (User.IsInRole("Customer"))
-        //    {
-        //        if (string.IsNullOrEmpty(currentUserId))
-        //        {
-        //            return View("Error", new string[] { "User ID is null or empty." });
-        //        }
-
-        //        AppUser user = await _userManager.FindByIdAsync(currentUserId);
-
-        //        if (user != null)
-        //        {
-        //            transaction.AppUserId = user.Id; // Assuming 'Id' is the property representing the user's ID
-        //            string TransactionNote = transaction.TransactionNote;
-        //        }
-        //        else
-        //        {
-        //            return View("Error", new string[] { "User not found." });
-        //        }
-        //    }
-        //    else
-        //    {
-        //        ViewBag.UserNames = await GetAllCustomerUserNamesSelectList();
-        //        return View("SelectCustomerForTransaction");
-        //    }
-
-        //    _context.Add(transaction);
-        //    await _context.SaveChangesAsync();
-
-        //    return RedirectToAction("Create", "TransactionDetails", new { TransactionID = transaction.TransactionID });
-        //}
 
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> SelectCustomerForTransaction(String SelectedCustomer)
@@ -411,7 +196,6 @@ namespace Group_6_Final_Project.Controllers
             ord.AppUserId = currentUserId;
             return View("Create", ord);
         }
-
 
         [Authorize]
         public async Task<IActionResult> CheckoutTransaction(int? id)
@@ -450,7 +234,6 @@ namespace Group_6_Final_Project.Controllers
             return RedirectToAction("Index");
         }
 
-
         private async Task<SelectList> GetAllCustomerUserNamesSelectList()
         {
             List<AppUser> allCustomers = new List<AppUser>();
@@ -468,6 +251,7 @@ namespace Group_6_Final_Project.Controllers
             return sl;
 
         }
+
         public IActionResult ConfirmPurchase(int transactionId)
         {
             var transaction = _context.Transactions.Find(transactionId);
@@ -529,6 +313,49 @@ namespace Group_6_Final_Project.Controllers
             }
 
             return View(transaction);
+        }
+
+        public async Task<IActionResult> AddToCart(int? ScheduleID)
+        {
+            if (ScheduleID == null)
+            {
+                return View("Error", new string[] { "Please specify a Schedule to add to the Transaction" });
+            }
+
+            string currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+
+            Schedule dbSchedule = _context.Schedules.Find(ScheduleID);
+
+            if (dbSchedule == null)
+            {
+                return View("Error", new string[] { "This Schedule was not in the database!" });
+            }
+
+            // Assuming UserID is of type AppUser
+            AppUser user = await _userManager.FindByNameAsync(currentUserId);
+
+            Transaction tran = _context.Transactions.FirstOrDefault(r => r.AppUserId == currentUserId);
+
+            if (tran == null)
+            {
+                tran = new Transaction();
+
+                tran.TransactionDate = DateTime.Now;
+                tran.TransactionNumber = GenerateNextTransactionNumber.GetNextTransactionNumber(_context);
+                tran.AppUserId = currentUserId;
+
+                _context.Transactions.Add(tran);
+                await _context.SaveChangesAsync();
+            }
+
+            TransactionDetail od = new TransactionDetail();
+
+            od.Transaction = tran;
+
+            _context.TransactionDetails.Add(od);
+            await _context.SaveChangesAsync(); // Use await here to make it asynchronous
+
+            return RedirectToAction("Details", new { id = tran.TransactionID });
         }
     }
 }

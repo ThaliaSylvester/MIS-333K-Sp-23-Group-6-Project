@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace Group_6_Final_Project.Utilities
 {
-    public static class GenerateNextOrderNumber
+    public static class GenerateNextTransactionNumber
     {
-        public static Int32 GetNextOrderNumber(AppDbContext _context)
+        public static Int32 GetNextTransactionNumber(AppDbContext _context)
         {
             //set a constant to designate where the order numbers 
             //should start
@@ -39,6 +39,5 @@ namespace Group_6_Final_Project.Utilities
             //return the value
             return intNextOrderNumber;
         }
-
     }
 }

@@ -20,5 +20,7 @@ namespace Group_6_Final_Project.ViewModels
 
         [DataType(DataType.Date)]
         public DateTime? SelectedWeekStartDate { get; set; }
+
+        public String? searchString { get; set; }
     }
 }

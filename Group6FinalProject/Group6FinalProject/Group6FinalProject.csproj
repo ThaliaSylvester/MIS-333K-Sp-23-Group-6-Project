@@ -27,11 +27,9 @@
     <PackageReference Include="QRCoder" Version="1.4.3" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Migrations\" />
     <None Remove="Views\Manager\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\Img\" />
     <Folder Include="Views\Manager\" />
   </ItemGroup>

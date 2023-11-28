@@ -25,9 +25,12 @@ namespace Group_6_Final_Project.Models
         public PaymentMethod PaymentMethod { get; set; }
 
         [Display(Name = "Schedule Price")]
+        [Column(TypeName = "decimal(18, 2)")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal SchedulePrice { get; set; }
 
         [Display(Name = "Extended Price")]
+        [Column(TypeName = "decimal(18, 2)")]
         [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal ExtendedPrice
         {

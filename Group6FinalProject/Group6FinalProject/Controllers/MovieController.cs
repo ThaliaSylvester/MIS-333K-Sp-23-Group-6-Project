@@ -20,7 +20,7 @@ namespace Group_6_Final_Project.Controllers
         }
 
         // GET: Movie
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string searchString, string category)
         {
             // Retrieve movies including the Genre information and reviews
             var movies = await _context.Movies
@@ -42,6 +42,21 @@ namespace Group_6_Final_Project.Controllers
 
                     // Example: Search for movies with a published date equal to the specified value
                     movies = movies.Where(m => m.PublishedDate == searchTimestamp).ToList();
+                }
+            }
+
+            if (!string.IsNullOrEmpty(category))
+            {
+                GenreType selectedGenre;
+
+                if (Enum.TryParse(category, true, out selectedGenre))
+                {
+                    movies = movies.Where(m => m.Genre.GenreType == selectedGenre).ToList();
+                }
+                else
+                {
+                    // Handle the case where the provided category doesn't match any GenreType
+                    // You could return an error or handle it according to your application's logic.
                 }
             }
 

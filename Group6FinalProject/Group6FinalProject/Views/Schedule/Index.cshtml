@@ -55,17 +55,13 @@
             {
                 <tr>
                     <td>@schedule.StartTime.ToString("MM-dd-yyyy")</td>
+                    <td>@schedule.StartTime.ToString("hh:mm tt")</td>
+                    <td>@schedule.Movie.Title</td>
+                    <td>@schedule.Theatre</td>
                     <td>
-                        @schedule.StartTime.ToString("hh:mm tt")
-                    </td>
-                    <td>
-                        @schedule.Movie.Title
-                    </td>
-                    <td>
-                        @schedule.Theatre
-                    </td>
-                    <td>
-                        @*<a asp-controller="Transaction" asp-action="Create" asp-route-scheduleID="@schedule.ScheduleID" class="btn btn-primary">Buy Tickets</a>*@
+                        <!-- Purchase Ticket Button -->
+                        <a asp-controller="Transaction" asp-action="Create" asp-route-scheduleID="@schedule.ScheduleID" class="btn btn-primary">Buy Tickets</a>
+                        <!-- Other links -->
                         <a asp-action="Details" asp-route-id="@schedule.ScheduleID">Details</a> |
                         <a asp-action="Edit" asp-route-id="@schedule.ScheduleID">Edit</a> |
                         <a asp-action="Delete" asp-route-id="@schedule.ScheduleID">Delete</a>

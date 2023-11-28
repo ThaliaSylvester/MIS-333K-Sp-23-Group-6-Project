@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Group6FinalProject.Migrations
 {
     /// <inheritdoc />
-    public partial class SetupConfirmNumber : Migration
+    public partial class PriceUpdate2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -208,7 +208,6 @@ namespace Group6FinalProject.Migrations
                     PopcornPoints = table.Column<int>(type: "int", nullable: false),
                     TransactionTax = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     TransactionTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    TotalNumberofSeats = table.Column<int>(type: "int", nullable: false),
                     PurchaseStatus = table.Column<int>(type: "int", nullable: false),
                     AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },

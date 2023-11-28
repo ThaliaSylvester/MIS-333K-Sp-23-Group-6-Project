@@ -4,6 +4,7 @@ using Group_6_Final_Project.DAL;
 using Group_6_Final_Project.Models;
 using Microsoft.SqlServer.Server;
 using static System.Reflection.Metadata.BlobBuilder;
+using Microsoft.EntityFrameworkCore;
 
 namespace Group_6_Final_Project.Seeding
 {
@@ -13,7 +14,7 @@ namespace Group_6_Final_Project.Seeding
         {
             //Create a counter and a flag so we will know which record is causing problems
             Int32 intReviewsAdded = 0;
-            Int32 intReviewsTitle = 0;
+            String strReviewInfo = "";
 
             //Add the list of Reviews
             List<Review> Reviews = new List<Review>();
@@ -153,55 +154,63 @@ namespace Group_6_Final_Project.Seeding
                 Status = Status.NeedsReview,
             });
 
-
             try  //attempt to add or update the Reviews
             {
-                //loop through each of the Reviews in the list
-                foreach (Review ReviewsToAdd in Reviews)
+                foreach (Review reviewToAdd in Reviews)
                 {
-                    //set the flag to the current title to help with debugging
-                    intReviewsTitle = ReviewsToAdd.ReviewID;
+                    //set the flag to the current review to help with debugging
+                    strReviewInfo = "Review for MovieID: " + reviewToAdd.MovieID +
+                                    ", UserID: " + reviewToAdd.UserID;
 
-                    //look to see if the Reviews is in the database - this assumes that no
-                    //two Reviews have the same title
-                    Review dbReviews = db.Reviews.FirstOrDefault(b => b.ReviewID == ReviewsToAdd.ReviewID);
+                    //look to see if the review is in the database
+                    Review dbReview = db.Reviews.FirstOrDefault(r => r.MovieID == reviewToAdd.MovieID &&
+                                                                     r.UserID == reviewToAdd.UserID);
 
-                    //if the dbReviews is null, this title is not in the database
-                    if (dbReviews == null)
+                    //if the dbReview is null, this review is not in the database
+                    if (dbReview == null)
                     {
-                        //add the Reviews to the database and save changes
-                        db.Reviews.Add(ReviewsToAdd);
+                        //add the review to the database
+                        db.Reviews.Add(reviewToAdd);
                         db.SaveChanges();
-
-                        //update the counter to help with debugging
-                        intReviewsAdded += 1;
+                        intReviewsAdded += 1; //increment the counter
                     }
-                    else //dbReviews is not null - this title *is* in the database
+                    else //dbReview is not null - update the review's properties
                     {
-                        //update all of the Reviews's properties
-                        dbReviews.Rating = ReviewsToAdd.Rating;
-                        dbReviews.Description = ReviewsToAdd.Description;
-                        dbReviews.Status = ReviewsToAdd.Status;
-                        dbReviews.MovieID = ReviewsToAdd.MovieID;
-                        dbReviews.UserID = ReviewsToAdd.UserID;
+                        dbReview.Rating = reviewToAdd.Rating;
+                        dbReview.Description = reviewToAdd.Description;
+                        dbReview.Status = reviewToAdd.Status;
+                        // no need to update MovieID and UserID as they are used for lookup
 
-                        //update the database and save the changes
-                        db.Update(dbReviews);
+                        db.Update(dbReview);
                         db.SaveChanges();
-
-                        //update the counter to help with debugging
-                        intReviewsAdded += 1;
-                    } //this is the end of the else
-                } //this is the end of the foreach lo op for the Reviews
-            }//this is the end of the try block
-
-            catch (Exception ex)//something went wrong with adding or updating
+                        intReviewsAdded += 1; //increment the counter
+                    }
+                } //end of foreach loop
+            }
+            catch (DbUpdateException ex)
             {
-                //Build a messsage using the flags we created
-                String msg = "  Repositories added:" + intReviewsAdded + "; Error on " + intReviewsTitle;
+                // Extract the detailed inner exception
+                var innerException = ex.InnerException?.Message ?? "No inner exception message.";
 
-                //throw the exception with the new message
-                throw new InvalidOperationException(ex.Message + msg);
+                // Build a message with the information gathered
+                String msg = $"Error on Review: {strReviewInfo} - Repositories added: {intReviewsAdded}; " +
+                             $"Error Message: {innerException}";
+
+                // Log the detailed error message
+                Console.WriteLine(msg); // or use your logger to log the error
+
+                // Re-throw the exception with the new message
+                throw new InvalidOperationException(msg, ex);
+            }
+            catch (Exception ex)
+            {
+                // For any other exception, build and throw a new exception
+                String msg = $"Repositories added: {intReviewsAdded}; Error on {strReviewInfo}. " +
+                             $"General Exception Message: {ex.Message}";
+
+                // Log and re-throw
+                Console.WriteLine(msg); // or use your logger to log the error
+                throw new InvalidOperationException(msg, ex);
             }
         }
     }

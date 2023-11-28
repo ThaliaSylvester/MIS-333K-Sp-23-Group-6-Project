@@ -218,8 +218,33 @@ namespace Group_6_Final_Project.Controllers
 
                 if (user != null)
                 {
+                    // Here you check if the scheduleID has a value
+                    if (scheduleID.HasValue)
+                    {
+                        Schedule schedule = await _context.Schedules
+                                                          .FirstOrDefaultAsync(s => s.ScheduleID == scheduleID.Value);
+                        if (schedule == null)
+                        {
+                            return View("Error", new String[] { "Schedule not found." });
+                        }
+
+                        Transaction transaction = new Transaction
+                        {
+                            AppUserId = user.Id, // Assuming 'Id' is the property representing the user's ID
+                            TransactionDate = DateTime.Now,
+                            // Other properties...
+                        };
+
+                        _context.Transactions.Add(transaction);
+                        await _context.SaveChangesAsync();
+
+                        // Redirect to the POST Create method with TransactionID and ScheduleID
+                        return RedirectToAction("Create", new { transactionID = transaction.TransactionID, scheduleID = scheduleID.Value });
+                    }
+
+                    // Your existing code for creating a transaction without a schedule...
                     Transaction ord = new Transaction();
-                    ord.AppUserId = user.Id; // Assuming 'Id' is the property representing the user's ID
+                    ord.AppUserId = user.Id;
                     return View(ord);
                 }
                 else
@@ -237,47 +262,139 @@ namespace Group_6_Final_Project.Controllers
         }
 
         [HttpPost]
-        [Authorize]
-        [ValidateAntiForgeryToken]
         [Authorize(Roles = "Customer")]
-        public async Task<IActionResult> Create([Bind("UserID, TransactionNotes")] Transaction transaction)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("TransactionNotes")] Transaction transaction, int scheduleID)
         {
-            string currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            string currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(currentUserId))
+            {
+                return View("Error", new string[] { "User ID is null or empty." });
+            }
 
+            if (!ModelState.IsValid)
+            {
+                return View(transaction);
+            }
+
+            AppUser user = await _userManager.FindByIdAsync(currentUserId);
+            if (user == null)
+            {
+                return View("Error", new string[] { "User not found." });
+            }
+
+            // Create the transaction
+            transaction.AppUserId = user.Id;
             transaction.TransactionNumber = Utilities.GenerateNextOrderNumber.GetNextOrderNumber(_context);
             transaction.TransactionDate = DateTime.Now;
-            transaction.TransactionNote = transaction.TransactionNote;
-
-            if (User.IsInRole("Customer"))
-            {
-                if (string.IsNullOrEmpty(currentUserId))
-                {
-                    return View("Error", new string[] { "User ID is null or empty." });
-                }
-
-                AppUser user = await _userManager.FindByIdAsync(currentUserId);
-
-                if (user != null)
-                {
-                    transaction.AppUserId = user.Id; // Assuming 'Id' is the property representing the user's ID
-                    string TransactionNote = transaction.TransactionNote;
-                }
-                else
-                {
-                    return View("Error", new string[] { "User not found." });
-                }
-            }
-            else
-            {
-                ViewBag.UserNames = await GetAllCustomerUserNamesSelectList();
-                return View("SelectCustomerForTransaction");
-            }
 
             _context.Add(transaction);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Create", "TransactionDetails", new { TransactionID = transaction.TransactionID });
+            // Create and add the transaction detail
+            TransactionDetail transactionDetail = new TransactionDetail
+            {
+                TransactionID = transaction.TransactionID,
+                ScheduleID = scheduleID,
+                // Set other properties as necessary...
+            };
+
+            _context.TransactionDetails.Add(transactionDetail);
+            await _context.SaveChangesAsync();
+
+            // Redirect to a suitable page, like TransactionDetails
+            return RedirectToAction("Index", "TransactionDetails", new { transactionId = transaction.TransactionID });
         }
+
+
+
+        //[HttpPost]
+        //[Authorize]
+        //[ValidateAntiForgeryToken]
+        //[Authorize(Roles = "Customer")]
+        //public async Task<IActionResult> Create([Bind("UserID, TransactionNotes")] Transaction transaction)
+        //{
+        //    string currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+
+        //    transaction.TransactionNumber = Utilities.GenerateNextOrderNumber.GetNextOrderNumber(_context);
+        //    transaction.TransactionDate = DateTime.Now;
+        //    transaction.TransactionNote = transaction.TransactionNote;
+
+
+        //    if (User.IsInRole("Customer"))
+        //    {
+        //        if (string.IsNullOrEmpty(currentUserId))
+        //        {
+        //            return View("Error", new string[] { "User ID is null or empty." });
+        //        }
+
+        //        AppUser user = await _userManager.FindByIdAsync(currentUserId);
+
+        //        if (user != null)
+        //        {
+        //            transaction.AppUserId = user.Id; // Assuming 'Id' is the property representing the user's ID
+        //            string TransactionNote = transaction.TransactionNote;
+        //        }
+        //        else
+        //        {
+        //            return View("Error", new string[] { "User not found." });
+        //        }
+        //    }
+        //    else
+        //    {
+        //        ViewBag.UserNames = await GetAllCustomerUserNamesSelectList();
+        //        return View("SelectCustomerForTransaction");
+        //    }
+
+        //    _context.Add(transaction);
+        //    await _context.SaveChangesAsync();
+
+        //    return RedirectToAction("Create", "TransactionDetails", new { TransactionID = transaction.TransactionID });
+        //}
+
+        //[HttpPost]
+        //[Authorize]
+        //[ValidateAntiForgeryToken]
+        //[Authorize(Roles = "Customer")]
+        //public async Task<IActionResult> Create([Bind("UserID, TransactionNotes")] Transaction transaction)
+        //{
+        //    string currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+
+        //    transaction.TransactionNumber = Utilities.GenerateNextOrderNumber.GetNextOrderNumber(_context);
+        //    transaction.TransactionDate = DateTime.Now;
+        //    transaction.TransactionNote = transaction.TransactionNote;
+
+
+        //    if (User.IsInRole("Customer"))
+        //    {
+        //        if (string.IsNullOrEmpty(currentUserId))
+        //        {
+        //            return View("Error", new string[] { "User ID is null or empty." });
+        //        }
+
+        //        AppUser user = await _userManager.FindByIdAsync(currentUserId);
+
+        //        if (user != null)
+        //        {
+        //            transaction.AppUserId = user.Id; // Assuming 'Id' is the property representing the user's ID
+        //            string TransactionNote = transaction.TransactionNote;
+        //        }
+        //        else
+        //        {
+        //            return View("Error", new string[] { "User not found." });
+        //        }
+        //    }
+        //    else
+        //    {
+        //        ViewBag.UserNames = await GetAllCustomerUserNamesSelectList();
+        //        return View("SelectCustomerForTransaction");
+        //    }
+
+        //    _context.Add(transaction);
+        //    await _context.SaveChangesAsync();
+
+        //    return RedirectToAction("Create", "TransactionDetails", new { TransactionID = transaction.TransactionID });
+        //}
 
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> SelectCustomerForTransaction(String SelectedCustomer)

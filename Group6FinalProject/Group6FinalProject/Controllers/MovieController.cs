@@ -20,7 +20,7 @@ namespace Group_6_Final_Project.Controllers
         }
 
         // GET: Movie
-        public async Task<IActionResult> Index(string searchString, string category)
+        public async Task<IActionResult> Index(string searchString, string category, string title)
         {
             // Retrieve movies including the Genre information and reviews
             var movies = await _context.Movies
@@ -59,6 +59,14 @@ namespace Group_6_Final_Project.Controllers
                     // You could return an error or handle it according to your application's logic.
                 }
             }
+            // Filter by title if it's provided
+            if (!string.IsNullOrEmpty(title))
+            {
+                var titleLower = title.ToLower();
+                movies = movies.Where(m => m.Title.ToLower().Contains(titleLower)).ToList();
+            }
+
+
 
             // Calculate and store average ratings in a dictionary
             Dictionary<string, double> averageRatings = new Dictionary<string, double>();

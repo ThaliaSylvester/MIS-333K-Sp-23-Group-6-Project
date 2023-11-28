@@ -28,7 +28,7 @@
                 <span asp-validation-for="SelectedWeekStartDate" class="text-danger"></span>
             </div>
             <p>
-                <button type="submit" class="btn btn-primary">Filter</button>
+                <button type="submit" class="btn btn-danger">Filter</button>
             </p>
         </form>
     </div>
@@ -60,7 +60,7 @@
                     <td>@schedule.Theatre</td>
                     <td>
                         <!-- Purchase Ticket Button -->
-                        <a asp-controller="Transaction" asp-action="Create" asp-route-scheduleID="@schedule.ScheduleID" class="btn btn-primary">Buy Tickets</a>
+                        <a asp-controller="Transaction" asp-action="Create" asp-route-scheduleID="@schedule.ScheduleID" class="btn btn-danger">Buy Tickets</a>
                         <!-- Other links -->
                         <a asp-action="Details" asp-route-id="@schedule.ScheduleID">Details</a> |
                         <a asp-action="Edit" asp-route-id="@schedule.ScheduleID">Edit</a> |

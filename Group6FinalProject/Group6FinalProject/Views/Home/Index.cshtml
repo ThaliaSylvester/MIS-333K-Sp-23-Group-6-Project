@@ -43,18 +43,18 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="4000">
-                <a href="/Movie/Details/1a9ef99c-0d51-4f2c-909f-d9a3d9663027">
+                <a href="~/Movie/Index?title=Barbie">
                     <img src="~/Img/BarbieTheMovie.png" class="d-block w-100" alt="Barbie">
                 </a>
             </div>
             <div class="carousel-item" data-bs-interval="4000">
-                <a href="/Movie/Details/3ff5dd19-a363-43be-886f-15fca1957a84">
+                <a href="~/Movie/Index?title=Jurassic%20Park">
                     <img src="~/Img/JurassicPark.jpg" class="d-block w-100" alt="JurassicPark">
                 </a>
             </div>
             <div class="carousel-item" data-bs-interval="4000">
-                <a href="/Movie/Details/7154f3a2-e227-4180-8bff-1218e475521b">
-                    <img src="~/Img/Spiderman.jpg" class="d-block w-100" alt="Titanic">
+                <a href="/Movie/Index?title=Spider-Man%3A%20Across%20the%20Spider-Verse">
+                    <img src="~/Img/Spiderman.jpg" class="d-block w-100" alt="Spiderman">
                 </a>
             </div>
         </div>
@@ -80,7 +80,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Action</h5>
                     <p class="card-text"> High-octane blend of fast-paced sequences, daring stunts, and epic confrontations...</p>
-                    <a href="~/Movie/Index?category=Action" class="btn btn-primary">Explore</a>
+                    <a href="~/Movie/Index?category=Action" class="btn btn-danger">Explore</a>
                 </div>
             </div>
         </div>
@@ -92,7 +92,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Family</h5>
                     <p class="card-text">Heartwarming stories filled with adventure, humor, and lessons suitable for all ages...</p>
-                    <a href="~/Movie/Index?category=Children_Family" class="btn btn-primary">Explore</a>
+                    <a href="~/Movie/Index?category=Children_Family" class="btn btn-danger">Explore</a>
                 </div>
             </div>
         </div>
@@ -104,7 +104,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Comedy</h5>
                     <p class="card-text"> Laughter-inducing escapades, spotlighting the humorous side of life with wit and whimsy...</p>
-                    <a href="~/Movie/Index?category=Comedy" class="btn btn-primary">Explore</a>
+                    <a href="~/Movie/Index?category=Comedy" class="btn btn-danger">Explore</a>
                 </div>
             </div>
         </div>
@@ -120,7 +120,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Drama</h5>
                     <p class="card-text">Emotionally rich narratives that delve into the complexities and profundities of the human condition...</p>
-                    <a href="~/Movie/Index?category=Drama" class="btn btn-primary">Explore</a>
+                    <a href="~/Movie/Index?category=Drama" class="btn btn-danger">Explore</a>
                 </div>
             </div>
         </div>
@@ -131,7 +131,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Horror</h5>
                     <p class="card-text">Suspenseful and eerie, weaving fear and the supernatural into a thrilling experience...</p>
-                    <a href="~/Movie/Index?category=Horror" class="btn btn-primary">Explore</a>
+                    <a href="~/Movie/Index?category=Horror" class="btn btn-danger">Explore</a>
                 </div>
             </div>
         </div> <!-- Musical Card -->
@@ -141,7 +141,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Musical</h5>
                     <p class="card-text">Vibrant fusion of storytelling, music, and dance, creating an enchanting theatrical experience...</p>
-                    <a href="~/Movie/Index?category=Musical" class="btn btn-primary">Explore</a>
+                    <a href="~/Movie/Index?category=Musical" class="btn btn-danger">Explore</a>
                 </div>
             </div>
         </div>
@@ -152,7 +152,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Romance</h5>
                     <p class="card-text">Captivating tales of love, exploring the emotional dynamics and joys of relationships...</p>
-                    <a href="~/Movie/Index?category=Romance" class="btn btn-primary">Explore</a>
+                    <a href="~/Movie/Index?category=Romance" class="btn btn-danger">Explore</a>
                 </div>
             </div>
         </div>
@@ -163,7 +163,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Sci-Fi</h5>
                     <p class="card-text">Imaginative journeys into futuristic and speculative worlds, often interwoven with profound themes.</p>
-                    <a href="~/Movie/Index?category=SciFi" class="btn btn-primary">Explore</a>
+                    <a href="~/Movie/Index?category=SciFi" class="btn btn-danger">Explore</a>
                 </div>
             </div>
         </div>
@@ -171,7 +171,7 @@
     </div>
 
     <!-- Show More Button -->
-    <button id="showMoreButton" class="btn btn-primary mt-3">Show More</button>
+    <button id="showMoreButton" class="btn btn-danger mt-3">Show More</button>
 
     <!-- Inline JavaScript -->
     <script>document.getElementById('showMoreButton').addEventListener('click', function () {
@@ -190,35 +190,35 @@
     <h3 class="mb-3">Popular Movies</h3>
     <div class="row">
         <div class="col-md-4 mb-3">
-            <!-- Popular Movie Card 1 -->
+            <!-- The Hobbit Card -->
             <div class="card">
-                <img src="placeholder-popular-1.jpg" class="card-img-top" alt="Popular Movie 1">
+                <img src="~/Img/TheHobbit.jpg" class="card-img-top" alt="The Hobbit">
                 <div class="card-body">
-                    <h5 class="card-title">Popular Movie 1</h5>
-                    <p class="card-text">Description of Popular Movie 1.</p>
-                    <a href="#" class="btn btn-primary">Watch Now</a>
+                    <h5 class="card-title">The Hobbit: An Unexpected Journey </h5>
+                    <p class="card-text">"An epic fantasy adventure film that follows the journey of Bilbo Baggins, a hobbit who joins a group of dwarves and the wizard Gandalf to reclaim their homeland from the dragon Smaug.</p>
+                    <a href="~/Movie/Index?title=The%20Hobbit%3A%20An%20Unexpected%20Journey" class="btn btn-danger">Watch Now</a>
                 </div>
             </div>
         </div>
         <div class="col-md-4 mb-3">
-            <!-- Popular Movie Card 2 -->
+            <!-- Titanic Card -->
             <div class="card">
-                <img src="placeholder-popular-2.jpg" class="card-img-top" alt="Popular Movie 2">
+                <img src="~/Img/Titanic.jpg" class="card-img-top" alt="Titanic">
                 <div class="card-body">
-                    <h5 class="card-title">Popular Movie 2</h5>
-                    <p class="card-text">Description of Popular Movie 2.</p>
-                    <a href="#" class="btn btn-primary">Watch Now</a>
+                    <h5 class="card-title">Titanic: Jacks Revenge</h5>
+                    <p class="card-text">"A sequel to Titanic where Jack, miraculously survives the original tragedy, becomes entangled in a twisted plot of revenge and deceit, ultimately leading to a dramatic and unexpected confrontation where he takes the life of Rose.</p>
+                    <a href="~/Movie/Index?title=Titanic%3A%20Jack%27s%20Revenge" class="btn btn-danger">Watch Now</a>
                 </div>
             </div>
         </div>
         <div class="col-md-4 mb-3">
-            <!-- Popular Movie Card 3 -->
+            <!-- The Goonies Card -->
             <div class="card">
-                <img src="placeholder-popular-3.jpg" class="card-img-top" alt="Popular Movie 3">
+                <img src="~/Img/TheGoonies.jpg" class="card-img-top" alt="The Goonies">
                 <div class="card-body">
-                    <h5 class="card-title">Popular Movie 3</h5>
-                    <p class="card-text">Description of Popular Movie 3.</p>
-                    <a href="#" class="btn btn-primary">Watch Now</a>
+                    <h5 class="card-title">The Goonies</h5>
+                    <p class="card-text">"A classic adventure film about a group of young friends who discover an ancient map and embark on an exciting quest to find a legendary pirate's long-lost treasure.</p>
+                    <a href="~/Movie/Index?title=The%20Goonies" class="btn btn-danger">Watch Now</a>
                 </div>
             </div>
         </div>

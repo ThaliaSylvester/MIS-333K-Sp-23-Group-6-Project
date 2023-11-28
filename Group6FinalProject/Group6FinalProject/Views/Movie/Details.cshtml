@@ -77,7 +77,6 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Reviewer</th>
                                 <th>Rating</th>
                                 <th>Comment</th>
                             </tr>
@@ -86,7 +85,6 @@
                             @foreach (var review in reviews)
                             {
                                 <tr>
-                                    <td><strong>Reviewer:</strong> @review.UserID/td>
                                     <td><strong>Rating:</strong> @review.Rating</td>
                                     <td><strong>Comment:</strong> @review.Description</td>
                                 </tr>

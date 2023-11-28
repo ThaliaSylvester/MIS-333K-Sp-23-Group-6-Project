@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Group_6_Final_Project.Models
 {
-    //public enum CustomerRating { One = 1, Two = 2, Three = 3, Four = 4, Five = 5 };
+    public enum CustomerRating { One = 1, Two = 2, Three = 3, Four = 4, Five = 5 };
 
     public enum Status { Approved, NeedsReview };
 
@@ -17,9 +17,11 @@ namespace Group_6_Final_Project.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ReviewID { get; set; }
 
+        [Required]
         [Range(1, 5, ErrorMessage = "Rating must be between 1 and 5.")]
         public int Rating { get; set; }
 
+        [MaxLength(280, ErrorMessage = "Review cannot be more than 280 characters.")]
         [Display(Name = "Description: ")]
         public string Description { get; set; }
 

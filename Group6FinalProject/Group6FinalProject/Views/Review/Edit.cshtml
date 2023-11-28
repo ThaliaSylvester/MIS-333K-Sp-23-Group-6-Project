@@ -14,9 +14,15 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ReviewID" />
+
             <div class="form-group">
-                <label asp-for="Rating" class="control-label"></label>
-                <select asp-for="Rating" class="form-control"></select>
+                <label class="control-label">Rating:</label>
+                @for (int i = 1; i <= 5; i++)
+                {
+                    <label class="radio-inline">
+                        <input type="radio" asp-for="Rating" value="@i" /> @i
+                    </label>
+                }
                 <span asp-validation-for="Rating" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -25,8 +31,8 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <select asp-for="Status" class="form-control"></select>
+                <label asp-for="Status" class="control-label">Status:</label>
+                @Html.DropDownListFor(model => model.Status, Enum.GetValues(typeof(Status)).Cast<Status>().Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString() }), "Select Status", new { @class = "form-control" })
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
             <div class="form-group">

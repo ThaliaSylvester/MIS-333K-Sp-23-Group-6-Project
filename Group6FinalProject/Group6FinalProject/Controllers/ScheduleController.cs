@@ -24,7 +24,7 @@ namespace Group6FinalProject.Controllers
         public async Task<IActionResult> Index()
         {
             // Get all schedules
-            var schedulesQuery = GetFilteredSchedules(null, null);
+            var schedulesQuery = GetFilteredSchedules(null, null, null);
 
             // Pass through ScheduleViewModel
             var viewModel = new ScheduleViewModel
@@ -42,10 +42,10 @@ namespace Group6FinalProject.Controllers
 
         // POST: Schedule/Index
         [HttpPost]
-        public IActionResult Index(Theatre? selectedTheatre, DateTime? weekStartDate)
+        public IActionResult Index(Theatre? selectedTheatre, DateTime? weekStartDate, string? searchString)
         {
             // Filter the schedules
-            var schedulesQuery = GetFilteredSchedules(selectedTheatre, weekStartDate);
+            var schedulesQuery = GetFilteredSchedules(selectedTheatre, weekStartDate, searchString);
 
             // Pass through ScheduleViewModel
             var viewModel = new ScheduleViewModel
@@ -204,7 +204,7 @@ namespace Group6FinalProject.Controllers
         }
 
         // Helper function to filter the schedule
-        private IQueryable<Schedule> GetFilteredSchedules(Theatre? selectedTheatre, DateTime? weekStartDate)
+        private IQueryable<Schedule> GetFilteredSchedules(Theatre? selectedTheatre, DateTime? weekStartDate, string? searchString)
         {
             var schedulesQuery = _context.Schedules.Include(s => s.Movie).Include(s => s.Price).AsQueryable();
 
@@ -217,6 +217,23 @@ namespace Group6FinalProject.Controllers
             {
                 var weekEndDate = weekStartDate.Value.AddDays(6);
                 schedulesQuery = schedulesQuery.Where(s => s.StartTime.Date >= weekStartDate.Value.Date && s.StartTime.Date <= weekEndDate.Date);
+            }
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                // Convert both the search string and movie titles to lowercase for case-insensitive comparison
+                var searchLower = searchString.ToLower();
+                schedulesQuery = schedulesQuery.Where(m => m.Movie.Title.ToLower().Contains(searchLower) || m.Movie.Description.ToLower().Contains(searchLower));
+
+                // Check if a valid date string is provided
+                if (DateTime.TryParse(searchString, out DateTime searchDate))
+                {
+                    // Convert the DateTime to an int (Unix timestamp, for example)
+                    int searchTimestamp = Convert.ToInt32(searchDate.Subtract(new DateTime(1970, 1, 1)).TotalSeconds);
+
+                    // Example: Search for schedules with a specific start time
+                    schedulesQuery = schedulesQuery.Where(m => m.StartTime == searchDate);
+                }
             }
 
             return schedulesQuery;

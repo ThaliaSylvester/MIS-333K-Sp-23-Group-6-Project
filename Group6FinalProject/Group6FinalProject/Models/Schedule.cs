@@ -16,8 +16,8 @@ namespace Group_6_Final_Project.Models
         [Display(Name = "Start Time")]
         public DateTime StartTime { get; set; }
 
-        //[Display(Name = "End Time")]
-        //public DateTime EndTime => StartTime + Movie.Runtime;
+        [Display(Name = "End Time")]
+        public DateTime EndTime => StartTime + Movie.Runtime;
 
         [Display(Name = "Theater")]
         public Theatre Theatre { get; set; }

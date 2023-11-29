@@ -50,5 +50,6 @@ namespace Group_6_Final_Project.Models
 
         public int ScheduleID { get; set; } // Foreign key for the Schedule
         public Schedule Schedule { get; set; }
+
     }
 }

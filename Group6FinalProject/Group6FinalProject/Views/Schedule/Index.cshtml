@@ -27,14 +27,24 @@
                 <span asp-validation-for="SelectedTheatre" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="SelectedMPAARating" class="control-label">MPAA Rating:</label>
+                <select asp-for="SelectedMPAARating" asp-items="Html.GetEnumSelectList<MPAARating>()" class="form-control">
+                    <option selected="selected" value="">All MPAARating</option>
+                </select>
+                <span asp-validation-for="SelectedMPAARating" class="text-danger"></span>
+            </select>
+            <span asp-validation-for="SelectedMPAARating" class="text-danger"></span>
+</div>
+            <div class="form-group">
                 <label asp-for="SelectedWeekStartDate" class="control-label">Week Start Date:</label>
-                <input asp-for="SelectedWeekStartDate" class="form-control" type="date" id="weekStartDate" name="weekStartDate" min="2023-01-06" max="2024-01-03" step="7" />
+                <input asp-for="SelectedWeekStartDate" class="form-control" type="date" id="weekStartDate" name="SelectedWeekStartDate" min="2023-01-06" max="2024-01-03" step="7" />
                 <span asp-validation-for="SelectedWeekStartDate" class="text-danger"></span>
             </div>
             <p>
                 <button type="submit" class="btn btn-danger">Filter</button>
             </p>
         </form>
+
     </div>
 
     <hr />
@@ -96,6 +106,10 @@
                         {
                             <!-- Purchase Ticket Button -->
                             <a asp-controller="Account" asp-action="Login" class="btn btn-primary">Buy Tickets</a>
+                            <form asp-controller="Schedule" asp-action="Details" asp-route-id="@schedule.ScheduleID" method="get">
+                                <button type="submit" class="btn btn-primary">Details</button>
+                            </form>
+
                         }
                     </td>
                 </tr>

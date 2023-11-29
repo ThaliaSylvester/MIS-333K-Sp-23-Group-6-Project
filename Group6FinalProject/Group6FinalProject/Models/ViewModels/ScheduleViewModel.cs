@@ -18,9 +18,17 @@ namespace Group_6_Final_Project.ViewModels
 
         public Theatre? SelectedTheatre { get; set; }
 
+        public MPAARating? SelectedMPAARating { get; set; }
+
         [DataType(DataType.Date)]
         public DateTime? SelectedWeekStartDate { get; set; }
 
         public String? searchString { get; set; }
+
+        public string MovieID { get; set; }
+
+        [Required(ErrorMessage = "Movie title is required")]
+        [Display(Name = "Title: ")]
+        public string Title { get; set; }
     }
 }

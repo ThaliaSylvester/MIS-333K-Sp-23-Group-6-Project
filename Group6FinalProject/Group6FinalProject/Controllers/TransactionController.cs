@@ -26,7 +26,6 @@ namespace Group_6_Final_Project.Controllers
             _context = context;
             _userManager = userManager;
         }
-
         // GET: Transactions/Index
         public IActionResult Index(string sortOrder)
         {

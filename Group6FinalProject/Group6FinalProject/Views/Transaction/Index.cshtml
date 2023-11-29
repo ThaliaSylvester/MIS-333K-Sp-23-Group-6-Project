@@ -23,25 +23,16 @@
                 Order Date <span class="sort-arrow" onclick="sortTable('@dateSortOrder')">@arrowDate</span>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TransactionSubtotal)
+                @Html.DisplayNameFor(model => model.PurchaseStatus)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PopcornPoints)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TransactionTax)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.TransactionTotal)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PurchaseStatus)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.ConfirmNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TransactionNote)
             </th>
             <th></th>
         </tr>
@@ -54,30 +45,24 @@
                     @Html.DisplayFor(modelItem => item.TransactionDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TransactionSubtotal)
+                    @Html.DisplayFor(modelItem => item.PurchaseStatus)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PopcornPoints)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TransactionTax)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.TransactionTotal)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PurchaseStatus)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ConfirmNumber)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TransactionNote)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.TransactionID">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.TransactionID">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.TransactionID">Delete</a>
+                    <a asp-action="Details" asp-route-id="@item.TransactionID">Details</a>
+                    @if (User.IsInRole("Manager"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.TransactionID">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.TransactionID">Delete</a>
+                    }
                 </td>
             </tr>
         }

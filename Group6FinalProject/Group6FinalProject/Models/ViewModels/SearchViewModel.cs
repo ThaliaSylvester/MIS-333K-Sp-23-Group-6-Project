@@ -35,9 +35,9 @@ namespace Group_6_Final_Project.Models
         [Range(1, 5, ErrorMessage = "User Rating must be between 1 and 5.")]
         public int SelectedRating { get; set; }
 
-        //[Display(Name = "Maximum User Rating:")]
-        //[Range(1, 5, ErrorMessage = "User Rating must be between 1 and 5.")]
-        //public int? MaxUserRating { get; set; }
+        [Display(Name = "Maximum User Rating:")]
+        [Range(1, 5, ErrorMessage = "User Rating must be between 1 and 5.")]
+        public int? MaxUserRating { get; set; }
 
     }
 }

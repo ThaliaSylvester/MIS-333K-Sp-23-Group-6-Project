@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Group_6_Final_Project.DAL;
 using Group_6_Final_Project.Models;
 using Group_6_Final_Project.ViewModels;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Group6FinalProject.Controllers
 {
@@ -21,13 +22,14 @@ namespace Group6FinalProject.Controllers
         }
 
         // GET: Schedule/Index
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? movieId)
         {
             // Get all schedules
-            var schedulesQuery = GetFilteredSchedules(null, null, null);
+            var schedulesQuery = GetFilteredSchedules(null, null, null, null);
 
             // Pass through ScheduleViewModel
             var viewModel = new ScheduleViewModel
+
             {
                 Schedules = await schedulesQuery.ToListAsync(),
                 TheatreOptions = _context.Schedules.Select(s => s.Theatre.ToString()).Distinct(),
@@ -42,10 +44,10 @@ namespace Group6FinalProject.Controllers
 
         // POST: Schedule/Index
         [HttpPost]
-        public IActionResult Index(Theatre? selectedTheatre, DateTime? weekStartDate, string? searchString)
+        public IActionResult Index(Theatre? selectedTheatre, DateTime? weekStartDate, string? searchString, MPAARating? selectedMPAARating)
         {
             // Filter the schedules
-            var schedulesQuery = GetFilteredSchedules(selectedTheatre, weekStartDate, searchString);
+            var schedulesQuery = GetFilteredSchedules(selectedTheatre, weekStartDate, searchString, selectedMPAARating);
 
             // Pass through ScheduleViewModel
             var viewModel = new ScheduleViewModel
@@ -204,7 +206,7 @@ namespace Group6FinalProject.Controllers
         }
 
         // Helper function to filter the schedule
-        private IQueryable<Schedule> GetFilteredSchedules(Theatre? selectedTheatre, DateTime? weekStartDate, string? searchString)
+        private IQueryable<Schedule> GetFilteredSchedules(Theatre? selectedTheatre, DateTime? weekStartDate, string? searchString, MPAARating? selectedMPAARating)
         {
             var schedulesQuery = _context.Schedules.Include(s => s.Movie).Include(s => s.Price).AsQueryable();
 
@@ -217,6 +219,10 @@ namespace Group6FinalProject.Controllers
             {
                 var weekEndDate = weekStartDate.Value.AddDays(6);
                 schedulesQuery = schedulesQuery.Where(s => s.StartTime.Date >= weekStartDate.Value.Date && s.StartTime.Date <= weekEndDate.Date);
+            }
+            if (selectedMPAARating.HasValue)
+            {
+                schedulesQuery = schedulesQuery.Where(s => s.Movie.MPAARating == selectedMPAARating.Value);
             }
 
             if (!string.IsNullOrEmpty(searchString))

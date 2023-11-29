@@ -86,6 +86,8 @@
                     </td>
                     <td>
                         <a asp-action="Details" asp-route-id="@item.MovieID">Details</a>
+
+
                         @if (User.IsInRole("Manager"))
                         {
                             <p>

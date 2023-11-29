@@ -108,13 +108,13 @@ namespace Group6FinalProject.Controllers
 
         _context.Add(review);
         await _context.SaveChangesAsync();
-        return RedirectToAction(nameof(Index));
-    }
+                return View();
+            }
 
-    ViewData["MovieID"] = new SelectList(_context.Movies, "MovieID", "MovieID", review.MovieID);
+            ViewData["MovieID"] = new SelectList(_context.Movies, "MovieID", "MovieID", review.MovieID);
 
-    return View(review);
-}
+            return RedirectToAction("Index");
+        }
 
         // GET: Review/Edit/5
         public async Task<IActionResult> Edit(int? id)

@@ -88,7 +88,7 @@ namespace Group6FinalProject.Controllers
         public IActionResult Create()
         {
             ViewData["MovieID"] = new SelectList(_context.Movies, "MovieID", "MovieID");
-            ViewData["PriceID"] = new SelectList(_context.Prices, "PriceID", "PriceID");
+            ViewBag.TicketTypes = new SelectList(Enum.GetValues(typeof(TicketType)));
             return View();
         }
 
@@ -97,19 +97,21 @@ namespace Group6FinalProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ScheduleID,StartTime,EndTime,Theatre,PriceID,MovieID")] Schedule schedule)
+        public async Task<IActionResult> Create([Bind("ScheduleID,StartTime,Theatre,TicketType,MovieID")] Schedule schedule)
         {
             if (ModelState.IsValid)
             {
+                SetPriceBasedOnTicketType(schedule);
                 _context.Add(schedule);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MovieID"] = new SelectList(_context.Movies, "MovieID", "MovieID", schedule.MovieID);
-            ViewData["PriceID"] = new SelectList(_context.Prices, "PriceID", "PriceID", schedule.PriceID);
 
+            ViewData["MovieID"] = new SelectList(_context.Movies, "MovieID", "Title", schedule.MovieID);
+            ViewBag.TicketTypes = new SelectList(Enum.GetValues(typeof(TicketType)), schedule.TicketType);
             return View(schedule);
         }
+
 
         // GET: Schedule/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -124,17 +126,20 @@ namespace Group6FinalProject.Controllers
             {
                 return NotFound();
             }
-            ViewData["MovieID"] = new SelectList(_context.Movies, "MovieID", "MovieID", schedule.MovieID);
-            ViewData["PriceID"] = new SelectList(_context.Prices, "PriceID", "PriceID", schedule.PriceID);
+
+            ViewData["MovieID"] = new SelectList(_context.Movies, "MovieID", "Title", schedule.MovieID);
+            ViewBag.TicketTypes = new SelectList(Enum.GetValues(typeof(TicketType)), schedule.TicketType);
             return View(schedule);
         }
+
 
         // POST: Schedule/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ScheduleID,StartTime,EndTime,Theatre,PriceID,MovieID")] Schedule schedule)
+        public async Task<IActionResult> Edit(int id, [Bind("ScheduleID,StartTime,Theatre,TicketType,MovieID")] Schedule schedule)
         {
             if (id != schedule.ScheduleID)
             {
@@ -145,6 +150,7 @@ namespace Group6FinalProject.Controllers
             {
                 try
                 {
+                    SetPriceBasedOnTicketType(schedule);
                     _context.Update(schedule);
                     await _context.SaveChangesAsync();
                 }
@@ -161,10 +167,12 @@ namespace Group6FinalProject.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MovieID"] = new SelectList(_context.Movies, "MovieID", "MovieID", schedule.MovieID);
-            ViewData["PriceID"] = new SelectList(_context.Prices, "PriceID", "PriceID", schedule.PriceID);
+
+            ViewData["MovieID"] = new SelectList(_context.Movies, "MovieID", "Title", schedule.MovieID);
+            ViewBag.TicketTypes = new SelectList(Enum.GetValues(typeof(TicketType)), schedule.TicketType);
             return View(schedule);
         }
+
 
         // GET: Schedule/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -245,9 +253,33 @@ namespace Group6FinalProject.Controllers
             return schedulesQuery;
         }
 
+        private void SetPriceBasedOnTicketType(Schedule schedule)
+        {
+            switch (schedule.TicketType)
+            {
+                case TicketType.WeekdayBase:
+                    schedule.PriceID = 1;
+                    break;
+                case TicketType.Matinee:
+                    schedule.PriceID = 2;
+                    break;
+                case TicketType.DiscountTuesday:
+                    schedule.PriceID = 3;
+                    break;
+                case TicketType.Weekends:
+                    schedule.PriceID = 4;
+                    break;
+                case TicketType.SpecialEvent:
+                    schedule.PriceID = 5;
+                    break;
+                default:
+                    break;
+            }
+        }
         private bool ScheduleExists(int id)
         {
-            return (_context.Schedules?.Any(e => e.ScheduleID == id)).GetValueOrDefault();
+            return _context.Schedules.Any(e => e.ScheduleID == id);
         }
+
     }
 }

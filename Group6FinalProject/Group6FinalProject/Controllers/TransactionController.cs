@@ -314,7 +314,7 @@ namespace Group_6_Final_Project.Controllers
             return View(transaction);
         }
 
-        public async Task<IActionResult> AddToCart(int? ScheduleID)
+        public async Task<IActionResult> AddToCart(int? ScheduleID, string selectedSeatStr)
         {
             if (ScheduleID == null)
             {
@@ -323,38 +323,65 @@ namespace Group_6_Final_Project.Controllers
 
             string currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
 
-            Schedule dbSchedule = _context.Schedules.Find(ScheduleID);
+            Schedule dbSchedule = _context.Schedules
+                                          .Include(s => s.TransactionDetails)
+                                          .FirstOrDefault(s => s.ScheduleID == ScheduleID);
 
             if (dbSchedule == null)
             {
                 return View("Error", new string[] { "This Schedule was not in the database!" });
             }
 
-            // Assuming UserID is of type AppUser
-            AppUser user = await _userManager.FindByNameAsync(currentUserId);
+            // Convert the string to the enum
+            if (!Enum.TryParse<SeatSelection>(selectedSeatStr, out SeatSelection selectedSeat))
+            {
+                return View("Error", new string[] { "Invalid seat selection." });
+            }
 
-            Transaction tran = _context.Transactions.FirstOrDefault(r => r.AppUserId == currentUserId);
+            // Check if selected seat is available
+            if (!dbSchedule.AvailableSeats.Contains(selectedSeat.ToString())) // Convert the enum to a string for comparison
+            {
+                return View("Error", new string[] { "The selected seat is not available." });
+            }
+
+            AppUser user = await _userManager.FindByIdAsync(currentUserId);
+
+            Transaction tran = _context.Transactions
+                                      .FirstOrDefault(r => r.AppUserId == currentUserId && r.PurchaseStatus == PurchaseStatus.Pending);
 
             if (tran == null)
             {
-                tran = new Transaction();
-
-                tran.TransactionDate = DateTime.Now;
-                tran.TransactionNumber = GenerateNextTransactionNumber.GetNextTransactionNumber(_context);
-                tran.AppUserId = currentUserId;
+                tran = new Transaction
+                {
+                    TransactionDate = DateTime.Now,
+                    TransactionNumber = GenerateNextTransactionNumber.GetNextTransactionNumber(_context),
+                    AppUserId = currentUserId,
+                    AppUser = user,
+                    PurchaseStatus = PurchaseStatus.Pending
+                };
 
                 _context.Transactions.Add(tran);
                 await _context.SaveChangesAsync();
             }
 
-            TransactionDetail od = new TransactionDetail();
-
-            od.Transaction = tran;
+            TransactionDetail od = new TransactionDetail
+            {
+                Transaction = tran,
+                Schedule = dbSchedule,  // Associate the schedule with the transaction detail
+                SeatSelection = selectedSeat // Add the selected seat
+            };
 
             _context.TransactionDetails.Add(od);
-            await _context.SaveChangesAsync(); // Use await here to make it asynchronous
+            await _context.SaveChangesAsync(); // Save the transaction detail
+
+            // Remove the selected seat from available seats
+            dbSchedule.TransactionDetails.Add(od);
+            _context.Update(dbSchedule);
+            await _context.SaveChangesAsync(); // Save changes to the schedule
 
             return RedirectToAction("Details", new { id = tran.TransactionID });
         }
+
+
     }
 }

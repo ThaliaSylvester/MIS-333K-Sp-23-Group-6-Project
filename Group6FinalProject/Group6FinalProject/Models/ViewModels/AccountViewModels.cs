@@ -126,6 +126,7 @@ namespace Group_6_Final_Project.Models
         public String City { get; set; }
         public String State { get; set; }
         public String Zip { get; set; }
+        public int TotalPopcornPoints { get; set; }
     }
 
     public class EditProfileViewModel

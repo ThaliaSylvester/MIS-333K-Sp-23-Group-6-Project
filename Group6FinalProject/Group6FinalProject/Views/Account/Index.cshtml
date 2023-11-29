@@ -57,3 +57,28 @@
             <td>[@Html.ActionLink("Edit", "EditProfile")]</td>
         </tr>
     </table>
+
+    <div class="popcorn-points-container">
+        <div class="popcorn-points-bar" style="width: @Model.TotalPopcornPoints%">
+            @Model.TotalPopcornPoints Popcorn Points
+        </div>
+    </div>
+
+    @section Styles {
+        <style>
+            .popcorn-points-container {
+                width: 50%;
+                background-color: #eee;
+                border: 1px solid #ccc;
+            }
+
+            .popcorn-points-bar {
+                width: 0; /* Initial width */
+                height: 30px; /* Adjust as needed */
+                background-color: #4CAF50;
+                text-align: center;
+                line-height: 30px; /* Same as height */
+                color: white;
+            }
+        </style>
+    }

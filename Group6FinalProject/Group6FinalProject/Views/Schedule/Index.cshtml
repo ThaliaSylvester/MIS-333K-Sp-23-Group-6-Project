@@ -76,12 +76,12 @@
                         @if (User.IsInRole("Customer"))
                         {
                             <!-- Purchase Ticket Button -->
-                            <a asp-controller="Transaction" asp-action="Create" asp-route-scheduleID="@schedule.ScheduleID" class="btn btn-primary">Buy Tickets</a>
+                            <a asp-controller="Transaction" asp-action="Create" asp-route-scheduleID="@schedule.ScheduleID" class="btn btn-danger">Buy Tickets</a>
                         }
                         else if (User.IsInRole("Employee"))
                         {
                             <!-- Purchase Ticket Button -->
-                            <a asp-controller="Transaction" asp-action="Create" asp-route-scheduleID="@schedule.ScheduleID" class="btn btn-primary">Buy Tickets</a>
+                            <a asp-controller="Transaction" asp-action="Create" asp-route-scheduleID="@schedule.ScheduleID" class="btn btn-danger">Buy Tickets</a>
 
                             <span>
                                 <!-- Other links -->
@@ -93,7 +93,7 @@
                         else if (User.IsInRole("Manager"))
                         {
                             <!-- Purchase Ticket Button -->
-                            <a asp-controller="Transaction" asp-action="Create" asp-route-scheduleID="@schedule.ScheduleID" class="btn btn-primary">Buy Tickets</a>
+                            <a asp-controller="Transaction" asp-action="Create" asp-route-scheduleID="@schedule.ScheduleID" class="btn btn-danger">Buy Tickets</a>
 
                             <span>
                                 <!-- Other links -->

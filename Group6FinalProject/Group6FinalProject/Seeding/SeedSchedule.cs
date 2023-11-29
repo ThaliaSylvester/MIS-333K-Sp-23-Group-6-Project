@@ -121,7 +121,7 @@ namespace Group_6_Final_Project.Seeding
 
             Schedules.Add(new Schedule
             {
-                StartTime = new DateTime(2023, 11, 24, 20, 0, 0),
+                StartTime = new DateTime(2023, 11, 23, 20, 0, 0),
                 Theatre = Theatre.Theatre2,
                 MovieID = db.Movies.FirstOrDefault(m => m.Title == "The Sandlot")?.MovieID ?? string.Empty, 
                 PriceID = db.Prices.FirstOrDefault(m => m.TicketType == TicketType.WeekdayBase)?.PriceID ?? 0, 

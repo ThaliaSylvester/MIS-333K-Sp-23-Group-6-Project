@@ -78,8 +78,8 @@ namespace Group_6_Final_Project.Models
         public string AppUserId { get; set; }  // Foreign key for the Product
         public AppUser AppUser { get; set; }
 
-        public int ScheduleID { get; set; }
-        public Schedule Schedule { get; set; }
+        //public int ScheduleID { get; set; }
+        //public Schedule Schedule { get; set; }
     }
 }
 

@@ -6,6 +6,7 @@ using Group_6_Final_Project.DAL;
 using Group_6_Final_Project.Models;
 using Group_6_Final_Project.Utilities;
 using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace Group_6_Final_Project.Controllers
 {
@@ -63,7 +64,7 @@ namespace Group_6_Final_Project.Controllers
                 Zip = rvm.Zip
             };
 
-            //create AddUserModel
+            //Create AddUserModel
             AddUserModel aum = new AddUserModel()
             {
                 User = newUser,
@@ -157,29 +158,42 @@ namespace Group_6_Final_Project.Controllers
         {
             IndexViewModel ivm = new IndexViewModel();
 
-            //get user info
+            // Get user info
             String id = User.Identity.Name;
-            AppUser user = _context.Users.FirstOrDefault(u => u.UserName == id);
+            AppUser user = _context.Users
+                                   .Include(u => u.Transactions) // Include transactions for popcorn points calculation
+                                   .FirstOrDefault(u => u.UserName == id);
 
-            //populate the view model
-            //(i.e. map the domain model to the view model)
-            ivm.Email = user.Email;
-            ivm.HasPassword = true;
-            ivm.UserID = user.Id;
-            ivm.UserName = user.UserName;
-            ivm.FirstName = user.FirstName;
-            ivm.LastName = user.LastName;
-            ivm.PhoneNumber = user.PhoneNumber;
-            ivm.DateOfBirth = user.DateOfBirth;
-            ivm.AddressLine1 = user.AddressLine1;
-            ivm.AddressLine2 = user.AddressLine2;
-            ivm.City = user.City;
-            ivm.State = user.State;
-            ivm.Zip = user.Zip;
+            if (user != null)
+            {
+                // Populate the view model
+                ivm.Email = user.Email;
+                ivm.HasPassword = true; 
+                ivm.UserID = user.Id;
+                ivm.UserName = user.UserName;
+                ivm.FirstName = user.FirstName;
+                ivm.LastName = user.LastName;
+                ivm.PhoneNumber = user.PhoneNumber;
+                ivm.DateOfBirth = user.DateOfBirth;
+                ivm.AddressLine1 = user.AddressLine1;
+                ivm.AddressLine2 = user.AddressLine2;
+                ivm.City = user.City;
+                ivm.State = user.State;
+                ivm.Zip = user.Zip;
 
-            //send data to the view
+                // Calculate total popcorn points
+                ivm.TotalPopcornPoints = user.Transactions?.Sum(t => t.PopcornPoints) ?? 0;
+            }
+            else
+            {
+                // Handle the case where the user is not found, possibly redirect or show an error
+                return RedirectToAction("ErrorViewNameHere"); // Replace with appropriate action
+            }
+
+            // Send data to the view
             return View(ivm);
         }
+
 
         //Logic for change password
         // GET: /Account/ChangePassword
@@ -295,5 +309,7 @@ namespace Group_6_Final_Project.Controllers
             //send the user back to the home page
             return RedirectToAction("Index", "Home");
         }
+
+        
     }
 }

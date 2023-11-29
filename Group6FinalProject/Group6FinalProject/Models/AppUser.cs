@@ -36,7 +36,25 @@ namespace Group_6_Final_Project.Models
         [Display(Name = "Zip")]
         public string Zip { get; set; }
 
-        public List<Transaction> Transactions { get; set; }
+
+        [Display(Name = "Total Popcorn Points")]
+        public int TotalPopcornPoints
+        {
+            get
+            {
+                // Ensure Transactions is not null
+                if (Transactions == null)
+                {
+                    return 0;
+                }
+
+                // Sum PopcornPoints from all Transactions
+                return Transactions.Sum(tr => tr.PopcornPoints);
+            }
+        }
+
+
+        public virtual List<Transaction> Transactions { get; set; }
 
     }
 }

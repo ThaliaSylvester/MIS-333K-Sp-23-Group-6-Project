@@ -5,7 +5,7 @@
 namespace Group6FinalProject.Migrations
 {
     /// <inheritdoc />
-    public partial class ScheduleUpdate : Migration
+    public partial class ThaliaFix : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

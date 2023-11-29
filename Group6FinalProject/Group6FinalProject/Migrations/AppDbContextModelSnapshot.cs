@@ -198,7 +198,8 @@ namespace Group6FinalProject.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReviewID"));
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(280)
+                        .HasColumnType("nvarchar(280)");
 
                     b.Property<string>("MovieID")
                         .HasColumnType("nvarchar(450)");
@@ -268,6 +269,9 @@ namespace Group6FinalProject.Migrations
                     b.Property<int>("PurchaseStatus")
                         .HasColumnType("int");
 
+                    b.Property<int>("ScheduleID")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("TransactionDate")
                         .HasColumnType("datetime2");
 
@@ -290,6 +294,8 @@ namespace Group6FinalProject.Migrations
 
                     b.HasIndex("AppUserId");
 
+                    b.HasIndex("ScheduleID");
+
                     b.ToTable("Transactions");
                 });
 
@@ -302,7 +308,7 @@ namespace Group6FinalProject.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionDetailID"));
 
                     b.Property<decimal>("ExtendedPrice")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<int>("NumberofTickets")
                         .HasColumnType("int");
@@ -514,7 +520,15 @@ namespace Group6FinalProject.Migrations
                         .WithMany("Transactions")
                         .HasForeignKey("AppUserId");
 
+                    b.HasOne("Group_6_Final_Project.Models.Schedule", "Schedule")
+                        .WithMany()
+                        .HasForeignKey("ScheduleID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("AppUser");
+
+                    b.Navigation("Schedule");
                 });
 
             modelBuilder.Entity("Group_6_Final_Project.Models.TransactionDetail", b =>

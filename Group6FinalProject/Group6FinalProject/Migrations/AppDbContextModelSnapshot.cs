@@ -211,11 +211,13 @@ namespace Group6FinalProject.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("UserID")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("ReviewID");
 
                     b.HasIndex("MovieID");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("Reviews");
                 });
@@ -492,7 +494,13 @@ namespace Group6FinalProject.Migrations
                         .WithMany("Review")
                         .HasForeignKey("MovieID");
 
+                    b.HasOne("Group_6_Final_Project.Models.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID");
+
                     b.Navigation("Movies");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Group_6_Final_Project.Models.Schedule", b =>

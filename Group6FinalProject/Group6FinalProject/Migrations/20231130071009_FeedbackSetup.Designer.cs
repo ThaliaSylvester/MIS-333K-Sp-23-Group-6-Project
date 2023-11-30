@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Group6FinalProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231129050413_ThaliaFix")]
-    partial class ThaliaFix
+    [Migration("20231130071009_FeedbackSetup")]
+    partial class FeedbackSetup
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -214,11 +214,13 @@ namespace Group6FinalProject.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("UserID")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("ReviewID");
 
                     b.HasIndex("MovieID");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("Reviews");
                 });
@@ -241,6 +243,9 @@ namespace Group6FinalProject.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Theatre")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TicketType")
                         .HasColumnType("int");
 
                     b.HasKey("ScheduleID");
@@ -272,9 +277,6 @@ namespace Group6FinalProject.Migrations
                     b.Property<int>("PurchaseStatus")
                         .HasColumnType("int");
 
-                    b.Property<int>("ScheduleID")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("TransactionDate")
                         .HasColumnType("datetime2");
 
@@ -296,8 +298,6 @@ namespace Group6FinalProject.Migrations
                     b.HasKey("TransactionID");
 
                     b.HasIndex("AppUserId");
-
-                    b.HasIndex("ScheduleID");
 
                     b.ToTable("Transactions");
                 });
@@ -497,7 +497,13 @@ namespace Group6FinalProject.Migrations
                         .WithMany("Review")
                         .HasForeignKey("MovieID");
 
+                    b.HasOne("Group_6_Final_Project.Models.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID");
+
                     b.Navigation("Movies");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Group_6_Final_Project.Models.Schedule", b =>
@@ -523,15 +529,7 @@ namespace Group6FinalProject.Migrations
                         .WithMany("Transactions")
                         .HasForeignKey("AppUserId");
 
-                    b.HasOne("Group_6_Final_Project.Models.Schedule", "Schedule")
-                        .WithMany()
-                        .HasForeignKey("ScheduleID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("AppUser");
-
-                    b.Navigation("Schedule");
                 });
 
             modelBuilder.Entity("Group_6_Final_Project.Models.TransactionDetail", b =>

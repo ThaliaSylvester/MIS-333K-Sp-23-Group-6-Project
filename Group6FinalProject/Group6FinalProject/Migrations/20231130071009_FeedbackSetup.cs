@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Group6FinalProject.Migrations
 {
     /// <inheritdoc />
-    public partial class setup : Migration
+    public partial class FeedbackSetup : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -255,12 +255,17 @@ namespace Group6FinalProject.Migrations
                     Rating = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(280)", maxLength: 280, nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    UserID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserID = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     MovieID = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Reviews", x => x.ReviewID);
+                    table.ForeignKey(
+                        name: "FK_Reviews_AspNetUsers_UserID",
+                        column: x => x.UserID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Reviews_Movies_MovieID",
                         column: x => x.MovieID,
@@ -376,6 +381,11 @@ namespace Group6FinalProject.Migrations
                 name: "IX_Reviews_MovieID",
                 table: "Reviews",
                 column: "MovieID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reviews_UserID",
+                table: "Reviews",
+                column: "UserID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Schedules_MovieID",

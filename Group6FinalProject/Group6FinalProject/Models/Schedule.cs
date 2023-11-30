@@ -26,11 +26,6 @@ namespace Group_6_Final_Project.Models
 
         public int PriceID { get; set; }  // Foreign key for the Price
 
-        // We chose to use a NotMapped property since the Available
-        // seats property needs to be dynamically calculated using the SeatSelected property 
-        //in transaction details. Therefore, the property does not need to be stored in the database 
-        // Transient property for available seats
-        //[NotMapped]
         public List<string> AvailableSeats
         {
             get

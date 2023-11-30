@@ -67,7 +67,7 @@ namespace Group_6_Final_Project.Models
         // NAVIGATIONAL PROPERTIES
         public List<TransactionDetail> TransactionDetail { get; set; }
 
-        public Transaction()
+        public Transaction()    
         {
             if (TransactionDetail == null)
             {
@@ -80,6 +80,9 @@ namespace Group_6_Final_Project.Models
 
         //public int ScheduleID { get; set; }
         //public Schedule Schedule { get; set; }
+
+        //public int MovieID { get; set; }
+        //public Movie Movie { get; set; }
     }
 }
 

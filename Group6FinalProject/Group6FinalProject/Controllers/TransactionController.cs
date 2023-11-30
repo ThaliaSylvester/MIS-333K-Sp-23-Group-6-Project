@@ -20,11 +20,13 @@ namespace Group_6_Final_Project.Controllers
     {
         private readonly AppDbContext _context;
         private readonly UserManager<AppUser> _userManager;
+        private readonly ILogger<TransactionController> _logger; // Declare a logger
 
-        public TransactionController(AppDbContext context, UserManager<AppUser> userManager)
+        public TransactionController(AppDbContext context, UserManager<AppUser> userManager, ILogger<TransactionController> logger)
         {
             _context = context;
             _userManager = userManager;
+            _logger = logger;
         }
         // GET: Transactions/Index
         public IActionResult Index(string sortOrder)
@@ -154,15 +156,32 @@ namespace Group_6_Final_Project.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Create()
+        public IActionResult Create(int? movieId)
         {
+            ViewBag.Movies = new SelectList(_context.Movies, "MovieID", "Title");
             return View();
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TransactionNotes")] Transaction transaction)
+        public async Task<IActionResult> Create([Bind("AppuserId")] Transaction transaction, int scheduleId)
         {
+            // Populate ViewBag.Movies for the view
+            ViewBag.Movies = new SelectList(_context.Movies, "MovieID", "Title");
+
+            // Create a TransactionViewModel instance
+            TransactionViewModel viewModel = new TransactionViewModel
+            {
+            };
+
+            // Validate scheduleId
+            if (scheduleId <= 0)
+            {
+                ModelState.AddModelError("", "Invalid schedule ID.");
+                return View(viewModel); // Return the view model
+            }
+
             // Find next transaction number from utilities class
             transaction.TransactionNumber = Utilities.GenerateNextTransactionNumber.GetNextTransactionNumber(_context);
 
@@ -172,13 +191,40 @@ namespace Group_6_Final_Project.Controllers
             // Associate the transaction with a logged-in customer
             transaction.AppUser = _context.Users.FirstOrDefault(o => o.UserName == User.Identity.Name);
 
-            // If code gets this far, add transaction to database
+            // Add transaction to database
             _context.Add(transaction);
             await _context.SaveChangesAsync();
 
-            // Send user to add orders detail
-            return RedirectToAction("Create", "TransactionDetails", new { transactionID = transaction.TransactionID });
+            // Find Schedule based on scheduleId
+            Schedule schedule = await _context.Schedules.FindAsync(scheduleId);
+            if (schedule == null)
+            {
+                _logger.LogError($"Schedule not found for ID: {scheduleId}");
+
+                ModelState.AddModelError("", "Schedule not found!");
+                return View(viewModel); // Return the view model
+            }
+
+            // Create a new TransactionDetail for this transaction
+            TransactionDetail transactionDetail = new TransactionDetail
+            {
+                Schedule = schedule,
+                ScheduleID = schedule.ScheduleID,
+                Transaction = transaction,
+                TransactionID = transaction.TransactionID
+                // Set other necessary properties of TransactionDetail as required
+            };
+
+            // Add the TransactionDetail to the context and save changes
+            _context.TransactionDetails.Add(transactionDetail);
+            await _context.SaveChangesAsync();
+
+            // Redirect to TransactionDetails Create view with transactionId and scheduleId
+            return RedirectToAction("Create", "TransactionDetails", new { transactionId = transaction.TransactionID, scheduleId = scheduleId });
         }
+
+
+
 
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> SelectCustomerForTransaction(String SelectedCustomer)
@@ -313,6 +359,19 @@ namespace Group_6_Final_Project.Controllers
 
             return View(transaction);
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetScheduleTimes(string movieId)
+        {
+            var schedules = await _context.Schedules
+                                          .Where(s => s.MovieID == movieId.ToString())
+                                          .Select(s => new { s.ScheduleID, s.StartTime })
+                                          .ToListAsync();
+
+            return Json(schedules);
+        }
+
 
         public async Task<IActionResult> AddToCart(int? ScheduleID, string selectedSeatStr)
         {

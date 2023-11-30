@@ -28,12 +28,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Views\Manager\" />
-    <None Remove="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\Img\" />
     <Folder Include="Views\Manager\" />
-    <Folder Include="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\Img\Logo.png" />

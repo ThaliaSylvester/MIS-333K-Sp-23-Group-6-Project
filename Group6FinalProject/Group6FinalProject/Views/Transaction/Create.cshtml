@@ -1,4 +1,4 @@
-@model Group_6_Final_Project.Models.Transaction
+@model Group_6_Final_Project.Models.TransactionViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -6,29 +6,31 @@
 }
 
 <h1>Create</h1>
-
 <h4>Transaction</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            @if (User.IsInRole("Employee"))
-            {
-                <div class="form-group">
-                    <label asp-for="AppUserId" class="control-label"></label>
-                    <input asp-for="AppUserId" class="form-control" />
-                    <span asp-validation-for="AppUserId" class="text-danger"></span>
-                </div>
-            }
+            <!-- Movie Dropdown -->
+            <select asp-for="TransactionMovieID" class="form-control" id="movieDropdown">
+                <option value="">-- Select a Movie --</option>
+                @foreach (var movie in ViewBag.Movies)
+                {
+                    <option value="@movie.Value">@movie.Text</option>
+                }
+            </select>
 
-            <div class="form-group">
-                <label asp-for="TransactionNote" class="control-label"></label>
-                <input asp-for="TransactionNote" class="form-control" />
-                <span asp-validation-for="TransactionNote" class="text-danger"></span>
-            </div>
+            <!-- Schedule Dropdown (Initially Empty) -->
+            <select class="form-control" id="scheduleDropdown">
+                <option value="">-- Select a Schedule --</option>
+            </select>
 
+            <!-- Hidden field to store the selected schedule ID -->
+<input type="hidden" asp-for="TransactionScheduleID" />
+
+            <!-- Submit Button -->
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -39,3 +41,26 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+<script>document.getElementById("movieDropdown").addEventListener("change", function () {
+        var movieId = this.value;
+        var scheduleDropdown = document.getElementById("scheduleDropdown");
+        scheduleDropdown.innerHTML = "<option value=''>-- Select a Schedule --</option>"; // Reset dropdown
+
+        if (movieId) {
+            fetch(`/Transaction/GetScheduleTimes?movieId=${movieId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length === 0) {
+                        scheduleDropdown.innerHTML = "<option value=''>No schedules available for this movie.</option>";
+                        return;
+                    }
+                    data.forEach(schedule => {
+                        var option = document.createElement("option");
+                        option.value = schedule.scheduleId;
+                        option.text = new Date(schedule.startTime).toLocaleString();
+                        scheduleDropdown.appendChild(option);
+                    });
+                });
+        }
+    });</script>

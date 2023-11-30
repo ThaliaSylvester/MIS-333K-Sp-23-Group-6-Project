@@ -37,7 +37,7 @@ namespace Group6FinalProject.Controllers
         }
 
         // GET: TransactionDetails/Create
-        public IActionResult Create(int transactionID)
+        public IActionResult Create(int transactionID, int movieId, int scheduleId)
         {
             //create a new instance of the TransactionDetail class
             TransactionDetail td = new TransactionDetail();

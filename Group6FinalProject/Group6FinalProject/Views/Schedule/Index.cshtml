@@ -3,7 +3,6 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "_Layout";
 }
 
 <br />
@@ -32,9 +31,9 @@
                     <option selected="selected" value="">All MPAARating</option>
                 </select>
                 <span asp-validation-for="SelectedMPAARating" class="text-danger"></span>
-            </select>
-            <span asp-validation-for="SelectedMPAARating" class="text-danger"></span>
-</div>
+                </select>
+                <span asp-validation-for="SelectedMPAARating" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="SelectedWeekStartDate" class="control-label">Week Start Date:</label>
                 <input asp-for="SelectedWeekStartDate" class="form-control" type="date" id="weekStartDate" name="SelectedWeekStartDate" min="2023-01-06" max="2024-01-03" step="7" />
@@ -117,3 +116,6 @@
         </tbody>
     </table>
 </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>

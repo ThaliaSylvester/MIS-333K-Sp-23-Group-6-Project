@@ -80,15 +80,17 @@
 
             if (movieStartTime != null && currentTime > movieStartTime)
             {
-                <a asp-action="Create" asp-controller="Review" asp-route-MovieID="@Model.TransactionDetail.FirstOrDefault()?.Schedule.Movie.MovieID">Write a Review</a>
+                <a asp-action="Create" asp-controller="Review" class="btn btn-danger" asp-route-MovieID="@Model.TransactionDetail.FirstOrDefault()?.Schedule.Movie.MovieID">Write a Review</a>
+                <br />
             }
-
+            <br />
             <form asp-action="CancelPurchase" method="post">
                 <input type="hidden" asp-for="TransactionID" />
-                <button type="submit" class="btn btn-primary">Cancel Purchase</button>
+                <button type="submit" class="btn btn-danger">Cancel Purchase</button>
             </form>
         }
+            <br />
         <a asp-action="Edit" asp-route-id="@Model.TransactionID">Edit</a> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Index" class="btn btn-danger">Back to List</a>
     </div>
 </div>

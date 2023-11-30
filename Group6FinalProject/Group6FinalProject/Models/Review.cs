@@ -7,8 +7,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Group_6_Final_Project.Models
 {
-    public enum CustomerRating { One = 1, Two = 2, Three = 3, Four = 4, Five = 5 };
-
     public enum Status { Approved, NeedsReview };
 
     public class Review
@@ -31,5 +29,7 @@ namespace Group_6_Final_Project.Models
 
         public string MovieID { get; set; }  // Foreign key for the Product
         public Movie Movies { get; set; }
+
+        public AppUser User { get; set; } // Navigational to only display reviews of a specific user
     }
 }

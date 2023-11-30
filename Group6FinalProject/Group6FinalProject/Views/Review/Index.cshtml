@@ -19,7 +19,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
-            @if (User.IsInRole("Manager"))
+            @if (User.IsInRole("Manager") && (User.IsInRole("Employee")))
             {
                 <th>
                     @Html.DisplayNameFor(model => model.Status)
@@ -29,6 +29,12 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Movies.MovieID)
+                </th>
+            }
+            else if (User.IsInRole("Customer"))
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
                 </th>
             }
             <th></th>
@@ -47,7 +53,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
-                @if (User.IsInRole("Manager"))
+                @if (User.IsInRole("Manager") && (User.IsInRole("Employee")))
                 {
                     <td>
                         @Html.DisplayFor(modelItem => item.Status)
@@ -59,12 +65,23 @@
                         @Html.DisplayFor(modelItem => item.Movies.MovieID)
                     </td>
                 }
+                else if (User.IsInRole("Customer"))
+                {
+                    <th>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </th>
+                }
                 <td>
+                    <a asp-action="Edit" asp-route-id="@item.ReviewID">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.ReviewID">Details</a>
-                    @if (User.IsInRole("Manager"))
+
+                    @if (User.IsInRole("Manager") && (User.IsInRole("Employee")))
                     {
-                        <a asp-action="Edit" asp-route-id="@item.ReviewID">Edit</a>
-                        <a asp-action="Delete" asp-route-id="@item.ReviewID">Delete</a>
+                        <span>
+                            <a asp-action="Edit" asp-route-id="@item.ReviewID">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@item.ReviewID">Delete</a>
+                        </span>
+
                     }
                 </td>
             </tr>

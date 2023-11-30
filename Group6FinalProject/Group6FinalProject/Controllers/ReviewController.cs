@@ -25,20 +25,15 @@ namespace Group6FinalProject.Controllers
         // GET: Review
         public async Task<IActionResult> Index()
         {
-            if (User.IsInRole("Manager"))
-            {
-                var appDbContext = _context.Reviews.Include(r => r.Movies);
-                return View(await appDbContext.ToListAsync());
-            }
-            else
-            {
-                var reviews = await _context.Reviews
-                    .Where(r => r.Status == Status.Approved)
-                    .Include(r => r.Movies)
-                    .ToListAsync();
+            // Setup list of reviews to display
+            List<Review> reviews;
 
-                return View(reviews);
-            }
+            reviews = _context.Reviews
+                      .Include(r => r.Movies)
+                      .ToList();
+
+            return View(reviews);
+
         }
 
         // GET: Review/Details/5
@@ -46,15 +41,16 @@ namespace Group6FinalProject.Controllers
         {
             if (id == null || _context.Reviews == null)
             {
-                return NotFound();
+                return View("Error", new String[] { "Please specify a review to view!" });
             }
 
-            var review = await _context.Reviews
-                .Include(r => r.Movies)
-                .FirstOrDefaultAsync(m => m.ReviewID == id);
+            Review review = await _context.Reviews
+                            .Include(r => r.Movies)
+                            .FirstOrDefaultAsync(m => m.ReviewID == id);
+
             if (review == null)
             {
-                return NotFound();
+                return View("Error", new String[] { "That review was not found." });
             }
 
             return View(review);
@@ -63,15 +59,13 @@ namespace Group6FinalProject.Controllers
         // GET: Review/Create
         public IActionResult Create(string movieId)
         {
-            if (string.IsNullOrEmpty(movieId))
+            if (movieId == null)
             {
-                // Handle the case where MovieID is not provided.
-                // You may redirect to an error page or take appropriate action.
-                return RedirectToAction("Index", "Home"); // Redirect to the home page as an example.
+                return RedirectToAction("Index");
             }
 
-            ViewData["MovieID"] = new SelectList(_context.Movies, "MovieID", "Title");
-            ViewData["SelectedMovieID"] = movieId; // Add this line to pass the selected MovieID to the view.
+            ViewBag.MovieID = new SelectList(_context.Movies, "MovieID", "Title");
+            ViewBag.SelectedMovieID = movieId;
 
             return View();
         }
@@ -81,40 +75,79 @@ namespace Group6FinalProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-      public async Task<IActionResult> Create([Bind("ReviewID,Rating,Description,Status,MovieID")] Review review)
-{
-    if (ModelState.IsValid)
-    {
-        // Get the user ID of the currently logged-in user
-        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-        // Check if the user has already submitted a review for the same movie
-        var existingReview = _context.Reviews
-            .FirstOrDefault(r => r.MovieID == review.MovieID && r.UserID == userId);
-
-        if (existingReview != null)
+        [Authorize(Roles = "Customer")]
+        public async Task<IActionResult> Create([Bind("Rating, Description, MovieID")] Review review)
         {
-            // Display an error message or handle the situation where the user has already submitted a review for the same movie.
-            ModelState.AddModelError("DuplicateReview", "You have already submitted a review for this movie.");
-            ViewData["MovieID"] = new SelectList(_context.Movies, "MovieID", "MovieID", review.MovieID);
-            return View();
-        }
+            if (ModelState.IsValid)
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-        // Set the user ID for the review
-        review.UserID = userId;
+                // Check if the user has already submitted a review for the same movie
+                var existingReview = _context.Reviews
+                    .FirstOrDefault(r => r.MovieID == review.MovieID && r.UserID == userId);
 
-        // Set the default status for the review
-        review.Status = Status.NeedsReview;
+                if (existingReview != null)
+                {
+                    ViewBag.ReviewCreateError = "You have already submitted a review for this movie.";
+                    ViewBag.MovieID = new SelectList(_context.Movies, "MovieID", "Title", review.MovieID);
+                    return View(review);
+                }
 
-        _context.Add(review);
-        await _context.SaveChangesAsync();
-                return View();
+                // Set additional properties for the review
+                review.UserID = userId;
+                review.Status = Status.NeedsReview;
+
+                // Add the review to the database
+                _context.Add(review);
+                await _context.SaveChangesAsync();
+
+                // Redirect the user to the review index page
+                return RedirectToAction(nameof(Index));
             }
 
-            ViewData["MovieID"] = new SelectList(_context.Movies, "MovieID", "MovieID", review.MovieID);
-
-            return RedirectToAction("Index");
+            // If ModelState is not valid, reload the view with the form data
+            ViewBag.MovieID = new SelectList(_context.Movies, "MovieID", "Title", review.MovieID);
+            return View(review);
         }
+
+
+
+        //public async Task<IActionResult> Create([Bind("")] Review review)
+        //{
+
+        //    if (ModelState.IsValid == false)
+        //    {
+        //        ViewBag.MovieID = new SelectList(_context.Movies, "MovieID", "Title", review.MovieID);
+        //        return View(review);
+        //    }
+
+        //    // Get the user ID of the currently logged-in user
+        //    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        //    // Check if the user has already submitted a review for the same movie
+        //    var existingReview = _context.Reviews
+        //        .FirstOrDefault(r => r.MovieID == review.MovieID && r.UserID == userId);
+
+        //    // Check to see if user has already made a review for that movie
+        //    if (existingReview != null)
+        //    {
+        //        //ModelState.AddModelError("DuplicateReview", "You have already submitted a review for this movie.");
+        //        ViewBag.MovieID = new SelectList(_context.Movies, "MovieID", "Title", review.MovieID);
+        //        return RedirectToAction(nameof(Index));
+        //    }
+
+        //    // Set the user ID for the review
+        //    review.UserID = userId;
+
+        //    // Set the default status for the review
+        //    review.Status = Status.NeedsReview;
+
+        //    _context.Add(review);
+        //    await _context.SaveChangesAsync();
+
+        //    //Send the user to the page with all the departments
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         // GET: Review/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -195,14 +228,14 @@ namespace Group6FinalProject.Controllers
             {
                 _context.Reviews.Remove(review);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ReviewExists(int id)
         {
-          return (_context.Reviews?.Any(e => e.ReviewID == id)).GetValueOrDefault();
+            return (_context.Reviews?.Any(e => e.ReviewID == id)).GetValueOrDefault();
         }
     }
 }

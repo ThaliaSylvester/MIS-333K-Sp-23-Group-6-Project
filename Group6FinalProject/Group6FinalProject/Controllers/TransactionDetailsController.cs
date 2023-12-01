@@ -69,17 +69,19 @@ namespace Group6FinalProject.Controllers
                                       .Select(m => m.Title)
                                       .FirstOrDefaultAsync();
             ViewBag.SelectedMovieTitle = movieTitle;
+            ViewBag.ScheduleID = scheduleId;
 
             // Create a new instance of the TransactionDetail class
             TransactionDetail td = new TransactionDetail
             {
                 Transaction = dbTransaction,
-                ScheduleID = scheduleId,
+
             };
+
+            // Now you can use the 'scheduleId' within this action as needed
 
             return View(td);
         }
-
 
         // POST: TransactionDetails/Create
         [HttpPost]
@@ -95,12 +97,12 @@ namespace Group6FinalProject.Controllers
             var selectedScheduleId = ViewBag.SelectedScheduleTime;
             Schedule dbSchedule = _context.Schedules.Find(selectedScheduleId);
 
-            if (dbSchedule == null)
-            {
-                // Handle invalid schedule
-                ModelState.AddModelError(string.Empty, "Invalid schedule selected.");
-                return View(transactionDetail);
-            }
+            //if (dbSchedule == null)
+            //{
+            //    // Handle invalid schedule
+            //    ModelState.AddModelError(string.Empty, "Invalid schedule selected.");
+            //    return View(transactionDetail);
+            //}
 
             // Find transaction in the database
             Transaction dbTransaction = _context.Transactions.Find(transactionDetail.Transaction.TransactionID);

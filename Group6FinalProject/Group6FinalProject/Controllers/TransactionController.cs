@@ -202,15 +202,15 @@ namespace Group_6_Final_Project.Controllers
             // Associate transaction with logged-in customer
             //transaction.AppUser = await _userManager.FindByNameAsync(transaction.AppUser.UserName);
 
-            // If code if valid, add transaction to database
+            // If code if valid, add transaction to the database
             _context.Add(transaction);
             await _context.SaveChangesAsync();
 
             var movieId = ViewBag.MovieID as string;
             var scheduleId = ViewBag.ScheduleID as int?;
 
-            // Send customer to appropriate page
-            return RedirectToAction("Create", "TransactionDetails", new { transactionID = transaction.TransactionID, movieID = movieId, scheduleID = scheduleId });
+            // Send the customer to the appropriate page
+            return RedirectToAction("Create", "TransactionDetails", new { transactionID = transaction.TransactionID, movieId = movieId, scheduleId = scheduleId });
         }
 
         [Authorize(Roles = "Admin")]

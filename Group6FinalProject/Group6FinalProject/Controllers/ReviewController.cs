@@ -23,17 +23,48 @@ namespace Group6FinalProject.Controllers
         }
 
         // GET: Review
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             // Setup list of reviews to display
             List<Review> reviews;
 
-            reviews = _context.Reviews
-                      .Include(r => r.Movies)
-                      .ToList();
+            if (User.IsInRole("Manager") || User.IsInRole("Employee"))
+            {
+                // Show all reviews
+                reviews = _context.Reviews
+                          .Include(r => r.Movies)
+                          .ToList();
 
-            return View(reviews);
+                // Truncate the description for the view aesthetic
+                foreach (var review in reviews)
+                {
+                    review.Description = TruncateDescription(review.Description, 30);
+                }
 
+                return View(reviews);
+            }
+
+            else if (User.IsInRole("Customer"))
+            {
+                // Get the current user's ID
+                var currentUserID = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                // Filter reviews based on the current user's ID
+                reviews = _context.Reviews
+                          .Include(r => r.Movies)
+                          .Where(r => r.UserID == currentUserID)
+                          .ToList();
+
+                // Truncate the description for the view aesthetic
+                foreach (var review in reviews)
+                {
+                    review.Description = TruncateDescription(review.Description, 30);
+                }
+
+                return View(reviews);
+            }
+            return View();
         }
 
         // GET: Review/Details/5
@@ -57,6 +88,7 @@ namespace Group6FinalProject.Controllers
         }
 
         // GET: Review/Create
+        [Authorize]
         public IActionResult Create(string movieId)
         {
             if (movieId == null)
@@ -110,46 +142,8 @@ namespace Group6FinalProject.Controllers
             return View(review);
         }
 
-
-
-        //public async Task<IActionResult> Create([Bind("")] Review review)
-        //{
-
-        //    if (ModelState.IsValid == false)
-        //    {
-        //        ViewBag.MovieID = new SelectList(_context.Movies, "MovieID", "Title", review.MovieID);
-        //        return View(review);
-        //    }
-
-        //    // Get the user ID of the currently logged-in user
-        //    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-        //    // Check if the user has already submitted a review for the same movie
-        //    var existingReview = _context.Reviews
-        //        .FirstOrDefault(r => r.MovieID == review.MovieID && r.UserID == userId);
-
-        //    // Check to see if user has already made a review for that movie
-        //    if (existingReview != null)
-        //    {
-        //        //ModelState.AddModelError("DuplicateReview", "You have already submitted a review for this movie.");
-        //        ViewBag.MovieID = new SelectList(_context.Movies, "MovieID", "Title", review.MovieID);
-        //        return RedirectToAction(nameof(Index));
-        //    }
-
-        //    // Set the user ID for the review
-        //    review.UserID = userId;
-
-        //    // Set the default status for the review
-        //    review.Status = Status.NeedsReview;
-
-        //    _context.Add(review);
-        //    await _context.SaveChangesAsync();
-
-        //    //Send the user to the page with all the departments
-        //    return RedirectToAction(nameof(Index));
-        //}
-
         // GET: Review/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Reviews == null)
@@ -171,11 +165,11 @@ namespace Group6FinalProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Manager,Employee")]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("ReviewID,Rating,Description,Status,UserID,MovieID")] Review review)
         {
             // Check if the user is a manager or employee
-            if (User.IsInRole("Manager") || User.IsInRole("Employee"))
+            if (User.Identity.IsAuthenticated)
             {
                 // Allow managers and employees to modify Rating and Description
                 if (ModelState.IsValid)
@@ -186,51 +180,19 @@ namespace Group6FinalProject.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
-            else
-            {
-                // If the user is not a manager or employee, prevent modification of Rating and Description
-                ModelState.AddModelError(string.Empty, "You do not have permission to perform this action.");
-            }
 
             ViewData["MovieID"] = new SelectList(_context.Movies, "MovieID", "MovieID", review.MovieID);
             return View(review);
         }
-        // GET: Review/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+
+        private string TruncateDescription(string description, int maxLength, string suffix = "...")
         {
-            if (id == null || _context.Reviews == null)
+            if (description != null && description.Length > maxLength)
             {
-                return NotFound();
+                description = description.Substring(0, maxLength) + suffix;
             }
 
-            var review = await _context.Reviews
-                .Include(r => r.Movies)
-                .FirstOrDefaultAsync(m => m.ReviewID == id);
-            if (review == null)
-            {
-                return NotFound();
-            }
-
-            return View(review);
-        }
-
-        // POST: Review/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Reviews == null)
-            {
-                return Problem("Entity set 'AppDbContext.Reviews'  is null.");
-            }
-            var review = await _context.Reviews.FindAsync(id);
-            if (review != null)
-            {
-                _context.Reviews.Remove(review);
-            }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return description;
         }
 
         private bool ReviewExists(int id)

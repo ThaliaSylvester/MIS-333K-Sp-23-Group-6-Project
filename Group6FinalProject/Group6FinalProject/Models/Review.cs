@@ -16,6 +16,7 @@ namespace Group_6_Final_Project.Models
         public int ReviewID { get; set; }
 
         [Required]
+        [Display(Name = "Rating: ")]
         [Range(1, 5, ErrorMessage = "Rating must be between 1 and 5.")]
         public int Rating { get; set; }
 
@@ -23,6 +24,7 @@ namespace Group_6_Final_Project.Models
         [Display(Name = "Description: ")]
         public string Description { get; set; }
 
+        [Display(Name = "Status:")]
         public Status Status { get; set; }
 
         public string UserID { get; set; }  // Foreign key for the Product

@@ -5,6 +5,7 @@
     Layout = "_Layout";
 }
 
+<br />
 <h1>Create Review</h1>
 
 <hr />
@@ -25,48 +26,43 @@
             </div>
 
             <!--Pre-filled Movie Title-->
-            <div class="form-group">
-                <label asp-for="MovieID" class="control-label">Movie ID:</label>
-                <select asp-for="MovieID" class="form-control" asp-items="ViewBag.MovieID" disabled>
-                    <option value="@ViewData["SelectedMovieID"]" selected="selected">@ViewData["SelectedMovieID"]</option>
-                </select>
-            </div>
+            <p>
+                <div class="form-group">
+                    <label asp-for="MovieID" class="control-label" style="font-weight: bold;">Movie ID:</label>
+                    <select asp-for="MovieID" class="form-control" asp-items="ViewBag.MovieID" disabled>
+                        <option value="@ViewData["SelectedMovieID"]" selected="selected">@ViewData["SelectedMovieID"]</option>
+                    </select>
+                </div>
+            </p>
 
             <!--Radio Buttons for Rating-->
-            <div class="form-group">
-                <label class="control-label">Rating:</label>
-                @for (int i = 1; i <= 5; i++)
-                {
-                    <label class="radio-inline">
-                        <input type="radio" asp-for="Rating" value="@i" /> @i
-                    </label>
-                }
-                <span asp-validation-for="Rating" class="text-danger"></span>
-            </div>
+            <p>
+                <div class="form-group">
+                    <label class="control-label" style="font-weight: bold;">Rating:</label>
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        <label class="radio-inline">
+                            <input type="radio" asp-for="Rating" value="@i" /> @i
+                        </label>
+                    }
+                    <span asp-validation-for="Rating" class="text-danger"></span>
+                </div>
+            </p>
 
-            <!--Description Box-->
-            @*<div class="form-group">
-                    <label asp-for="Description" class="control-label"></label>
-                    <textarea asp-for="Description" class="form-control" maxlength="280" id="descriptionTextArea"></textarea>
+            <p>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label" style="font-weight: bold;"></label>
+                    <textarea asp-for="Description" class="form-control" maxlength="280" id="descriptionTextArea" oninput="updateCharacterCount(this)"></textarea>
                     <span id="descriptionCount" class="text-muted">280 characters remaining</span>
                     <span asp-validation-for="Description" class="text-danger"></span>
-                </div>*@
-
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <textarea asp-for="Description" class="form-control" maxlength="280" id="descriptionTextArea" oninput="updateCharacterCount(this)"></textarea>
-                <span id="descriptionCount" class="text-muted">280 characters remaining</span>
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-
-
-
-
+                </div>
+            </p>
 
             <div class="form-group">
                 <input type="hidden" asp-for="Status" />
             </div>
 
+            <br />
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-danger" />
             </div>
@@ -74,6 +70,7 @@
     </div>
 </div>
 
+<hr />
 <div>
     <a asp-action="Index" asp-controller="Transaction" class="btn btn-danger">Back to List</a>
 </div>

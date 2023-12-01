@@ -26,6 +26,8 @@ namespace Group_6_Final_Project.Models
 
         public int PriceID { get; set; }  // Foreign key for the Price
 
+        public bool IsPublished { get; set; }
+
         public List<string> AvailableSeats
         {
             get
@@ -59,6 +61,9 @@ namespace Group_6_Final_Project.Models
             }
             return seats;
         }
+
+
+        
 
         // NAVIGATIONAL PROPERTIES
 

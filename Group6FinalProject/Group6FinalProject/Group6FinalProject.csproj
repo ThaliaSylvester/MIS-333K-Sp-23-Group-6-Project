@@ -27,11 +27,13 @@
   <ItemGroup>
     <None Remove="Views\Manager\" />
     <None Remove="Migrations\" />
+    <None Remove="Views\Reports\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\Img\" />
     <Folder Include="Views\Manager\" />
     <Folder Include="Migrations\" />
+    <Folder Include="Views\Reports\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\Img\Logo.png" />

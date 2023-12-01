@@ -1,0 +1,57 @@
+@*@model Group6FinalProject.Models.ViewModels.ReportViewModel
+
+@{
+    Layout = "_Layout";
+}
+
+<div>
+    <h1>Reports</h1>
+    <br />
+
+    <h5>Search Filters</h5>
+    <form asp-action="Index" method="get">
+        <div class="form-group">
+            <label for="movieId">Movie ID:</label>
+            <input type="text" name="movieId" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="selectedDate">Week Start Date:</label>
+            <input type="date" name="selectedDate" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <br />
+
+    <h5>Report Information</h5>
+    @if (Model != null)
+    {
+        <table class="table table-bordered">
+            @if (Model.TotalSeatsSold.HasValue)
+            {
+                <tr>
+                    <th>Total Seats Sold</th>
+                    <td>@Model.TotalSeatsSold</td>
+                </tr>
+            }
+
+            @if (Model.TotalRevenue.HasValue)
+            {
+                <tr>
+                    <th>Total Revenue</th>
+                    <td>@Model.TotalRevenue</td>
+                </tr>
+            }
+
+            @if (Model.PopcornPoints.HasValue)
+            {
+                <tr>
+                    <th>Popcorn Points</th>
+                    <td>@Model.PopcornPoints</td>
+                </tr>
+            }
+        </table>
+    }
+</div>*@

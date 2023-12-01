@@ -37,12 +37,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="Schedule" asp-action="Index">Now Playing</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Transaction" asp-action="Index">Order History</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Review" asp-action="Index">Movie Reviews</a>
-                            </li>
                         }
                         else
                         {
@@ -90,6 +84,10 @@
                                         else if (User.IsInRole("Employee"))
                                         {
                                             <li><a class="dropdown-item" href="Manager">Menu</a></li>
+                                        }
+                                        else if (User.IsInRole("Customer"))
+                                        {
+                                            <li><a class="dropdown-item" asp-controller="Review" asp-action="Index">Movie Reviews</a></li>
                                         }
                                         <li><hr class="dropdown-divider"></li>
                                         <form asp-action="LogOff" asp-controller="Account" method="post" id="logoutForm">

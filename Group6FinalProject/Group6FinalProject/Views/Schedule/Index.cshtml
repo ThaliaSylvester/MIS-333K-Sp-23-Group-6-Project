@@ -35,9 +35,12 @@
                 <span asp-validation-for="SelectedMPAARating" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SelectedWeekStartDate" class="control-label">Week Start Date:</label>
-                <input asp-for="SelectedWeekStartDate" class="form-control" type="date" id="weekStartDate" name="SelectedWeekStartDate" min="2023-01-06" max="2024-01-03" step="7" />
-                <span asp-validation-for="SelectedWeekStartDate" class="text-danger"></span>
+                <label asp-for="StartDate" class="control-label">Start Date:</label>
+                <input asp-for="StartDate" class="form-control" type="date" name="startDate" />
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label">End Date:</label>
+                <input asp-for="EndDate" class="form-control" type="date" name="endDate" />
             </div>
             <p>
                 <button type="submit" class="btn btn-danger">Filter</button>

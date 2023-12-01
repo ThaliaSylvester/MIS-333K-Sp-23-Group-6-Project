@@ -156,7 +156,7 @@ namespace Group_6_Final_Project.Controllers
         // GET: Movie/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
-            if (id == null || _context.Movies == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -166,15 +166,17 @@ namespace Group_6_Final_Project.Controllers
             {
                 return NotFound();
             }
+
+            // Populate ViewBag.Genres with the list of genres
+            ViewBag.Genres = new SelectList(_context.Genres, "GenreID", "GenreType", movie.GenreID);
+
             return View(movie);
         }
 
         // POST: Movie/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("MovieID,MPAARating,Title,Description,Tagline,PublishedDate,Actors,Runtime")] Movie movie)
+        public async Task<IActionResult> Edit(string id, [Bind("MovieID,MPAARating,Title,Description,Tagline,PublishedDate,Actors,Runtime,GenreID")] Movie movie)
         {
             if (id != movie.MovieID)
             {
@@ -201,7 +203,14 @@ namespace Group_6_Final_Project.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewBag.GenreList = new SelectList(_context.Genres, "GenreID", "Genres", movie.GenreID);
             return View(movie);
+        }
+
+        private bool MovieExists(string id)
+        {
+            return _context.Movies.Any(e => e.MovieID == id);
         }
 
         // GET: Movie/Delete/5
@@ -241,10 +250,6 @@ namespace Group_6_Final_Project.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MovieExists(string id)
-        {
-            return (_context.Movies?.Any(e => e.MovieID == id)).GetValueOrDefault();
-        }
         // Allow user to run a detailed search for movies
         public IActionResult DetailedSearch()
         {

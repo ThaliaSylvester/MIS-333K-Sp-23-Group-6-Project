@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Edit";
     Layout = "_Layout";
-
 }
 
 <br />
@@ -15,12 +14,14 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="MovieID" />
             <div class="form-group">
                 <label asp-for="MPAARating" class="control-label"></label>
-                <select asp-for="MPAARating" asp-items="Html.GetEnumSelectList<Group_6_Final_Project.Models.MPAARating>()" class="form-control"></select>
+                <select asp-for="MPAARating" asp-items="Html.GetEnumSelectList<Group_6_Final_Project.Models.MPAARating>()" class="form-control">
+                    <option value="">Select Rating</option>
+                </select>
                 <span asp-validation-for="MPAARating" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -54,7 +55,22 @@
                 <span asp-validation-for="Runtime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <label asp-for="GenreID" class="control-label"></label>
+                @if (ViewBag.Genres != null)
+                {
+                    <select asp-for="GenreID" asp-items="@ViewBag.Genres" class="form-control">
+                        <option value="">Select Genre</option>
+                    </select>
+                }
+                else
+                {
+                    <p>No genres available.</p>
+                }
+                <span asp-validation-for="GenreID" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </form>
     </div>

@@ -14,8 +14,6 @@ builder.Services.AddControllersWithViews();
 
 // Add database on Azure so you have a connection string
 // Add a connection string here once you have created it on Azure
-//String connectionString = "Server=tcp:fa23group6finalproject.database.windows.net,1433;Initial Catalog=fa23Group6FinalProject;Persist Security Info=False;User ID=MISAdmin;Password=Password123@;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-String connectionString = "Server = tcp:fa23finalgroupproject.database.windows.net,1433; Initial Catalog = fa23groupfinalproject; Persist Security Info=False; User ID = MISAdmin; Password =Password123@; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;";
 String connectionString = "Server=tcp:fa23group6finalproject.database.windows.net,1433;Initial Catalog=fa23Group6FinalProject;Persist Security Info=False;User ID=MISAdmin;Password=Password123@;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 //String connectionString = "Server = tcp:fa23finalgroupproject.database.windows.net,1433; Initial Catalog = fa23groupfinalproject; Persist Security Info=False; User ID = MISAdmin; Password =Password123@; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;";
 

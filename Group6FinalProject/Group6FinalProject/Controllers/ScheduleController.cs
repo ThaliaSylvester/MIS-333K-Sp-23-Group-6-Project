@@ -22,37 +22,24 @@ namespace Group6FinalProject.Controllers
         }
 
         // GET: Schedule/Index
-        public async Task<IActionResult> Index(string movieId)
+        public async Task<IActionResult> Index(DateTime? startDate, DateTime? endDate, int? movieId)
         {
-            IQueryable<Schedule> schedulesQuery;
+            // Get all schedules
+            var schedulesQuery = GetFilteredSchedules(null, startDate, endDate, null, null);
 
-            if (!string.IsNullOrEmpty(movieId))
-            {
-                // Filter schedules based on the provided movieId
-                schedulesQuery = _context.Schedules
-                                         .Include(s => s.Movie)
-                                         .Include(s => s.Price)
-                                         .Where(s => s.Movie.MovieID == movieId);
-            }
-            else
-            {
-                // Get all schedules if no specific movieId is provided
-                schedulesQuery = GetFilteredSchedules(null, null, null, null);
-            }
-
+            // Pass through ScheduleViewModel
             var viewModel = new ScheduleViewModel
             {
                 Schedules = await schedulesQuery.ToListAsync(),
                 TheatreOptions = _context.Schedules.Select(s => s.Theatre.ToString()).Distinct(),
             };
 
-            // Update ViewBag to reflect filtered count if movieId is provided
-            ViewBag.AllMovieSchedule = _context.Schedules.Count();
+            // Initiate ViewBags
+            ViewBag.AllMovieSchedule = viewModel.Schedules.Count();
             ViewBag.FilteredMovieSchedule = viewModel.Schedules.Count();
 
             return View(viewModel);
         }
-
 
         // POST: Schedule/Index
         // POST: Schedule/Index

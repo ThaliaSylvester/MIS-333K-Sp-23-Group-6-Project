@@ -20,7 +20,7 @@ namespace Group_6_Final_Project.Controllers
         }
 
         // GET: Movie
-        public async Task<IActionResult> Index(string searchString, string category, string title)
+        public async Task<IActionResult> Index(string? searchString)
         {
             // Retrieve movies including the Genre information and reviews
             var movies = await _context.Movies
@@ -28,68 +28,27 @@ namespace Group_6_Final_Project.Controllers
                 .Include(m => m.Review)
                 .ToListAsync();
 
-            if (!string.IsNullOrEmpty(searchString))
+            // Check if SearchString is null, else query a search with specified string
+            if (searchString == null)
             {
-                // Convert both the search string and movie titles to lowercase for case-insensitive comparison
-                var searchLower = searchString.ToLower();
-                movies = movies.Where(m => m.Title.ToLower().Contains(searchLower)).ToList();
+                // Display all movies
+                ViewBag.CurrentlyShowingMovies = _context.Movies.Count();
+                ViewBag.TotalMovieCount = _context.Movies.Count();
 
-                // Check if a valid date string is provided
-                if (DateTime.TryParse(searchString, out DateTime searchDate))
-                {
-                    // Convert the DateTime to an int (Unix timestamp, for example)
-                    int searchTimestamp = Convert.ToInt32(searchDate.Subtract(new DateTime(1970, 1, 1)).TotalSeconds);
-
-                    // Example: Search for movies with a published date equal to the specified value
-                    movies = movies.Where(m => m.PublishedDate == searchTimestamp).ToList();
-                }
+                return View(_context.Movies.ToList());
             }
-
-            if (!string.IsNullOrEmpty(category))
+            else
             {
-                GenreType selectedGenre;
+                // Limit query based on searchString
+                movies = movies.Where(m => m.Title.Contains(searchString, StringComparison.OrdinalIgnoreCase)
+                                      || m.Genre.ToString().Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                               .ToList();
 
-                if (Enum.TryParse(category, true, out selectedGenre))
-                {
-                    movies = movies.Where(m => m.Genre.GenreType == selectedGenre).ToList();
-                }
-                else
-                {
-                    // Handle the case where the provided category doesn't match any GenreType
-                    // You could return an error or handle it according to your application's logic.
-                }
+                ViewBag.CurrentlyShowingMovies = movies.Count();
+                ViewBag.TotalMovieCount = _context.Movies.Count();
+
+                return View(movies);
             }
-            // Filter by title if it's provided
-            if (!string.IsNullOrEmpty(title))
-            {
-                var titleLower = title.ToLower();
-                movies = movies.Where(m => m.Title.ToLower().Contains(titleLower)).ToList();
-            }
-
-            // Calculate and store average ratings in a dictionary
-            Dictionary<string, double> averageRatings = new Dictionary<string, double>();
-            foreach (var movie in movies)
-            {
-                if (movie.Review != null && movie.Review.Any())
-                {
-                    double averageRating = movie.Review.Select(r => (int)r.Rating).Average();
-
-                    // Format to 1 decimal
-                    averageRating = Math.Round(averageRating, 1);
-
-                    averageRatings.Add(movie.MovieID, averageRating);
-                }
-                else
-                {
-                    averageRatings.Add(movie.MovieID, 0.0); // Set default rating if no reviews
-                }
-            }
-
-            ViewBag.AverageRatings = averageRatings;
-            ViewBag.TotalMovieCount = movies.Count;
-            ViewBag.CurrentlyShowingMovies = movies.Count;
-
-            return View(movies);
         }
 
         // GET: Movie/Details/5
@@ -250,6 +209,14 @@ namespace Group_6_Final_Project.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        private SelectList GetGenreSelectList()
+        {
+            var genres = _context.Genres.ToList();
+            genres.Insert(0, new Genre { GenreID = 0, GenreType = GenreType.Action });
+
+            return new SelectList(genres, "GenreID", "GenreType");
+        }
+
         // Allow user to run a detailed search for movies
         public IActionResult DetailedSearch()
         {
@@ -257,15 +224,8 @@ namespace Group_6_Final_Project.Controllers
 
             // Default properties
             SearchViewModel searchViewModel = new SearchViewModel();
-            return View();
-        }
 
-        public SelectList GetGenreSelectList()
-        {
-            var genres = _context.Genres.ToList();
-            genres.Insert(0, new Genre { GenreID = 0, GenreType = GenreType.Action });
-
-            return new SelectList(genres, "GenreID", "GenreType");
+            return View(searchViewModel);
         }
 
         public IActionResult DisplaySearchResults(SearchViewModel searchViewModel)
@@ -275,13 +235,13 @@ namespace Group_6_Final_Project.Controllers
                         select movie;
 
             // Check if user entered a title
-            if (!string.IsNullOrEmpty(searchViewModel.SearchTitle))
+            if (searchViewModel.SearchTitle != null)
             {
                 query = query.Where(m => m.Title.Contains(searchViewModel.SearchTitle));
             }
 
             // Check if user entered a description
-            if (!string.IsNullOrEmpty(searchViewModel.SearchDescription))
+            if (searchViewModel.SearchDescription != null)
             {
                 query = query.Where(m => m.Description.Contains(searchViewModel.SearchDescription));
             }
@@ -291,41 +251,43 @@ namespace Group_6_Final_Project.Controllers
                 query = query.Where(jp => jp.Genre.GenreID == searchViewModel.SelectedGenreID);
             }
 
-            if (searchViewModel.SelectedYear.HasValue)
+            if (searchViewModel.SelectedYear != null)
             {
-                // Example: Search for movies with published date greater than or less than the specified value
-                if (searchViewModel.SearchType == SearchType.GreaterThan)
+                switch (searchViewModel.SearchType)
                 {
-                    query = query.Where(m => m.PublishedDate >= searchViewModel.SelectedYear.Value);
-                }
-                else if (searchViewModel.SearchType == SearchType.LessThan)
-                {
-                    query = query.Where(m => m.PublishedDate < searchViewModel.SelectedYear.Value);
+                    case SearchType.GreaterThan:
+                        query = query.Where(movie => movie.PublishedDate >= Int32.Parse(searchViewModel.SelectedYear));
+                        break;
+                    case SearchType.LessThan:
+                        query = query.Where(movie => movie.PublishedDate <= Int32.Parse(searchViewModel.SelectedYear));
+                        break;
                 }
             }
 
-            if (!string.IsNullOrEmpty(searchViewModel.SearchActors))
+            if (searchViewModel.SearchActors != null)
             {
                 query = query.Where(m => m.Actors.Contains(searchViewModel.SearchActors));
             }
 
             if (searchViewModel.SelectedRuntime != null)
             {
-                // Example: Search for movies with runtime greater than or less than the specified value
-                if (searchViewModel.SearchType == SearchType.GreaterThan)
+                switch (searchViewModel.SearchType)
                 {
-                    query = query.Where(m => m.Runtime >= searchViewModel.SelectedRuntime);
-                }
-                else if (searchViewModel.SearchType == SearchType.LessThan)
-                {
-                    query = query.Where(m => m.Runtime <= searchViewModel.SelectedRuntime);
+                    case SearchType.GreaterThan:
+                        query = query.Where(movie => movie.Runtime >= searchViewModel.SelectedRuntime);
+                        break;
+                    case SearchType.LessThan:
+                        query = query.Where(movie => movie.Runtime <= searchViewModel.SelectedRuntime);
+                        break;
                 }
             }
 
+            // Ensure query is materialized before using it
+            var selectedMovies = query.Include(m => m.Genre).ToList();
 
             // Calculate average user rating for each selected movie
             Dictionary<string, double> averageRatings = new Dictionary<string, double>();
-            foreach (var movie in query)
+            foreach (var movie in selectedMovies)
             {
                 var ratings = _context.Reviews
                     .Where(review => review.MovieID == movie.MovieID && review.Status == Status.Approved)
@@ -337,36 +299,28 @@ namespace Group_6_Final_Project.Controllers
                 }
                 else
                 {
-                    // If no approved ratings are available, you can handle it accordingly
                     averageRatings[movie.MovieID] = 0; // or another default value
                 }
             }
 
-            if (searchViewModel.SelectedRating != null)
-            {
-                // Example: Search for movies with at least one review with a rating greater than or equal to the specified value
-                if (searchViewModel.SearchType == SearchType.GreaterThan)
-                {
-                    query = query.Where(m => m.Review.Any(r => r.Rating >= (decimal)searchViewModel.SelectedRating));
-                }
-                else if (searchViewModel.SearchType == SearchType.LessThan)
-                {
-                    query = query.Where(m => m.Review.Any(r => r.Rating <= (decimal)searchViewModel.SelectedRating));
-                }
-            }
-            else
-            {
-                // Handle invalid rating input (e.g., not a valid decimal)
-                // You can add your error handling logic here
-            }
+            //if (searchViewModel.SelectedRating != 0)
+            //{
+            //    switch (searchViewModel.SearchType)
+            //    {
+            //        case SearchType.GreaterThan:
+            //            query = query.Where(searchViewModel.SelectedRating >= ViewBag.AverageRatings);
+            //            break;
+            //        case SearchType.LessThan:
+            //            query = query.Where(movie => movie.Runtime <= searchViewModel.SelectedRuntime);
+            //            break;
+            //    }
+            //}
 
             // Pass the average ratings dictionary to the view
             ViewBag.AverageRatings = averageRatings;
 
             // Set the GenreList in ViewBag
             ViewBag.GenreList = GetGenreSelectList();
-
-            List<Movie> selectedMovies = query.Include(m => m.Genre).ToList();
 
             ViewBag.AllMovies = _context.Movies.Count();
             ViewBag.SelectedMovies = selectedMovies.Count();

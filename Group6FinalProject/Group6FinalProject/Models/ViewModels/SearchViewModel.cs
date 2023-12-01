@@ -17,7 +17,7 @@ namespace Group_6_Final_Project.Models
         public string SearchTagline { get; set; }
 
         [Display(Name = "Search by Published Date:")]
-        public int? SelectedYear { get; set; }
+        public string SelectedYear { get; set; }
 
         [Display(Name = "Search by Actors:")]
         public string SearchActors { get; set; }

@@ -47,20 +47,8 @@
                 <input type="radio" value="LessThan" id="SearchTypeYearLessThan" name="SearchTypeYear" /> Less Than
             </div>
             <div class="form-group">
-                <label class="control-label" for="SelectedRuntime">Search by Runtime:</label>
-                <select class="form-control" asp-for="SelectedRuntime">
-                    <option value="">Select Runtime</option>
-                    @{
-                        // Generate dropdown options with 15-minute increments
-                        for (int minutes = 15; minutes <= 240; minutes += 15)
-                        {
-                            int hours = minutes / 60;
-                            int remainderMinutes = minutes % 60;
-                            string formattedValue = $"{hours:D2}:{remainderMinutes:D2}";
-                            <option value="@formattedValue">@formattedValue</option>
-                        }
-                    }
-                </select>
+                <label class="control-label" for="SelectedRuntime">Runtime:</label>
+                <input class="form-control" type="text" asp-for="SelectedRuntime" />
                 <span asp-validation-for="SelectedRuntime" class="text-danger"></span>
             </div>
             <div class="form-group">

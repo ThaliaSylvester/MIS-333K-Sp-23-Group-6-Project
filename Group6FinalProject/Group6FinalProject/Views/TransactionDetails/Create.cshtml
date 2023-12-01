@@ -3,26 +3,31 @@
 @{
     ViewData["Title"] = "Create";
     Layout = "_Layout";
-    // Convert the enum to a list
     var seatNumbers = Enum.GetValues(typeof(SeatSelection)).Cast<SeatSelection>().ToList();
+    var paymentMethods = Enum.GetNames(typeof(PaymentMethod));
 }
 
-<h1>Create</h1>
-<h4>TransactionDetail</h4>
+<br />
+<h1>Add Transaction Details</h1>
 <hr />
 
 <div class="row">
     <div class="col-md-8">
-        <form asp-action="Create" method="post">
+        <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            @* Hidden field for TransactionID *@
+            <!--Hidden field for TransactionID-->
             @Html.HiddenFor(model => model.Transaction.TransactionID)
 
-            <div class="form-group">
-                <label class="control-label">Products:</label>
-                <select name="SelectedSchedule" asp-items="ViewBag.ScheduledMovies" class="form-control"></select>
-            </div>
+            <!--Pre-filled Movie Title-->
+            <p>
+                <div class="form-group">
+                    <label style="font-weight: bold;">Movie Title:</label>
+                    <br />
+                    @ViewBag.SelectedMovieTitle
+                </div>
+            </p>
+
             <div class="form-group">
                 <label asp-for="NumberofTickets" class="control-label"></label>
                 <input asp-for="NumberofTickets" class="form-control" />
@@ -38,25 +43,10 @@
             <div class="form-group">
                 <label class="control-label">Select Seats:</label>
                 <div id="seatSelection">
-                    <table>
-                        @for (int i = 0; i < seatNumbers.Count; i++)
-                        {
-                            if (i % 5 == 0)
-                            {
-                                @:<tr>
-                                }
-
-                                @:<td class="seat" data-seat-id="@seatNumbers[i]">@seatNumbers[i]</td>
-
-
-
-
-                                if ((i + 1) % 5 == 0)
-                                {
-                                @:</tr>
-                            }
-                        }
-                    </table>
+                    @foreach (var seat in seatNumbers)
+                    {
+                        <span class="seat" data-seat-id="@seat">@seat</span>
+                    }
                 </div>
                 <input type="hidden" name="selectedSeats" id="selectedSeats" />
             </div>
@@ -64,7 +54,7 @@
             <div class="form-group">
                 <label asp-for="PaymentMethod" class="control-label"></label>
                 <select asp-for="PaymentMethod" class="form-control">
-                    @foreach (var paymentMethod in Enum.GetValues(typeof(PaymentMethod)))
+                    @foreach (var paymentMethod in paymentMethods)
                     {
                         <option value="@paymentMethod">@paymentMethod</option>
                     }
@@ -84,7 +74,8 @@
 </div>
 
 @section Scripts {
-    <script>$(document).ready(function () {
+    <script>
+        $(document).ready(function () {
             $('.seat').click(function () {
                 $(this).toggleClass('selected');
                 updateSelectedSeats();
@@ -96,20 +87,25 @@
                 }).get();
                 $('#selectedSeats').val(selectedSeats.join(','));
             }
-        });</script>
+        });
+    </script>
 }
 
 <style>
     .seat {
+        display: inline-block;
         width: 30px;
         height: 30px;
         background-color: green;
         border: 1px solid #ddd;
         cursor: pointer;
+        text-align: center;
+        line-height: 30px;
+        margin: 2px;
     }
 
-        .seat.selected {
-            background-color: red;
-        }
+    .seat.selected {
+        background-color: red;
+    }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>

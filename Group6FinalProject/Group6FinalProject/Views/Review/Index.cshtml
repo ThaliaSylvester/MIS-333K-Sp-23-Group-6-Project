@@ -5,9 +5,18 @@
     Layout = "_Layout";
 }
 
-<br />
-<h1>Your Reviews</h1>
-<hr />
+@if (User.IsInRole("Customer"))
+{
+    <br />
+    <h1>Your Reviews</h1>
+    <hr />
+}
+else
+{
+    <br />
+    <h1>All Reviews</h1>
+    <hr />
+}
 
 <table class="table">
     <thead>

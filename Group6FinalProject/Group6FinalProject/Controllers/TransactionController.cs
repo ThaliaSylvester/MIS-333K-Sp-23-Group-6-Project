@@ -164,65 +164,53 @@ namespace Group_6_Final_Project.Controllers
                 return RedirectToAction("Index");
             }
 
-            // Fetch movie title using movieid
+            // Create transaction
+            Transaction tran = new Transaction();
+            tran.AppUser = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            // Find movie title using movieID
             var movie = await _context.Movies
                               .FirstOrDefaultAsync(m => m.MovieID == movieId);
             ViewBag.SelectedMovieTitle = movie.Title;
 
+            // Find specific schedule using scheduleID
             var schedule = await _context.Schedules
                                 .FirstOrDefaultAsync(s => s.ScheduleID == scheduleId);
             ViewBag.SelectedScheduleTime = schedule.StartTime;
 
+            // ViewBag for specific MovieID
             ViewBag.MovieID = new SelectList(_context.Movies, "MovieID", "Title");
             ViewBag.SelectedMovieID = movieId;
 
+            // ViewBag for specific ScheduleID
             ViewBag.ScheduleID = new SelectList(_context.Schedules, "ScheduleID", "StartTime");
             ViewBag.SelectedScheduleID = scheduleId;
 
-            //var viewModel = new TransactionViewModel();
-
-            return View();
+            return View(tran);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TransactionMovieID, TransactionScheduleID")] TransactionViewModel transactionViewModel)
+        public async Task<IActionResult> Create([Bind("AppUser")] Transaction transaction)
         {
-            if (ModelState.IsValid)
-            {
-                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            // Find next transaction number
+            transaction.TransactionNumber = Utilities.GenerateNextTransactionNumber.GetNextTransactionNumber(_context);
 
-                // Create a new Transaction object
-                Transaction newTransaction = new Transaction
-                {
-                    TransactionDate = DateTime.Now,                             
-                    AppUserId = userId,
-                };
+            // Set date of transaction
+            transaction.TransactionDate = DateTime.Now;
 
-                // Add the transaction to the database
-                _context.Transactions.Add(newTransaction);
-                await _context.SaveChangesAsync(); // Save changes to get the auto-generated TransactionID
+            // Associate transaction with logged-in customer
+            //transaction.AppUser = await _userManager.FindByNameAsync(transaction.AppUser.UserName);
 
-                // Create and add a new TransactionDetail
-                TransactionDetail newTransactionDetail = new TransactionDetail
-                {
-                    TransactionID = newTransaction.TransactionID,
-                    ScheduleID = transactionViewModel.TransactionScheduleID
-                };
+            // If code if valid, add transaction to database
+            _context.Add(transaction);
+            await _context.SaveChangesAsync();
 
-                // Add the transaction detail to the database
-                _context.TransactionDetails.Add(newTransactionDetail);
-                await _context.SaveChangesAsync();
+            var movieId = ViewBag.MovieID as string;
+            var scheduleId = ViewBag.ScheduleID as int?;
 
-                ViewBag.MovieID = new SelectList(_context.Movies, "MovieID", "Title", transactionViewModel.TransactionMovieID);
-
-                // Redirect the user to the appropriate page
-                return RedirectToAction(nameof(Index));
-            }
-
-            // If ModelState is not valid, reload the view with the form data
-            ViewBag.MovieID = new SelectList(_context.Movies, "MovieID", "Title", transactionViewModel.TransactionMovieID);
-            return View(transactionViewModel);
+            // Send customer to appropriate page
+            return RedirectToAction("Create", "TransactionDetails", new { transactionID = transaction.TransactionID, movieID = movieId, scheduleID = scheduleId });
         }
 
         [Authorize(Roles = "Admin")]

@@ -1,40 +1,37 @@
-@model Group_6_Final_Project.Models.TransactionViewModel
-
+@model Group_6_Final_Project.Models.Transaction
 @{
     ViewData["Title"] = "Create";
     Layout = "_Layout";
 }
 
+<br />
 <h1>Create Movie Order</h1>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create" method="post">
+        <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
+            <input type="hidden" name="movieId" value="@ViewBag.SelectedMovieID" />
+            <input type="hidden" name="scheduleId" value="@ViewBag.SelectedScheduleID" />
 
             <!--Pre-filled Movie Title-->
             <p>
                 <div class="form-group">
-                    <label asp-for="TransactionMovieID" class="control-label" style="font-weight: bold;">Movie Title:</label>
-                    <p class="form-control-static">@ViewBag.SelectedMovieTitle</p>
-                    <!-- Hidden field to store the selected movie ID -->
-                    <input type="hidden" asp-for="TransactionMovieID" value="@ViewData["SelectedMovieID"]" />
+                    <label style="font-weight: bold;">Movie Title:</label>
+                    <br />
+                    @ViewBag.SelectedMovieTitle
                 </div>
             </p>
 
             <!--Pre-filled Schedule Time-->
             <p>
                 <div class="form-group">
-                    <label asp-for="TransactionScheduleID" class="control-label" style="font-weight: bold;">Movie Schedule Time:</label>
-                    <p class="form-control-static">@ViewBag.SelectedScheduleTime</p>
-                    <!-- Hidden field to store the selected movie ID -->
-                    <input type="hidden" asp-for="TransactionScheduleID" value="@ViewData["SelectedScheduleID"]" />
+                    <label style="font-weight: bold;">Schedule Movie Time:</label>
+                    <br />
+                    @ViewBag.SelectedScheduleTime
                 </div>
             </p>
-
-            <!-- Hidden field to store the selected schedule ID -->
-            <input type="hidden" asp-for="TransactionScheduleID" />
 
             <!-- Submit Button -->
             <div class="form-group">
@@ -44,6 +41,7 @@
     </div>
 </div>
 
+<hr />
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" asp-controller="Movie" class="btn btn-danger">Back to List</a>
 </div>

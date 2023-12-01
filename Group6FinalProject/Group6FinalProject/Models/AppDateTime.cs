@@ -19,6 +19,8 @@ namespace Group_6_Final_Project.Models
         // Parameterless constructor for Entity Framework
         protected AppDateTime()
         {
+            // Provide a non-null default value for Entity Framework
+            _dateTime = DateTime.MinValue;
         }
 
         // Constructor with parameters for your application logic

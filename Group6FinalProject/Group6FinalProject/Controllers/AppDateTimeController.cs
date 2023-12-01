@@ -50,8 +50,10 @@ namespace Group_6_Final_Project.Controllers
         // POST: AppDateTime/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AppDateTimeId,GlobalTime")] AppDateTime appDateTime)
+        public async Task<IActionResult> Create([Bind("AppDateTimeId,GlobalTime")] DateTime globalTime)
         {
+            var appDateTime = new AppDateTime(globalTime);
+
             if (ModelState.IsValid)
             {
                 _context.Add(appDateTime);
@@ -61,27 +63,14 @@ namespace Group_6_Final_Project.Controllers
             return View(appDateTime);
         }
 
-        // GET: AppDateTime/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.AppDateTime == null)
-            {
-                return NotFound();
-            }
-
-            var appDateTime = await _context.AppDateTime.FindAsync(id);
-            if (appDateTime == null)
-            {
-                return NotFound();
-            }
-            return View(appDateTime);
-        }
-
-        // POST: AppDateTime/Edit/5
+        // POST: AppDateTime/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AppDateTimeId,GlobalTime")] AppDateTime appDateTime)
+        public async Task<IActionResult> Edit(int id, [Bind("AppDateTimeId,GlobalTime")] DateTime globalTime)
         {
+            var appDateTime = await _context.AppDateTime.FindAsync(id);
+            appDateTime.SetDateTime(globalTime);
+
             if (id != appDateTime.AppDateTimeId)
             {
                 return NotFound();
@@ -106,6 +95,23 @@ namespace Group_6_Final_Project.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
+            }
+            return View(appDateTime);
+        }
+
+
+        // GET: AppDateTime/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null || _context.AppDateTime == null)
+            {
+                return NotFound();
+            }
+
+            var appDateTime = await _context.AppDateTime.FindAsync(id);
+            if (appDateTime == null)
+            {
+                return NotFound();
             }
             return View(appDateTime);
         }

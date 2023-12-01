@@ -24,8 +24,8 @@ namespace Group6FinalProject.Controllers
         // GET: Schedule/Index
         public async Task<IActionResult> Index(DateTime? startDate, DateTime? endDate, int? movieId)
         {
-            // Get all schedules
-            var schedulesQuery = GetFilteredSchedules(null, startDate, endDate, null, null);
+            // Filter the schedules based on movieId
+            var schedulesQuery = GetFilteredSchedules(null, startDate, endDate, null, null, movieId);
 
             // Pass through ScheduleViewModel
             var viewModel = new ScheduleViewModel
@@ -41,13 +41,13 @@ namespace Group6FinalProject.Controllers
             return View(viewModel);
         }
 
-        // POST: Schedule/Index
+
         // POST: Schedule/Index
         [HttpPost]
-        public IActionResult Index(Theatre? selectedTheatre, DateTime? startDate, DateTime? endDate, string? searchString, MPAARating? selectedMPAARating)
+        public IActionResult Index(Theatre? selectedTheatre, DateTime? startDate, DateTime? endDate, string? searchString, MPAARating? selectedMPAARating, int? movieId)
         {
-            // Filter the schedules
-            var schedulesQuery = GetFilteredSchedules(selectedTheatre, startDate, endDate, searchString, selectedMPAARating);
+            // Filter the schedules with the new movieId parameter
+            var schedulesQuery = GetFilteredSchedules(selectedTheatre, startDate, endDate, searchString, selectedMPAARating, movieId);
 
             // Pass through ScheduleViewModel
             var viewModel = new ScheduleViewModel
@@ -62,6 +62,8 @@ namespace Group6FinalProject.Controllers
 
             return View(viewModel);
         }
+
+
         // GET: Schedule/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -257,52 +259,53 @@ namespace Group6FinalProject.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // Helper function to filter the schedule
-        private IQueryable<Schedule> GetFilteredSchedules(Theatre? selectedTheatre, DateTime? startDate, DateTime? endDate, string? searchString, MPAARating? selectedMPAARating)
+        private IQueryable<Schedule> GetFilteredSchedules(Theatre? selectedTheatre, DateTime? startDate, DateTime? endDate, string? searchString, MPAARating? selectedMPAARating, int? movieId)
         {
             var schedulesQuery = _context.Schedules.Include(s => s.Movie).Include(s => s.Price).AsQueryable();
 
+            // Filter by theatre
             if (selectedTheatre.HasValue)
             {
                 schedulesQuery = schedulesQuery.Where(s => s.Theatre == selectedTheatre.Value);
             }
 
+            // Filter by start date
             if (startDate.HasValue)
             {
-                // Use greater than or equal to for the start date
                 schedulesQuery = schedulesQuery.Where(s => s.StartTime.Date >= startDate.Value.Date);
             }
 
+            // Filter by end date
             if (endDate.HasValue)
             {
-                // Use less than or equal to for the end date
                 schedulesQuery = schedulesQuery.Where(s => s.StartTime.Date <= endDate.Value.Date);
             }
 
+            // Filter by MPAARating
             if (selectedMPAARating.HasValue)
             {
                 schedulesQuery = schedulesQuery.Where(s => s.Movie.MPAARating == selectedMPAARating.Value);
             }
 
+            // Filter by search string
             if (!string.IsNullOrEmpty(searchString))
             {
-                // Convert both the search string and movie titles to lowercase for case-insensitive comparison
                 var searchLower = searchString.ToLower();
                 schedulesQuery = schedulesQuery.Where(m => m.Movie.Title.ToLower().Contains(searchLower) || m.Movie.Description.ToLower().Contains(searchLower));
+            }
 
-                // Check if a valid date string is provided
-                if (DateTime.TryParse(searchString, out DateTime searchDate))
-                {
-                    // Convert the DateTime to an int (Unix timestamp, for example)
-                    int searchTimestamp = Convert.ToInt32(searchDate.Subtract(new DateTime(1970, 1, 1)).TotalSeconds);
-
-                    // Example: Search for schedules with a specific start time
-                    schedulesQuery = schedulesQuery.Where(m => m.StartTime == searchDate);
-                }
+            // Filter by movieId
+            if (movieId.HasValue)
+            {
+                // Convert movieId to string for comparison
+                string movieIdString = movieId.Value.ToString();
+                schedulesQuery = schedulesQuery.Where(s => s.Movie.MovieID == movieIdString);
             }
 
             return schedulesQuery;
         }
+
+
 
         private void SetPriceBasedOnTicketType(Schedule schedule)
         {

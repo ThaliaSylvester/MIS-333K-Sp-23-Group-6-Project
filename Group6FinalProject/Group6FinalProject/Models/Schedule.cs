@@ -51,7 +51,6 @@ namespace Group_6_Final_Project.Models
             return allSeats.Except(selectedSeatsStrings).ToList();
         }
 
-
         private List<string> GenerateInitialSeats()
         {
             var seats = new List<string>();

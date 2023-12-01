@@ -52,7 +52,7 @@ namespace Group6FinalProject.Controllers
         //}
 
         // GET: TransactionDetails/Create
-        public async Task<IActionResult> Create(int transactionID, string movieId, int scheduleId)
+        public async Task<IActionResult> Create(int transactionID, string movieId)
         {
             // Find the transaction in the database
             Transaction dbTransaction = await _context.Transactions.FindAsync(transactionID);
@@ -65,69 +65,78 @@ namespace Group6FinalProject.Controllers
 
             // Find MovieTitle using MovieID
             var movieTitle = await _context.Movies
-                                      .Where(m => m.MovieID == movieId)
-                                      .Select(m => m.Title)
-                                      .FirstOrDefaultAsync();
+                                          .Where(m => m.MovieID == movieId)
+                                          .Select(m => m.Title)
+                                          .FirstOrDefaultAsync();
             ViewBag.SelectedMovieTitle = movieTitle;
-            ViewBag.ScheduleID = scheduleId;
+
+            // Fetch schedules from database and create a SelectList
+            var schedules = await _context.Schedules.ToListAsync();
+            ViewBag.ScheduleList = new SelectList(schedules, "ScheduleID", "ScheduleName"); // Replace "ScheduleName" with the property you want to display
 
             // Create a new instance of the TransactionDetail class
             TransactionDetail td = new TransactionDetail
             {
                 Transaction = dbTransaction,
-
+                // Initialize Schedule or ScheduleID if necessary
+                // e.g., Schedule = new Schedule() or ScheduleID = initial value
             };
-
-            // Now you can use the 'scheduleId' within this action as needed
 
             return View(td);
         }
 
-        // POST: TransactionDetails/Create
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(TransactionDetail transactionDetail)
         {
-            if (ModelState.IsValid == false)
+            if (!ModelState.IsValid)
             {
-                return View(transactionDetail);
+                // Repopulate necessary data for returning to the form
+                ViewBag.ScheduleList = new SelectList(await _context.Schedules.ToListAsync(), "ScheduleID", "ScheduleName");
+                return RedirectToAction("Details", "Transaction", new { id = transactionDetail.Transaction.TransactionID });
             }
 
             // Check if the selected schedule is valid
-            var selectedScheduleId = ViewBag.SelectedScheduleTime;
-            Schedule dbSchedule = _context.Schedules.Find(selectedScheduleId);
+            if (transactionDetail.ScheduleID == null || transactionDetail.ScheduleID == 0)
+            {
+                ModelState.AddModelError(string.Empty, "Invalid schedule selected.");
+                ViewBag.ScheduleList = new SelectList(await _context.Schedules.ToListAsync(), "ScheduleID", "ScheduleName");
+                return View(transactionDetail);
+            }
 
-            //if (dbSchedule == null)
-            //{
-            //    // Handle invalid schedule
-            //    ModelState.AddModelError(string.Empty, "Invalid schedule selected.");
-            //    return View(transactionDetail);
-            //}
+            Schedule dbSchedule = await _context.Schedules.FindAsync(transactionDetail.ScheduleID);
+            if (dbSchedule == null)
+            {
+                ModelState.AddModelError(string.Empty, "Invalid schedule selected.");
+                ViewBag.ScheduleList = new SelectList(await _context.Schedules.ToListAsync(), "ScheduleID", "ScheduleName");
+                return View(transactionDetail);
+            }
 
             // Find transaction in the database
-            Transaction dbTransaction = _context.Transactions.Find(transactionDetail.Transaction.TransactionID);
-
+            Transaction dbTransaction = await _context.Transactions.FindAsync(transactionDetail.Transaction.TransactionID);
             if (dbTransaction == null)
             {
-                // Handle invalid transaction
                 ModelState.AddModelError(string.Empty, "Invalid transaction.");
                 return View(transactionDetail);
             }
 
-            // Set transaction detail's schedule to be equal to the one we found
+            // Set transaction detail's schedule
             transactionDetail.Schedule = dbSchedule;
 
             // Set all the detail properties based on your business logic
 
             // Add transaction detail to the database
-            dbTransaction.TransactionDetail.Add(transactionDetail);
+            _context.TransactionDetails.Add(transactionDetail);
 
             // Save changes to the database
             await _context.SaveChangesAsync();
 
-            // Send the user to the details page for the transaction
+            // Redirect to the details page for the transaction
             return RedirectToAction("Details", "Transaction", new { id = transactionDetail.Transaction.TransactionID });
         }
+
+
 
 
         //[HttpPost]

@@ -41,12 +41,13 @@ namespace Group_6_Final_Project.Controllers
             return View(reportsViewModel);
         }
 
-        public IActionResult TotalRevenueReport(DateTime? startDate, DateTime? endDate, string movieId)
+        public IActionResult TotalRevenueReport(DateTime? startDate, DateTime? endDate, string movieTitle, MPAARating? mpaaRating)
         {
             var query = _context.Transactions
                 .Where(t => (startDate == null || t.TransactionDate >= startDate) &&
                             (endDate == null || t.TransactionDate <= endDate) &&
-                            (movieId == null || t.TransactionDetail.Any(td => td.Schedule.MovieID == movieId)));
+                            (string.IsNullOrEmpty(movieTitle) || t.TransactionDetail.Any(td => td.Schedule.Movie.Title.Contains(movieTitle))) &&
+                            (!mpaaRating.HasValue || t.TransactionDetail.Any(td => td.Schedule.Movie.MPAARating == mpaaRating)));
 
             // Calculate total revenue
             var totalRevenue = query.Sum(t => t.TransactionTotal);

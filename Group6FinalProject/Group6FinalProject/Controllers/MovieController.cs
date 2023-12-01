@@ -129,7 +129,7 @@ namespace Group_6_Final_Project.Controllers
         public IActionResult Create()
         {
             // Populate ViewBag.GenreList with available genres
-            ViewBag.GenreList = new SelectList(_context.Genres, "GenreID", "Genres");
+            ViewBag.GenreList = new SelectList(_context.Genres, "GenreID", "GenreType");
             return View();
         }
 

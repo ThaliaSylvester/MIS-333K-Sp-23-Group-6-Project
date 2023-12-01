@@ -50,9 +50,9 @@ namespace Group_6_Final_Project.Controllers
         // POST: AppDateTime/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AppDateTimeId,GlobalTime")] DateTime globalTime)
+        public async Task<IActionResult> CreateForm()
         {
-            var appDateTime = new AppDateTime(globalTime);
+            var appDateTime = new AppDateTime(DateTime.UtcNow); // Use UtcNow to get the current UTC time
 
             if (ModelState.IsValid)
             {
@@ -63,13 +63,14 @@ namespace Group_6_Final_Project.Controllers
             return View(appDateTime);
         }
 
+
         // POST: AppDateTime/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AppDateTimeId,GlobalTime")] DateTime globalTime)
+        public async Task<IActionResult> Edit(int id)
         {
             var appDateTime = await _context.AppDateTime.FindAsync(id);
-            appDateTime.SetDateTime(globalTime);
+            appDateTime.SetDateTime(DateTime.UtcNow); // Use UtcNow to get the current UTC time
 
             if (id != appDateTime.AppDateTimeId)
             {
@@ -98,7 +99,6 @@ namespace Group_6_Final_Project.Controllers
             }
             return View(appDateTime);
         }
-
 
         // GET: AppDateTime/Edit/5
         public async Task<IActionResult> Edit(int? id)

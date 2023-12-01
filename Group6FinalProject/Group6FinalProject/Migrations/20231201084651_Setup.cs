@@ -6,13 +6,25 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Group6FinalProject.Migrations
 {
     /// <inheritdoc />
-    public partial class SetupC : Migration
+    public partial class Setup : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterDatabase()
                 .Annotation("SqlServer:EditionOptions", "EDITION = 'Basic', SERVICE_OBJECTIVE = 'Basic'");
+
+            migrationBuilder.CreateTable(
+                name: "AppDateTime",
+                columns: table => new
+                {
+                    AppDateTimeId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppDateTime", x => x.AppDateTimeId);
+                });
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
@@ -283,6 +295,7 @@ namespace Group6FinalProject.Migrations
                     Theatre = table.Column<int>(type: "int", nullable: false),
                     TicketType = table.Column<int>(type: "int", nullable: false),
                     PriceID = table.Column<int>(type: "int", nullable: false),
+                    IsPublished = table.Column<bool>(type: "bit", nullable: false),
                     MovieID = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -416,6 +429,9 @@ namespace Group6FinalProject.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AppDateTime");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 

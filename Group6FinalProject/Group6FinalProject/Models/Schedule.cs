@@ -62,9 +62,6 @@ namespace Group_6_Final_Project.Models
             return seats;
         }
 
-
-        
-
         // NAVIGATIONAL PROPERTIES
 
         [ForeignKey("PriceID")]

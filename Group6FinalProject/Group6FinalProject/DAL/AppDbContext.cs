@@ -29,5 +29,6 @@ namespace Group_6_Final_Project.DAL
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<Price> Prices { get; set; }
         public DbSet<TransactionDetail> TransactionDetails { get; set; }
+        public DbSet<AppDateTime> AppDateTime { get; set; }
     }
 }

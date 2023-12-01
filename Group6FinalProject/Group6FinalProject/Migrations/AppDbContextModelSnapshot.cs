@@ -24,6 +24,19 @@ namespace Group6FinalProject.Migrations
             SqlServerModelBuilderExtensions.HasServiceTierSql(modelBuilder, "'Basic'");
             SqlServerModelBuilderExtensions.HasPerformanceLevelSql(modelBuilder, "'Basic'");
 
+            modelBuilder.Entity("Group_6_Final_Project.Models.AppDateTime", b =>
+                {
+                    b.Property<int>("AppDateTimeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AppDateTimeId"));
+
+                    b.HasKey("AppDateTimeId");
+
+                    b.ToTable("AppDateTime");
+                });
+
             modelBuilder.Entity("Group_6_Final_Project.Models.AppUser", b =>
                 {
                     b.Property<string>("Id")
@@ -229,6 +242,9 @@ namespace Group6FinalProject.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ScheduleID"));
+
+                    b.Property<bool>("IsPublished")
+                        .HasColumnType("bit");
 
                     b.Property<string>("MovieID")
                         .HasColumnType("nvarchar(450)");

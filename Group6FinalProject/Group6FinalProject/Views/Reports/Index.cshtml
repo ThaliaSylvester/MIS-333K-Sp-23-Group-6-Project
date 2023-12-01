@@ -1,4 +1,4 @@
-@*@model Group6FinalProject.Models.ViewModels.ReportViewModel
+@model Group6FinalProject.Models.ViewModels.ReportViewModel
 
 @{
     Layout = "_Layout";
@@ -9,7 +9,7 @@
     <br />
 
     <h5>Search Filters</h5>
-    <form asp-action="Index" method="get">
+    <form asp-action="TotalRevenueReport" method="get">
         <div class="form-group">
             <label for="movieId">Movie ID:</label>
             <input type="text" name="movieId" class="form-control" />
@@ -20,38 +20,54 @@
             <input type="date" name="selectedDate" class="form-control" />
         </div>
 
-        <button type="submit" class="btn btn-primary">Search</button>
+        <button type="submit" class="btn btn-primary">Generate Report</button>
     </form>
 
     <br />
 
     <h5>Report Information</h5>
     @if (Model != null)
-    {
+        {
         <table class="table table-bordered">
-            @if (Model.TotalSeatsSold.HasValue)
+            @if (Model.TotalSeatsSoldOverall != 0)
             {
                 <tr>
-                    <th>Total Seats Sold</th>
-                    <td>@Model.TotalSeatsSold</td>
+                    <th>Total Seats Sold (Overall)</th>
+                    <td>@Model.TotalSeatsSoldOverall</td>
                 </tr>
-            }
+                }
 
-            @if (Model.TotalRevenue.HasValue)
+            @if (Model.TotalRevenueOverall != 0)
             {
                 <tr>
-                    <th>Total Revenue</th>
-                    <td>@Model.TotalRevenue</td>
+                    <th>Total Revenue (Overall)</th>
+                    <td>@Model.TotalRevenueOverall</td>
                 </tr>
-            }
+                }
 
-            @if (Model.PopcornPoints.HasValue)
+            @if (Model.PopcornPoints != 0)
             {
                 <tr>
                     <th>Popcorn Points</th>
                     <td>@Model.PopcornPoints</td>
                 </tr>
-            }
+                }
+
+            @if (Model.TotalSeatsSold != 0)
+            {
+                <tr>
+                    <th>Total Seats Sold (Specific)</th>
+                    <td>@Model.TotalSeatsSold</td>
+                </tr>
+                }
+
+            @if (Model.TotalRevenue.HasValue && Model.TotalRevenue.Value != 0)
+            {
+                <tr>
+                    <th>Total Revenue (Specific)</th>
+                    <td>@Model.TotalRevenue</td>
+                </tr>
+                }
         </table>
-    }
-</div>*@
+        }
+        </div>

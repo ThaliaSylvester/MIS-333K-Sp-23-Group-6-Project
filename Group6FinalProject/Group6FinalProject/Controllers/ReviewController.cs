@@ -156,6 +156,12 @@ namespace Group6FinalProject.Controllers
             {
                 return NotFound();
             }
+
+            // Fetch the corresponding movie title based on MovieID
+            var selectedMovie = _context.Movies.FirstOrDefault(m => m.MovieID == review.MovieID);
+
+            ViewBag.MovieTitle = selectedMovie.Title;
+
             ViewData["MovieID"] = new SelectList(_context.Movies, "MovieID", "MovieID", review.MovieID);
             return View(review);
         }
@@ -174,6 +180,9 @@ namespace Group6FinalProject.Controllers
                 // Allow managers and employees to modify Rating and Description
                 if (ModelState.IsValid)
                 {
+                    // Change back to ReviewPending
+                    review.Status = Status.NeedsReview;
+
                     _context.Update(review);
                     await _context.SaveChangesAsync();
 

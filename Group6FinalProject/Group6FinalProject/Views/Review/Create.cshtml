@@ -28,7 +28,7 @@
             <!--Pre-filled Movie Title-->
             <p>
                 <div class="form-group">
-                    <label asp-for="MovieID" class="control-label" style="font-weight: bold;">Movie ID:</label>
+                    <label asp-for="MovieID" class="control-label" style="font-weight: bold;">Movie Title:</label>
                     <select asp-for="MovieID" class="form-control" asp-items="ViewBag.MovieID" disabled>
                         <option value="@ViewData["SelectedMovieID"]" selected="selected">@ViewData["SelectedMovieID"]</option>
                     </select>

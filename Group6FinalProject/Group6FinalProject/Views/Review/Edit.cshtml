@@ -16,7 +16,15 @@
             <input type="hidden" asp-for="ReviewID" />
             <p>
                 <div class="form-group">
-                    <label class="control-label">Rating:</label>
+                    <label asp-for="MovieID" class="control-label" style="font-weight: bold;">Movie Title:</label>
+                    <input asp-for="MovieID" type="hidden" />
+                    <span>@ViewBag.MovieTitle</span>
+                </div>
+            </p>
+
+            <p>
+                <div class="form-group">
+                    <label class="control-label" style="font-weight: bold;">Rating:</label>
                     @for (int i = 1; i <= 5; i++)
                     {
                         <label class="radio-inline">
@@ -36,17 +44,8 @@
                 </div>
             </p>
 
-            <p>
-                <div class="form-group">
-                    <label asp-for="Status" class="control-label">Status:</label>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Status)
-                    </dd>
-                </div>
-            </p>
-
             <div class="form-group d-none">
-                <label asp-for="UserID" class="control-label"></label>
+                <label asp-for="UserID" class="control-label" style="font-weight: bold;"></label>
                 <input asp-for="UserID" class="form-control" />
                 <span asp-validation-for="UserID" class="text-danger"></span>
             </div>
@@ -60,21 +59,33 @@
             @if (User.IsInRole("Manager") || User.IsInRole("Employee"))
             {
                 <div class="form-group">
-                    <label asp-for="Status" class="control-label">Status:</label>
+                    <label asp-for="Status" class="control-label" style="font-weight: bold;">Status:</label>
                     @Html.DropDownListFor(model => model.Status, Enum.GetValues(typeof(Status)).Cast<Status>().Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString() }), "Select Status", new { @class = "form-control" })
                     <span asp-validation-for="Status" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="UserID" class="control-label"></label>
-                    <input asp-for="UserID" class="form-control" />
+                    <label asp-for="UserID" class="control-label" style="font-weight: bold;"></label>
+                    <input asp-for="UserID" class="form-control" disabled />
                     <span asp-validation-for="UserID" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="MovieID" class="control-label"></label>
-                    <select asp-for="MovieID" class="form-control" asp-items="ViewBag.MovieID"></select>
+                    <label asp-for="MovieID" class="control-label" style="font-weight: bold;"></label>
+                    <select asp-for="MovieID" class="form-control" asp-items="ViewBag.MovieID" disabled></select>
                     <span asp-validation-for="MovieID" class="text-danger"></span>
                 </div>
             }
+            else if (User.IsInRole("Customer"))
+            {
+                <p>
+                    <div class="form-group">
+                        <label asp-for="Status" class="control-label" style="font-weight: bold;">Status:</label>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Status)
+                        </dd>
+                    </div>
+                </p>
+            }
+
             <br />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-danger" />

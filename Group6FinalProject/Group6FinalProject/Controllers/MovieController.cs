@@ -66,15 +66,17 @@ namespace Group_6_Final_Project.Controllers
                 movies = movies.Where(m => m.Title.ToLower().Contains(titleLower)).ToList();
             }
 
-
-
             // Calculate and store average ratings in a dictionary
             Dictionary<string, double> averageRatings = new Dictionary<string, double>();
             foreach (var movie in movies)
             {
                 if (movie.Review != null && movie.Review.Any())
                 {
-                    double averageRating = movie.Review.Average(r => (int)r.Rating);
+                    double averageRating = movie.Review.Select(r => (int)r.Rating).Average();
+
+                    // Format to 1 decimal
+                    averageRating = Math.Round(averageRating, 1);
+
                     averageRatings.Add(movie.MovieID, averageRating);
                 }
                 else

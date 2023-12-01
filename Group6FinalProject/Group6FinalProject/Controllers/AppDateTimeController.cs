@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Group_6_Final_Project.DAL;
 using Group_6_Final_Project.Models;
@@ -22,7 +20,7 @@ namespace Group_6_Final_Project.Controllers
         // GET: AppDateTime
         public async Task<IActionResult> Index()
         {
-              return View(await _context.AppDateTime.ToListAsync());
+            return View(await _context.AppDateTime.ToListAsync());
         }
 
         // GET: AppDateTime/Details/5
@@ -50,11 +48,9 @@ namespace Group_6_Final_Project.Controllers
         }
 
         // POST: AppDateTime/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AppDateTimeId")] AppDateTime appDateTime)
+        public async Task<IActionResult> Create([Bind("AppDateTimeId,GlobalTime")] AppDateTime appDateTime)
         {
             if (ModelState.IsValid)
             {
@@ -82,11 +78,9 @@ namespace Group_6_Final_Project.Controllers
         }
 
         // POST: AppDateTime/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AppDateTimeId")] AppDateTime appDateTime)
+        public async Task<IActionResult> Edit(int id, [Bind("AppDateTimeId,GlobalTime")] AppDateTime appDateTime)
         {
             if (id != appDateTime.AppDateTimeId)
             {
@@ -141,21 +135,22 @@ namespace Group_6_Final_Project.Controllers
         {
             if (_context.AppDateTime == null)
             {
-                return Problem("Entity set 'AppDbContext.AppDateTime'  is null.");
+                return Problem("Entity set 'AppDbContext.AppDateTime' is null.");
             }
+
             var appDateTime = await _context.AppDateTime.FindAsync(id);
             if (appDateTime != null)
             {
                 _context.AppDateTime.Remove(appDateTime);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool AppDateTimeExists(int id)
         {
-          return _context.AppDateTime.Any(e => e.AppDateTimeId == id);
+            return _context.AppDateTime.Any(e => e.AppDateTimeId == id);
         }
     }
 }

@@ -1,15 +1,18 @@
 using System;
-using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
-using Group_6_Final_Project.Models;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Group_6_Final_Project.Models
 {
     public class AppDateTime
     {
         public int AppDateTimeId { get; set; } // Placeholder property for EF Core
+
+        [Display(Name = "Global Time:")]
+        public DateTime GlobalTime
+        {
+            get { return _dateTime; }
+            set { _dateTime = value; }
+        }
 
         private DateTime _dateTime;
 
@@ -19,19 +22,14 @@ namespace Group_6_Final_Project.Models
         }
 
         // Constructor with parameters for your application logic
-        public AppDateTime(int year = 2023, int month = 1, int day = 1, int hour = 0, int minute = 0, int second = 0)
+        public AppDateTime(DateTime globalTime)
         {
-            SetDateTime(year, month, day, hour, minute, second);
+            SetDateTime(globalTime);
         }
 
-        public void SetDateTime(int year, int month, int day, int hour, int minute, int second)
+        public void SetDateTime(DateTime globalTime)
         {
-            _dateTime = new DateTime(year, month, day, hour, minute, second);
-        }
-
-        public DateTime GetDateTime()
-        {
-            return _dateTime;
+            _dateTime = globalTime;
         }
 
         public override string ToString()

@@ -55,18 +55,18 @@ namespace Group6FinalProject.Controllers
 
 
         // POST: Schedule/Index
+        // POST: Schedule/Index
         [HttpPost]
-        public IActionResult Index(Theatre? selectedTheatre, DateTime? weekStartDate, string? searchString, MPAARating? selectedMPAARating)
+        public IActionResult Index(Theatre? selectedTheatre, DateTime? startDate, DateTime? endDate, string? searchString, MPAARating? selectedMPAARating)
         {
             // Filter the schedules
-            var schedulesQuery = GetFilteredSchedules(selectedTheatre, weekStartDate, searchString, selectedMPAARating);
+            var schedulesQuery = GetFilteredSchedules(selectedTheatre, startDate, endDate, searchString, selectedMPAARating);
 
             // Pass through ScheduleViewModel
             var viewModel = new ScheduleViewModel
             {
                 Schedules = schedulesQuery.ToList(),
                 TheatreOptions = _context.Schedules.Select(s => s.Theatre.ToString()).Distinct(),
-                SelectedWeekStartDate = weekStartDate
             };
 
             // Initiate ViewBags
@@ -75,7 +75,6 @@ namespace Group6FinalProject.Controllers
 
             return View(viewModel);
         }
-
         // GET: Schedule/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -272,7 +271,7 @@ namespace Group6FinalProject.Controllers
         }
 
         // Helper function to filter the schedule
-        private IQueryable<Schedule> GetFilteredSchedules(Theatre? selectedTheatre, DateTime? weekStartDate, string? searchString, MPAARating? selectedMPAARating)
+        private IQueryable<Schedule> GetFilteredSchedules(Theatre? selectedTheatre, DateTime? startDate, DateTime? endDate, string? searchString, MPAARating? selectedMPAARating)
         {
             var schedulesQuery = _context.Schedules.Include(s => s.Movie).Include(s => s.Price).AsQueryable();
 
@@ -281,11 +280,18 @@ namespace Group6FinalProject.Controllers
                 schedulesQuery = schedulesQuery.Where(s => s.Theatre == selectedTheatre.Value);
             }
 
-            if (weekStartDate.HasValue)
+            if (startDate.HasValue)
             {
-                var weekEndDate = weekStartDate.Value.AddDays(6);
-                schedulesQuery = schedulesQuery.Where(s => s.StartTime.Date >= weekStartDate.Value.Date && s.StartTime.Date <= weekEndDate.Date);
+                // Use greater than or equal to for the start date
+                schedulesQuery = schedulesQuery.Where(s => s.StartTime.Date >= startDate.Value.Date);
             }
+
+            if (endDate.HasValue)
+            {
+                // Use less than or equal to for the end date
+                schedulesQuery = schedulesQuery.Where(s => s.StartTime.Date <= endDate.Value.Date);
+            }
+
             if (selectedMPAARating.HasValue)
             {
                 schedulesQuery = schedulesQuery.Where(s => s.Movie.MPAARating == selectedMPAARating.Value);

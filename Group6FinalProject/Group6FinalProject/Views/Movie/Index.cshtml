@@ -86,7 +86,7 @@
                     </td>
                     <td>
                         <a asp-action="Details" asp-route-id="@item.MovieID">Details</a>
-
+                        <a asp-action="Index" asp-controller="Schedule" asp-route-movieID="@item.MovieID">View Showtimes</a>
 
                         @if (User.IsInRole("Manager"))
                         {

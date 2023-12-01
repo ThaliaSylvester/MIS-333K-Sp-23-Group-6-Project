@@ -72,43 +72,25 @@
                     <td>@schedule.Movie.Title</td>
                     <td>@schedule.Theatre</td>
                     <td>
-                        @if (User.IsInRole("Customer"))
+                        @if (User.IsInRole("Customer") || User.IsInRole("Employee") || User.IsInRole("Manager"))
                         {
-                            <!-- Purchase Ticket Button -->
-                            <a asp-controller="Transaction" asp-action="Create" asp-route-scheduleID="@schedule.ScheduleID" class="btn btn-danger">Buy Tickets</a>
-                        }
-                        else if (User.IsInRole("Employee"))
-                        {
-                            <!-- Purchase Ticket Button -->
-                            <a asp-controller="Transaction" asp-action="Create" asp-route-scheduleID="@schedule.ScheduleID" class="btn btn-danger">Buy Tickets</a>
+                            <!-- Updated Buy Tickets Button -->
+                            <a asp-controller="Transaction" asp-action="Create" asp-route-movieId="@schedule.Movie.MovieID" asp-route-scheduleId="@schedule.ScheduleID" class="btn btn-danger">Buy Tickets</a>
 
-                            <span>
-                                <!-- Other links -->
-                                <a asp-action="Details" asp-route-id="@schedule.ScheduleID">Details</a> |
-                                <a asp-action="Edit" asp-route-id="@schedule.ScheduleID">Edit</a> |
-                                <a asp-action="Delete" asp-route-id="@schedule.ScheduleID">Delete</a>
-                            </span>
-                        }
-                        else if (User.IsInRole("Manager"))
-                        {
-                            <!-- Purchase Ticket Button -->
-                            <a asp-controller="Transaction" asp-action="Create" asp-route-scheduleID="@schedule.ScheduleID" class="btn btn-danger">Buy Tickets</a>
-
-                            <span>
-                                <!-- Other links -->
-                                <a asp-action="Details" asp-route-id="@schedule.ScheduleID">Details</a> |
-                                <a asp-action="Edit" asp-route-id="@schedule.ScheduleID">Edit</a> |
-                                <a asp-action="Delete" asp-route-id="@schedule.ScheduleID">Delete</a>
-                            </span>
+                            <!-- Additional links for Employee and Manager roles -->
+                            @if (User.IsInRole("Employee") || User.IsInRole("Manager"))
+                            {
+                                <span>
+                                    <a asp-action="Details" asp-route-id="@schedule.ScheduleID">Details</a> |
+                                    <a asp-action="Edit" asp-route-id="@schedule.ScheduleID">Edit</a> |
+                                    <a asp-action="Delete" asp-route-id="@schedule.ScheduleID">Delete</a>
+                                </span>
+                            }
                         }
                         else
                         {
-                            <!-- Purchase Ticket Button -->
+                            <!-- Link to Login Page for non-logged-in users -->
                             <a asp-controller="Account" asp-action="Login" class="btn btn-primary">Buy Tickets</a>
-                            <form asp-controller="Schedule" asp-action="Details" asp-route-id="@schedule.ScheduleID" method="get">
-                                <button type="submit" class="btn btn-primary">Details</button>
-                            </form>
-
                         }
                     </td>
                 </tr>

@@ -12,19 +12,26 @@
         <form asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <!-- Movie Dropdown -->
-            <select asp-for="TransactionMovieID" class="form-control" id="movieDropdown">
-                <option value="">-- Select a Movie --</option>
-                @foreach (var movie in ViewBag.Movies)
-                {
-                    <option value="@movie.Value">@movie.Text</option>
-                }
-            </select>
 
-            <!-- Schedule Dropdown (Initially Empty) -->
-            <select class="form-control" id="scheduleDropdown" onchange="setScheduleId()">
-                <option value="">-- Select a Schedule --</option>
-            </select>
+            <!--Pre-filled Movie Title-->
+            <p>
+                <div class="form-group">
+                    <label asp-for="TransactionMovieID" class="control-label" style="font-weight: bold;">Movie Title:</label>
+                    <p class="form-control-static">@ViewBag.SelectedMovieTitle</p>
+                    <!-- Hidden field to store the selected movie ID -->
+                    <input type="hidden" asp-for="TransactionMovieID" value="@ViewData["SelectedMovieID"]" />
+                </div>
+            </p>
+
+            <!--Pre-filled Schedule Time-->
+            <p>
+                <div class="form-group">
+                    <label asp-for="TransactionScheduleID" class="control-label" style="font-weight: bold;">Movie Schedule Time:</label>
+                    <p class="form-control-static">@ViewBag.SelectedScheduleTime</p>
+                    <!-- Hidden field to store the selected movie ID -->
+                    <input type="hidden" asp-for="TransactionScheduleID" value="@ViewData["SelectedScheduleID"]" />
+                </div>
+            </p>
 
             <!-- Hidden field to store the selected schedule ID -->
             <input type="hidden" asp-for="TransactionScheduleID" />
@@ -40,31 +47,3 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
-<script>document.getElementById("movieDropdown").addEventListener("change", function () {
-        var movieId = this.value;
-        var scheduleDropdown = document.getElementById("scheduleDropdown");
-        scheduleDropdown.innerHTML = "<option value=''>-- Select a Schedule --</option>"; // Reset dropdown
-
-        if (movieId) {
-            fetch(`/Transaction/GetScheduleTimes?movieId=${movieId}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.length === 0) {
-                        scheduleDropdown.innerHTML = "<option value=''>No schedules available for this movie.</option>";
-                        return;
-                    }
-                    data.forEach(schedule => {
-                        var option = document.createElement("option");
-                        option.value = schedule.ScheduleID;
-                        option.text = new Date(schedule.startTime).toLocaleString();
-                        scheduleDropdown.appendChild(option);
-                    });
-                });
-        }
-    });
-
-    function setScheduleId() {
-        var scheduleId = document.getElementById("scheduleDropdown").value;
-        document.getElementById('TransactionScheduleID').value = scheduleId; // Set the hidden field value
-    }</script>

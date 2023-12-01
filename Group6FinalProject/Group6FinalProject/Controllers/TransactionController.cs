@@ -156,69 +156,74 @@ namespace Group_6_Final_Project.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Create(int? movieId)
+        [HttpGet]
+        public async Task<IActionResult> Create(string movieId, int scheduleId)
         {
-            ViewBag.Movies = new SelectList(_context.Movies, "MovieID", "Title");
+            if (movieId == null || scheduleId == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            // Fetch movie title using movieid
+            var movie = await _context.Movies
+                              .FirstOrDefaultAsync(m => m.MovieID == movieId);
+            ViewBag.SelectedMovieTitle = movie.Title;
+
+            var schedule = await _context.Schedules
+                                .FirstOrDefaultAsync(s => s.ScheduleID == scheduleId);
+            ViewBag.SelectedScheduleTime = schedule.StartTime;
+
+            ViewBag.MovieID = new SelectList(_context.Movies, "MovieID", "Title");
+            ViewBag.SelectedMovieID = movieId;
+
+            ViewBag.ScheduleID = new SelectList(_context.Schedules, "ScheduleID", "StartTime");
+            ViewBag.SelectedScheduleID = scheduleId;
+
+            //var viewModel = new TransactionViewModel();
+
             return View();
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TransactionMovieID, TransactionScheduleID")] TransactionViewModel viewModel)
+        public async Task<IActionResult> Create([Bind("TransactionMovieID, TransactionScheduleID")] TransactionViewModel transactionViewModel)
         {
-            // Populate ViewBag.Movies for the view
-            ViewBag.Movies = new SelectList(_context.Movies, "MovieID", "Title");
-
-            // Validate scheduleId
-            if (viewModel.TransactionScheduleID <= 0)
+            if (ModelState.IsValid)
             {
-                ModelState.AddModelError("", "Invalid schedule ID.");
-                return View(viewModel); // Return the view model
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                // Create a new Transaction object
+                Transaction newTransaction = new Transaction
+                {
+                    TransactionDate = DateTime.Now,                             
+                    AppUserId = userId,
+                };
+
+                // Add the transaction to the database
+                _context.Transactions.Add(newTransaction);
+                await _context.SaveChangesAsync(); // Save changes to get the auto-generated TransactionID
+
+                // Create and add a new TransactionDetail
+                TransactionDetail newTransactionDetail = new TransactionDetail
+                {
+                    TransactionID = newTransaction.TransactionID,
+                    ScheduleID = transactionViewModel.TransactionScheduleID
+                };
+
+                // Add the transaction detail to the database
+                _context.TransactionDetails.Add(newTransactionDetail);
+                await _context.SaveChangesAsync();
+
+                ViewBag.MovieID = new SelectList(_context.Movies, "MovieID", "Title", transactionViewModel.TransactionMovieID);
+
+                // Redirect the user to the appropriate page
+                return RedirectToAction(nameof(Index));
             }
 
-            // Create a new transaction instance
-            Transaction transaction = new Transaction
-            {
-                // Set properties for the transaction from the viewModel or other sources
-                TransactionNumber = Utilities.GenerateNextTransactionNumber.GetNextTransactionNumber(_context),
-                TransactionDate = DateTime.Now,
-                AppUser = _context.Users.FirstOrDefault(o => o.UserName == User.Identity.Name),
-                //... other properties as required
-            };
-
-            // Add transaction to database
-            _context.Add(transaction);
-            await _context.SaveChangesAsync();
-
-            // Find Schedule based on scheduleId from viewModel
-            Schedule schedule = await _context.Schedules.FindAsync(viewModel.TransactionScheduleID);
-            if (schedule == null)
-            {
-                ModelState.AddModelError("", "Schedule not found!");
-                return View(viewModel);
-            }
-
-            // Create a new TransactionDetail for this transaction
-            TransactionDetail transactionDetail = new TransactionDetail
-            {
-                Schedule = schedule,
-                ScheduleID = schedule.ScheduleID,
-                Transaction = transaction,
-                TransactionID = transaction.TransactionID
-            };
-
-            // Add the TransactionDetail to the context and save changes
-            _context.TransactionDetails.Add(transactionDetail);
-            await _context.SaveChangesAsync();
-
-            // Redirect to TransactionDetails Create view with transactionId and scheduleId
-            return RedirectToAction("Create", "TransactionDetails", new { transactionId = transaction.TransactionID, scheduleId = viewModel.TransactionScheduleID });
+            // If ModelState is not valid, reload the view with the form data
+            ViewBag.MovieID = new SelectList(_context.Movies, "MovieID", "Title", transactionViewModel.TransactionMovieID);
+            return View(transactionViewModel);
         }
-
-
-
-
 
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> SelectCustomerForTransaction(String SelectedCustomer)

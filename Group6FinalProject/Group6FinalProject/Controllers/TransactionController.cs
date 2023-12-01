@@ -165,44 +165,38 @@ namespace Group_6_Final_Project.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AppuserId")] Transaction transaction, int scheduleId)
+        public async Task<IActionResult> Create([Bind("TransactionMovieID, TransactionScheduleID")] TransactionViewModel viewModel)
         {
             // Populate ViewBag.Movies for the view
             ViewBag.Movies = new SelectList(_context.Movies, "MovieID", "Title");
 
-            // Create a TransactionViewModel instance
-            TransactionViewModel viewModel = new TransactionViewModel
-            {
-            };
-
             // Validate scheduleId
-            if (scheduleId <= 0)
+            if (viewModel.TransactionScheduleID <= 0)
             {
                 ModelState.AddModelError("", "Invalid schedule ID.");
                 return View(viewModel); // Return the view model
             }
 
-            // Find next transaction number from utilities class
-            transaction.TransactionNumber = Utilities.GenerateNextTransactionNumber.GetNextTransactionNumber(_context);
-
-            // Set date of transaction
-            transaction.TransactionDate = DateTime.Now;
-
-            // Associate the transaction with a logged-in customer
-            transaction.AppUser = _context.Users.FirstOrDefault(o => o.UserName == User.Identity.Name);
+            // Create a new transaction instance
+            Transaction transaction = new Transaction
+            {
+                // Set properties for the transaction from the viewModel or other sources
+                TransactionNumber = Utilities.GenerateNextTransactionNumber.GetNextTransactionNumber(_context),
+                TransactionDate = DateTime.Now,
+                AppUser = _context.Users.FirstOrDefault(o => o.UserName == User.Identity.Name),
+                //... other properties as required
+            };
 
             // Add transaction to database
             _context.Add(transaction);
             await _context.SaveChangesAsync();
 
-            // Find Schedule based on scheduleId
-            Schedule schedule = await _context.Schedules.FindAsync(scheduleId);
+            // Find Schedule based on scheduleId from viewModel
+            Schedule schedule = await _context.Schedules.FindAsync(viewModel.TransactionScheduleID);
             if (schedule == null)
             {
-                _logger.LogError($"Schedule not found for ID: {scheduleId}");
-
                 ModelState.AddModelError("", "Schedule not found!");
-                return View(viewModel); // Return the view model
+                return View(viewModel);
             }
 
             // Create a new TransactionDetail for this transaction
@@ -212,7 +206,6 @@ namespace Group_6_Final_Project.Controllers
                 ScheduleID = schedule.ScheduleID,
                 Transaction = transaction,
                 TransactionID = transaction.TransactionID
-                // Set other necessary properties of TransactionDetail as required
             };
 
             // Add the TransactionDetail to the context and save changes
@@ -220,8 +213,9 @@ namespace Group_6_Final_Project.Controllers
             await _context.SaveChangesAsync();
 
             // Redirect to TransactionDetails Create view with transactionId and scheduleId
-            return RedirectToAction("Create", "TransactionDetails", new { transactionId = transaction.TransactionID, scheduleId = scheduleId });
+            return RedirectToAction("Create", "TransactionDetails", new { transactionId = transaction.TransactionID, scheduleId = viewModel.TransactionScheduleID });
         }
+
 
 
 

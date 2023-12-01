@@ -5,8 +5,7 @@
     Layout = "_Layout";
 }
 
-<h1>Create</h1>
-<h4>Transaction</h4>
+<h1>Create Movie Order</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -23,7 +22,7 @@
             </select>
 
             <!-- Schedule Dropdown (Initially Empty) -->
-            <select class="form-control" id="scheduleDropdown">
+            <select class="form-control" id="scheduleDropdown" onchange="setScheduleId()">
                 <option value="">-- Select a Schedule --</option>
             </select>
 
@@ -32,7 +31,7 @@
 
             <!-- Submit Button -->
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Choose Seats" class="btn btn-danger" />
             </div>
         </form>
     </div>
@@ -57,11 +56,15 @@
                     }
                     data.forEach(schedule => {
                         var option = document.createElement("option");
-                        option.value = schedule.scheduleId;
+                        option.value = schedule.ScheduleID;
                         option.text = new Date(schedule.startTime).toLocaleString();
                         scheduleDropdown.appendChild(option);
                     });
                 });
         }
-    });</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+    });
+
+    function setScheduleId() {
+        var scheduleId = document.getElementById("scheduleDropdown").value;
+        document.getElementById('TransactionScheduleID').value = scheduleId; // Set the hidden field value
+    }</script>

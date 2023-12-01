@@ -30,5 +30,10 @@ namespace Group_6_Final_Project.ViewModels
         [Required(ErrorMessage = "Movie title is required")]
         [Display(Name = "Title: ")]
         public string Title { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime? StartDate { get; set; }
+
+        [DataType(DataType.Date)]
     }
 }

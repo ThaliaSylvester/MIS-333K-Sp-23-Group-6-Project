@@ -87,31 +87,73 @@ namespace Group6FinalProject.Controllers
         // GET: Schedule/Create
         public IActionResult Create()
         {
-            ViewData["MovieID"] = new SelectList(_context.Movies, "MovieID", "MovieID");
+            var prices = _context.Prices.ToList();
+            var movies = _context.Movies.ToList();
+
+            // Populate ViewBag.PriceID with the list of Price entities
+            ViewBag.PriceID = new SelectList(prices, "PriceID", "PriceID");
+
+            // Populate ViewBag.MovieID with the list of Movie entities
+            ViewBag.MovieID = new SelectList(movies, "MovieID", "Title");
+
             ViewBag.TicketTypes = new SelectList(Enum.GetValues(typeof(TicketType)));
             return View();
         }
 
-        // POST: Schedule/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ScheduleID,StartTime,Theatre,TicketType,MovieID")] Schedule schedule)
         {
             if (ModelState.IsValid)
             {
+                // Set TicketType based on the selected value in the form
+                Enum.TryParse(Request.Form["TicketType"], out TicketType selectedTicketType);
+                schedule.TicketType = selectedTicketType;
+
+                // Set PriceID based on TicketType
                 SetPriceBasedOnTicketType(schedule);
-                _context.Add(schedule);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                // Check for time gaps between movies
+                var previousMovieEndTime = _context.Schedules
+                    .Where(s => s.Theatre == schedule.Theatre && s.StartTime < schedule.StartTime)
+                    .OrderByDescending(s => s.StartTime)
+                    .Select(s => s.StartTime.AddMinutes(s.Movie.Runtime.TotalMinutes + 25)) // Use Runtime property
+                    .FirstOrDefault();
+
+                if (previousMovieEndTime != default && (schedule.StartTime - previousMovieEndTime).TotalMinutes < 25)
+                {
+                    // Less than 25 minutes between movies, display an error
+                    ModelState.AddModelError("StartTime", "There must be at least 25 minutes between movies.");
+                }
+
+                // Check for more than 45 minutes gap between movies
+                var nextMovieStartTime = _context.Schedules
+                    .Where(s => s.Theatre == schedule.Theatre && s.StartTime > schedule.StartTime)
+                    .OrderBy(s => s.StartTime)
+                    .Select(s => s.StartTime)
+                    .FirstOrDefault();
+
+                if (nextMovieStartTime != default && (nextMovieStartTime - schedule.StartTime).TotalMinutes > 45)
+                {
+                    // More than 45 minutes between movies, display an error
+                    ModelState.AddModelError("StartTime", "There should not be more than 45 minutes between movies.");
+                }
+
+                if (ModelState.IsValid)
+                {
+                    // If all checks passed, save the schedule
+                    _context.Add(schedule);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             }
 
+            // Repopulate dropdowns in case of validation errors
             ViewData["MovieID"] = new SelectList(_context.Movies, "MovieID", "Title", schedule.MovieID);
             ViewBag.TicketTypes = new SelectList(Enum.GetValues(typeof(TicketType)), schedule.TicketType);
+
             return View(schedule);
         }
-
 
         // GET: Schedule/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -127,11 +169,15 @@ namespace Group6FinalProject.Controllers
                 return NotFound();
             }
 
+            var prices = _context.Prices.ToList();
+
+            // Populate ViewBag.PriceID with the list of Price entities
+            ViewBag.PriceID = new SelectList(prices, "PriceID", "PriceID", schedule.PriceID);
+
             ViewData["MovieID"] = new SelectList(_context.Movies, "MovieID", "Title", schedule.MovieID);
             ViewBag.TicketTypes = new SelectList(Enum.GetValues(typeof(TicketType)), schedule.TicketType);
             return View(schedule);
         }
-
 
         // POST: Schedule/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -273,6 +319,7 @@ namespace Group6FinalProject.Controllers
                     schedule.PriceID = 5;
                     break;
                 default:
+                    // Handle any other cases or provide a default price
                     break;
             }
         }
@@ -280,6 +327,5 @@ namespace Group6FinalProject.Controllers
         {
             return _context.Schedules.Any(e => e.ScheduleID == id);
         }
-
     }
 }

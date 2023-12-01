@@ -93,7 +93,8 @@
                             <span class="mx-2"> </span>
 
                             <!-- View Showtime Button -->
-                            <a asp-controller="Schedule" asp-action="Index" asp-route-movieID="@item.MovieID" class="btn btn-danger">Showtimes</a>
+                            <a asp-controller="Schedule" asp-action="Index" asp-route-movieId="@item.MovieID" class="btn btn-danger">Showtimes</a>
+
                         </div>
 
                         @if (User.IsInRole("Manager"))

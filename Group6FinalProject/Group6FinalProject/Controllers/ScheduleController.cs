@@ -9,6 +9,8 @@ using Group_6_Final_Project.DAL;
 using Group_6_Final_Project.Models;
 using Group_6_Final_Project.ViewModels;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Group6FinalProject.Controllers
 {
@@ -24,44 +26,59 @@ namespace Group6FinalProject.Controllers
         // GET: Schedule/Index
         public async Task<IActionResult> Index(DateTime? startDate, DateTime? endDate, int? movieId)
         {
-            // Filter the schedules based on movieId
             var schedulesQuery = GetFilteredSchedules(null, startDate, endDate, null, null, movieId);
 
-            // Pass through ScheduleViewModel
+            //// Apply IsPublished filter for non-Manager users
+            //if (!User.Identity.IsAuthenticated || !User.IsInRole("Manager"))
+            //{
+            //    schedulesQuery = schedulesQuery.Where(s => s.IsPublished);
+            //}
+
             var viewModel = new ScheduleViewModel
             {
                 Schedules = await schedulesQuery.ToListAsync(),
                 TheatreOptions = _context.Schedules.Select(s => s.Theatre.ToString()).Distinct(),
+                IsPublished = User.Identity.IsAuthenticated && User.IsInRole("Manager") // Managers can see all, others see only published
             };
 
-            // Initiate ViewBags
             ViewBag.AllMovieSchedule = viewModel.Schedules.Count();
             ViewBag.FilteredMovieSchedule = viewModel.Schedules.Count();
 
             return View(viewModel);
         }
+
 
 
         // POST: Schedule/Index
         [HttpPost]
-        public IActionResult Index(Theatre? selectedTheatre, DateTime? startDate, DateTime? endDate, string? searchString, MPAARating? selectedMPAARating, int? movieId)
+        public IActionResult Index(ScheduleViewModel viewModel)
         {
-            // Filter the schedules with the new movieId parameter
-            var schedulesQuery = GetFilteredSchedules(selectedTheatre, startDate, endDate, searchString, selectedMPAARating, movieId);
-
-            // Pass through ScheduleViewModel
-            var viewModel = new ScheduleViewModel
+            // Convert MovieID from string to int?
+            int? movieId = null;
+            if (!string.IsNullOrEmpty(viewModel.MovieID) && int.TryParse(viewModel.MovieID, out int parsedMovieId))
             {
-                Schedules = schedulesQuery.ToList(),
-                TheatreOptions = _context.Schedules.Select(s => s.Theatre.ToString()).Distinct(),
-            };
+                movieId = parsedMovieId;
+            }
 
-            // Initiate ViewBags
+            // Fetch the schedules based on the filters provided in the viewModel
+            var schedulesQuery = GetFilteredSchedules(viewModel.SelectedTheatre, viewModel.StartDate, viewModel.EndDate, viewModel.searchString, viewModel.SelectedMPAARating, movieId);
+
+            // Always apply the IsPublished filter based on the toggle state
+            schedulesQuery = schedulesQuery.Where(s => s.IsPublished == viewModel.IsPublished);
+
+            // Execute the query and update the viewModel
+            viewModel.Schedules = schedulesQuery.ToList();
+            viewModel.TheatreOptions = _context.Schedules.Select(s => s.Theatre.ToString()).Distinct();
+
+            // Update ViewBag
             ViewBag.AllMovieSchedule = viewModel.Schedules.Count();
             ViewBag.FilteredMovieSchedule = viewModel.Schedules.Count();
 
             return View(viewModel);
         }
+
+
+
 
 
         // GET: Schedule/Details/5
@@ -102,7 +119,7 @@ namespace Group6FinalProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ScheduleID,StartTime,Theatre,TicketType,MovieID")] Schedule schedule)
+        public async Task<IActionResult> Create([Bind("ScheduleID,StartTime,Theatre,TicketType,MovieID, IsPublished")] Schedule schedule)
         {
             if (ModelState.IsValid)
             {
@@ -185,7 +202,7 @@ namespace Group6FinalProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ScheduleID,StartTime,Theatre,TicketType,MovieID")] Schedule schedule)
+        public async Task<IActionResult> Edit(int id, [Bind("ScheduleID,StartTime,Theatre,TicketType,MovieID, IsPublished")] Schedule schedule)
         {
             if (id != schedule.ScheduleID)
             {
@@ -301,10 +318,26 @@ namespace Group6FinalProject.Controllers
                 string movieIdString = movieId.Value.ToString();
                 schedulesQuery = schedulesQuery.Where(s => s.Movie.MovieID == movieIdString);
             }
-
             return schedulesQuery;
         }
 
+
+        [HttpPost]
+        [Authorize(Roles = "Manager")] // Ensure only managers can access this
+        public async Task<IActionResult> PublishSchedule(int id)
+        {
+            var schedule = await _context.Schedules.FindAsync(id);
+            if (schedule == null)
+            {
+                return NotFound();
+            }
+
+            schedule.IsPublished = true;
+            _context.Update(schedule);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
 
 
         private void SetPriceBasedOnTicketType(Schedule schedule)

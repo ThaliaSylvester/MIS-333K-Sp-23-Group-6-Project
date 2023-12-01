@@ -26,7 +26,7 @@ namespace Group_6_Final_Project.Models
 
         public int PriceID { get; set; }  // Foreign key for the Price
 
-        public bool IsPublished { get; set; }
+        public bool IsPublished { get; set; } = true; // Default value set to true
 
         public List<string> AvailableSeats
         {

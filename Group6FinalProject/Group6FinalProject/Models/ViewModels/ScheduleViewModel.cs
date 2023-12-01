@@ -36,5 +36,9 @@ namespace Group_6_Final_Project.ViewModels
 
         [DataType(DataType.Date)]
         public DateTime? EndDate { get; set; }
+
+        // Add IsPublished property
+        [Display(Name = "Is Published")]
+        public bool IsPublished { get; set; } = true; // Default to true
     }
 }

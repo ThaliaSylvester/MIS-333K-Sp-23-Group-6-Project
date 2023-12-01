@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Group6FinalProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231201085608_Setup")]
-    partial class Setup
+    [Migration("20231201114220_FinalFix")]
+    partial class FinalFix
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

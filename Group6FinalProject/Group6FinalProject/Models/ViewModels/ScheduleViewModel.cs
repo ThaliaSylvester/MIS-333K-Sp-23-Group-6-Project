@@ -35,5 +35,6 @@ namespace Group_6_Final_Project.ViewModels
         public DateTime? StartDate { get; set; }
 
         [DataType(DataType.Date)]
+        public DateTime? EndDate { get; set; }
     }
 }

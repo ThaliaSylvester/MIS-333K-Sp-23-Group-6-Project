@@ -83,10 +83,17 @@
                         }
 
                         <text>@formattedRating</text>
-                    </td>
                     <td>
-                        <a asp-action="Details" asp-route-id="@item.MovieID">Details</a>
-                        <a asp-action="Index" asp-controller="Schedule" asp-route-movieID="@item.MovieID">View Showtimes</a>
+                        <div class="d-flex justify-content-between">
+                            <!-- Details Button -->
+                            <a asp-controller="Movie" asp-action="Details" asp-route-id="@item.MovieID" class="btn btn-danger">Details</a>
+
+                            <!-- Space Separator -->
+                            <span class="mx-2"> </span>
+
+                            <!-- View Showtime Button -->
+                            <a asp-controller="Schedule" asp-action="Index" asp-route-movieID="@item.MovieID" class="btn btn-danger">Showtimes</a>
+                        </div>
 
                         @if (User.IsInRole("Manager"))
                         {
@@ -96,6 +103,8 @@
                             </p>
                         }
                     </td>
+
+
                 </tr>
             }
 

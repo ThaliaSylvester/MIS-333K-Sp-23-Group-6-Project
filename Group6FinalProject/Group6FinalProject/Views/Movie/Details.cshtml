@@ -99,7 +99,7 @@
             }
         </div>
         <div>
-            <a asp-action="Index" asp-controller="Schedule" asp-route-movieID="@Model.MovieID">View Schedule</a>
-            <a asp-action="Index" class="custom-button">Back to List</a>
+            <!-- View Showtime Button -->
+            <a asp-controller="Schedule" asp-action="Index" asp-route-movieID="@Model.MovieID" class="btn btn-danger">View Showtimes</a>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>

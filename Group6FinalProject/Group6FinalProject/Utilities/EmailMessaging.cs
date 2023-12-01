@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Net;
 
-namespace fa22RelationalDataDemo.Utilities
+namespace Group_6_Final_Project.Utilities
 {
     public static class EmailMessaging
     {
@@ -17,13 +17,13 @@ namespace fa22RelationalDataDemo.Utilities
 
             //Create a variable for YOUR TEAM'S Email address
             //This is the address that will be SENDING the emails (the FROM address)
-            String strFromEmailAddress = "fa23group6finalproject@gmail.com\n";
+            String strFromEmailAddress = "fa23group6mis333k@gmail.com";
 
             //This is the app password for YOUR TEAM'S "fake" Gmail account
             //An app password is DIFFERENT than the password you set up when you created the account
             //You have to enable 2-factor authentication for the account, and then
             //set up the App Password (go into Account Settings and search for App Password)
-            String strPassword = "wbtnpoazawoazpvd";
+            String strPassword = "xsizsgvothinimxm";
 
             //This is the name of the business from which you are sending
             String strCompanyName = "Main Street Movies";
@@ -68,7 +68,7 @@ namespace fa22RelationalDataDemo.Utilities
             mm.From = senderEmail;
 
             //Add the recipient (passed in as a parameter) to the list of people receiving the email
-            mm.To.Add(new MailAddress("fa23group6finalproject@gmail.com"));
+            mm.To.Add(new MailAddress("fa23group6mis333k@gmail.com"));
 
             //Add the message (passed)
             mm.Body = finalMessage;

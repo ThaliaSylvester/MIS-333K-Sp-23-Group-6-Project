@@ -58,8 +58,18 @@ public async Task<ActionResult> Register(RegisterViewModel rvm)
         return View(rvm);
     }
 
-    // Check if the email is unique
-    var existingUser = await _userManager.FindByEmailAsync(rvm.Email);
+            try
+            {
+                String emailBody = "Hello!\n\nWelcome to Mainstreet Movies " + rvm.FirstName + " " + rvm.LastName + "!\n\nEmail: " + rvm.Email + "\n\nDate of Birth: " + rvm.DateOfBirth + "\n\nPhone Number: " + rvm.PhoneNumber + "\n\nAddress: " + rvm.AddressLine1 + " " + rvm.AddressLine2 + " " + rvm.City + ", " + rvm.State + " " + rvm.Zip;
+                Utilities.EmailMessaging.SendEmail("Mainstreet Movie - Account Successfully Created!", emailBody);
+            }
+            catch (Exception ex)
+            {
+                return View("Error", new String[] { "There was a problem sending the email", ex.Message });
+            }
+
+            // Check if the email is unique
+            var existingUser = await _userManager.FindByEmailAsync(rvm.Email);
     if (existingUser != null)
     {
         ModelState.AddModelError("Email", "This email is already in use.");

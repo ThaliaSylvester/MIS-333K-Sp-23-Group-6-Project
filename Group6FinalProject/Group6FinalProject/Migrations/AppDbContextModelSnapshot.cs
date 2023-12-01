@@ -327,7 +327,7 @@ namespace Group6FinalProject.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionDetailID"));
 
                     b.Property<decimal>("ExtendedPrice")
-                        .HasColumnType("decimal(18, 2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("NumberofTickets")
                         .HasColumnType("int");
@@ -339,7 +339,7 @@ namespace Group6FinalProject.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("SchedulePrice")
-                        .HasColumnType("decimal(18, 2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("SeatSelection")
                         .HasColumnType("int");

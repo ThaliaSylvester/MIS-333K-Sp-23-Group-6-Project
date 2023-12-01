@@ -1,132 +1,127 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Threading.Tasks;
-//using Microsoft.AspNetCore.Mvc;
-//using Microsoft.AspNetCore.Mvc.Rendering;
-//using Microsoft.EntityFrameworkCore;
-//using Group_6_Final_Project.DAL;
-//using Group_6_Final_Project.Models;
-//using System.Security.Claims;
-//using Microsoft.AspNetCore.Authorization;
-//using System.Data;
-//using Group_6_Final_Project.ViewModels;
-//using Group6FinalProject.Models.ViewModels;
+﻿using System;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using Group_6_Final_Project.DAL;
+using Group_6_Final_Project.Models;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
+using Group_6_Final_Project.ViewModels;
+using Group6FinalProject.Models.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
+namespace Group_6_Final_Project.Controllers
+{
+    public class ReportsController : Controller
+    {
+        private readonly AppDbContext _context;
 
-//// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-//namespace Group_6_Final_Project.Controllers
-//{
-//    public class ReportsController : Controller
-//    {
-//        private readonly AppDbContext _context;
+        public ReportsController(AppDbContext context)
+        {
+            _context = context;
+        }
 
-//        public ReportsController(AppDbContext context)
-//        {
-//            _context = context;
-//        }
+        public IActionResult Index(string customerId, DateTime? startDate, DateTime? endDate, string movieId)
+        {
+            var totalSeatsSold = _context.TransactionDetails.Sum(td => td.NumberofTickets);
+            var totalRevenue = CalculateTotalRevenue();
 
-//        public IActionResult Index(string customerId, DateTime? startDate, DateTime? endDate, string? movieId)
-//        {
-//            var totalSeatsSold = _context.TransactionDetails.Sum(td => td.NumberofTickets);
+            var customerTotalSeats = customerId != null
+                ? _context.Transactions
+                    .Where(t => t.AppUserId == customerId)
+                    .Sum(t => t.TransactionDetail.Sum(td => td.NumberofTickets))
+                : 0;
 
-//            var totalRevenue = CalculateTotalRevenue();
+            var reportsViewModel = new ReportViewModel
+            {
+                TotalSeatsSold = totalSeatsSold,
+                TotalRevenue = totalRevenue,
+            };
 
-//            var customerTotalSeats = customerId != null
-//            ? _context.Transactions
-//            .Where(t => t.AppUserId == customerId)
-//            .Sum(t => t.TransactionDetail.Sum(td => td.NumberofTickets))
-//            : 0;
+            return View(reportsViewModel);
+        }
 
-//            // Create a ReportsViewModel
-//            var reportsViewModel = new ReportViewModel
-//            {
-//                TotalSeatsSold = totalSeatsSold,
-//                TotalRevenue = totalRevenue,
-//            };
+        public IActionResult TotalRevenueReport(DateTime? startDate, DateTime? endDate, string movieId)
+        {
+            var query = _context.Transactions
+                .Where(t => (startDate == null || t.TransactionDate >= startDate) &&
+                            (endDate == null || t.TransactionDate <= endDate) &&
+                            (movieId == null || t.TransactionDetail.Any(td => td.Schedule.MovieID == movieId)));
 
-//            // Pass the view model to the view
-//            return View(reportsViewModel);
-//        }
+            // Calculate total revenue
+            var totalRevenue = query.Sum(t => t.TransactionTotal);
 
-//        public IActionResult TotalSeatsSoldReport(DateTime? startDate, DateTime? endDate, string? movieId)
-//        {
-//            var totalSeatsSold = _context.TransactionDetails
-//                .Where(td => (startDate == null || td.Transaction.TransactionDate >= startDate) &&
-//                             (endDate == null || td.Transaction.TransactionDate <= endDate) &&
-//                             (movieId == null || td.Schedule.MovieId == movieId))
-//                .Sum(td => td.NumberofTickets);
+            // Calculate total seats sold overall
+            var totalSeatsSoldOverall = query.SelectMany(t => t.TransactionDetail)
+                .Sum(td => td.NumberofTickets);
 
-//            var reportsViewModel = new ReportViewModel
-//            {
-//                TotalSeatsSold = totalSeatsSold,
-//            };
+            var reportsViewModel = new ReportViewModel
+            {
+                TotalSeatsSoldOverall = totalSeatsSoldOverall,
+                TotalRevenueOverall = totalRevenue,
+            };
 
-//            return View("Index", reportsViewModel);
-//        }
+            return View("Index", reportsViewModel);
+        }
 
-//        public IActionResult TotalRevenueReport(DateTime? startDate, DateTime? endDate, string? movieId)
-//        {
-//            var totalRevenue = _context.Transactions
-//                .Where(t => (startDate == null || t.TransactionDate >= startDate) &&
-//                            (endDate == null || t.TransactionDate <= endDate) &&
-//                            (movieId == null || t.TransactionDetails.Any(td => td.Schedule.MovieId == movieId)))
-//                .Sum(t => t.TransactionTotal);
+        public IActionResult CustomerReport(string customerId, DateTime? startDate, DateTime? endDate, string movieId)
+        {
+            // Calculate total seats sold for the customer
+            var totalSeatsSold = _context.Transactions
+                .Where(t => t.AppUserId == customerId &&
+                            (startDate == null || t.TransactionDate >= startDate) &&
+                            (endDate == null || t.TransactionDate <= endDate))
+                .Sum(t => t.TransactionDetail.Sum(td => td.NumberofTickets));
 
-//            var reportsViewModel = new ReportViewModel
-//            {
-//                TotalRevenue = totalRevenue,
-//            };
+            // Calculate total revenue for the customer
+            var totalRevenue = _context.Transactions
+                .Where(t => t.AppUserId == customerId &&
+                            (startDate == null || t.TransactionDate >= startDate) &&
+                            (endDate == null || t.TransactionDate <= endDate))
+                .Sum(t => t.TransactionTotal);
 
-//            return View("Index", reportsViewModel);
-//        }
+            var reportsViewModel = new ReportViewModel
+            {
+                TotalSeatsSold = totalSeatsSold,
+                TotalRevenue = totalRevenue,
+            };
 
-//        public IActionResult TotalSeatsAndRevenueReport(DateTime? startDate, DateTime? endDate, string? movieId)
-//        {
-//            var totalSeatsSold = // ... your logic to calculate total seats sold
-//            var totalRevenue = // ... your logic to calculate total revenue
+            return View("Index", reportsViewModel);
+        }
 
-//            var reportsViewModel = new ReportViewModel
-//            {
-//                TotalSeatsSold = totalSeatsSold,
-//                TotalRevenue = totalRevenue,
-//            };
+        public IActionResult PopcornPointsReport(DateTime? startDate, DateTime? endDate, string movieId)
+        {
+            // Calculate popcorn points logic (replace this with your actual logic)
+            var popcornPoints = _context.Transactions
+                .Where(t => (startDate == null || t.TransactionDate >= startDate) &&
+                            (endDate == null || t.TransactionDate <= endDate) &&
+                            (movieId == null || t.TransactionDetail.Any(td => td.Schedule.MovieID == movieId)))
+                .Sum(t => CalculatePopcornPointsForTransaction(t));
 
-//            return View("Index", reportsViewModel);
-//        }
+            var reportsViewModel = new ReportViewModel
+            {
+                PopcornPoints = popcornPoints,
+            };
 
-//        public IActionResult CustomerReport(string customerId, DateTime? startDate, DateTime? endDate, string? movieId)
-//        {
-//            var totalSeatsSold = // ... your logic to calculate total seats sold for the customer
-//            var totalRevenue = // ... your logic to calculate total revenue for the customer
+            return View("Index", reportsViewModel);
+        }
 
-//            var reportsViewModel = new ReportViewModel
-//            {
-//                TotalSeatsSold = totalSeatsSold,
-//                TotalRevenue = totalRevenue,
-//            };
+        // Example method to calculate popcorn points for a transaction (replace this with your actual logic)
+        private int CalculatePopcornPointsForTransaction(Transaction transaction)
+        {
+            // Your popcorn points logic based on the transaction details, movie, etc.
+            // Replace this with your actual logic for calculating popcorn points.
 
-//            return View("Index", reportsViewModel);
-//        }
+            // For example, you might give 1 popcorn point for each $10 spent.
+            int points = (int)(transaction.TransactionTotal / 10);
 
-//        public IActionResult PopcornPointsReport(DateTime? startDate, DateTime? endDate, string? movieId)
-//        {
-//            var popcornPoints = // ... your logic to calculate popcorn points
+            return points;
+        }
 
-//            var reportsViewModel = new ReportViewModel
-//            {
-//                PopcornPoints = popcornPoints,
-//            };
-
-//            return View("Index", reportsViewModel);
-//        }
-//    }
-
-//    private decimal CalculateTotalRevenue()
-//        {
-//            // Your logic to calculate total revenue based on transactions
-//            var totalRevenue = _context.Transactions.Sum(t => t.TransactionTotal);
-//            return totalRevenue;
-//        }
-//    }
-//}
+        private decimal CalculateTotalRevenue()
+        {
+            var totalRevenue = _context.Transactions.Sum(t => t.TransactionTotal);
+            return totalRevenue;
+        }
+    }
+}

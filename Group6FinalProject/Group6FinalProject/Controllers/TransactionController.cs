@@ -11,6 +11,7 @@ using Group_6_Final_Project.DAL;
 using Group_6_Final_Project.Models;
 using Group_6_Final_Project.Utilities;
 using System.Security.Claims;
+using fa22RelationalDataDemo.Utilities;
 
 namespace Group_6_Final_Project.Controllers
 {
@@ -192,37 +193,24 @@ namespace Group_6_Final_Project.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AppUser")] Transaction transaction)
         {
-            // Check if the user is authenticated
-            if (User.Identity.IsAuthenticated)
-            {
-                // Get the user's ID
-                string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            // Find next transaction number
+            transaction.TransactionNumber = Utilities.GenerateNextTransactionNumber.GetNextTransactionNumber(_context);
 
-                // Find next transaction number
-                transaction.TransactionNumber = Utilities.GenerateNextTransactionNumber.GetNextTransactionNumber(_context);
+            // Set date of transaction
+            transaction.TransactionDate = DateTime.Now;
 
-                // Set date of transaction
-                transaction.TransactionDate = DateTime.Now;
+            // Associate transaction with logged-in customer
+            //transaction.AppUser = await _userManager.FindByNameAsync(transaction.AppUser.UserName);
 
-                // Associate transaction with logged-in customer
-                transaction.AppUser = await _userManager.FindByIdAsync(userId);
+            // If code if valid, add transaction to the database
+            _context.Add(transaction);
+            await _context.SaveChangesAsync();
 
-                // If code is valid, add transaction to the database
-                _context.Add(transaction);
-                await _context.SaveChangesAsync();
+            var movieId = ViewBag.MovieID as string;
+            var scheduleId = ViewBag.ScheduleID as int?;
 
-                var movieId = ViewBag.MovieID as string;
-                var scheduleId = ViewBag.ScheduleID as int?;
-
-                // Send the customer to the appropriate page
-                return RedirectToAction("Create", "TransactionDetails", new { transactionID = transaction.TransactionID, movieId = movieId, scheduleId = scheduleId });
-            }
-            else
-            {
-                // Handle the case where the user is not authenticated
-                // Redirect to an appropriate page or show an error message
-                return RedirectToAction("Login", "Account"); // Example redirect to login page
-            }
+            // Send the customer to the appropriate page
+            return RedirectToAction("Create", "TransactionDetails", new { transactionID = transaction.TransactionID, movieId = movieId, scheduleId = scheduleId });
         }
 
         [Authorize(Roles = "Admin")]
@@ -296,7 +284,7 @@ namespace Group_6_Final_Project.Controllers
 
         }
 
-        public IActionResult ConfirmPurchase(TransactionDetail transactionDetail, int transactionId)
+        public IActionResult ConfirmPurchase(int transactionId)
         {
             var transaction = _context.Transactions.Find(transactionId);
             if (transaction == null)
@@ -314,20 +302,15 @@ namespace Group_6_Final_Project.Controllers
             transaction.ConfirmNumber = GenerateNextConfirmNumber.GetNextConfirmNumber(_context);
             _context.SaveChanges();
 
-            //Send the email to confirm order details have been added
-            try
-            {
-                String emailBody = "Hello!\n\nThank you for your purchasing your tickets!\n\nConfirmation Number: " + transaction.ConfirmNumber;
-                Utilities.EmailMessaging.SendEmail("Mainstreet Movie - Movie Tickets Confirmed", emailBody);
-            }
-            catch (Exception ex)
-            {
-                return View("Error", new String[] { "There was a problem sending the email", ex.Message });
-            }
+            // Send confirmation email
+            //string emailSubject = "Ticket Confirmation";
+            //string emailBody = $"Thank you for your purchase! Your confirmation number is: {transaction.ConfirmNumber}";
+
+            //// Use the SendEmail method from EmailMessaging class
+            //EmailMessaging.SendEmail(emailSubject, emailBody);
 
             return RedirectToAction("ThankYou", new { id = transactionId });
         }
-
         public IActionResult CancelPurchase(int transactionId)
         {
             var transaction = _context.Transactions.Find(transactionId);
@@ -335,17 +318,6 @@ namespace Group_6_Final_Project.Controllers
             if (transaction == null)
             {
                 return NotFound();
-            }
-
-            //Send the email to confirm order details have been added
-            try
-            {
-                String emailBody = "Hello!\n\nYour tickets have been cancelled.\n\nConfirmation Number: " + transaction.ConfirmNumber + "\nTotal Price: $";
-                Utilities.EmailMessaging.SendEmail("Mainstreet Movie - Movie Tickets Cancelled", emailBody);
-            }
-            catch (Exception ex)
-            {
-                return View("Error", new String[] { "There was a problem sending the email", ex.Message });
             }
 
             // Update PurchaseStatus to Purchased

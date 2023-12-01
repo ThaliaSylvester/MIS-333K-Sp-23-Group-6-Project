@@ -89,19 +89,9 @@ public async Task<ActionResult> Register(RegisterViewModel rvm)
         Password = rvm.Password,
         RoleName = "Customer"
     };
-            //Send the email to confirm order details have been added
-            try
-            {
-                String emailBody = "Hello!\n\nWelcome to Mainstreet Movies " + newUser.FirstName + " " + newUser.LastName + "!\n\nUsername: " + newUser.UserName + "\n\nDate of Birth: " + newUser.DateOfBirth + "\n\nPhone Number: " + newUser.PhoneNumber + "\n\nAddress: " + newUser.AddressLine1 + " " + newUser.AddressLine2 + " " + newUser.City + ", " + newUser.State + " " + newUser.Zip;
-                Utilities.EmailMessaging.SendEmail("Mainstreet Movie - Account Successfully Created!", emailBody);
-            }
-            catch (Exception ex)
-            {
-                return View("Error", new String[] { "There was a problem sending the email", ex.Message });
-            }
 
-            // Create a new user with the specified password
-            IdentityResult result = await Utilities.AddUser.AddUserWithRoleAsync(aum, _userManager, _context);
+    // Create a new user with the specified password
+    IdentityResult result = await Utilities.AddUser.AddUserWithRoleAsync(aum, _userManager, _context);
 
     if (result.Succeeded)
     {

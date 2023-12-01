@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Group_6_Final_Project.Models
 {
-    public enum MPAARating { G, PG, PG13, R, NC17}
+    public enum MPAARating { G, PG, PG13, R }
 
     public class Movie
     {

@@ -15,7 +15,7 @@
             <input type="hidden" name="movieId" value="@ViewBag.SelectedMovieID" />
             <input type="hidden" name="scheduleId" value="@ViewBag.SelectedScheduleID" />
 
-            <!-- Pre-filled Movie Title -->
+            <!--Pre-filled Movie Title-->
             <p>
                 <div class="form-group">
                     <label style="font-weight: bold;">Movie Title:</label>
@@ -24,7 +24,7 @@
                 </div>
             </p>
 
-            <!-- Pre-filled Schedule Time -->
+            <!--Pre-filled Schedule Time-->
             <p>
                 <div class="form-group">
                     <label style="font-weight: bold;">Schedule Movie Time:</label>
@@ -32,23 +32,6 @@
                     @ViewBag.SelectedScheduleTime
                 </div>
             </p>
-
-            <!-- Display Schedule ID -->
-            <p>
-                <div class="form-group">
-                    <label style="font-weight: bold;">Schedule ID:</label>
-                    <br />
-                    <input type="text" id="scheduleIdInput" value="@ViewBag.SelectedScheduleID" readonly />
-                    <button onclick="copyScheduleId()">Copy</button>
-                </div>
-            </p>
-
-            <script>function copyScheduleId() {
-        var scheduleIdInput = document.getElementById("scheduleIdInput");
-        scheduleIdInput.select();
-        document.execCommand("copy");
-        alert("Schedule ID copied to clipboard!");
-    }</script>
 
             <!-- Submit Button -->
             <div class="form-group">
